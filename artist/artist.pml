@@ -16,6 +16,7 @@
         <File name="css" src="html/css.css" />
         <File name="functions" src="html/functions.js" />
         <File name="index" src="html/index.html" />
+        <File name="testfile" src="testfile.txt" />
     </Resources>
     <Topics>
         <Topic name="ExampleDialog_enu" src="behavior_1/ExampleDialog/ExampleDialog_enu.top" topicName="ExampleDialog" language="en_US" />

@@ -20,13 +20,18 @@ concept:(hello) [hello hi]
 concept:(color) [blue yellow red green orange]
 concept:(dontknow) ["I dont know" "no idea" "dont know" no]
 concept:(learnMore) ["tell me" tell learn hear]
+
+concept:(happy) [good fine "I am good" happy]
+concept:(sad) [sad bad "not good"]
 concept:(goodJob) ["good job" "well done" "nice" "impressive"]
 concept:(whatcanyoudo) ["what can you do" help info functions]
 concept:(tellMe) ["tell me" tell say hear "lets hear it"]
+concept:(askingWords) ["where is" how when where "is there" "are there" "when is"]
+concept:(uppsalaActivity) [Cinema Fyrishov "The Church"]
 
-
-u:(e:onStart) %start Hello. I am Pepper! ^first[" Nice to see you again $userName ^goto(helloUser) " "What is your name? "] 
-    u1:([_* "my name is _*"]) Nice to meet you $1 $userName=$1 ^nextProposal
+ #------------------------------Start Stuff-------------------------
+u:(e:onStart) %start Hello. I am Pepper! ^first[" Nice to see you again $userName ^goto(helloUser) " "%askAboutName What is your name? "] 
+    u1:(["_*" "my name is _*"]) Nice to meet you $1 $userName=$1 ^nextProposal
     u1:(~no) You dont want to tell me. That is okay. ^clear(userName) ^nextProposal
 u:(helloMe) %helloUser !
 
@@ -47,6 +52,7 @@ u:(tablet disabled) Lets open the tablet. $goToTopic=tablet $onStopped=1
 u:(e:Dialog/NoOneSpeak20) ^nextProposal
 
 
+ #------------------------------Suggestions-------------------------
 proposal: %init I can answer questions about the rules of this place or we can talk about music?
     u1:(~no) Okay. Lets do something else then. ^gotoRandom(second)
     u1:(questions) Okay what do you want to ask me about?
@@ -76,6 +82,9 @@ proposal: %second We could do a bit of exercise together.
     u1:(~yes) Oh goody. I really need to stretch my arms. ^goto(moveGame)
     u2:(~no)  ^nextProposal
     u1:([more "what else"])  ^nextProposal   
+    
+    
+#------------------------------Move-------------------------    
 u:(move) %moveGame The rules are easy. Just try to follow my instructions. First up ^goto(movefirst)
 u:(moveCheck) &moveCheck m 
     u1:(~done) [~goodJob] ^gotoRandom(movement)
@@ -85,9 +94,30 @@ u:(moveCheck) &moveCheck m
 u:(movefirst) %movefirst Can you stand on one leg? Tell me when you are done and I will give you more instructions. ^goto(moveCheck)
 u:(movesecond) %movement Touch your fingers to your toes. ^goto(moveCheck)
 
+#------------------------------General Pepper talk-------------------------    
+u:(What is your name) My name is Pepper. ^goto(askAboutName)
+u:(How are you) I am a happy robot. How are you ^first[$userName " "]?
+    u1:(_~happy) I am glad to hear that you are $1
+    u1:(_~sad) Oh I am sorry to hear that
+  
 
 
-    
+#------------------------------Questions-------------------------
+u:(["[~askingWords *]food store" food "food store" store]) The closest place to buy food is Ica The Corner. 
+u:(cleaning day) ^first["$userName your cleaning day is Friday" "The cleaning schedule is located on the fridges. Today it is Isaks cleaning day"]  
+u:(cleaning tools) The cleaning tools are located in the closet in each room.
+u:(activity) %suggestion I can recomend ["Cinema $activity=Cinema " "Fyrishov $activity=Fyrishov " "The Church $activity=Church "] Do you want another suggestion or learn more abour this?
+    u1:(~learnMore) %learnActivity ["$activity==Cinema Moana is a really good movie" "$activity==Fyrishov You can swim, jump or just relax in the hot tubs"] 
+    u1:(~yes) Did you mean you want another suggestion?
+        u2:(~yes) ^goto(suggestion)
+        u2:(~no) ^goto(learnActivity)
+    u1:(suggestion) ^goto(suggestion)
+    u1:([~stop ~no]) Lets do something else ^nextProposal
+
+
+
+
+#------------------------------Twister-------------------------   
 u:(twister) %twisterGame Lets play some Twister. Get your twister set up and tell me when you are ready!
     u1:(~stop) I understood that you want to stop talking about this. ^goto(start)
     u1:(~ready) Okay let's start. How many will be playing?

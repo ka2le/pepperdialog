@@ -15,7 +15,7 @@
             <BehaviorLayer name="behavior_layer1">
                 <BehaviorKeyframe name="keyframe1" index="1">
                     <Diagram scale="84.0896">
-                        <Box name="General Dialog" id="3" localization="8" tooltip="An example of multilanguage dialog implementation" x="460" y="463">
+                        <Box name="General Dialog" id="3" localization="8" tooltip="An example of multilanguage dialog implementation" x="571" y="350">
                             <dialogFile>../general/general.dlg</dialogFile>
                             <bitmap>media/images/box/box-dialog.png</bitmap>
                             <script language="4">
@@ -31,7 +31,7 @@
                             <Resource name="Speech" type="Lock" timeout="0" />
                             <Resource name="Speech recognition" type="Lock" timeout="0" />
                         </Box>
-                        <Box name="Open link" id="7" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="835" y="244">
+                        <Box name="Open link" id="7" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="993" y="141">
                             <bitmap>media/images/box/sensors/STM.png</bitmap>
                             <script language="4">
                                 <content>
@@ -66,7 +66,7 @@
                             <Parameter name="key" inherits_from_parent="0" content_type="3" value="ARTIST/youtube" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                             <Parameter name="url" inherits_from_parent="0" content_type="3" value="https://www.youtube.com/watch?v=uuZE_IRwLNI" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
                         </Box>
-                        <Box name="Subscribe to Event (1)" id="2" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="805" y="50">
+                        <Box name="Subscribe to Event (1)" id="2" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="82" y="717">
                             <bitmap>media/images/box/sensors/STM.png</bitmap>
                             <script language="4">
                                 <content>
@@ -100,7 +100,7 @@
                             <Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="" id="6" />
                             <Parameter name="key" inherits_from_parent="0" content_type="3" value="QUIZ/addscore" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                         </Box>
-                        <Box name="Get Data" id="5" localization="8" tooltip="Retrieves from NAOqi&apos;s shared memory the given value at the given key." x="947" y="52">
+                        <Box name="Get Data" id="5" localization="8" tooltip="Retrieves from NAOqi&apos;s shared memory the given value at the given key." x="219" y="713">
                             <bitmap>media/images/box/sensors/STM.png</bitmap>
                             <script language="4">
                                 <content>
@@ -132,7 +132,7 @@
                             <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
                             <Parameter name="key" inherits_from_parent="0" content_type="3" value="quizScore" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="6" />
                         </Box>
-                        <Box name="Insert Data" id="4" localization="8" tooltip="Stores in NAOqi&apos;s shared memory the given value at the given key." x="1077" y="39">
+                        <Box name="Insert Data" id="4" localization="8" tooltip="Stores in NAOqi&apos;s shared memory the given value at the given key." x="369" y="707">
                             <bitmap>media/images/box/sensors/STM.png</bitmap>
                             <script language="4">
                                 <content>
@@ -163,7 +163,7 @@
                             <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
                             <Parameter name="key" inherits_from_parent="0" content_type="3" value="quizScore" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="6" />
                         </Box>
-                        <Box name="Show Web View" id="8" localization="8" tooltip="Shows the webview (html content) on the tablet.&#x0A;&#x0A;V1.0.0&#x0A;" x="1060" y="228">
+                        <Box name="Show Web View" id="8" localization="8" tooltip="Shows the webview (html content) on the tablet.&#x0A;&#x0A;V1.0.0&#x0A;" x="1218" y="125">
                             <bitmap>media/images/box/internet/internet.png</bitmap>
                             <script language="4">
                                 <content>
@@ -204,7 +204,7 @@ class MyClass(GeneratedClass):
                             <Input name="onStart" type="3" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
                             <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="3" />
                         </Box>
-                        <Box name="Set Speaker Vol." id="6" localization="8" tooltip="Set the sound volume between 0 (mute) and 100 (max).&#x0A;&#x0A;V1.1.0&#x0A;" x="423" y="14">
+                        <Box name="Set Speaker Vol." id="6" localization="8" tooltip="Set the sound volume between 0 (mute) and 100 (max).&#x0A;&#x0A;V1.1.0&#x0A;" x="629" y="51">
                             <bitmap>media/images/box/interaction/processing_sound.png</bitmap>
                             <script language="4">
                                 <content>
@@ -227,7 +227,7 @@ class MyClass(GeneratedClass):
                             <Output name="onReady" type="1" type_size="1" nature="2" inner="0" tooltip="Signal sent when the data has been set." id="3" />
                             <Parameter name="Volume (%)" inherits_from_parent="0" content_type="1" value="44" default_value="50" min="0" max="100" tooltip="Percentage of maximum output volume." id="4" />
                         </Box>
-                        <Box name="Open#" id="12" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="831" y="151">
+                        <Box name="Open#" id="12" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="989" y="48">
                             <bitmap>media/images/box/sensors/STM.png</bitmap>
                             <script language="4">
                                 <content>
@@ -262,7 +262,7 @@ class MyClass(GeneratedClass):
                             <Parameter name="key" inherits_from_parent="0" content_type="3" value="openPage" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                             <Parameter name="url" inherits_from_parent="0" content_type="3" value="https://test-music.mybluemix.net/peppertablet/index.html#" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
                         </Box>
-                        <Box name="Set Language" id="1" localization="8" tooltip="Select the language you would like the robot to speak and understand. Any following call to&#x0A;ALSpeechRecognition (Speech Reco. box for instance) or ALTextToSpeech (Say box&#x0A;for instance) will use this language." x="211" y="427">
+                        <Box name="Set Language" id="1" localization="8" tooltip="Select the language you would like the robot to speak and understand. Any following call to&#x0A;ALSpeechRecognition (Speech Reco. box for instance) or ALTextToSpeech (Say box&#x0A;for instance) will use this language." x="223" y="278">
                             <bitmap>media/images/box/interaction/say.png</bitmap>
                             <script language="4">
                                 <content>
@@ -336,7 +336,7 @@ class MyClass(GeneratedClass):
                             </Parameter>
                             <Resource name="Speech" type="Lock" timeout="0" />
                         </Box>
-                        <Box name="Music Dialog" id="10" localization="8" tooltip="An example of multilanguage dialog implementation" x="481" y="578">
+                        <Box name="Music Dialog" id="10" localization="8" tooltip="An example of multilanguage dialog implementation" x="570" y="455">
                             <dialogFile>../artist/artist.dlg</dialogFile>
                             <bitmap>media/images/box/box-dialog.png</bitmap>
                             <script language="4">
@@ -352,7 +352,7 @@ class MyClass(GeneratedClass):
                             <Resource name="Speech" type="Lock" timeout="0" />
                             <Resource name="Speech recognition" type="Lock" timeout="0" />
                         </Box>
-                        <Box name="Subscribe to Event" id="11" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="93" y="591">
+                        <Box name="Subscribe to Event" id="11" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="228" y="403">
                             <bitmap>media/images/box/sensors/STM.png</bitmap>
                             <script language="4">
                                 <content>
@@ -386,7 +386,7 @@ class MyClass(GeneratedClass):
                             <Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="" id="6" />
                             <Parameter name="key" inherits_from_parent="0" content_type="3" value="goToTopic" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                         </Box>
-                        <Box name="Switch Mode" id="13" localization="8" tooltip="Retrieves from NAOqi&apos;s shared memory the given value at the given key." x="247" y="612">
+                        <Box name="Switch Mode" id="13" localization="8" tooltip="Retrieves from NAOqi&apos;s shared memory the given value at the given key." x="368" y="342">
                             <bitmap>media/images/box/sensors/STM.png</bitmap>
                             <script language="4">
                                 <content>
@@ -429,7 +429,7 @@ class MyClass(GeneratedClass):
                             <Output name="testing" type="1" type_size="1" nature="2" inner="0" tooltip="" id="10" />
                             <Parameter name="key" inherits_from_parent="0" content_type="3" value="" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="11" />
                         </Box>
-                        <Box name="testing" id="9" localization="8" tooltip="An example of multilanguage dialog implementation" x="495" y="695">
+                        <Box name="testing" id="9" localization="8" tooltip="An example of multilanguage dialog implementation" x="576" y="563">
                             <dialogFile>../testing/testing.dlg</dialogFile>
                             <bitmap>media/images/box/box-dialog.png</bitmap>
                             <script language="4">
@@ -445,7 +445,7 @@ class MyClass(GeneratedClass):
                             <Resource name="Speech" type="Lock" timeout="0" />
                             <Resource name="Speech recognition" type="Lock" timeout="0" />
                         </Box>
-                        <Box name="Open Local" id="14" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="836" y="339">
+                        <Box name="Open Local" id="14" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="994" y="236">
                             <bitmap>media/images/box/sensors/STM.png</bitmap>
                             <script language="4">
                                 <content>
@@ -480,7 +480,7 @@ class MyClass(GeneratedClass):
                             <Parameter name="key" inherits_from_parent="0" content_type="3" value="tabletLocal" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                             <Parameter name="url" inherits_from_parent="0" content_type="3" value="http://10.20.1.13/apps/artist/index.html" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
                         </Box>
-                        <Box name="NLC" id="15" localization="8" tooltip="This box contains a basic python script and can be used to create any python script box you would like.&#x0A;&#x0A;To edit its script, double-click on it." x="990" y="468">
+                        <Box name="NLC" id="15" localization="8" tooltip="This box contains a basic python script and can be used to create any python script box you would like.&#x0A;&#x0A;To edit its script, double-click on it." x="1058" y="360">
                             <bitmap>media/images/box/box-python-script.png</bitmap>
                             <script language="4">
                                 <content>
@@ -525,7 +525,7 @@ class MyClass(GeneratedClass):
                             <Parameter name="password" inherits_from_parent="0" content_type="3" value="ut281cwnkBB6" default_value="" custom_choice="0" tooltip="" id="7" />
                             <Parameter name="username" inherits_from_parent="0" content_type="3" value="6c545133-4296-4002-a134-21c888023a62" default_value="" custom_choice="0" tooltip="" id="8" />
                         </Box>
-                        <Box name="Subscribe to Event (2)" id="16" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="845" y="458">
+                        <Box name="Subscribe to Event (2)" id="16" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="913" y="350">
                             <bitmap>media/images/box/sensors/STM.png</bitmap>
                             <script language="4">
                                 <content>
@@ -559,7 +559,7 @@ class MyClass(GeneratedClass):
                             <Output name="onEvent" type="3" type_size="1" nature="2" inner="0" tooltip="" id="6" />
                             <Parameter name="key" inherits_from_parent="0" content_type="3" value="NLC/input" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                         </Box>
-                        <Box name="Insert Data (1)" id="18" localization="8" tooltip="Stores in NAOqi&apos;s shared memory the given value at the given key." x="1121" y="468">
+                        <Box name="Insert Data (1)" id="18" localization="8" tooltip="Stores in NAOqi&apos;s shared memory the given value at the given key." x="1189" y="360">
                             <bitmap>media/images/box/sensors/STM.png</bitmap>
                             <script language="4">
                                 <content>
@@ -590,25 +590,149 @@ class MyClass(GeneratedClass):
                             <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
                             <Parameter name="key" inherits_from_parent="0" content_type="3" value="NLC/output" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="6" />
                         </Box>
+                        <Box name="Audio-settings" id="17" localization="8" tooltip="Set the speach speed between 0.5 (and 4&#x0A;&#x0A;" x="750" y="48">
+                            <bitmap>media/images/box/interaction/processing_sound.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self, False)
+
+    def onInput_onSet(self):
+        try:
+            self.audiodevice = ALProxy("ALTextToSpeech")
+            self.audiodevice.setParameter("speed",self.getParameter("speed"))
+        except Exception as e:
+            self.logger.error(e)
+
+        self.onReady() # activate output of the box]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" />
+                            <Input name="onSet" type="1" type_size="1" nature="1" inner="0" tooltip="The data is set when a signal is received on this input." id="2" />
+                            <Output name="onReady" type="1" type_size="1" nature="2" inner="0" tooltip="Signal sent when the data has been set." id="3" />
+                            <Parameter name="speed" inherits_from_parent="0" content_type="2" value="1" default_value="1" min="0.5" max="4" tooltip="Percentage of maximum output volume." id="4" />
+                        </Box>
+                        <Box name="Text Edit" id="19" localization="8" tooltip="Send the text you entered when the input is stimulated." plugin="textedit_plugin" x="250" y="34">
+                            <bitmap>media/images/box/interaction/vocabulary.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[# /!\ Generated content. Do not edit!
+class MyClass(GeneratedClass):
+	def __init__(self):
+		GeneratedClass.__init__(self)
+
+	def onInput_onStart(self):
+		self.onStopped("Ta bort inputet till detta om den körs i choregraph")]]>
+</content>
+                            </script>
+                            <pluginContent>
+                                <text>
+                                    <![CDATA[Ta bort inputet till detta om den körs i choregraph]]>
+</text>
+                            </pluginContent>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" />
+                            <Input name="onStart" type="1" type_size="1" nature="1" inner="0" tooltip="To send the text on the output." id="2" />
+                            <Output name="onStopped" type="3" type_size="1" nature="2" inner="0" tooltip="The text you entered." id="3" />
+                        </Box>
+                        <Box name="New Question" id="20" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="239" y="568">
+                            <bitmap>media/images/box/sensors/STM.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+        pass
+
+    def onLoad(self):
+        self.BIND_PYTHON(self.getName(), "onEventCallback")
+        self.memory = ALProxy("ALMemory")
+
+    def onUnload(self):
+        self.memory = None
+
+    def onInput_onStart(self):
+        self.memory.subscribeToEvent(self.getParameter("key"), self.getName(), "onEventCallback")
+
+    def onInput_onStop(self):
+        self.onStopped()
+
+    def onEventCallback(self, key, value, message):
+        self.onEvent(value)]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="" id="3" />
+                            <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished. It contains the retrieved value from ALMemory." id="4" />
+                            <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
+                            <Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="" id="6" />
+                            <Parameter name="key" inherits_from_parent="0" content_type="3" value="saveQuestion" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
+                        </Box>
+                        <Box name="Save Question" id="21" localization="8" tooltip="Retrieves from NAOqi&apos;s shared memory the given value at the given key." x="370" y="566">
+                            <bitmap>media/images/box/sensors/STM.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+        pass
+
+    def onLoad(self):
+        self.memory = ALProxy("ALMemory")
+
+    def onUnload(self):
+        self.memory = None
+
+    def onInput_onStart(self):
+        #import os
+        #dir_path = os.getcwd()
+        question = str(self.memory.getData(self.getParameter("question")))
+        answer = str(self.memory.getData(self.getParameter("answer")))
+        file = open("C:/Users/Kalle/Documents/bluemix/pepperdialog/artist/testing/testing_enu.top", "a")
+        #text = file.read()
+        newText = str("\n u:("+question+") "+answer+" ")
+        file.write(newText)
+        #text = str(text+"\n u:("+question+") "+answer+" ")
+        file.close()
+        self.onStopped()
+
+    def onInput_onStop(self):
+        self.onUnload() #~ it is recommended to call onUnload of this box in a onStop method, as the code written in onUnload is used to stop the box as well
+        pass]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                            <Input name="onStart" type="3" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                            <Output name="onStopped" type="0" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished. It contains the retrieved value from ALMemory." id="4" />
+                            <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
+                            <Parameter name="answer" inherits_from_parent="0" content_type="3" value="newAnswer" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="6" />
+                            <Parameter name="question" inherits_from_parent="0" content_type="3" value="newQuestion" default_value="" custom_choice="0" tooltip="" id="7" />
+                        </Box>
                         <Link inputowner="2" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="5" indexofinput="2" outputowner="2" indexofoutput="6" />
                         <Link inputowner="4" indexofinput="2" outputowner="5" indexofoutput="4" />
                         <Link inputowner="8" indexofinput="2" outputowner="7" indexofoutput="6" />
-                        <Link inputowner="7" indexofinput="2" outputowner="0" indexofoutput="2" />
-                        <Link inputowner="12" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="8" indexofinput="2" outputowner="12" indexofoutput="6" />
                         <Link inputowner="1" indexofinput="2" outputowner="0" indexofoutput="2" />
-                        <Link inputowner="3" indexofinput="2" outputowner="1" indexofoutput="3" />
                         <Link inputowner="11" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="13" indexofinput="2" outputowner="11" indexofoutput="6" />
                         <Link inputowner="10" indexofinput="2" outputowner="13" indexofoutput="7" />
                         <Link inputowner="3" indexofinput="2" outputowner="13" indexofoutput="8" />
                         <Link inputowner="9" indexofinput="2" outputowner="13" indexofoutput="10" />
-                        <Link inputowner="14" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="8" indexofinput="2" outputowner="14" indexofoutput="6" />
                         <Link inputowner="15" indexofinput="2" outputowner="16" indexofoutput="6" />
                         <Link inputowner="18" indexofinput="2" outputowner="15" indexofoutput="4" />
-                        <Link inputowner="16" indexofinput="2" outputowner="0" indexofoutput="2" />
+                        <Link inputowner="6" indexofinput="2" outputowner="19" indexofoutput="3" />
+                        <Link inputowner="17" indexofinput="2" outputowner="19" indexofoutput="3" />
+                        <Link inputowner="16" indexofinput="2" outputowner="19" indexofoutput="3" />
+                        <Link inputowner="21" indexofinput="2" outputowner="20" indexofoutput="6" />
+                        <Link inputowner="20" indexofinput="2" outputowner="0" indexofoutput="2" />
+                        <Link inputowner="9" indexofinput="2" outputowner="1" indexofoutput="3" />
+                        <Link inputowner="12" indexofinput="2" outputowner="19" indexofoutput="3" />
+                        <Link inputowner="7" indexofinput="2" outputowner="19" indexofoutput="3" />
+                        <Link inputowner="14" indexofinput="2" outputowner="19" indexofoutput="3" />
                     </Diagram>
                 </BehaviorKeyframe>
             </BehaviorLayer>

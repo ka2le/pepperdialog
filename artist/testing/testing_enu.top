@@ -19,31 +19,45 @@ concept:(color) [blue yellow red green orange]
 concept:(dontknow) ["I dont know" "no idea" "dont know" no]
 concept:(learnMore) ["tell me" tell learn hear]
 
+concept:(bye) [goodbye bye]
+
 
 u:(e:onStart) I am in test mode.
 u:(~hello) Hi $userName . I am in test mode.
+u:(help)  here is a list of words for testing NLC local new page old page teach
 
 u:(NLC) N L C ready
-    u:(_*) $NLC/input=$1 Analyzing $1
+    u1:(_*) $NLC/input=$1 Analyzing $1
 
 u:(e:NLC/output) NLC result says $NLC/output
+
+u:(switch) Going back to the general Topic $goToTopic=general
 
 u:(local) $tabletLocal=1 local
 u:(new page) $openPage=quiz new
 u:(old page) $openPage=learn old
 
+u:(teach safe) Teach me a question %repeatQuestionsafe
+    u1:(_*)  $newQuestion=$1 So the question I am learning is $newQuestion . Is that correct?
+        u2:(~yes) Great! What is the answer? %repeatAnswersafe
+            u3:(_*)  $newAnswer=$1  I heard $newAnswer Is that correct?
+                u4:(~yes) Sweet. I now know that $newAnswer is the answer to the question $newQuestion  $saveQuestion=1
+                u4:(~no) Say the answer again ^goto(repeatAnswersafe)
+        u2:(~no) Okay repeat the question. ^goto(repeatQuestionsafe)
+
+u:(teach) Teach me a question 
+    u1:(_*)  $newQuestion=$1 Great. What is the answer? 
+        u2:(_*)  $newAnswer=$1 Sweet. I now know that $newAnswer is the answer to the question $newQuestion is that correct?
+            u3:(~yes) Then I will remeber this $saveQuestion=1
+            u3:(~no) Okay, then I will forget this. ^clear(newAnswer) ^clear(newQuestion)
 
 
+u:(restart) $goToTopic=reload $onStopped=1
+u:(question) ^first["$newAnswer is the answer to the question $newQuestion" "I have not learnt a new question yet"]
+
+u:(~bye) $onStopped=1
 
 
+ u:(how old am i) 25 
 
-
-
-
-
-
-
-
-
-
-
+ u:(where is the hospital) You go out the door up the hill and then you should se it on your right. Look at my tablet to see a map. 

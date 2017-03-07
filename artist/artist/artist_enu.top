@@ -36,10 +36,10 @@ u:(e:onStart) ^goto(start)
 u:(start) %start Do you want to talk about music? $artist=0
     u1:(~justin) Okay, lets talk about Justin Timberlake ^goto(startMenu)
     u1:(~yes) %start Okay, tell me then. Who is your favourit artist?
-        u2:(~justin) I like Justin Timberlake too %startMenu Do you want to take a quiz about him, listen to some music or do you want to learn more about him? 
-            u3:(quiz) ^goto(theQuiz) 
-            u3:(listen) ^goto(playMusic)
-            u3:(learn more) %learnmore Do you have any questions about Justin or do you want me to tell you?
+        u2:(~justin) I like Justin Timberlake too %startMenu $openPage=startMenu Do you want to take a quiz about him, listen to some music or do you want to learn more about him? 
+            u3:(quiz) $openPage=quiz ^goto(theQuiz) 
+            u3:(listen) $openPage=listen ^goto(playMusic)
+            u3:(learn more) $openPage=learn %learnmore Do you have any questions about Justin or do you want me to tell you?
                 u4:(questions) %answerQ What is your question?                    #ALL QUESTIONS HERE
                     u5:(how old is justin) He is 36 years old. ^goto(moreToAsk)
                     u5:(where as he born) He was born in Memphis ^goto(moreToAsk)
@@ -96,7 +96,7 @@ u:(2playergameLoop) %2playergameLoop Player1 put your   ^rand[~leftRight] ^rand[
         u2:(stop) Oh? Its over. My eyes dont work so good all the time. Can you tell me who won?
             u3:(_*) Congratulations to $1 
 
-u:(story) %storyMode Look at my stomach to see the headlines and tell me what you want to hear about?
+u:(story) %storyMode $openPage=story Look at my stomach to see the headlines and tell me what you want to hear about?
     u1:(~stop) I understood that you want to stop talking about this. ^goto(startMenu)
     u1:(Early life) Wikipedia says Timberlake was born in Memphis Tennessee the son of Lynn Bomar Harless and Charles Randall Timberlake a Baptist church choir director Timberlake grew up in Shelby Forest a small community between Memphis and Millington  He has two half-brothers Jonathan born September 12 1993 and Stephen born August 14 1998 from Charles second marriage to Lisa Perry  Do you want to me to keep reading about this topic
         u2:(~yes)  His half-sister Laura Katherine died shortly after birth on May 12 1997 and is mentioned in his acknowledgments in the album NSYNC as My Angel in Heaven  He was inspired to become a performer by Janet Jackson saying She didnt just stand there and sing her song fascinated by her energy and exuberance  At the age of 11 Timberlake appeared on the television show Star Search performing country music songs as Justin Randall  In 1993 and 1994 he was a cast member in The Mickey Mouse Club where his castmates included future girlfriend and singer Britney Spears future tourmate Christina Aguilera future bandmate JC Chasez and future movie actors Ryan Gosling and Keri Russell  Timberlake then recruited Chasez to be in an all-male singing group organized by boy band manager Lou Pearlman that eventually became NSYNC  
