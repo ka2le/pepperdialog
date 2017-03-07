@@ -1,0 +1,44 @@
+topic: ~testing()
+language: enu
+
+concept:(wine) [red white] wine
+concept:(stop) [stop "no more" ]
+concept:(justin) [justin timberlake JT]
+concept:(music) [music artist]
+concept:(no) [nah no negative n]
+concept:(yes) [yea yes y yeah sure]
+concept:(dontcare) ["dont care" whatever anything]
+concept:(ready) [ready "lets go" play start go]
+concept:(trivia) [trivia]
+concept:(activitySuggestion) ["Let me see you do a somersault" "Jump as high as you can"]
+concept:(theAlbums) [Justified Lovesounds "The 20/20 experience"]
+concept:(number) [1 2 3 4 5 6 7 8 9 10]
+concept:(bodyPart) [foot hand]
+concept:(leftRight) [left right]
+concept:(color) [blue yellow red green orange]
+concept:(dontknow) ["I dont know" "no idea" "dont know" no]
+concept:(learnMore) ["tell me" tell learn hear]
+
+
+u:(e:onStart) I am in test mode.
+u:(~hello) Hi $userName . I am in test mode.
+
+u:(local) $tabletLocal=1 local
+u:(new page) $openPage=quiz new
+u:(old page) $openPage=learn old
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

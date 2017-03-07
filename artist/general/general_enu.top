@@ -16,20 +16,33 @@ concept:(theAlbums) [Justified Lovesounds "The 20/20 experience"]
 concept:(number) [1 2 3 4 5 6 7 8 9 10]
 concept:(bodyPart) [foot hand]
 concept:(leftRight) [left right]
+concept:(hello) [hello hi]
 concept:(color) [blue yellow red green orange]
 concept:(dontknow) ["I dont know" "no idea" "dont know" no]
 concept:(learnMore) ["tell me" tell learn hear]
 concept:(goodJob) ["good job" "well done" "nice" "impressive"]
 
 
-u:(e:onStart) Hello. I am Pepper! ^first[" Nice to see you again $userName ^goto(helloUser) " "What is your name? "] 
+u:(e:onStart) %start Hello. I am Pepper! ^first[" Nice to see you again $userName ^goto(helloUser) " "What is your name? "] 
     u1:([_* "my name is _*"]) Nice to meet you $1 $userName=$1 ^nextProposal
     u1:(~no) You dont want to tell me. That is okay. ^clear(userName) ^nextProposal
-u:(helloMe) %helloUser m
+u:(helloMe) %helloUser !
+
+u:(~hello) ^goto(start)
 
 u:(my name is _*) Nice to meet you $1 $userName=$1 
- 
-u:(e:Dialog/NoOneSpeak10) ^nextProposal
+u:(forget me) Okay you are forgotten!  ^clear(userName)
+
+
+u:(music) Do you want to talk about music?
+    u1:(~yes) $goToTopic=music $onStopped=1
+    u1:(~no) Then lets do something else ^gotoRandom(second)
+
+u:(testing) Switching. $goToTopic=testing $onStopped=1
+
+u:(tablet) Lets open the tablet. $goToTopic=tablet $onStopped=1
+
+u:(e:Dialog/NoOneSpeak20) ^nextProposal
 
 
 proposal: %init I can answer questions about the rules of this place or we can talk about music?
