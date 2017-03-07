@@ -1,0 +1,125 @@
+topic: ~artist()
+language: enu
+
+
+concept:(wine) [red white] wine
+concept:(stop) [stop "no more" ]
+concept:(justin) [justin timberlake JT]
+concept:(music) [music artist]
+concept:(no) [nah no negative n]
+concept:(yes) [yea yes y yeah sure]
+concept:(dontcare) ["dont care" whatever anything]
+concept:(ready) [ready "lets go" play start go]
+concept:(trivia) [trivia]
+concept:(activitySuggestion) ["Let me see you do a somersault" "Jump as high as you can"]
+concept:(theAlbums) [Justified Lovesounds "The 20/20 experience"]
+concept:(number) [1 2 3 4 5 6 7 8 9 10]
+concept:(bodyPart) [foot hand]
+concept:(leftRight) [left right]
+concept:(color) [blue yellow red green orange]
+concept:(dontknow) ["I dont know" "no idea" "dont know" no]
+concept:(learnMore) ["tell me" tell learn hear]
+
+
+u:(play music) %playMusic $Menu/listen=1 Okay lets play some music. What song do you want to hear? 
+    u1:(~dontknow) I can help you find a song. Pick one from the list on my stomach.
+   # u1:(mirrors) I will play the song Mirrors. $startYoutube=1
+    u1:(mirrors) Okay Im playing Mirrors with Justin on Youtube now. $ARTIST/youtube=1
+u:(tablet) I will show the website on my tablet. $ARTIST/youtube=1
+u:(new page) $openPage=quiz new
+u:(old page) $openPage=learn old
+
+
+u:(e:onStart) Hello. I am Pepper! ^goto(start)
+
+
+u:(start) %start Do you want to talk about music? $artist=0
+    u1:(~justin) Okay, lets talk about Justin Timberlake ^goto(startMenu)
+    u1:(~yes) Okay, tell me then   Who is your favourit artist?
+        u2:(~justin) I like Justin Timberlake too %startMenu Do you want to take a quiz about him, listen to some music or do you want to learn more about him? 
+            u3:(quiz) ^goto(theQuiz) 
+            u3:(listen) ^goto(playMusic)
+            u3:(learn more) %learnmore Do you have any questions about Justin or do you want me to tell you?
+                u4:(questions) %answerQ What is your question?                    #ALL QUESTIONS HERE
+                    u5:(how old is justin) He is 36 years old. ^goto(moreToAsk)
+                    u5:(where as he born) He was born in Memphis ^goto(moreToAsk)
+                    u5:(~stop) Do you want me to stop talking about this?
+                        u6:(~yes) ^goto(startMenu)
+                        u6:(~no) ^goto(learnMore)
+                u4:(~learnMore) ^goto(storyMode)
+                u4:(moreToAsk) %moreToAsk Do you want to ask more questions?                    #ALL QUESTIONS HERE
+                    u5:(~yes) ^goto(answerQ)
+                    u5:(~no) ^goto(startMenu)
+                    u5:(how old is justin) He is 36 years old. ^goto(moreToAsk)
+                    u5:(where as he born) He was born in Mephis ^goto(moreToAsk)
+                
+    u1:(~no) Okay, we can do something else then. Play twister perhaps?
+        u2:(~yes) ^goto(twisterGame)
+        u2:(~no) okay. Just tell me when you want to do something 
+
+u:(I want to talk about justin) ^goto(startMenu)
+u:(answerQ)  ^goto(answerQ)
+u:(learn) ^goto(learnMore)
+
+
+
+
+u:(quiz) %theQuiz $Menu/quiz=1 Starting the quiz.  If you want to know your score, just say score at anytime during this quiz. $quizScore=0 ^goto(selectNextQ) 
+u:(selectQ) %selectNextQ [^goto(q1) ^goto(q2)]
+u:(moreQs) %moreQs Do you want another question?
+    u1:(~yes) Ok. Here come another one. ^goto(selectNextQ) 
+    u1:(~no) Okay. Well played. Just tell me if you want to do a quiz again sometime. ^goto(startMenu)
+    u1:(score) Your score is $quizScore   ^stayInScope
+u:(q1) %q1 How old is Justin Timberlake?
+    u1:(_*) I heard you say $1 . The correct answer is that he is 36 years old. ^goto(moreQs)     
+    u1:(36) Correct! Good job! $QUIZ/addscore=1 ^goto(moreQs)
+    u1:(~dontknow) I'll tell you then. He is 36 years old. ^goto(moreQs)
+    u1:(score) Your score is $quizScore   ^stayInScope
+u:(q2) %q2 In what city was he born?
+    u1:(memphis) Correct! Good job! $QUIZ/addscore=1 ^goto(moreQs) 
+    u1:(~dontknow) I'll tell you then. He was born in Memphis. ^goto(moreQs) 
+    u1:(_*) I heard you say $1 . The correct answer is that he iwas born in Memphis. ^goto(moreQs)
+    u1:(score) Your score is $quizScore   ^stayInScope 
+
+
+u:(twister) %twisterGame Lets play some Twister. Get your twister set up and tell me when you are ready!
+    u1:(~stop) I understood that you want to stop talking about this. ^goto(start)
+    u1:(~ready) Okay let's start. How many will be playing?
+        u2:(~stop) I understood that you want to stop talking about this. ^goto(start)
+        u2:(_~number) Starting a game for $1 players. $nmbPlayers=$1 ^first["$nmbPlayers==2 ^goto(2playergame)" "invalide number"]
+u:(2playergame) %2playergame Player1 put you ^rand[~leftRight] ^rand[~bodyPart] on ^rand[~color]  When you are done, let me know by saying ready and I will give the next player their instructions.
+    u1:(~ready) Player2 put your    ^rand[~leftRight] ^rand[~bodyPart] on ^rand[~color] . I will keep giving new instructions when you say ready until one of you wins.
+         u2:(~ready) ^goto(2playergameLoop)       
+u:(2playergameLoop) %2playergameLoop Player1 put your   ^rand[~leftRight] ^rand[~bodyPart] on ^rand[~color]  . 
+    u1:(~ready) Player2 put your   ^rand[~leftRight] ^rand[~bodyPart] on ^rand[~color] .
+        u2:(~ready) ^goto(2playergameLoop)
+        u2:(stop) Oh? Its over. My eyes dont work so good all the time. Can you tell me who won?
+            u3:(_*) Congratulations to $1 
+
+u:(story) %storyMode Look at my stomach to see the headlines and tell me what you want to hear about?
+    u1:(~stop) I understood that you want to stop talking about this. ^goto(startMenu)
+    u1:(Early life) Wikipedia says Timberlake was born in Memphis Tennessee the son of Lynn Bomar Harless and Charles Randall Timberlake a Baptist church choir director Timberlake grew up in Shelby Forest a small community between Memphis and Millington  He has two half-brothers Jonathan born September 12 1993 and Stephen born August 14 1998 from Charles second marriage to Lisa Perry  Do you want to me to keep reading about this topic
+        u2:(~yes)  His half-sister Laura Katherine died shortly after birth on May 12 1997 and is mentioned in his acknowledgments in the album NSYNC as My Angel in Heaven  He was inspired to become a performer by Janet Jackson saying She didnt just stand there and sing her song fascinated by her energy and exuberance  At the age of 11 Timberlake appeared on the television show Star Search performing country music songs as Justin Randall  In 1993 and 1994 he was a cast member in The Mickey Mouse Club where his castmates included future girlfriend and singer Britney Spears future tourmate Christina Aguilera future bandmate JC Chasez and future movie actors Ryan Gosling and Keri Russell  Timberlake then recruited Chasez to be in an all-male singing group organized by boy band manager Lou Pearlman that eventually became NSYNC  
+        u2:(~no) ok  ^goto(storyMode) 
+        u2:(~stop) I understood that you want to stop talking about this. ^goto(startMenu)
+        
+        
+    u1:(Career) Wikipedia says 
+    u1:(1995–2004 NSYNC and Justified) Wikipedia says The boy band NSYNC formed in 1995 and began their career in 1996 in Europe; Timberlake and Chasez served as its two lead singers In 1998 the group rose to prominence in the United States with the release of their self-titled debut studio album which sold 11 million copies and included the hit single Tearin Up My Heart  Their second album No Strings Attached 2000 sold 2  Do you want to me to keep reading about this topic
+        u2:(~yes) 4 million copies in the first week and included a 1 single Its Gonna Be Me  NSYNCs third album Celebrity 2001 was also financially successful  Upon the completion of the Celebrity Tour the group went into hiatus in 2002  In its lifetime NSYNC was internationally famous and performed at the Academy Awards the Olympics and the Super Bowl as well as selling more than 50 million copies worldwide becoming the third-best selling boy band in history In late 1999 Timberlake appeared in the Disney Channel movie Model Behavior  He played Jason Sharpe a model who falls in love with a waitress after mistaking her for another model  It was released on March 12 2000  The rise of his own stardom and the general decline in the popularity of boy bands led to the dissolution of NSYNC  Band member Lance Bass was openly critical of Timberlakes actions in his memoir Out of Sync Timberlake in London on his Justified World Tour December 2003In August 2002 Timberlake performed at the 2002 MTV Video Music Awards where he premiered his debut solo single Like I Love You; it peaked at number 11 on the Billboard Hot 100 and number two on the UK Singles Chart  His debut solo studio album Justified was released in November and debuted at number two on the Billboard 200 with first-week sales of 439000 copies fewer than previous N Sync releases  It went on to sell over three million copies in the U S  and more than seven million copies worldwide  Its R&B influence provided by hip-hop producers The Neptunes and Timbaland was complimented by music critics  About the musical direction of the record he commented I just want to do R&B  Its what I grew up listening to  The album spawned the top-five singles Cry Me a River and Rock Your Body  In summer 2003 Timberlake and Christina Aguilera headlined the Justified/Stripped Tour  Later that year he recorded a song Im Lovin It used by McDonalds as the theme to its Im Lovin It campaign  The deal with McDonalds earned Timberlake an estimated $6 million  A tour titled Justified and Lovin It Live was included with the deal following his initial Justified World Tour  Timberlake was featured on Nellys song Work It which was remixed and included on Nellys 2003 remix album Near the end of 2002 Timberlake was the first celebrity to appear on Punkd a candid camera type show created by Ashton Kutcher to trick celebrities  Timberlake who cried during the episode later admitted to being under the influence of cannabis when he was pranked  Three episodes later he set up Kelly Osbourne to be punkd thus making him the first celebrity to appear on the show more than once  Timberlake later spoofed Ashton Kutcher and Punkd in a 2003 episode of NBCs Saturday Night Live  Timberlake co-starred in skit titled The Barry Gibb Talk Show alongside comedian Jimmy Fallon where the duo portrayed Bee Gees brothers Barry and Robin Gibb  It marked the beginning of a long-running friendship and collaboration with Fallon In February 2004 during the halftime show of the Super Bowl XXXVIII broadcast on the CBS television network from Houston Timberlake performed with Janet Jackson before a television audience of more than 140 million viewers  At the end of the performance as the song drew to a close Timberlake tore off a part of Jacksons black leather costume in a costume reveal meant to accompany a portion of the song lyrics  Jacksons representative explained Timberlake intended to pull away the rubber bustier to reveal a red lace bra  The garment collapsed and her breast was accidentally revealed  Part of the costume detached and Jacksons breast was briefly exposed  Timberlake apologized for the incident stating he was sorry that anyone was offended by the wardrobe malfunction during the halftime performance of the Super Bowl    The phrase wardrobe malfunction has since been used by the media to refer to the incident and has entered pop culture  Timberlake and Jackson were threatened with exclusion from the 2004 Grammy Awards unless they agreed to apologize on screen at the event  Timberlake attended and issued a scripted apology when accepting the first of two Grammy Awards he received that night Best Pop Vocal Album for Justified and Best Male Pop Vocal Performance for Cry Me a River  He had also been nominated for Album of the Year for Justified and Record of the Year along with Best Rap/Sung Collaboration for Where Is the Love? with The Black Eyed Peas  
+        u2:(~no) ok  ^goto(storyMode) 
+
+
+    u1:(Personal life) Wikipedia says In early 1999 Timberlake began dating fellow former The New Mickey Mouse Club cast member and singer Britney Spears Their relationship ended abruptly in March 2002  In April 2003 he began dating actress Cameron Diaz soon after they met at the Nickelodeon Kids Choice Awards  Do you want to me to keep reading about this topic
+        u2:(~yes)  After much speculation of breakups throughout their relationship the couple split in December 2006 shortly after she introduced him as musical guest on Saturday Night Live In January 2007 Timberlake began dating actress Jessica Biel  They became engaged in December 2011 and married on October 19 2012 at the Borgo Egnazia resort in Fasano Italy  Timberlake and Biel have one son Silas Randall Timberlake born in April 2015 Forbes magazine began reporting on Timberlakes earnings in 2008 calculating that he earned $44 million between June 2007 and June 2008 for his music tour commercials and hospitality making him the worlds 4th best-paid music personality at the time above Madonna and Celine Dion  They placed him twelfth on the Celebrity 100 list and second on the Best-Paid Celebrities Under 30 list  According to Billboard Timberlake was the third highest-paid musician of 2013 with earnings of $31 million  He was ranked 26th with earnings of $57 million on the Celebrity 100 list for 2014 and 19th on the 2015 list with $63 million  Timberlake was listed at number three on Billboard Money-Makers List of 2014 Timberlake publicly endorsed Barack Obama in his 2008 and 2012 presidential campaigns  He and his wife Biel hosted a fundraiser for Democratic presidential candidate Hillary Clinton in Los Angeles in 2016  
+        u2:(~no) ok  ^goto(storyMode) 
+
+    u1:(Artistry) Wikipedia says SexyBack excerptA 23-second sample of Justin Timberlakes SexyBack The electro R&B song is built around a pounding bass beat electronic chords and beat box sounds Mirrors excerptA 29-second sample of Mirrors a progressive pop and R&B song  Do you want to me to keep reading about this topic
+        u2:(~yes)  It features orchestral flares electro blips chipmunk synth chirps accompanied with vocoder-squawk backing vocals Problems playing these files? See media help Timberlake has a lyric tenor vocal range  Primarily an R&B album his debut Justified also contains influences of dance-pop funk and soul music  During the production of FutureSex/LoveSounds Timberlake was interested in rock music  This inspiration was used in his approach in recording the songs rather than in composing them  Timberlake reveals I wanted to sing the song like a rock and roll singer not an R&B singer  On the influences he drew from he said that if Justified was characterized by Michael Jackson and Stevie Wonder FutureSex/LoveSounds is more like David Bowie and Prince  Other influences include late INXS-frontman Michael Hutchence Arcade Fire David Byrne The Killers The Strokes and Radiohead  He began including beatboxing in his records near the end of his boyband era and into his emergence as a solo act this includes songs from Justified and FutureSex/LoveSounds Unlike his previous record primarily focused on R&B and pop genres FutureSex/LoveSounds is less concentrated on one particular sound thus representing a wider range  Timberlake explains Its more broad as far as the styles I wanted to mix in to my own type of thing  A musically complex album FutureSex/LoveSounds is a fusion of rap rock funk soul gospel new wave opera and world music characterized by preludes and interludes interspersed on the albums tracks  Entertainment Weekly noted that the albums sound is a sonic departure from both NSYNC and Justified  Although What Goes Around sounds similar to Justified Timberlake admitted that it is the only song in the new album to have such similarity  The 20/20 Experience is a neo soul album partly inspired by the expansive song structures of 1960s and 1970s rock  Mikael Wood of the Los Angeles Times found its elaborate structures ambitious in the vein of Stevie Wonder Prince and Michael Jackson Timberlake performing on his 20/20 Experience Tour in Charlotte North CarolinaLongtime critic Robert Hilburn for the Los Angeles Times praised Timberlakes act after attending the Justified and Stripped Tour in 2003 considering him born for the stage with the savvy instincts to put together a show that works  Rather than make himself the constant center of attention he was comfortable enough at times simply to be part of a talented ensemble  In 2013 Timberlake introduced his big-band orchestra called the Tennessee Kids for Legends of the Summer and The 20/20 Experience World Tour which includes guitarists dancers background singers drummers bassists keyboardists trumpeters a music coordinator a percussionist a saxophonist among others musicians  The 20/20 Experience allowed Timberlake to throw back to the big-band era its stage production embraced a vintage sheen and everyone in classic suits  For the tour Timberlake had a horn section onstage with him called The Regiment Horns  The Hollywood Reporters Emily Zemler described him as a performer who is genuinely having fun whereas Jon Pareles of The New York Times commented that the singer reveals something darker more fiery and intense while performing post-breakup revenge songs such as Cry Me a River” and “What Goes Around    Comes Around”  Billboard editor Phil Gallo praised Timberlakes medley performance at the 2013 MTV Video Music Awards saying he gave the show its heart and center also mentioning his place as a modern recording artist and a solid link in the lineage of the most acclaimed performers in the shows history  The New York Times editor Katie Rogers highlighted Timberlakes crossover appeal after his performance with Chris Stapleton at the 2015 Country Music Association Awards  Described by critics as a consummate showman Timberlake usually plays guitar piano and keyboard in his shows  
+        u2:(~no) ok  ^goto(storyMode) 
+
+    u1:(Public image) Wikipedia says Timberlake was given Sexiest Man titles by Teen People and Cosmopolitan magazines On February 17 2009 Timberlake was named the Most Stylish Man in America by GQ magazine  In 2011 he ranked No  Do you want to me to keep reading about this topic
+        u2:(~yes)  46 on AskMens annual rundown of the 49 Most Influential Men  VH1 listed him at number three on its 100 Sexiest Artists List  In Nielsen Musics U S  report for 2015 Timberlake led the Top 10 Musicians Among Millennials list  Wax figures of Timberlake are found at Madame Tussauds Wax Museums in New York Las Vegas Hollywood Berlin Amsterdam and London  His costume for the Saturday Night Live skit Dick in a Box is displayed at Saturday Night Live The Exhibition in New York  The New York Times editor Sia Michel wrote in 2007 since his last tour for 2002’s multiplatinum Justified he has learned how to project sex-symbol edge adding hes a rock star who can commit  Napsters founder Sean Parker portrayed by Timberlake in The Social Network stated I don’t think I look anything like Timberlake but its not so bad being played by a sex symbol Timberlakes fashion and style evolution from boy-band synchronized wardrobe days to a notable source of fashion inspiration to men all over has been noticed by the media  As noted by a Billboard editor Since his solo career began with the 2002 release of debut album Justified Timberlake has honed his unique sense of style while citing Elvis Presley Johnny Cash Jerry Lee Lewis and Frank Sinatra as style influences “guys who were just really never trying to be that  they just were that ” According to American fashion designer Tom Ford who has dressed Timberlake since 2011 and created more than 600 exclusive pieces for The 20/20 Experience World Tour Timberlake has a kind of effortless cool that makes classic menswear tailoring modern After New York legalized same-sex marriage in 2011 Timberlake voiced his support for LGBT equality in the U S  stating we should be using our differences to bring ourselves closer together  Not be afraid of something that we dont know  Timberlake and his wife Jessica Biel received the Inspiration Award at the GLSEN Respect Awards in 2015 with the executive director saying they are two vocal and committed allies to the LGBT community who are also devoted to charitable works that improve the lives of youth  
+        u2:(~no) ok  ^goto(storyMode) 
+
+
