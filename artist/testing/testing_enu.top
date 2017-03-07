@@ -48,7 +48,7 @@ u:(teach safe) Teach me a question %repeatQuestionsafe
 u:(teach) Teach me a question 
     u1:(_*)  $newQuestion=$1 Great. What is the answer? 
         u2:(_*)  $newAnswer=$1 Sweet. I now know that $newAnswer is the answer to the question $newQuestion is that correct?
-            u3:(~yes) Then I will remeber this $saveQuestion=1
+            u3:(~yes) Then I will remember this $saveQuestion=1
             u3:(~no) Okay, then I will forget this. ^clear(newAnswer) ^clear(newQuestion)
 
 
@@ -61,3 +61,5 @@ u:(~bye) $onStopped=1
  u:(how old am i) 25 
 
  u:(where is the hospital) You go out the door up the hill and then you should se it on your right. Look at my tablet to see a map. 
+
+ u:(What color is the sun) yellow 
