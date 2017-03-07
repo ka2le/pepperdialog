@@ -106,8 +106,8 @@ u:(How are you) I am a happy robot. How are you ^first[$userName " "]?
 u:(["[~askingWords *]food store" food "food store" store]) The closest place to buy food is Ica The Corner. 
 u:(cleaning day) ^first["$userName your cleaning day is Friday" "The cleaning schedule is located on the fridges. Today it is Isaks cleaning day"]  
 u:(cleaning tools) The cleaning tools are located in the closet in each room.
-u:(activity) %suggestion I can recomend ["Cinema $activity=Cinema " "Fyrishov $activity=Fyrishov " "The Church $activity=Church "] Do you want another suggestion or learn more abour this?
-    u1:(~learnMore) %learnActivity ["$activity==Cinema Moana is a really good movie" "$activity==Fyrishov You can swim, jump or just relax in the hot tubs"] 
+u:(activity) %suggestion I can recomend ["using Destination Uppsala $activity=Destination " "Cinema $activity=Cinema " "Fyrishov $activity=Fyrishov " "The Church $activity=Church "] Do you want another suggestion or learn more abour this?
+    u1:(~learnMore) %learnActivity ["$activity==Destination On my tablet you can see a collection of different activities   $link/destination=1" "$activity==Cinema Moana is a really good movie.  $link/biograf=1" "$activity==Fyrishov $link/fyrishov=1 You can swim, jump or just relax in the hot tubs"] 
     u1:(~yes) Did you mean you want another suggestion?
         u2:(~yes) ^goto(suggestion)
         u2:(~no) ^goto(learnActivity)

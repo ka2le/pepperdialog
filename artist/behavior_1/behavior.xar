@@ -31,7 +31,7 @@
                             <Resource name="Speech" type="Lock" timeout="0" />
                             <Resource name="Speech recognition" type="Lock" timeout="0" />
                         </Box>
-                        <Box name="Open link" id="7" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="860" y="115">
+                        <Box name="Open link" id="7" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="953" y="324">
                             <bitmap>media/images/box/sensors/STM.png</bitmap>
                             <script language="4">
                                 <content>
@@ -163,7 +163,7 @@
                             <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
                             <Parameter name="key" inherits_from_parent="0" content_type="3" value="quizScore" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="6" />
                         </Box>
-                        <Box name="Show Web View" id="8" localization="8" tooltip="Shows the webview (html content) on the tablet.&#x0A;&#x0A;V1.0.0&#x0A;" x="1085" y="99">
+                        <Box name="Show Web View" id="8" localization="8" tooltip="Shows the webview (html content) on the tablet.&#x0A;&#x0A;V1.0.0&#x0A;" x="1178" y="308">
                             <bitmap>media/images/box/internet/internet.png</bitmap>
                             <script language="4">
                                 <content>
@@ -227,7 +227,7 @@ class MyClass(GeneratedClass):
                             <Output name="onReady" type="1" type_size="1" nature="2" inner="0" tooltip="Signal sent when the data has been set." id="3" />
                             <Parameter name="Volume (%)" inherits_from_parent="0" content_type="1" value="44" default_value="50" min="0" max="100" tooltip="Percentage of maximum output volume." id="4" />
                         </Box>
-                        <Box name="Open#" id="12" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="856" y="22">
+                        <Box name="Open#" id="12" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="949" y="231">
                             <bitmap>media/images/box/sensors/STM.png</bitmap>
                             <script language="4">
                                 <content>
@@ -445,7 +445,7 @@ class MyClass(GeneratedClass):
                             <Resource name="Speech" type="Lock" timeout="0" />
                             <Resource name="Speech recognition" type="Lock" timeout="0" />
                         </Box>
-                        <Box name="Open Local" id="14" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="861" y="210">
+                        <Box name="Open Local" id="14" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="954" y="419">
                             <bitmap>media/images/box/sensors/STM.png</bitmap>
                             <script language="4">
                                 <content>
@@ -480,7 +480,7 @@ class MyClass(GeneratedClass):
                             <Parameter name="key" inherits_from_parent="0" content_type="3" value="tabletLocal" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                             <Parameter name="url" inherits_from_parent="0" content_type="3" value="http://10.20.1.13/apps/artist/index.html" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
                         </Box>
-                        <Box name="NLC" id="15" localization="8" tooltip="This box contains a basic python script and can be used to create any python script box you would like.&#x0A;&#x0A;To edit its script, double-click on it." x="925" y="334">
+                        <Box name="NLC" id="15" localization="8" tooltip="This box contains a basic python script and can be used to create any python script box you would like.&#x0A;&#x0A;To edit its script, double-click on it." x="1009" y="44">
                             <bitmap>media/images/box/box-python-script.png</bitmap>
                             <script language="4">
                                 <content>
@@ -525,7 +525,7 @@ class MyClass(GeneratedClass):
                             <Parameter name="password" inherits_from_parent="0" content_type="3" value="ut281cwnkBB6" default_value="" custom_choice="0" tooltip="" id="7" />
                             <Parameter name="username" inherits_from_parent="0" content_type="3" value="6c545133-4296-4002-a134-21c888023a62" default_value="" custom_choice="0" tooltip="" id="8" />
                         </Box>
-                        <Box name="Subscribe to Event (2)" id="16" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="780" y="324">
+                        <Box name="Subscribe to Event (2)" id="16" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="864" y="34">
                             <bitmap>media/images/box/sensors/STM.png</bitmap>
                             <script language="4">
                                 <content>
@@ -559,7 +559,7 @@ class MyClass(GeneratedClass):
                             <Output name="onEvent" type="3" type_size="1" nature="2" inner="0" tooltip="" id="6" />
                             <Parameter name="key" inherits_from_parent="0" content_type="3" value="NLC/input" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                         </Box>
-                        <Box name="Insert Data (1)" id="18" localization="8" tooltip="Stores in NAOqi&apos;s shared memory the given value at the given key." x="1056" y="334">
+                        <Box name="Insert Data (1)" id="18" localization="8" tooltip="Stores in NAOqi&apos;s shared memory the given value at the given key." x="1140" y="44">
                             <bitmap>media/images/box/sensors/STM.png</bitmap>
                             <script language="4">
                                 <content>
@@ -710,6 +710,111 @@ class MyClass(GeneratedClass):
                             <Parameter name="answer" inherits_from_parent="0" content_type="3" value="newAnswer" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="6" />
                             <Parameter name="question" inherits_from_parent="0" content_type="3" value="newQuestion" default_value="" custom_choice="0" tooltip="" id="7" />
                         </Box>
+                        <Box name="Open Fyrishov" id="22" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="694" y="507">
+                            <bitmap>media/images/box/sensors/STM.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+        pass
+
+    def onLoad(self):
+        self.BIND_PYTHON(self.getName(), "onEventCallback")
+        self.memory = ALProxy("ALMemory")
+
+    def onUnload(self):
+        self.memory = None
+
+    def onInput_onStart(self):
+        self.memory.subscribeToEvent(self.getParameter("key"), self.getName(), "onEventCallback")
+
+    def onInput_onStop(self):
+        self.onStopped()
+
+    def onEventCallback(self, key, value, message):
+        self.onEvent(self.getParameter("url"))]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="" id="3" />
+                            <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished. It contains the retrieved value from ALMemory." id="4" />
+                            <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
+                            <Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="" id="6" />
+                            <Parameter name="key" inherits_from_parent="0" content_type="3" value="link/fyrishov" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
+                            <Parameter name="url" inherits_from_parent="0" content_type="3" value="http://www.fyrishov.se/" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
+                        </Box>
+                        <Box name="Open sf" id="23" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="803" y="502">
+                            <bitmap>media/images/box/sensors/STM.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+        pass
+
+    def onLoad(self):
+        self.BIND_PYTHON(self.getName(), "onEventCallback")
+        self.memory = ALProxy("ALMemory")
+
+    def onUnload(self):
+        self.memory = None
+
+    def onInput_onStart(self):
+        self.memory.subscribeToEvent(self.getParameter("key"), self.getName(), "onEventCallback")
+
+    def onInput_onStop(self):
+        self.onStopped()
+
+    def onEventCallback(self, key, value, message):
+        self.onEvent(self.getParameter("url"))]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="" id="3" />
+                            <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished. It contains the retrieved value from ALMemory." id="4" />
+                            <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
+                            <Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="" id="6" />
+                            <Parameter name="key" inherits_from_parent="0" content_type="3" value="link/biograf" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
+                            <Parameter name="url" inherits_from_parent="0" content_type="3" value="http://www.sf.se/" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
+                        </Box>
+                        <Box name="Open Destination" id="24" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="698" y="602">
+                            <bitmap>media/images/box/sensors/STM.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+        pass
+
+    def onLoad(self):
+        self.BIND_PYTHON(self.getName(), "onEventCallback")
+        self.memory = ALProxy("ALMemory")
+
+    def onUnload(self):
+        self.memory = None
+
+    def onInput_onStart(self):
+        self.memory.subscribeToEvent(self.getParameter("key"), self.getName(), "onEventCallback")
+
+    def onInput_onStop(self):
+        self.onStopped()
+
+    def onEventCallback(self, key, value, message):
+        self.onEvent(self.getParameter("url"))]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="" id="3" />
+                            <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished. It contains the retrieved value from ALMemory." id="4" />
+                            <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
+                            <Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="" id="6" />
+                            <Parameter name="key" inherits_from_parent="0" content_type="3" value="link/destination" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
+                            <Parameter name="url" inherits_from_parent="0" content_type="3" value="http://www.destinationuppsala.se/en/To-do/Activities-and-adventure/" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
+                        </Box>
                         <Link inputowner="2" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="5" indexofinput="2" outputowner="2" indexofoutput="6" />
                         <Link inputowner="4" indexofinput="2" outputowner="5" indexofoutput="4" />
@@ -733,6 +838,12 @@ class MyClass(GeneratedClass):
                         <Link inputowner="7" indexofinput="2" outputowner="19" indexofoutput="3" />
                         <Link inputowner="14" indexofinput="2" outputowner="19" indexofoutput="3" />
                         <Link inputowner="3" indexofinput="2" outputowner="1" indexofoutput="3" />
+                        <Link inputowner="22" indexofinput="2" outputowner="19" indexofoutput="3" />
+                        <Link inputowner="8" indexofinput="2" outputowner="22" indexofoutput="6" />
+                        <Link inputowner="23" indexofinput="2" outputowner="19" indexofoutput="3" />
+                        <Link inputowner="8" indexofinput="2" outputowner="23" indexofoutput="6" />
+                        <Link inputowner="24" indexofinput="2" outputowner="19" indexofoutput="3" />
+                        <Link inputowner="8" indexofinput="2" outputowner="24" indexofoutput="6" />
                     </Diagram>
                 </BehaviorKeyframe>
             </BehaviorLayer>
