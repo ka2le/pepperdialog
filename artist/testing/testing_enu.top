@@ -23,6 +23,11 @@ concept:(learnMore) ["tell me" tell learn hear]
 u:(e:onStart) I am in test mode.
 u:(~hello) Hi $userName . I am in test mode.
 
+u:(NLC) N L C ready
+    u:(_*) $NLC/input=$1 Analyzing $1
+
+u:(e:NLC/output) NLC result says $NLC/output
+
 u:(local) $tabletLocal=1 local
 u:(new page) $openPage=quiz new
 u:(old page) $openPage=learn old

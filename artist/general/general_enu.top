@@ -21,6 +21,8 @@ concept:(color) [blue yellow red green orange]
 concept:(dontknow) ["I dont know" "no idea" "dont know" no]
 concept:(learnMore) ["tell me" tell learn hear]
 concept:(goodJob) ["good job" "well done" "nice" "impressive"]
+concept:(whatcanyoudo) ["what can you do" help info functions]
+concept:(tellMe) ["tell me" tell say hear "lets hear it"]
 
 
 u:(e:onStart) %start Hello. I am Pepper! ^first[" Nice to see you again $userName ^goto(helloUser) " "What is your name? "] 
@@ -40,7 +42,7 @@ u:(music) Do you want to talk about music?
 
 u:(testing) Switching. $goToTopic=testing $onStopped=1
 
-u:(tablet) Lets open the tablet. $goToTopic=tablet $onStopped=1
+u:(tablet disabled) Lets open the tablet. $goToTopic=tablet $onStopped=1
 
 u:(e:Dialog/NoOneSpeak20) ^nextProposal
 
@@ -50,6 +52,10 @@ proposal: %init I can answer questions about the rules of this place or we can t
     u1:(questions) Okay what do you want to ask me about?
     u1:([more "what else"])  ^nextProposal
 
+proposal: You can always ask me what I can do 
+    u1:(~tellMe) ^goto(whatcanyoudo) 
+
+u:(~whatcanyoudo) %whatcanyoudo ["I can do all sorts of stuff. I can talk about music, answer questions about the rules. Recomend activites. Play games and  more." "Did you know I can be the game host for Twister. I can also dance" "We could play a music quiz togheter or we could listen to your favourite song"] 
 
 proposal: %second Do you want me to tell you about activities in Uppsala?
     u1:(~yes) I can recomend Fyrishov for a fun 
