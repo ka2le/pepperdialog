@@ -144,7 +144,7 @@
                             <Resource name="Speech" type="Lock" timeout="0" />
                             <Resource name="Speech recognition" type="Lock" timeout="0" />
                         </Box>
-                        <Box name="Subscribe to Event" id="11" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="131" y="259">
+                        <Box name="Subscribe to Event" id="11" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="132" y="248">
                             <bitmap>media/images/box/sensors/STM.png</bitmap>
                             <script language="4">
                                 <content>
@@ -333,7 +333,7 @@ class MyClass(GeneratedClass):
         #dir_path = os.getcwd()
         question = str(self.memory.getData(self.getParameter("question")))
         answer = str(self.memory.getData(self.getParameter("answer")))
-        file = open("C:/Users/Kalle/Documents/bluemix/pepperdialog/artist/testing/testing_enu.top", "a")
+        file = open("C:/Users/IBM_ADMIN/Documents/pepperdialog/artist/testing/testing_enu.top", "a")
         #text = file.read()
         newText = str("\n u:("+question+") "+answer+" ")
         file.write(newText)
