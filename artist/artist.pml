@@ -50,5 +50,7 @@
         <Topic name="general_enu" src="general/general_enu.top" topicName="general" language="en_US" />
         <Topic name="testing_enu" src="testing/testing_enu.top" topicName="testing" language="en_US" />
     </Topics>
-    <IgnoredPaths />
+    <IgnoredPaths>
+        <Path src=".metadata" />
+    </IgnoredPaths>
 </Package>

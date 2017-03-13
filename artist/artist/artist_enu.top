@@ -67,7 +67,7 @@ u:(i have questions) ok What is your question?
 u:(learn) ^goto(learnMore)
 
 
-
+u: (testquestion) Hello 
 
 u:(quiz) %theQuiz $Menu/quiz=1 Starting the quiz.  If you want to know your score, just say score at anytime during this quiz. $quizScore=0 ^goto(selectNextQ) 
 u:(selectQ) %selectNextQ [^goto(q1) ^goto(q2)]
