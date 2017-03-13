@@ -55,9 +55,9 @@ u:(e:Dialog/NoOneSpeak20) ^nextProposal
 
 
  #------------------------------Suggestions-------------------------
-proposal: %init I can answer questions about the rules of this place or we can talk about music?
+proposal: %init We could talk about activities in Uppsala or about music if that interests you?
     u1:(~no) Okay. Lets do something else then. ^gotoRandom(second)
-    u1:(questions) Okay what do you want to ask me about?
+    u1:(activities) ^goto(suggestion)
     u1:([more "what else"])  ^nextProposal
 
 proposal: You can always ask me what I can do 
@@ -70,19 +70,25 @@ proposal: %second Do you want me to tell you about activities in Uppsala?
     u1:(~no)  ^nextProposal
     u1:([more "what else"])  ^nextProposal
 
+    
+proposal: %second You can always ask me questions about the rules in this place.
+    u1:(~yes) What is your question?
+    u1:(~no)  ^nextProposal
+    u1:([more "what else"])  ^nextProposal    
+
 proposal: %second I can show you a dance I've been practicing
     u1:(~yes) Dance goes here. ha ha
-    u2:(~no)  ^nextProposal
+    u1:(~no)  ^nextProposal
     u1:([more "what else"])  ^nextProposal
     
 proposal: %second Do you want to play twister?
     u1:(~yes) ^goto(twisterGame)
-    u2:(~no)  ^nextProposal
+    u1:(~no)  ^nextProposal
     u1:([more "what else"])  ^nextProposal
     
 proposal: %second We could do a bit of exercise together.
     u1:(~yes) Oh goody. I really need to stretch my arms. ^goto(moveGame)
-    u2:(~no)  ^nextProposal
+    u1:(~no)  ^nextProposal
     u1:([more "what else"])  ^nextProposal   
     
     
@@ -112,7 +118,7 @@ u:(who is _[carl kalle isac]) $1 is my friend. He is doing his master thesis at 
 u:([food "food store" store]) The closest place to buy food is Ica The Corner. 
 u:(cleaning day) ^first["$userName your cleaning day is Friday" "The cleaning schedule is located on the fridges. Today it is Isaks cleaning day"]  
 u:(cleaning tools) The cleaning tools are located in the closet in each room.
-u:(activity) %suggestion I can recomend ["using Destination Uppsala $activity=Destination " "Cinema $activity=Cinema " "Fyrishov $activity=Fyrishov " "The Church $activity=Church "] Do you want another suggestion or learn more abour this?
+u:(activity) %suggestion I can recomend ["using Destination Uppsala $activity=Destination " "Cinema $activity=Cinema " "Fyrishov $activity=Fyrishov " "The Church $activity=Church "] Do you want another suggestion or learn more about this?
     u1:(~learnMore) %learnActivity ["$activity==Destination On my tablet you can see a collection of different activities   $link/destination=1" "$activity==Cinema Moana is a really good movie.  $link/biograf=1" "$activity==Fyrishov $link/fyrishov=1 You can swim, jump or just relax in the hot tubs"] 
     u1:(~yes) Did you mean you want another suggestion?
         u2:(~yes) ^goto(suggestion)
