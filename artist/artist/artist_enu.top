@@ -30,7 +30,7 @@ u:(new page) $openPage=quiz new
 u:(old page) $openPage=learn old
 
 
-u:(e:onStart) ^goto(start)
+u:(e:onStart) I am in music mode
 
 
 u:(start) %start Do you want to talk about music? $artist=0
@@ -41,8 +41,7 @@ u:(start) %start Do you want to talk about music? $artist=0
             u3:(listen) $openPage=listen ^goto(playMusic)
             u3:(learn more) $openPage=learn %learnmore Do you have any questions about Justin or do you want me to tell you?
                 u4:(questions) %answerQ What is your question?                    #ALL QUESTIONS HERE
-                    u5:(_*) $NLC/input=$1
-                        
+                    u5:(_*) $NLC/input=$1 
                     u5:(how old is justin) He is 36 years old. ^goto(moreToAsk)
                     u5:(where as he born) He was born in Memphis ^goto(moreToAsk)
                     u5:(~stop) Do you want me to stop talking about this?
@@ -63,6 +62,8 @@ u:(e:NLC/output) ["$NLC/output==age He is 36 years old" "$NLC/output==birthplace
 
 u:(I want to talk about justin) ^goto(startMenu)
 u:(answerQ)  ^goto(answerQ)
+u:(i have questions) ok What is your question?
+    u1:(_*) $NLC/input=$1 
 u:(learn) ^goto(learnMore)
 
 
@@ -74,16 +75,19 @@ u:(moreQs) %moreQs Do you want another question?
     u1:(~yes) Ok. Here come another one. ^goto(selectNextQ) 
     u1:(~no) Okay. Well played. Just tell me if you want to do a quiz again sometime. ^goto(startMenu)
     u1:(score) Your score is $quizScore   ^stayInScope
+    u1:(stop) Stopping the quiz. ^goto(startMenu)
 u:(q1) %q1 How old is Justin Timberlake?
     u1:(_*) I heard you say $1 . The correct answer is that he is 36 years old. ^goto(moreQs)     
     u1:(36) Correct! Good job! $QUIZ/addscore=1 ^goto(moreQs)
     u1:(~dontknow) I'll tell you then. He is 36 years old. ^goto(moreQs)
+    u1:(stop) Stopping the quiz. ^goto(startMenu)
     u1:(score) Your score is $quizScore   ^stayInScope
 u:(q2) %q2 In what city was he born?
     u1:(memphis) Correct! Good job! $QUIZ/addscore=1 ^goto(moreQs) 
     u1:(~dontknow) I'll tell you then. He was born in Memphis. ^goto(moreQs) 
     u1:(_*) I heard you say $1 . The correct answer is that he iwas born in Memphis. ^goto(moreQs)
     u1:(score) Your score is $quizScore   ^stayInScope 
+    u1:(stop) Stopping the quiz. ^goto(startMenu)
 
 
 u:(twister) %twisterGame Lets play some Twister. Get your twister set up and tell me when you are ready!

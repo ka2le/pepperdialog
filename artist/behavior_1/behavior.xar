@@ -14,7 +14,7 @@
         <Timeline enable="0">
             <BehaviorLayer name="behavior_layer1">
                 <BehaviorKeyframe name="keyframe1" index="1">
-                    <Diagram scale="100">
+                    <Diagram scale="118.921">
                         <Box name="General Dialog" id="3" localization="8" tooltip="An example of multilanguage dialog implementation" x="464" y="145">
                             <dialogFile>../general/general.dlg</dialogFile>
                             <bitmap>media/images/box/box-dialog.png</bitmap>
@@ -393,8 +393,8 @@ class MyClass(GeneratedClass):
 
     def onInput_onStart(self, p):
         #self.onStopped() #activate the output of the box
-        #from watson_developer_cloud import NaturalLanguageClassifierV1
-        from watson_developer_cloud.natural_language_classifier_v1 import NaturalLanguageClassifierV1
+        from watson_developer_cloud import NaturalLanguageClassifierV1
+        #from watson_developer_cloud.natural_language_classifier_v1 import NaturalLanguageClassifierV1
         nlc = NaturalLanguageClassifierV1(self.getParameter("url"),username=self.getParameter("username"), password=self.getParameter("password"))
         intent=nlc.classify(self.getParameter("id"),p)
         self.logger.info("Classified %s to intent %s" % (p,str(intent)))
@@ -932,15 +932,15 @@ class MyClass(GeneratedClass):
                         <Link inputowner="10" indexofinput="2" outputowner="13" indexofoutput="7" />
                         <Link inputowner="3" indexofinput="2" outputowner="13" indexofoutput="8" />
                         <Link inputowner="9" indexofinput="2" outputowner="13" indexofoutput="9" />
-                        <Link inputowner="6" indexofinput="2" outputowner="19" indexofoutput="3" />
                         <Link inputowner="17" indexofinput="2" outputowner="19" indexofoutput="3" />
                         <Link inputowner="25" indexofinput="2" outputowner="19" indexofoutput="3" />
                         <Link inputowner="21" indexofinput="2" outputowner="20" indexofoutput="6" />
                         <Link inputowner="20" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="15" indexofinput="2" outputowner="19" indexofoutput="3" />
-                        <Link inputowner="3" indexofinput="2" outputowner="1" indexofoutput="3" />
                         <Link inputowner="0" indexofinput="4" outputowner="13" indexofoutput="10" />
                         <Link inputowner="19" indexofinput="2" outputowner="0" indexofoutput="2" />
+                        <Link inputowner="10" indexofinput="2" outputowner="1" indexofoutput="3" />
+                        <Link inputowner="6" indexofinput="2" outputowner="19" indexofoutput="3" />
                     </Diagram>
                 </BehaviorKeyframe>
             </BehaviorLayer>
