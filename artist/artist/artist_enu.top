@@ -20,24 +20,36 @@ concept:(color) [blue yellow red green orange]
 concept:(dontknow) ["I dont know" "no idea" "dont know" no]
 concept:(learnMore) ["tell me" tell learn hear]
 concept:(whatcanyoudo) ["what can you do" help info functions]
+
+concept:(startQuiz) [quiz "start quiz" "i want do do [a the] quiz"]
 concept:(theArtists) [justin saralarsson]
+
+
 
 u:(e:onStart) ["You can call me DJ Pepper" "DJ Pepper is ready"] $artist=0
 
 u:([hello hi ["DJ Pepper" "pepper"]]) Hello $userName If you want ^goto(mainChoice)
 
 u:(~whatcanyoudo) We can %mainChoice ["play a music quiz or listen to a song or perhaps something else?" "learn more about an artist in general or you can ask me specific questions or perhaps something else?" "do it like this  ^goto(start) " ] 
-    u1:(quiz) ["$artist==0 Who do you want the quiz to be about?" "$artist==[~theArtists] $openPage=quiz ^goto(theQuiz) "]
+    u1:(~startQuiz) %initQuiz ["$artist==0 Who do you want the quiz to be about?" "$artist==[~theArtists] $openPage=quiz ^goto(theQuiz) "]
         u2:(_~theArtists) $1, good choice $artist=$1 $openPage=quiz ^goto(theQuiz)
-        u2:(~stop) Stopping the quiz
-    u1:(learn more) $openPage=learn
-    u1:(questions) $openPage=questions ^goto(answerQ)
-    u1:(play music) $openPage=listen ^goto(playMusic)
+        u2:(~stop) Alright
+    u1:(learn more) ["$artist==0 Who do you want to learn more about?" "$artist==[~theArtists] $openPage=learn ^goto(storyMode) "]
+        u2:(_~theArtists) Lets learn more about $1 $artist=$1 $openPage=learn ^goto(storyMode)
+        u2:(~stop) Alright
+    u1:(questions) ["$artist==0  Which artist do you want to ask questions about?" "$artist==[~theArtists] $openPage=questions ^goto(answerQ) "]
+        u2:(_~theArtists) You are in luck, I know so much about $1 $artist=$1 $openPage=questions ^goto(answerQ)
+        u2:(~stop) Alright 
+    u1:(play music) ["$artist==0  What artist do you want to listen to?" "$artist==[~theArtists] $openPage=listen ^goto(playMusic) "]
+        u2:(_~theArtists)  $1 is a great choice $artist=$1 $openPage=listen ^goto(playMusic)
+        u2:(~stop) Alright $openPage=listen ^goto(playMusic)
     u1:(~no) Okay, maybe  ^goto(mainChoice)
-    u1:(~yes) please say again, which activity do you want? ^stayInScope
+    u1:(~yes) please say again, what do you want to do? ^stayInScope
     u1:(e:Dialog/NotUnderstood) I am sorry, could you repeat that?
     u1:(something else) Another idea  ^goto(mainChoice)
+    u1:(stop) ok
     
+u:(~startQuiz) m ^goto(initQuiz) 
     
 u:(change artist) Who do you want to talk about instead?
     u1:(~justin) Yeah lets talk about justin timberlake  $artist=justin
@@ -79,7 +91,7 @@ u:(i have questions) ok What is your question?
 u:(learn) ^goto(learnMore)
 
 
-u:(play music) %playMusic $Menu/listen=1 Okay lets play some music. What song do you want to hear? 
+u:(theplaymusic) %playMusic $Menu/listen=1 Okay lets play some music. What song do you want to hear? 
     u1:(~dontknow) I can help you find a song. Pick one from the list on my stomach.
    # u1:(mirrors) I will play the song Mirrors. $startYoutube=1
     u1:(mirrors) Okay Im playing Mirrors with Justin on Youtube now. $ARTIST/youtube=1
@@ -89,25 +101,25 @@ u:(old page) $openPage=learn old
 
 
 
-u:(quiz) %theQuiz $Menu/quiz=1 Starting the quiz.  If you want to know your score, just say score at anytime during this quiz. $quizScore=0 ^goto(selectNextQ) 
+u:(thequiz) %theQuiz $Menu/quiz=1 Starting the quiz.  If you want to know your score, just say score at anytime during this quiz. $quizScore=0 ^goto(selectNextQ) 
 u:(selectQ) %selectNextQ [^goto(q1) ^goto(q2)]
 u:(moreQs) %moreQs Do you want another question?
     u1:(~yes) Ok. Here come another one. ^goto(selectNextQ) 
-    u1:(~no) Okay. Well played. Just tell me if you want to do a quiz again sometime. ^goto(startMenu)
+    u1:(~no) Okay. Well played. Just tell me if you want to do a quiz again sometime.
     u1:(score) Your score is $quizScore   ^stayInScope
-    u1:(stop) Stopping the quiz. ^goto(startMenu)
+    u1:(stop) Stopping the quiz. 
 u:(q1) %q1 How old is Justin Timberlake?
     u1:(_*) I heard you say $1 . The correct answer is that he is 36 years old. ^goto(moreQs)     
     u1:(36) Correct! Good job! $QUIZ/addscore=1 ^goto(moreQs)
     u1:(~dontknow) I'll tell you then. He is 36 years old. ^goto(moreQs)
-    u1:(stop) Stopping the quiz. ^goto(startMenu)
+    u1:(stop) Stopping the quiz. 
     u1:(score) Your score is $quizScore   ^stayInScope
 u:(q2) %q2 In what city was he born?
     u1:(memphis) Correct! Good job! $QUIZ/addscore=1 ^goto(moreQs) 
     u1:(~dontknow) I'll tell you then. He was born in Memphis. ^goto(moreQs) 
     u1:(_*) I heard you say $1 . The correct answer is that he iwas born in Memphis. ^goto(moreQs)
     u1:(score) Your score is $quizScore   ^stayInScope 
-    u1:(stop) Stopping the quiz. ^goto(startMenu)
+    u1:(stop) Stopping the quiz.
 
 
 u:(twister) %twisterGame Lets play some Twister. Get your twister set up and tell me when you are ready!
