@@ -20,21 +20,34 @@ concept:(color) [blue yellow red green orange]
 concept:(dontknow) ["I dont know" "no idea" "dont know" no]
 concept:(learnMore) ["tell me" tell learn hear]
 concept:(whatcanyoudo) ["what can you do" help info functions]
+concept:(theArtists) [justin saralarsson]
 
-u:(e:onStart) ["You can call me DJ Pepper" "DJ Pepper is ready"]
+u:(e:onStart) ["You can call me DJ Pepper" "DJ Pepper is ready"] $artist=0
+
 u:([hello hi ["DJ Pepper" "pepper"]]) Hello $userName If you want ^goto(mainChoice)
-u:(~whatcanyoudo) We can %mainChoice ["play a music quiz or listen to a song" "learn more about the artist in general or you can ask me specific questions" "do it like this. Who is your favourite artist? ^goto(whoisfav) " ] or perhaps something else?
-    u1:(quiz) Starting Quiz...
-    u1:(learn more) Learning more..
-    u1:(questions) questions..
-    u1:(play song) playing song..
-    u1:(~no) Okay, we could also ^goto(mainChoice)
+
+u:(~whatcanyoudo) We can %mainChoice ["play a music quiz or listen to a song or perhaps something else?" "learn more about an artist in general or you can ask me specific questions or perhaps something else?" "do it like this  ^goto(start) " ] 
+    u1:(quiz) ["$artist==0 Who do you want the quiz to be about?" "$artist==[~theArtists] $openPage=quiz ^goto(theQuiz) "]
+        u2:(_~theArtists) $1, good choice $artist=$1 $openPage=quiz ^goto(theQuiz)
+        u2:(~stop) Stopping the quiz
+    u1:(learn more) $openPage=learn
+    u1:(questions) $openPage=questions ^goto(answerQ)
+    u1:(play music) $openPage=listen ^goto(playMusic)
+    u1:(~no) Okay, maybe  ^goto(mainChoice)
     u1:(~yes) please say again, which activity do you want? ^stayInScope
     u1:(e:Dialog/NotUnderstood) I am sorry, could you repeat that?
-    u1:(something else) We could also  ^goto(mainChoice)
+    u1:(something else) Another idea  ^goto(mainChoice)
+    
+    
+u:(change artist) Who do you want to talk about instead?
+    u1:(~justin) Yeah lets talk about justin timberlake  $artist=justin
+    u1:(["no one" clear forget]) $artist=0
+    
+u:(e:Dialog/NoOneSpeak20) ^goto(mainChoice)
+    
 u:(start) %start Do you want to talk about music? $artist=0
     u1:(~justin) Okay, lets talk about Justin Timberlake ^goto(startMenu)
-    u1:(~yes) %start Okay, tell me then. Who is your favourit artist? %whoisfav
+    u1:(~yes) %start Who is your favourit artist? %whoisfav
         u2:(~justin) $img/justin=1 I like Justin Timberlake too %startMenu $openPage=startMenu Do you want to take a quiz about him, listen to some music or do you want to learn more about him? 
             u3:(quiz) $openPage=quiz ^goto(theQuiz) 
             u3:(listen) $openPage=listen ^goto(playMusic)
