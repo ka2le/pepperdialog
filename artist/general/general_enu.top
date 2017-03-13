@@ -20,7 +20,7 @@ concept:(hello) [hello hi]
 concept:(color) [blue yellow red green orange]
 concept:(dontknow) ["I dont know" "no idea" "dont know" no]
 concept:(learnMore) ["tell me" tell learn hear]
-
+concept:(names) [kalle isak gunnar]
 concept:(happy) [good fine "I am good" happy]
 concept:(sad) [sad bad "not good"]
 concept:(goodJob) ["good job" "well done" "nice" "impressive"]
@@ -31,11 +31,13 @@ concept:(uppsalaActivity) [Cinema Fyrishov "The Church"]
 
  #------------------------------Start Stuff-------------------------
 u:(e:onStart) %start Hello. I am Pepper! ^first[" Nice to see you again $userName ^goto(helloUser) " "%askAboutName What is your name? "] 
-    u1:(["_*" "my name is _*" "I am _*"]) Nice to meet you $1 $userName=$1 ^nextProposal
+    u1:(["_~names" "_*" "my name is _*" "I am _*"]) Nice to meet you $1 $userName=$1 ^nextProposal
     u1:(~no) You dont want to tell me. That is okay. ^clear(userName) ^nextProposal
 u:(helloMe) %helloUser !
 
 u:(~hello) ^goto(start)
+
+u:(bye bye) goodbye $userName $goToTopic=bye $onStopped=1
 
 u:(my name is _*) Nice to meet you $1 $userName=$1 
 u:(forget me) Okay you are forgotten!  ^clear(userName)

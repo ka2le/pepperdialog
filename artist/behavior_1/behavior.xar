@@ -200,6 +200,8 @@
             self.general()
         if(dialog == "testing"):
             self.testing()
+        if(dialog == "bye"):
+            self.bye()
 
 
     def onInput_onStop(self):
@@ -216,7 +218,8 @@
                             <Output name="music" type="1" type_size="1" nature="2" inner="0" tooltip="" id="7" />
                             <Output name="general" type="1" type_size="1" nature="2" inner="0" tooltip="" id="8" />
                             <Output name="testing" type="1" type_size="1" nature="2" inner="0" tooltip="" id="9" />
-                            <Parameter name="key" inherits_from_parent="0" content_type="3" value="" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="10" />
+                            <Output name="bye" type="1" type_size="1" nature="2" inner="0" tooltip="" id="10" />
+                            <Parameter name="key" inherits_from_parent="0" content_type="3" value="" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="11" />
                         </Box>
                         <Box name="testing" id="9" localization="8" tooltip="An example of multilanguage dialog implementation" x="461" y="372">
                             <dialogFile>../testing/testing.dlg</dialogFile>
@@ -407,10 +410,10 @@ class MyClass(GeneratedClass):
                                                 <Input name="onStart" type="3" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
                                                 <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
                                                 <Output name="onStopped" type="3" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
-                                                <Parameter name="id" inherits_from_parent="0" content_type="3" value="f5bbbbx174-nlc-5813" default_value="" custom_choice="0" tooltip="" id="5" />
+                                                <Parameter name="id" inherits_from_parent="0" content_type="3" value="f5bbbbx174-nlc-6806" default_value="" custom_choice="0" tooltip="" id="5" />
                                                 <Parameter name="url" inherits_from_parent="0" content_type="3" value="https://gateway.watsonplatform.net/natural-language-classifier/api" default_value="" custom_choice="0" tooltip="" id="6" />
-                                                <Parameter name="password" inherits_from_parent="0" content_type="3" value="ut281cwnkBB6" default_value="" custom_choice="0" tooltip="" id="7" />
-                                                <Parameter name="username" inherits_from_parent="0" content_type="3" value="6c545133-4296-4002-a134-21c888023a62" default_value="" custom_choice="0" tooltip="" id="8" />
+                                                <Parameter name="password" inherits_from_parent="0" content_type="3" value="S62fcYfezQ0A" default_value="" custom_choice="0" tooltip="" id="7" />
+                                                <Parameter name="username" inherits_from_parent="0" content_type="3" value="6fe4ce47-7104-48e7-9711-9f7a0fdf3a12" default_value="" custom_choice="0" tooltip="" id="8" />
                                             </Box>
                                             <Box name="Subscribe to Event (2)" id="16" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="767" y="37">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
@@ -750,6 +753,41 @@ class MyClass(GeneratedClass):
                                                 <Parameter name="key" inherits_from_parent="0" content_type="3" value="link/destination" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                                                 <Parameter name="url" inherits_from_parent="0" content_type="3" value="http://www.destinationuppsala.se/en/To-do/Activities-and-adventure/" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
                                             </Box>
+                                            <Box name="Open Google" id="1" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="607" y="316">
+                                                <bitmap>media/images/box/sensors/STM.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+        pass
+
+    def onLoad(self):
+        self.BIND_PYTHON(self.getName(), "onEventCallback")
+        self.memory = ALProxy("ALMemory")
+
+    def onUnload(self):
+        self.memory = None
+
+    def onInput_onStart(self):
+        self.memory.subscribeToEvent(self.getParameter("key"), self.getName(), "onEventCallback")
+
+    def onInput_onStop(self):
+        self.onStopped()
+
+    def onEventCallback(self, key, value, message):
+        self.onEvent(self.getParameter("url"))]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="" id="3" />
+                                                <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished. It contains the retrieved value from ALMemory." id="4" />
+                                                <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
+                                                <Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="" id="6" />
+                                                <Parameter name="key" inherits_from_parent="0" content_type="3" value="link/google" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
+                                                <Parameter name="url" inherits_from_parent="0" content_type="3" value="http://www.google.com" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
+                                            </Box>
                                             <Link inputowner="8" indexofinput="2" outputowner="7" indexofoutput="6" />
                                             <Link inputowner="8" indexofinput="2" outputowner="12" indexofoutput="6" />
                                             <Link inputowner="8" indexofinput="2" outputowner="14" indexofoutput="6" />
@@ -762,6 +800,8 @@ class MyClass(GeneratedClass):
                                             <Link inputowner="22" indexofinput="2" outputowner="0" indexofoutput="2" />
                                             <Link inputowner="24" indexofinput="2" outputowner="0" indexofoutput="2" />
                                             <Link inputowner="23" indexofinput="2" outputowner="0" indexofoutput="2" />
+                                            <Link inputowner="1" indexofinput="2" outputowner="0" indexofoutput="2" />
+                                            <Link inputowner="8" indexofinput="2" outputowner="1" indexofoutput="6" />
                                         </Diagram>
                                     </BehaviorKeyframe>
                                 </BehaviorLayer>
@@ -899,6 +939,8 @@ class MyClass(GeneratedClass):
                         <Link inputowner="20" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="15" indexofinput="2" outputowner="19" indexofoutput="3" />
                         <Link inputowner="3" indexofinput="2" outputowner="1" indexofoutput="3" />
+                        <Link inputowner="0" indexofinput="4" outputowner="13" indexofoutput="10" />
+                        <Link inputowner="19" indexofinput="2" outputowner="0" indexofoutput="2" />
                     </Diagram>
                 </BehaviorKeyframe>
             </BehaviorLayer>

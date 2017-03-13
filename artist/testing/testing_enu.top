@@ -36,6 +36,7 @@ u:(switch) Going back to the general Topic $goToTopic=general
 u:(local) $tabletLocal=1 local
 u:(new page) $openPage=quiz new
 u:(old page) $openPage=learn old
+u:(google) $link/google=1 Opening google
 
 u:(teach safe) Teach me a question %repeatQuestionsafe
     u1:(_*)  $newQuestion=$1 So the question I am learning is $newQuestion . Is that correct?
