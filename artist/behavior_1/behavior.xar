@@ -14,7 +14,7 @@
         <Timeline enable="0">
             <BehaviorLayer name="behavior_layer1">
                 <BehaviorKeyframe name="keyframe1" index="1">
-                    <Diagram scale="118.921">
+                    <Diagram scale="59.4604">
                         <Box name="General Dialog" id="3" localization="8" tooltip="An example of multilanguage dialog implementation" x="464" y="145">
                             <dialogFile>../general/general.dlg</dialogFile>
                             <bitmap>media/images/box/box-dialog.png</bitmap>
@@ -31,7 +31,7 @@
                             <Resource name="Speech" type="Lock" timeout="0" />
                             <Resource name="Speech recognition" type="Lock" timeout="0" />
                         </Box>
-                        <Box name="Set Speaker Vol." id="6" localization="8" tooltip="Set the sound volume between 0 (mute) and 100 (max).&#x0A;&#x0A;V1.1.0&#x0A;" x="678" y="339">
+                        <Box name="Set Speaker Vol." id="6" localization="8" tooltip="Set the sound volume between 0 (mute) and 100 (max).&#x0A;&#x0A;V1.1.0&#x0A;" x="700" y="342">
                             <bitmap>media/images/box/interaction/processing_sound.png</bitmap>
                             <script language="4">
                                 <content>
@@ -237,7 +237,7 @@
                             <Resource name="Speech" type="Lock" timeout="0" />
                             <Resource name="Speech recognition" type="Lock" timeout="0" />
                         </Box>
-                        <Box name="Audio-settings" id="17" localization="8" tooltip="Set the speach speed between 0.5 (and 4&#x0A;&#x0A;" x="685" y="238">
+                        <Box name="Audio-settings" id="17" localization="8" tooltip="Set the speach speed between 0.5 (and 4&#x0A;&#x0A;" x="707" y="241">
                             <bitmap>media/images/box/interaction/processing_sound.png</bitmap>
                             <script language="4">
                                 <content>
@@ -357,7 +357,7 @@ class MyClass(GeneratedClass):
                             <Parameter name="answer" inherits_from_parent="0" content_type="3" value="newAnswer" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="6" />
                             <Parameter name="question" inherits_from_parent="0" content_type="3" value="newQuestion" default_value="" custom_choice="0" tooltip="" id="7" />
                         </Box>
-                        <Box name="NLC" id="25" localization="8" tooltip="Enter description here" x="687" y="32">
+                        <Box name="NLC" id="25" localization="8" tooltip="Enter description here" x="699" y="31">
                             <bitmap>media/images/box/box-diagram.png</bitmap>
                             <script language="4">
                                 <content>
@@ -370,7 +370,7 @@ class MyClass(GeneratedClass):
                                 <BehaviorLayer name="behavior_layer1">
                                     <BehaviorKeyframe name="keyframe1" index="1">
                                         <Diagram>
-                                            <Box name="NLC" id="15" localization="8" tooltip="This box contains a basic python script and can be used to create any python script box you would like.&#x0A;&#x0A;To edit its script, double-click on it." x="880" y="36">
+                                            <Box name="NLC" id="15" localization="8" tooltip="This box contains a basic python script and can be used to create any python script box you would like.&#x0A;&#x0A;To edit its script, double-click on it." x="829" y="62">
                                                 <bitmap>media/images/box/box-python-script.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -415,7 +415,7 @@ class MyClass(GeneratedClass):
                                                 <Parameter name="password" inherits_from_parent="0" content_type="3" value="S62fcYfezQ0A" default_value="" custom_choice="0" tooltip="" id="7" />
                                                 <Parameter name="username" inherits_from_parent="0" content_type="3" value="6fe4ce47-7104-48e7-9711-9f7a0fdf3a12" default_value="" custom_choice="0" tooltip="" id="8" />
                                             </Box>
-                                            <Box name="Subscribe to Event (2)" id="16" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="767" y="37">
+                                            <Box name="Subscribe to Event (2)" id="16" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="663" y="49">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -449,7 +449,7 @@ class MyClass(GeneratedClass):
                                                 <Output name="onEvent" type="3" type_size="1" nature="2" inner="0" tooltip="" id="6" />
                                                 <Parameter name="key" inherits_from_parent="0" content_type="3" value="NLC/input" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                                             </Box>
-                                            <Box name="Insert Data (1)" id="18" localization="8" tooltip="Stores in NAOqi&apos;s shared memory the given value at the given key." x="985" y="33">
+                                            <Box name="Insert Data (1)" id="18" localization="8" tooltip="Stores in NAOqi&apos;s shared memory the given value at the given key." x="985" y="47">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -488,7 +488,7 @@ class MyClass(GeneratedClass):
                                 </BehaviorLayer>
                             </Timeline>
                         </Box>
-                        <Box name="Tablet" id="15" localization="8" tooltip="Enter description here" x="689" y="131">
+                        <Box name="Tablet" id="15" localization="8" tooltip="Enter description here" x="715" y="133">
                             <bitmap>media/images/box/box-diagram.png</bitmap>
                             <script language="4">
                                 <content>
@@ -501,8 +501,8 @@ class MyClass(GeneratedClass):
                             <Timeline enable="0">
                                 <BehaviorLayer name="behavior_layer1">
                                     <BehaviorKeyframe name="keyframe1" index="1">
-                                        <Diagram>
-                                            <Box name="Open link" id="7" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="688" y="150">
+                                        <Diagram scale="70.7107">
+                                            <Box name="Open link" id="7" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="208" y="152">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -537,7 +537,7 @@ class MyClass(GeneratedClass):
                                                 <Parameter name="key" inherits_from_parent="0" content_type="3" value="ARTIST/youtube" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                                                 <Parameter name="url" inherits_from_parent="0" content_type="3" value="https://www.youtube.com/watch?v=uuZE_IRwLNI" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
                                             </Box>
-                                            <Box name="Show Web View" id="8" localization="8" tooltip="Shows the webview (html content) on the tablet.&#x0A;&#x0A;V1.0.0&#x0A;" x="1178" y="308">
+                                            <Box name="Show Web View" id="8" localization="8" tooltip="Shows the webview (html content) on the tablet.&#x0A;&#x0A;V1.0.0&#x0A;" x="698" y="310">
                                                 <bitmap>media/images/box/internet/internet.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -578,7 +578,7 @@ class MyClass(GeneratedClass):
                                                 <Input name="onStart" type="3" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
                                                 <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="3" />
                                             </Box>
-                                            <Box name="Open#" id="12" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="684" y="57">
+                                            <Box name="Open#" id="12" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="204" y="59">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -611,9 +611,9 @@ class MyClass(GeneratedClass):
                                                 <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
                                                 <Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="" id="6" />
                                                 <Parameter name="key" inherits_from_parent="0" content_type="3" value="openPage" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
-                                                <Parameter name="url" inherits_from_parent="0" content_type="3" value="https://test-music.mybluemix.net/peppertablet/index.html#" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
+                                                <Parameter name="url" inherits_from_parent="0" content_type="3" value="https://pepperpages.mybluemix.net/peppertablet/index.html#" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
                                             </Box>
-                                            <Box name="Open Local" id="14" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="689" y="245">
+                                            <Box name="Open Local" id="14" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="209" y="247">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -648,7 +648,7 @@ class MyClass(GeneratedClass):
                                                 <Parameter name="key" inherits_from_parent="0" content_type="3" value="tabletLocal" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                                                 <Parameter name="url" inherits_from_parent="0" content_type="3" value="http://10.20.1.13/apps/artist/index.html" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
                                             </Box>
-                                            <Box name="Open Fyrishov" id="22" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="673" y="409">
+                                            <Box name="Open Fyrishov" id="22" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="193" y="411">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -683,7 +683,7 @@ class MyClass(GeneratedClass):
                                                 <Parameter name="key" inherits_from_parent="0" content_type="3" value="link/fyrishov" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                                                 <Parameter name="url" inherits_from_parent="0" content_type="3" value="http://www.fyrishov.se/" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
                                             </Box>
-                                            <Box name="Open sf" id="23" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="698" y="614">
+                                            <Box name="Open sf" id="23" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="218" y="616">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -718,7 +718,7 @@ class MyClass(GeneratedClass):
                                                 <Parameter name="key" inherits_from_parent="0" content_type="3" value="link/biograf" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                                                 <Parameter name="url" inherits_from_parent="0" content_type="3" value="http://www.sf.se/" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
                                             </Box>
-                                            <Box name="Open Destination" id="24" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="683" y="513">
+                                            <Box name="Open Destination" id="24" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="203" y="515">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -753,7 +753,7 @@ class MyClass(GeneratedClass):
                                                 <Parameter name="key" inherits_from_parent="0" content_type="3" value="link/destination" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                                                 <Parameter name="url" inherits_from_parent="0" content_type="3" value="http://www.destinationuppsala.se/en/To-do/Activities-and-adventure/" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
                                             </Box>
-                                            <Box name="Open Google" id="1" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="607" y="316">
+                                            <Box name="Open Google" id="1" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="127" y="318">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -792,7 +792,6 @@ class MyClass(GeneratedClass):
                                             <Link inputowner="8" indexofinput="2" outputowner="12" indexofoutput="6" />
                                             <Link inputowner="8" indexofinput="2" outputowner="14" indexofoutput="6" />
                                             <Link inputowner="8" indexofinput="2" outputowner="22" indexofoutput="6" />
-                                            <Link inputowner="8" indexofinput="2" outputowner="23" indexofoutput="6" />
                                             <Link inputowner="8" indexofinput="2" outputowner="24" indexofoutput="6" />
                                             <Link inputowner="12" indexofinput="2" outputowner="0" indexofoutput="2" />
                                             <Link inputowner="7" indexofinput="2" outputowner="0" indexofoutput="2" />
@@ -925,6 +924,396 @@ class MyClass(GeneratedClass):
                                 </BehaviorLayer>
                             </Timeline>
                         </Box>
+                        <Box name="Thinking" id="14" localization="8" tooltip="ID : #02B 0001&#x0A;&#x0A;===================&#x0A;&#x0A;Tags : &#x0A;- Thinking" x="294" y="497">
+                            <bitmap>media/images/box/movement/move.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                            <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
+                            <Timeline enable="1" fps="25" start_frame="1" end_frame="-1" size="140">
+                                <ActuatorList model="">
+                                    <ActuatorCurve name="value" actuator="HeadPitch" mute="0" unit="0">
+                                        <Key frame="19" value="-6.5" />
+                                        <Key frame="31" value="12.8913" />
+                                        <Key frame="80" value="11.5" />
+                                        <Key frame="119" value="13.8" />
+                                        <Key frame="131" value="7.2" />
+                                        <Key frame="140" value="-11.9668" />
+                                    </ActuatorCurve>
+                                    <ActuatorCurve name="value" actuator="HeadYaw" mute="0" unit="0">
+                                        <Key frame="31" value="8.87482" />
+                                        <Key frame="119" value="9.00008" />
+                                        <Key frame="140" value="-17.4791" />
+                                    </ActuatorCurve>
+                                    <ActuatorCurve name="value" actuator="HipPitch" mute="0" unit="0">
+                                        <Key frame="15" value="-2.34809" />
+                                        <Key frame="31" value="-12.3926" />
+                                        <Key frame="105" value="-19.9512" />
+                                        <Key frame="128" value="-2.48279" />
+                                    </ActuatorCurve>
+                                    <ActuatorCurve name="value" actuator="HipRoll" mute="0" unit="0">
+                                        <Key frame="15" value="0" />
+                                        <Key frame="31" value="-3.25195" />
+                                        <Key frame="105" value="-2.02149" />
+                                        <Key frame="128" value="-0.197286" />
+                                    </ActuatorCurve>
+                                    <ActuatorCurve name="value" actuator="KneePitch" mute="0" unit="0">
+                                        <Key frame="15" value="-0.634643" />
+                                        <Key frame="31" value="1.66993" />
+                                        <Key frame="105" value="4.30664" />
+                                        <Key frame="128" value="-0.742038" />
+                                    </ActuatorCurve>
+                                    <ActuatorCurve name="value" actuator="LElbowRoll" mute="0" unit="0">
+                                        <Key frame="17" value="-45.8" />
+                                        <Key frame="29" value="-85.0768" />
+                                        <Key frame="117" value="-86.9" />
+                                        <Key frame="129" value="-87.9" />
+                                        <Key frame="138" value="-78.9185" />
+                                    </ActuatorCurve>
+                                    <ActuatorCurve name="value" actuator="LElbowYaw" mute="0" unit="0">
+                                        <Key frame="17" value="-80.4" />
+                                        <Key frame="29" value="-54.7589" />
+                                        <Key frame="117" value="-52.1" />
+                                        <Key frame="138" value="-88.7261" />
+                                    </ActuatorCurve>
+                                    <ActuatorCurve name="value" actuator="LHand" mute="0" unit="1">
+                                        <Key frame="17" value="0.96" />
+                                        <Key frame="29" value="0.7036" />
+                                        <Key frame="43" value="0.44" />
+                                        <Key frame="53" value="0.73" />
+                                        <Key frame="68" value="0.44" />
+                                        <Key frame="78" value="0.73" />
+                                        <Key frame="95" value="0.44" />
+                                        <Key frame="105" value="0.73" />
+                                        <Key frame="117" value="0.65" />
+                                        <Key frame="129" value="0.52" />
+                                        <Key frame="138" value="0.844074" />
+                                    </ActuatorCurve>
+                                    <ActuatorCurve name="value" actuator="LShoulderPitch" mute="0" unit="0">
+                                        <Key frame="29" value="-29.3582" />
+                                        <Key frame="117" value="-33.3" />
+                                        <Key frame="129" value="5.7" />
+                                        <Key frame="138" value="25.2371" />
+                                    </ActuatorCurve>
+                                    <ActuatorCurve name="value" actuator="LShoulderRoll" mute="0" unit="0">
+                                        <Key frame="29" value="18.8064" />
+                                        <Key frame="117" value="19.6" />
+                                        <Key frame="138" value="13.4" />
+                                    </ActuatorCurve>
+                                    <ActuatorCurve name="value" actuator="LWristYaw" mute="0" unit="0">
+                                        <Key frame="17" value="-51.3" />
+                                        <Key frame="29" value="-47.7276" />
+                                        <Key frame="117" value="-49.4001" />
+                                        <Key frame="138" value="1.10055" />
+                                    </ActuatorCurve>
+                                    <ActuatorCurve name="value" actuator="RElbowRoll" mute="0" unit="0">
+                                        <Key frame="15" value="32.9" />
+                                        <Key frame="27" value="21.8875" />
+                                        <Key frame="115" value="11.6895" />
+                                        <Key frame="127" value="21.5" />
+                                        <Key frame="136" value="14.8333" />
+                                    </ActuatorCurve>
+                                    <ActuatorCurve name="value" actuator="RElbowYaw" mute="0" unit="0">
+                                        <Key frame="15" value="84.7" />
+                                        <Key frame="27" value="70.7504" />
+                                        <Key frame="115" value="70.8398" />
+                                        <Key frame="136" value="69.9984" />
+                                    </ActuatorCurve>
+                                    <ActuatorCurve name="value" actuator="RHand" mute="0" unit="1">
+                                        <Key frame="15" value="0.54" />
+                                        <Key frame="27" value="0.3504" />
+                                        <Key frame="115" value="0.510545" />
+                                        <Key frame="127" value="0.31" />
+                                        <Key frame="136" value="0.412984" />
+                                    </ActuatorCurve>
+                                    <ActuatorCurve name="value" actuator="RShoulderPitch" mute="0" unit="0">
+                                        <Key frame="27" value="88.6852" />
+                                        <Key frame="115" value="78.3984" />
+                                        <Key frame="136" value="82.2228" />
+                                    </ActuatorCurve>
+                                    <ActuatorCurve name="value" actuator="RShoulderRoll" mute="0" unit="0">
+                                        <Key frame="27" value="-6.24271" />
+                                        <Key frame="115" value="-4.92188" />
+                                        <Key frame="136" value="-6.87545" />
+                                    </ActuatorCurve>
+                                    <ActuatorCurve name="value" actuator="RWristYaw" mute="0" unit="0">
+                                        <Key frame="15" value="28.5" />
+                                        <Key frame="27" value="1.75543" />
+                                        <Key frame="115" value="5.35899" />
+                                        <Key frame="136" value="-1.90004" />
+                                    </ActuatorCurve>
+                                </ActuatorList>
+                            </Timeline>
+                            <Resource name="Standing" type="Lock" timeout="1" />
+                            <Resource name="All motors" type="Lock" timeout="1" />
+                        </Box>
+                        <Box name="Subscribe to Event (1)" id="5" localization="8" tooltip="Subscribes to a signal on a NAOqi2 service, or an event in NAOqi&apos;s shared memory&#x0A;When subscribed, the output will be triggered every time the signal is emitted or the event is raised." x="155" y="490">
+                            <bitmap>media/images/box/sensors/STM.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+        pass
+
+    def onLoad(self):
+        import threading
+        self.lock = threading.RLock()
+        self.signal = None
+        self.linkId = -1
+
+    def onUnload(self):
+        with self.lock:
+            self.unsubscribe()
+
+    def onInput_onStart(self):
+        with self.lock:
+            self.unsubscribe()
+            event = self.getParameter("event")
+
+            if(len(event) == 0):
+                self.onError("No event or signal given.")
+                return
+
+            params = event.split(".")
+            if(len(params) == 2):
+                try:
+                    self.signal = getattr(self.session().service(params[0]), params[1])
+                except Exception as e:
+                    mem = self.session().service("ALMemory")
+                    if(event in mem.getEventList()):
+                        self.signal = mem.subscriber(event).signal
+                    else:
+                        self.onError(event + ": no such service.signal pair found, and no such event declared in ALMemory. Aborting.")
+                        return
+            else:
+                self.signal = self.session().service("ALMemory").subscriber(event).signal
+
+            self.linkId = self.signal.connect(self.reemitSignal)
+
+    def onInput_onStop(self):
+        with self.lock:
+            self.unsubscribe()
+            self.onStopped()
+
+    def unsubscribe(self):
+        if(self.signal is not None and self.linkId != -1):
+            self.signal.disconnect(self.linkId)
+
+        del self.signal
+        self.signal = None
+        self.linkId = -1
+
+    def reemitSignal(self, *args):
+        if(len(args) == 0):
+            self.onEvent()
+        elif(len(args) == 1):
+            self.onEvent(args[0])
+        else:
+            self.onEvent(args)]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="When this input is activated, the box will try to subscribe to the signal or the event passed in the box parameter.&#x0A;&#x0A;If it is retriggered and the parameter has changed, the box will undo the previous subscription and subscribe to the new signal or the new event." id="2" />
+                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Stop the box and cancel the subscription, if any." id="3" />
+                            <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
+                            <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="This output is triggered when the box encounters an error, and contains the error message." id="5" />
+                            <Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="This output is triggered each time the signal/event to which the box is connected is emitted/raised. It will carry the payload associated with the signal emission/event raise." id="6" />
+                            <Parameter name="event" inherits_from_parent="0" content_type="3" value="pose/think" default_value="" custom_choice="0" tooltip='This parameter describes the signal to connect to, and the service advertising this signal.&#x0A;&#x0A;Use the pattern &quot;Service.Signal&quot; to connect to a signal, or the event key to connect to an event.' id="7" />
+                        </Box>
+                        <Box name="Image" id="12" localization="8" tooltip="Enter description here" x="701" y="444">
+                            <bitmap>media/images/box/box-diagram.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                            <Input name="input" type="1" type_size="1" nature="1" inner="0" tooltip="" id="2" />
+                            <Timeline enable="0">
+                                <BehaviorLayer name="behavior_layer1">
+                                    <BehaviorKeyframe name="keyframe1" index="1">
+                                        <Diagram>
+                                            <Box name="Open IMG" id="2" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="214" y="100">
+                                                <bitmap>media/images/box/sensors/STM.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+        pass
+
+    def onLoad(self):
+        self.BIND_PYTHON(self.getName(), "onEventCallback")
+        self.memory = ALProxy("ALMemory")
+
+    def onUnload(self):
+        self.memory = None
+
+    def onInput_onStart(self):
+        self.memory.subscribeToEvent(self.getParameter("key"), self.getName(), "onEventCallback")
+
+    def onInput_onStop(self):
+        self.onStopped()
+
+    def onEventCallback(self, key, value, message):
+        self.onEvent(self.getParameter("url"))]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="" id="3" />
+                                                <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished. It contains the retrieved value from ALMemory." id="4" />
+                                                <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
+                                                <Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="" id="6" />
+                                                <Parameter name="key" inherits_from_parent="0" content_type="3" value="img/justin" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
+                                                <Parameter name="url" inherits_from_parent="0" content_type="3" value="http://cdn2.thr.com/sites/default/files/imagecache/scale_crop_768_433/2016/02/justin_timberlake.jpg" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
+                                            </Box>
+                                            <Box name="Show Image" id="4" localization="8" tooltip="display an image on the screen&#x0A;&#x0A;V1.0.0&#x0A;" x="399" y="103">
+                                                <bitmap>media/images/box/interaction/rec_movie.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[
+
+class MyClass(GeneratedClass):
+
+    def onLoad(self):
+        self.frameManager = None
+        try:
+            self.frameManager = ALProxy("ALFrameManager")
+        except Exception as e:
+            self.logger.error(e)
+
+    def onUnload(self):
+        pass
+
+    def _getTabletService(self):
+        tabletService = None
+        try:
+            tabletService = self.session().service("ALTabletService")
+        except Exception as e:
+            self.logger.error(e)
+        return tabletService
+
+    def _getAbsoluteUrl(self, partial_url):
+        import os
+        subPath = os.path.join(self.packageUid(), os.path.normpath(partial_url).lstrip("\\/"))
+        # We create TabletService here in order to avoid
+        # problems with connections and disconnections of the tablet during the life of the application
+        return "http://%s/apps/%s" %(self._getTabletService().robotIp(), subPath.replace(os.path.sep, "/"))
+
+    def onInput_onStart(self, p):
+        # We create TabletService here in order to avoid
+        # problems with connections and disconnections of the tablet during the life of the application
+        tabletService = self._getTabletService()
+        if tabletService:
+            try:
+                url = self.getParameter("ImageUrl")
+                url = p
+                if url == '':
+                    self.logger.error("URL of the image is empty")
+                if not url.startswith('http'):
+                    url = self._getAbsoluteUrl(url)
+                tabletService.showImage(url)
+            except Exception as err:
+                self.logger.error("Error during ShowImage : %s " % err)
+                self.onStopped()
+        else:
+            self.logger.warning("No ALTabletService, can't display the image.")
+            self.onStopped()
+
+    def onInput_onHideImage(self):
+        # We create TabletService here in order to avoid
+        # problems with connections and disconnections of the tablet during the life of the application
+        tabletService = self._getTabletService()
+        if tabletService:
+            try:
+                tabletService.hideImage()
+            except Exception as err:
+                self.logger.error("Error during HideImage : %s " % err)
+                self.onStopped()
+        else:
+            self.logger.warning("No ALTabletService, can't hide the image.")
+            self.onStopped()
+
+    def onInput_onPreLoadImage(self):
+        # We create TabletService here in order to avoid
+        # problems with connections and disconnections of the tablet during the life of the application
+        tabletService = self._getTabletService()
+        if tabletService:
+            try:
+                partialUrl = self.getParameter("ImageUrl")
+                fullUrl = self._getAbsoluteUrl(partialUrl)
+                tabletService.preLoadImage(fullUrl)
+            except Exception as err:
+                self.logger.warning("Error during preLoadImage : %s " % err)
+                self.onStopped()
+        else:
+            self.logger.warning("No ALTabletService, can't preload the image.")
+            self.onStopped()
+
+    def onInput_onStop(self):
+        self.onUnload()
+        self.onStopped()]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="3" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                                                <Input name="onHideImage" type="1" type_size="1" nature="1" inner="0" tooltip="Hide the image when a signal is received on this input." id="4" />
+                                                <Input name="onPreLoadImage" type="1" type_size="1" nature="1" inner="0" tooltip="Preload the image when a signal is received on this input." id="5" />
+                                                <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="6" />
+                                                <Parameter name="ImageUrl" inherits_from_parent="0" content_type="3" value="" default_value="" custom_choice="0" tooltip='path of the image inside the &quot;html&quot; folder (e.g. &quot;/images/myimage.png&quot;' id="7" />
+                                            </Box>
+                                            <Box name="Open IMG (1)" id="8" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="215" y="193">
+                                                <bitmap>media/images/box/sensors/STM.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+        pass
+
+    def onLoad(self):
+        self.BIND_PYTHON(self.getName(), "onEventCallback")
+        self.memory = ALProxy("ALMemory")
+
+    def onUnload(self):
+        self.memory = None
+
+    def onInput_onStart(self):
+        self.memory.subscribeToEvent(self.getParameter("key"), self.getName(), "onEventCallback")
+
+    def onInput_onStop(self):
+        self.onStopped()
+
+    def onEventCallback(self, key, value, message):
+        self.onEvent(self.getParameter("url"))]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="" id="3" />
+                                                <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished. It contains the retrieved value from ALMemory." id="4" />
+                                                <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
+                                                <Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="" id="6" />
+                                                <Parameter name="key" inherits_from_parent="0" content_type="3" value="img/justin" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
+                                                <Parameter name="url" inherits_from_parent="0" content_type="3" value="http://cdn2.thr.com/sites/default/files/imagecache/scale_crop_768_433/2016/02/justin_timberlake.jpg" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
+                                            </Box>
+                                            <Link inputowner="4" indexofinput="2" outputowner="2" indexofoutput="6" />
+                                            <Link inputowner="4" indexofinput="2" outputowner="8" indexofoutput="6" />
+                                            <Link inputowner="2" indexofinput="2" outputowner="0" indexofoutput="2" />
+                                            <Link inputowner="8" indexofinput="2" outputowner="0" indexofoutput="2" />
+                                        </Diagram>
+                                    </BehaviorKeyframe>
+                                </BehaviorLayer>
+                            </Timeline>
+                        </Box>
                         <Link inputowner="7" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="1" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="11" indexofinput="2" outputowner="0" indexofoutput="2" />
@@ -938,9 +1327,11 @@ class MyClass(GeneratedClass):
                         <Link inputowner="20" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="15" indexofinput="2" outputowner="19" indexofoutput="3" />
                         <Link inputowner="0" indexofinput="4" outputowner="13" indexofoutput="10" />
-                        <Link inputowner="19" indexofinput="2" outputowner="0" indexofoutput="2" />
-                        <Link inputowner="10" indexofinput="2" outputowner="1" indexofoutput="3" />
                         <Link inputowner="6" indexofinput="2" outputowner="19" indexofoutput="3" />
+                        <Link inputowner="5" indexofinput="2" outputowner="0" indexofoutput="2" />
+                        <Link inputowner="14" indexofinput="2" outputowner="5" indexofoutput="6" />
+                        <Link inputowner="12" indexofinput="2" outputowner="19" indexofoutput="3" />
+                        <Link inputowner="3" indexofinput="2" outputowner="1" indexofoutput="3" />
                     </Diagram>
                 </BehaviorKeyframe>
             </BehaviorLayer>

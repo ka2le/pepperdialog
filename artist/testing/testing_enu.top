@@ -32,6 +32,9 @@ u:(NLC) N L C ready
 u:(e:NLC/output) NLC result says $NLC/output
 
 u:(switch) Going back to the general Topic $goToTopic=general
+u:(show picture) $img/justin=1 opeing picture
+#u:(pose) See my moves ^start(animation/moods/neutral/thinking) and i can talk while i do it
+#u:(pose) See my moves $pose/think=1 and i can talk while i do it
 
 u:(local) $tabletLocal=1 local
 u:(new page) $openPage=quiz new

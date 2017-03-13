@@ -32,11 +32,11 @@ u:(old page) $openPage=learn old
 
 u:(e:onStart) I am in music mode
 
-
+u:([hello hi]) Hello ^goto(start)
 u:(start) %start Do you want to talk about music? $artist=0
     u1:(~justin) Okay, lets talk about Justin Timberlake ^goto(startMenu)
     u1:(~yes) %start Okay, tell me then. Who is your favourit artist?
-        u2:(~justin) I like Justin Timberlake too %startMenu $openPage=startMenu Do you want to take a quiz about him, listen to some music or do you want to learn more about him? 
+        u2:(~justin) $img/justin=1 I like Justin Timberlake too %startMenu $openPage=startMenu Do you want to take a quiz about him, listen to some music or do you want to learn more about him? 
             u3:(quiz) $openPage=quiz ^goto(theQuiz) 
             u3:(listen) $openPage=listen ^goto(playMusic)
             u3:(learn more) $openPage=learn %learnmore Do you have any questions about Justin or do you want me to tell you?

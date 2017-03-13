@@ -20,7 +20,7 @@ concept:(hello) [hello hi]
 concept:(color) [blue yellow red green orange]
 concept:(dontknow) ["I dont know" "no idea" "dont know" no]
 concept:(learnMore) ["tell me" tell learn hear]
-concept:(names) [kalle isak gunnar]
+concept:(names) [kalle carl isak gunnar]
 concept:(happy) [good fine "I am good" happy]
 concept:(sad) [sad bad "not good"]
 concept:(goodJob) ["good job" "well done" "nice" "impressive"]
@@ -63,10 +63,10 @@ proposal: %init I can answer questions about the rules of this place or we can t
 proposal: You can always ask me what I can do 
     u1:(~tellMe) ^goto(whatcanyoudo) 
 
-u:(~whatcanyoudo) %whatcanyoudo ["I can do all sorts of stuff. I can talk about music, answer questions about the rules. Recomend activites. Play games and  more." "Did you know I can be the game host for Twister. I can also dance" "We could play a music quiz togheter or we could listen to your favourite song"] 
+u:(~whatcanyoudo) %whatcanyoudo ["I can do all sorts of stuff. I can talk about music, answer questions about the rules. Recommend activities. Play games and  more." "Did you know I can be the game host for Twister. I can also dance" "We could play a music quiz togheter or we could listen to your favourite song"] 
 
 proposal: %second Do you want me to tell you about activities in Uppsala?
-    u1:(~yes) I can recomend Fyrishov for a fun 
+    u1:(~yes) ^goto(suggestion) 
     u1:(~no)  ^nextProposal
     u1:([more "what else"])  ^nextProposal
 
@@ -101,11 +101,15 @@ u:(What is your name) My name is Pepper. ^goto(askAboutName)
 u:(How are you) I am a happy robot. How are you ^first[$userName " "]?
     u1:(_~happy) I am glad to hear that you are $1
     u1:(_~sad) Oh I am sorry to hear that
-  
+u:(Where do you live) I live at IBM in Kista in Sweden. Where do you live?
+    u1:(*) That sounds nice
+u:(how old are you) I am young. I am only 1 year.
+u:(what is your favourite food) Silly ^first[$userName "human"] . I am a robot. I dont eat 
+u:(who is _[carl kalle isac]) $1 is my friend. He is doing his master thesis at IBM teaching me about music and other cool stuff   
 
 
 #------------------------------Questions-------------------------
-u:(["[~askingWords *]food store" food "food store" store]) The closest place to buy food is Ica The Corner. 
+u:([food "food store" store]) The closest place to buy food is Ica The Corner. 
 u:(cleaning day) ^first["$userName your cleaning day is Friday" "The cleaning schedule is located on the fridges. Today it is Isaks cleaning day"]  
 u:(cleaning tools) The cleaning tools are located in the closet in each room.
 u:(activity) %suggestion I can recomend ["using Destination Uppsala $activity=Destination " "Cinema $activity=Cinema " "Fyrishov $activity=Fyrishov " "The Church $activity=Church "] Do you want another suggestion or learn more abour this?
