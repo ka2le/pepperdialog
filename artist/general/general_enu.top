@@ -31,6 +31,7 @@ concept:(uppsalaActivity) [Cinema Fyrishov "The Church"]
 
 concept:(repeat) [repeat]
 concept:(thanks) ["thank you" thanks "thanks pepper" ]
+concept:(anyquestion) ["[what where when how does is] *" "when does it open"]
 
  #------------------------------Start Stuff-------------------------
 u:(e:onStart) %start Hello. I am Pepper! ^first[" Nice to see you again $userName ^goto(helloUser) " "%askAboutName What is your name? "] 
@@ -38,7 +39,9 @@ u:(e:onStart) %start Hello. I am Pepper! ^first[" Nice to see you again $userNam
     u1:(~no) You dont want to tell me. That is okay. ^clear(userName) ^nextProposal
 u:(helloMe) %helloUser !
 
-u:(~hello) ^goto(start)
+
+
+u:(~hello) Hello $userName 
 
 u:(bye bye) goodbye $userName $goToTopic=bye $onStopped=1
 
