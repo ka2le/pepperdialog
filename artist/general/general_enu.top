@@ -112,7 +112,10 @@ u:(Where do you live) I live at IBM in Kista in Sweden. Where do you live?
 u:(how old are you) I am young. I am only 1 year.
 u:(what is your favourite food) Silly ^first[$userName "human"] . I am a robot. I dont eat 
 u:(who is _[carl kalle isac]) $1 is my friend. He is doing his master thesis at IBM teaching me about music and other cool stuff   
-
+u:(game) We can play different kinds of games. Do you want to play twister, do movement exercises or we could do a music quiz?
+    u1:(["music quiz" music quiz]) $goToTopic=music $onStopped=1
+    u1:([twister "play twister"]) ^goto(twisterGame)
+    u1:([move movement exercise]) ^goto(moveGame)
 
 #------------------------------Questions-------------------------
 u:([food "food store" store]) The closest place to buy food is Ica The Corner. 
