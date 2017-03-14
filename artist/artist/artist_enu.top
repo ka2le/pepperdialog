@@ -97,6 +97,14 @@ u:(play music) %playMusic $openPage=listen Okay lets play some music. Tell me wh
     u1:(["What goes around" "What goes around comes back around") Okay Im playing Cant stop the feeling with Justin on Youtube now. $opensongs/whatgoesaroundcomesaround=1 
     u1: (["Uptown funk" "Uptwon funk with Bruno Mars"]) Okay Im playing Uptown Funk with Bruno Mars on Youtube now. $opensongs/uptownfunk=1
     u1: (["Lush Life" "Lush life with" "["Zara Larsson" Zara Larsson]]) 
+    u1: (["This One's For You" "This one with" "["Zara Larsson" Zara Larsson]]) $opensongs/thisoneisforyou=1 
+    u1: (["It aint my fault" "Aint my fault" "Aint fault" ["Zara Larsson" Zara Larsson]]) $opensongs/itaintmyfault=1 
+    u1: (["Halo" "Halo with Beyonce"]]) $opensongs/halo=1
+    u1: (["Single Ladies" "Single Ladies with Beyonce"]]) $opensongs/singleladies=1 
+    u1: (["Elektrisk" "Du e elektrisk" "Elektrisk with Markus o Martinus"]]) $opensongs/elektrisk=1 
+    u1:(["Sorry "Sorry Justin Bieber" "Sorry with Justin Bieber"]) $opensongs/sorry=1 
+    u1:(["What do you mean" "What do you mean Justin Bieber" " What do you mean with Justin Bieber"]) $opensongs/whatdoyoumean=1 
+    u1:(["Love yourself" "Love yourself with Justin Bieber"]) $opensongs/loveyourself=1 
 u:(tablet) I will show the website on my tablet. $ARTIST/youtube=1
 u:(new page) $openPage=quiz new
 u:(old page) $openPage=learn old
