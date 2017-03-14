@@ -41,7 +41,7 @@ u:(helloMe) %helloUser !
 
 
 
-u:(~hello) Hello $userName 
+u:(~hello) Hello ^first[" $userName "  " "] 
 
 u:(bye bye) goodbye $userName $goToTopic=bye $onStopped=1
 
@@ -57,7 +57,9 @@ u:(testing) Switching. $goToTopic=testing $onStopped=1
 
 u:(tablet disabled) Lets open the tablet. $goToTopic=tablet $onStopped=1
 
-u:(e:Dialog/NoOneSpeak20) ^nextProposal
+
+#funkar inte bra i choregraphe
+#u:(e:Dialog/NoOneSpeak20) ^nextProposal
 
 
  #------------------------------Suggestions-------------------------
@@ -110,6 +112,7 @@ u:(How are you) I am a happy robot. How are you ^first[$userName " "]?
 u:(Where do you live) I live at IBM in Kista in Sweden. Where do you live?
     u1:(*) That sounds nice
 u:(how old are you) I am young. I am only 1 year.
+u:(pepper) yes
 u:(what is my name) ^first["Your name is $userName " "I dont know ^goto(askAboutName2) "]
 u:(ask about my name) %askAboutName2 what is your name?
     u1:(["_~names" "_*" "my name is _*" "I am _*"]) Nice to meet you $1 $userName=$1 
