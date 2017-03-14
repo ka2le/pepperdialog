@@ -29,6 +29,8 @@ concept:(tellMe) ["tell me" tell say hear "lets hear it"]
 concept:(askingWords) ["where is" how when where "is there" "are there" "when is"]
 concept:(uppsalaActivity) [Cinema Fyrishov "The Church"]
 
+concept:(thanks) ["thank you" thanks "thanks pepper" ]
+
  #------------------------------Start Stuff-------------------------
 u:(e:onStart) %start Hello. I am Pepper! ^first[" Nice to see you again $userName ^goto(helloUser) " "%askAboutName What is your name? "] 
     u1:(["_~names" "_*" "my name is _*" "I am _*"]) Nice to meet you $1 $userName=$1 ^nextProposal
@@ -112,8 +114,14 @@ u:(who is _[carl kalle isac]) $1 is my friend. He is doing his master thesis at 
 u:([food "food store" store]) The closest place to buy food is Ica The Corner. 
 u:(cleaning day) ^first["$userName your cleaning day is Friday" "The cleaning schedule is located on the fridges. Today it is Isaks cleaning day"]  
 u:(cleaning tools) The cleaning tools are located in the closet in each room.
+
+
+#------------------------------Activities in Uppsala-------------------------
 u:(activity) %suggestion I can recomend ["using Destination Uppsala $activity=Destination " "Cinema $activity=Cinema " "Fyrishov $activity=Fyrishov " "The Church $activity=Church "] Do you want another suggestion or learn more abour this?
-    u1:(~learnMore) %learnActivity ["$activity==Destination On my tablet you can see a collection of different activities   $link/destination=1" "$activity==Cinema Moana is a really good movie.  $link/biograf=1" "$activity==Fyrishov $link/fyrishov=1 You can swim, jump or just relax in the hot tubs"] 
+    u1:(~learnMore) %learnActivity ["$activity==Destination On my tablet you can see a collection of different activities. Or visit destionation uppsalas website  $link/destination=1" "$activity==Cinema For info about what movies to see, look at S F on my tablet  $link/biograf=1" "$activity==Fyrishov $link/fyrishov=1 You can swim, jump or just relax in the hot tubs, for more info see their website"]
+        u2:(~thanks) Happy to help
+        u2:(~anyquestion) I am sorry but I dont know the answer to questions about $activity
+        u2:(~stop) Just let me know if you want more activity suggestions any time. $stopTablet=1
     u1:(~yes) Did you mean you want another suggestion?
         u2:(~yes) ^goto(suggestion)
         u2:(~no) ^goto(learnActivity)
