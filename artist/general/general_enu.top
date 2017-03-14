@@ -35,13 +35,13 @@ concept:(anyquestion) ["[what where when how does is] *" "when does it open"]
 
  #------------------------------Start Stuff-------------------------
 u:(e:onStart) %start Hello. I am Pepper! ^first[" Nice to see you again $userName ^goto(helloUser) " "%askAboutName What is your name? "] 
-    u1:(["_~names" "_*" "my name is _*" "I am _*"]) Nice to meet you $1 $userName=$1 ^nextProposal
+    u1:(["_~names" "my name is _~names" "I am _~names"]) Nice to meet you $1 $userName=$1 ^nextProposal
     u1:(~no) You dont want to tell me. That is okay. ^clear(userName) ^nextProposal
 u:(helloMe) %helloUser !
 
 
 
-u:(~hello) Hello ^first[" $userName "  " "] 
+u:(~hello) Hello ^first[" $userName "  "Human "] 
 
 u:(bye bye) goodbye $userName $goToTopic=bye $onStopped=1
 
@@ -49,7 +49,7 @@ u:(my name is _*) Nice to meet you $1 $userName=$1
 u:(forget me) Okay you are forgotten!  ^clear(userName)
 
 
-u:(music) Do you want to talk about music?
+u:([music "lets talk about music" "talk about music"]) Do you want to talk about music?
     u1:(~yes) $goToTopic=music $onStopped=1
     u1:(~no) Then lets do something else ^gotoRandom(second)
 
@@ -63,9 +63,9 @@ u:(tablet disabled) Lets open the tablet. $goToTopic=tablet $onStopped=1
 
 
  #------------------------------Suggestions-------------------------
-proposal: %init I can answer questions about the rules of this place or we can talk about music?
+proposal: %init Do you want suggestions for activities in Uppsala or we could talk about music or perhaps you want to do something else?
     u1:(~no) Okay. Lets do something else then. ^gotoRandom(second)
-    u1:(questions) Okay what do you want to ask me about?
+    u1:(activities) ^goto(suggestion)
     u1:([more "what else"])  ^nextProposal
 
 proposal: You can always ask me what I can do 
@@ -112,7 +112,7 @@ u:(How are you) I am a happy robot. How are you ^first[$userName " "]?
 u:(Where do you live) I live at IBM in Kista in Sweden. Where do you live?
     u1:(*) That sounds nice
 u:(how old are you) I am young. I am only 1 year.
-u:(pepper) yes
+u:(pepper) [yes "I am listening" "that is my name. dont wear it out" "tell me what I can do for you"]
 u:(what is my name) ^first["Your name is $userName " "I dont know ^goto(askAboutName2) "]
 u:(ask about my name) %askAboutName2 what is your name?
     u1:(["_~names" "_*" "my name is _*" "I am _*"]) Nice to meet you $1 $userName=$1 
