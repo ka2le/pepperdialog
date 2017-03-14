@@ -91,14 +91,12 @@ u:(i have questions) ok What is your question?
 u:(learn) ^goto(learnMore)
 
 
-<<<<<<< HEAD
 u:(theplaymusic) %playMusic $Menu/listen=1 Okay lets play some music. What song do you want to hear? 
-=======
-<<<<<<< HEAD
+
+
 u: (testquestion) Hello 
-=======
+
 u:(play music) %playMusic $Menu/listen=1 Okay lets play some music. What song do you want to hear? 
->>>>>>> origin/master
     u1:(~dontknow) I can help you find a song. Pick one from the list on my stomach.
    # u1:(mirrors) I will play the song Mirrors. $startYoutube=1
     u1:(mirrors) Okay Im playing Mirrors with Justin on Youtube now. $ARTIST/youtube=1
@@ -106,8 +104,6 @@ u:(tablet) I will show the website on my tablet. $ARTIST/youtube=1
 u:(new page) $openPage=quiz new
 u:(old page) $openPage=learn old
 
-
->>>>>>> origin/master
 
 u:(thequiz) %theQuiz $Menu/quiz=1 Starting the quiz.  If you want to know your score, just say score at anytime during this quiz. $quizScore=0 ^goto(selectNextQ) 
 u:(selectQ) %selectNextQ [^goto(q1) ^goto(q2)]

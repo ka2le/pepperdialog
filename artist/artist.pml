@@ -46,7 +46,7 @@
     </Resources>
     <Topics>
         <Topic name="ExampleDialog_enu" src="behavior_1/ExampleDialog/ExampleDialog_enu.top" topicName="ExampleDialog" language="en_US" />
-        <Topic name="artist_enu" src="artist/artist_enu.top" topicName="" language="C" />
+        <Topic name="artist_enu" src="artist/artist_enu.top" topicName="artist" language="en_US" />
         <Topic name="general_enu" src="general/general_enu.top" topicName="general" language="en_US" />
         <Topic name="testing_enu" src="testing/testing_enu.top" topicName="testing" language="en_US" />
     </Topics>
