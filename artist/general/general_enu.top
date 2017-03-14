@@ -29,6 +29,7 @@ concept:(tellMe) ["tell me" tell say hear "lets hear it"]
 concept:(askingWords) ["where is" how when where "is there" "are there" "when is"]
 concept:(uppsalaActivity) [Cinema Fyrishov "The Church"]
 
+concept:(repeat) [repeat]
 concept:(thanks) ["thank you" thanks "thanks pepper" ]
 
  #------------------------------Start Stuff-------------------------
@@ -114,7 +115,21 @@ u:(who is _[carl kalle isac]) $1 is my friend. He is doing his master thesis at 
 u:([food "food store" store]) The closest place to buy food is Ica The Corner. 
 u:(cleaning day) ^first["$userName your cleaning day is Friday" "The cleaning schedule is located on the fridges. Today it is Isaks cleaning day"]  
 u:(cleaning tools) The cleaning tools are located in the closet in each room.
-
+u:(smoking) Smoking is only allowed outside behond the storage shed. 
+u:(quiet) After 21 there are quiet hours in the house. 
+u:(clean room) There is a list located on the wall in your room with information about what is expected. 
+u:(going home) There are a few things to think about before going home. The room must be cleaned. The key and parking permit should be handed to the staff before 12. A 500 kroner fee must be paid cash if the room is not cleaned.  
+u:(["wi fi" wifi internet "[internet wifi] [password login]"]) The wi fi password is Internet with a capitol I 
+u:(rules) Do you want me to tell you about the rules?
+    u1:(~yes) %rule1 When you stay here think about the following things. Clean your room, clean your sheets, always use sheets when making the bed. Its also important to remeber that the parents are awlays responsible for their children. Want me to continue?
+        u2:(~yes) %rule2 We always sort our garbage in this house. Remember to fill run and empty the dishwasher, and to clean up after you in the play room. Every family have their own fridge. Lastly we have quiet hours from 21 in the house. 
+            u3:(~repeat) ^goto(rule2)
+            u3:(~thanks) You are welcome!
+            u3:(~stop) enough rules, I agree
+        u2:(~no) okay
+        u2:(~repeat) ^goto(rule1)
+        u2:(~stop) enough rules, I agree
+    u1:(~no) okay, just let me know anytime.
 
 #------------------------------Activities in Uppsala-------------------------
 u:(activity) %suggestion I can recomend ["using Destination Uppsala $activity=Destination " "Cinema $activity=Cinema " "Fyrishov $activity=Fyrishov " "The Church $activity=Church "] Do you want another suggestion or learn more abour this?
