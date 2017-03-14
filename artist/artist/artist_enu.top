@@ -26,7 +26,7 @@ concept:(theArtists) [justin saralarsson]
 
 
 
-u:(e:onStart) ["You can call me DJ Pepper" "DJ Pepper is ready"] $artist=0
+u:(e:onStart) ["You can call me DJ Pepper" "DJ Pepper is ready" "Let me introduce to DJ Pepper"] $artist=0
 
 u:([hello hi ["DJ Pepper" "pepper"]]) Hello $userName If you want ^goto(mainChoice)
 
