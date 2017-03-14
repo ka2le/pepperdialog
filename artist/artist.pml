@@ -12,7 +12,6 @@
     </Dialogs>
     <Resources>
         <File name="_metadata" src="_metadata" />
-        <File name="swiftswords_ext" src="behavior_1/swiftswords_ext.mp3" />
         <File name="css" src="html/css.css" />
         <File name="functions" src="html/functions.js" />
         <File name="index" src="html/index.html" />

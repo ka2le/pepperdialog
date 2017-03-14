@@ -129,7 +129,7 @@
                             <Resource name="Speech" type="Lock" timeout="0" />
                         </Box>
                         <Box name="Music Dialog" id="10" localization="8" tooltip="An example of multilanguage dialog implementation" x="458" y="260">
-                            <dialogFile>../artist/artist.dlg</dialogFile>
+                            <dialogFile>ExampleDialog/ExampleDialog.dlg</dialogFile>
                             <bitmap>media/images/box/box-dialog.png</bitmap>
                             <script language="4">
                                 <content>

@@ -40,7 +40,7 @@ u:(~whatcanyoudo) %mainChoice ["We can play a music quiz or listen to a song or 
     u1:(questions) ["$artist==0  Which artist do you want to ask questions about?" "$artist==[~theArtists] $openPage=questions ^goto(answerQ) "]
         u2:(_~theArtists) You are in luck, I know so much about $1 $artist=$1 $openPage=questions ^goto(answerQ)
         u2:(~stop) Alright 
-    u1:(play music) [$openPage=listen ^goto(playMusic) "]
+    u1:(play music) [" $openPage=listen ^goto(playMusic) "]
         u2:(_~theArtists)  $1 is a great choice $artist=$1 $openPage=listen ^goto(playMusic)
         u2:(~stop) Alright $openPage=listen ^goto(playMusic)
     u1:(~no) Okay, maybe  ^goto(mainChoice)
