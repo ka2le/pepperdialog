@@ -93,7 +93,10 @@ u:(learn) ^goto(learnMore)
 u:(play music) %playMusic $openPage=listen Okay lets play some music. Tell me which song you want to hear? 
     u1:(~dontknow) I can help you find a song. Pick one from the list on my stomach.
     u1:(mirrors) Okay Im playing Mirrors with Justin on Youtube now. $ARTIST/youtube=1  
-    u1:(Cant stop the feeling) Okay Im playing Cant stop the feeling with Justin on Youtube now.  
+    u1:(Cant stop the feeling) Okay Im playing Cant stop the feeling with Justin on Youtube now. $opensongs/cantstopthefeeling=1 
+    u1:(["What goes around" "What goes around comes back around") Okay Im playing Cant stop the feeling with Justin on Youtube now. $opensongs/whatgoesaroundcomesaround=1 
+    u1: (["Uptown funk" "Uptwon funk with Bruno Mars"]) Okay Im playing Uptown Funk with Bruno Mars on Youtube now. $opensongs/uptownfunk=1
+    u1: (["Lush Life" "Lush life with" "["Zara Larsson" Zara Larsson]]) 
 u:(tablet) I will show the website on my tablet. $ARTIST/youtube=1
 u:(new page) $openPage=quiz new
 u:(old page) $openPage=learn old
