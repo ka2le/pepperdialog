@@ -119,6 +119,9 @@ u:(ask about my name) %askAboutName2 what is your name?
     u1:(~no) You dont want to tell me. That is okay. ^clear(userName) 
 u:(what is your favourite food) Silly ^first[$userName "human"] . I am a robot. I dont eat 
 u:(who is _[carl kalle isac]) $1 is my friend. He is doing his master thesis at IBM teaching me about music and other cool stuff   
+u:(say something) [Something "What do you want me to say?" Okay Sure]
+u:(speak louder) $speakLouder=1  I will speak louder
+u:(speak quiet)  $speakQuiet=1 I will speak quiet
 u:(game) We can play different kinds of games. Do you want to play twister, do movement exercises or we could do a music quiz?
     u1:(["music quiz" music quiz]) $goToTopic=music $onStopped=1
     u1:([twister "play twister"]) ^goto(twisterGame)
