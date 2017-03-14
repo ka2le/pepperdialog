@@ -20,11 +20,16 @@ concept:(dontknow) ["I dont know" "no idea" "dont know" no]
 concept:(learnMore) ["tell me" tell learn hear]
 
 concept:(bye) [goodbye bye]
-
+concept:(how) ["how are you" howdy "what's up" "how do you feel"]
 
 u:(e:onStart) I am in test mode.
 u:(~hello) Hi $userName . I am in test mode.
 u:(help)  here is a list of words for testing NLC local new page old page teach
+
+
+#^start(animations/Moods/Neutral/Pepper/Thinking) 
+u:(~how) ^start(Animation/Moods/Neutral/Pepper/Thinking)  I'm fine, thank you
+
 
 u:(NLC) N L C ready
     u1:(_*) $NLC/input=$1 Analyzing $1
