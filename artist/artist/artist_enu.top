@@ -40,7 +40,7 @@ u:(~whatcanyoudo) %mainChoice ["We can play a music quiz or listen to a song or 
     u1:(questions) ["$artist==0  Which artist do you want to ask questions about?" "$artist==[~theArtists] $openPage=questions ^goto(answerQ) "]
         u2:(_~theArtists) You are in luck, I know so much about $1 $artist=$1 $openPage=questions ^goto(answerQ)
         u2:(~stop) Alright 
-    u1:(play music) ["$artist==0  What artist do you want to listen to?" "$artist==[~theArtists] $openPage=listen ^goto(playMusic) "]
+    u1:(play music) [$openPage=listen ^goto(playMusic) "]
         u2:(_~theArtists)  $1 is a great choice $artist=$1 $openPage=listen ^goto(playMusic)
         u2:(~stop) Alright $openPage=listen ^goto(playMusic)
     u1:(~no) Okay, maybe  ^goto(mainChoice)
@@ -90,13 +90,10 @@ u:(i have questions) ok What is your question?
     u1:(_*) $NLC/input=$1 
 u:(learn) ^goto(learnMore)
 
-
-u:(theplaymusic) %playMusic $Menu/listen=1 Okay lets play some music. What song do you want to hear? 
-
-u:(play music) %playMusic $Menu/listen=1 Okay lets play some music. What song do you want to hear? 
+u:(play music) %playMusic $openPage=listen Okay lets play some music. Tell me which song you want to hear? 
     u1:(~dontknow) I can help you find a song. Pick one from the list on my stomach.
-   # u1:(mirrors) I will play the song Mirrors. $startYoutube=1
-    u1:(mirrors) Okay Im playing Mirrors with Justin on Youtube now. $ARTIST/youtube=1
+    u1:(mirrors) Okay Im playing Mirrors with Justin on Youtube now. $ARTIST/youtube=1  
+    u1:(Cant stop the feeling) Okay Im playing Cant stop the feeling with Justin on Youtube now.  
 u:(tablet) I will show the website on my tablet. $ARTIST/youtube=1
 u:(new page) $openPage=quiz new
 u:(old page) $openPage=learn old
