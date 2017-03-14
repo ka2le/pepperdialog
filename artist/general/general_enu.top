@@ -20,7 +20,7 @@ concept:(hello) [hello hi]
 concept:(color) [blue yellow red green orange]
 concept:(dontknow) ["I dont know" "no idea" "dont know" no]
 concept:(learnMore) ["tell me" tell learn hear]
-concept:(names) [kalle carl isak gunnar]
+concept:(names) [kalle carl isak isac gunnar]
 concept:(happy) [good fine "I am good" happy]
 concept:(sad) [sad bad "not good"]
 concept:(goodJob) ["good job" "well done" "nice" "impressive"]
@@ -110,6 +110,10 @@ u:(How are you) I am a happy robot. How are you ^first[$userName " "]?
 u:(Where do you live) I live at IBM in Kista in Sweden. Where do you live?
     u1:(*) That sounds nice
 u:(how old are you) I am young. I am only 1 year.
+u:(what is my name) ^first["Your name is $userName " "I dont know ^goto(askAboutName2) "]
+u:(ask about my name) %askAboutName2 what is your name?
+    u1:(["_~names" "_*" "my name is _*" "I am _*"]) Nice to meet you $1 $userName=$1 
+    u1:(~no) You dont want to tell me. That is okay. ^clear(userName) 
 u:(what is your favourite food) Silly ^first[$userName "human"] . I am a robot. I dont eat 
 u:(who is _[carl kalle isac]) $1 is my friend. He is doing his master thesis at IBM teaching me about music and other cool stuff   
 u:(game) We can play different kinds of games. Do you want to play twister, do movement exercises or we could do a music quiz?
