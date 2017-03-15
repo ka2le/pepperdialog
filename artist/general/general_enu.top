@@ -48,8 +48,6 @@ u:(e:onStart) %start Hello. I am Pepper! ^first[" Nice to see you again $userNam
     u1:(~no) You dont want to tell me. That is okay. ^clear(userName) ^nextProposal
 u:(helloMe) %helloUser !
 
-
-
 u:(~hello) Hello ^first[" $userName "  "Human "] 
 
 u:(~goodbye) goodbye $userName $goToTopic=bye $onStopped=1

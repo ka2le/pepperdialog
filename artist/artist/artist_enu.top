@@ -44,7 +44,7 @@ concept:(uppsalaActivity) [Cinema Fyrishov "The Church"]
 
 
 
-
+ #-----------------------------Start ---------------------------------
 u:(e:onStart) ["You can call me DJ Pepper" "DJ Pepper is ready" "I know music and you can call me DJ Pepper"] $artist=0
 
 u:(["hello hi ["DJ Pepper" "pepper"]" ~hello]) Hello ^first[" $userName " " human"] If you want ^goto(mainChoice)
