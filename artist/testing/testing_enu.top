@@ -28,7 +28,7 @@ u:(help)  here is a list of words for testing NLC local new page old page teach
 
 
 #^start(animations/Moods/Neutral/Pepper/Thinking) 
-u:(~how) ^start(Animation/Moods/Neutral/Pepper/Thinking)  I'm fine, thank you
+u:(~how) ^startTag(animations/Stand/Waiting/Think_1)  I'm fine, thank you
 
 
 u:(NLC) N L C ready
@@ -39,7 +39,7 @@ u:(e:NLC/output) NLC result says $NLC/output
 u:(switch) Going back to the general Topic $goToTopic=general
 u:(show picture) $img/justin=1 opeing picture
 #u:(pose) See my moves ^start(animation/moods/neutral/thinking) and i can talk while i do it
-#u:(pose) See my moves $pose/think=1 and i can talk while i do it
+u:(pose) See my moves $pose/think=1 and i can talk while i do it
 
 u:(local) $tabletLocal=1 local
 u:(new page) $openPage=quiz new

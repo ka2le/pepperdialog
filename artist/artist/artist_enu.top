@@ -17,134 +17,159 @@ concept:(number) [1 2 3 4 5 6 7 8 9 10]
 concept:(bodyPart) [foot hand]
 concept:(leftRight) [left right]
 concept:(color) [blue yellow red green orange]
-concept:(dontknow) ["I dont know" "no idea" "dont know" no]
+concept:(dontknow) ["I dont know" "no idea" "dont know" no "tell me"]
 concept:(learnMore) ["tell me" tell learn hear]
 concept:(whatcanyoudo) ["what can you do" help info functions]
 
 concept:(startQuiz) [quiz "start quiz" "i want do do [a the] quiz"]
 concept:(theArtists) [justin saralarsson]
-
+concept:(goodJob) ["Well done" "good job" nice "great work"]
+concept:(correct) [correct "that is correct" "thats right"]
+concept:(changeArtist) ["change artist" "lets talk about another artist" "lets talk about someone else" ]
+concept:(askQuestion) ["i have a question" "can you answer a question" "ask question" "ask something" "i want to ask something"]
+concept:(tellTrivia) ["tell me something about him" trivia "tell me something"]
+concept:(playMusic) ["play music" "listen to song" "play song" "youtube" "listen to music"]
 
 
 u:(e:onStart) ["You can call me DJ Pepper" "DJ Pepper is ready" "I know music and you can call me DJ Pepper"] $artist=0
 
-u:([hello hi ["DJ Pepper" "pepper"]]) Hello $userName If you want ^goto(mainChoice)
+u:(["hello hi ["DJ Pepper" "pepper"]" ~hello]) Hello ^first[" $userName " " human"] If you want ^goto(mainChoice)
 
-u:(~whatcanyoudo) %mainChoice ["We can play a music quiz or listen to a song or perhaps something else?" "We can learn more about an artist in general or you can ask me specific questions or something else?" "We can talk about artists  ^goto(start)" ] 
+
+#-----------------------------------------Starting choice----------------------------------------
+
+u:(~whatcanyoudo) %mainChoice ["We can play a music quiz or listen to a song or perhaps something else?" "We can learn more about an artist in general or you can ask me specific questions or something else?" " ^goto(whoisfav)" "$artist==[~theArtists] Did you know that ^gotoRandom(trivia)" ] 
     u1:(~startQuiz) %initQuiz ["$artist==0 Who do you want the quiz to be about?" "$artist==[~theArtists] $openPage=quiz ^goto(theQuiz) "]
         u2:(_~theArtists) $1, good choice $artist=$1 $openPage=quiz ^goto(theQuiz)
         u2:(~stop) Alright
     u1:(learn more) ["$artist==0 Who do you want to learn more about?" "$artist==[~theArtists] $openPage=learn ^goto(storyMode) "]
         u2:(_~theArtists) Lets learn more about $1 $artist=$1 $openPage=learn ^goto(storyMode)
         u2:(~stop) Alright
-    u1:(questions) ["$artist==0  Which artist do you want to ask questions about?" "$artist==[~theArtists] $openPage=questions ^goto(answerQ) "]
+    u1:([questions ~askQuestion]) %askQuestion ["$artist==0  Which artist do you want to ask questions about?" "$artist==[~theArtists] $openPage=questions ^goto(answerQ) "]
         u2:(_~theArtists) You are in luck, I know so much about $1 $artist=$1 $openPage=questions ^goto(answerQ)
         u2:(~stop) Alright 
-    u1:(play music) [" $openPage=listen ^goto(playMusic) "]
-        u2:(_~theArtists)  $1 is a great choice $artist=$1 $openPage=listen ^goto(playMusic)
-        u2:(~stop) Alright $openPage=listen ^goto(playMusic)
+    u1:(~playMusic) [" $openPage=listen ^goto(playMusic) "]
     u1:(~no) Okay, maybe  ^goto(mainChoice)
     u1:(~yes) please say again, what do you want to do? ^stayInScope
     u1:(e:Dialog/NotUnderstood) I am sorry, could you repeat that?
     u1:(something else) Another idea  ^goto(mainChoice)
     u1:(stop) ok
-    
-u:(~startQuiz) m ^goto(initQuiz) 
-    
-u:(change artist) Who do you want to talk about instead?
-    u1:(~justin) Yeah lets talk about justin timberlake  $artist=justin
-    u1:(["no one" clear forget]) $artist=0
-    
-u:(e:Dialog/NoOneSpeak20) ^goto(mainChoice)
-    
-u:(start) Do you want to talk about music? $artist=0
-    u1:(~justin) Okay, lets talk about Justin Timberlake ^goto(startMenu)
-    u1:(~yes) %start Who is your favourit artist? %whoisfav
-        u2:(~justin) $img/justin=1 I like Justin Timberlake too %startMenu $openPage=startMenu Do you want to take a quiz about him, listen to some music or do you want to learn more about him? 
-            u3:(quiz) $openPage=quiz ^goto(theQuiz) 
-            u3:(listen) $openPage=listen ^goto(playMusic)
-            u3:(learn more) $openPage=learn %learnmore Do you have any questions about Justin or do you want me to tell you?
-                u4:(questions) %answerQ What is your question?                    #ALL QUESTIONS HERE
-                    u5:(_*) $NLC/input=$1 
-                    u5:(how old is justin) He is 36 years old. ^goto(moreToAsk)
-                    u5:(where as he born) He was born in Memphis ^goto(moreToAsk)
-                    u5:(~stop) Do you want me to stop talking about this?
-                        u6:(~yes) ^goto(startMenu)
-                        u6:(~no) ^goto(learnMore)
-                u4:(~learnMore) ^goto(storyMode)
-                u4:(moreToAsk) %moreToAsk Do you want to ask more questions?                    #ALL QUESTIONS HERE
-                    u5:(~yes) ^goto(answerQ)
-                    u5:(~no) ^goto(startMenu)
-                    u5:(how old is justin) He is 36 years old. ^goto(moreToAsk)
-                    u5:(where as he born) He was born in Mephis ^goto(moreToAsk)
-                
-    u1:(~no) Okay, we can do something else then. Play twister perhaps?
-        u2:(~yes) ^goto(twisterGame)
-        u2:(~no) okay. Just tell me when you want to do something 
 
+
+#-----------------------------------------Changing section----------------------------------------
+u:(~startQuiz) m ^goto(initQuiz) 
+
+u:(I want to talk about justin) Justin is great. What do you want to talk about. $artist=justin ^goto(mainChoice)
+u:(["dj pepper" pepper]) ["That is my name" "yes thats me" yes listening] 
+
+u:(learn) ^goto(learnMore)
+u:(what artist are we talking about) ^first["we are talking about  $artist" " no one. ^goto(whoisfav)"]
+u:(~changeArtist) What artist do you want to talk about instead?
+    u1:(~justin) Yeah lets talk about justin timberlake  $artist=justin
+    u1:(["no one" clear forget]) nevermind then $artist=0
+
+u:(ask me about my favoutire artist )  %whoisfav Who is your favourit artist?
+    u1:(~justin) $img/justin=1 $artist=justin I like him too. ["Did you know that ^gotoRandom(trivia) " " ^goto(mainChoice)"]
+        
+u:(~tellTrivia) ["$artist==0 First tell me ^goto(whoisfav)" " $artist==[~theArtists] Did you know that ^gotoRandom(trivia) " ]
+
+#kommentera ut raden under i choregraphe    
+#u:(e:Dialog/NoOneSpeak20) ^goto(mainChoice)
+
+
+
+#-----------------------------------------Questions from user----------------------------------------
+
+    
+u:(~askQuestion) ^goto(askQuestion)
+u:(answer question) %answerQ What is your question?
+    u1:(~stop) Do you want me to stop talking about this?
+        u2:(~yes) ^goto(startMenu)
+        u2:(~no) ^goto(learnMore)    
+    u1:(_*) $NLC/input=$1 
+    
+u:(moreToAsk) %moreToAsk Do you want to ask more questions?                    
+    u1:(~yes) ^goto(answerQ)
+    u1:(~no) We can do something else. ^goto(mainChoice)
+    
 u:(e:NLC/output) ["$NLC/output==age He is 36 years old" "$NLC/output==birthplace He born in Memphis"]
 
-u:(I want to talk about justin) ^goto(startMenu)
-u:(answerQ)  ^goto(answerQ)
-u:(i have questions) ok What is your question?
-    u1:(_*) $NLC/input=$1 
-u:(learn) ^goto(learnMore)
+u:(how old is he) %trivia %ageAnswer He is 36 years old
+u:(Where was he born) %trivia  %birtplaceAnswer He was born in Memphis in the state Tennessee
+u:(what was his first song) %trivia  %firstSongAnswer His first solo album was Justified which included the single Cry Me A River
+u:(what prizes has he won)  %trivia  %prizeAnswer He has won ten Grammy Awards, four Emmy Awards, seven American Music Awards, three Brit Awards, seven Billboard Music Awards, and eleven MTV Video Music Awards. How about that
+u:(what instrument does he play) %trivia %intrumentAnswer Apart from singing he also plays guitar bass keyboard and he can beatbox
+u:(how many children does he have) %trivia %childrenAnswer He has one son named Silas Randall Timberlake
+u:(what is his [middle full] name) %trivia  %nameAnswer His full name is Justin Randall Timberlake
+u:(["is he married" "is he single" "what is the name of his wife"]) %trivia  %marriedAnswer Justin is married to Jessica Biel 
 
-u:(play music) %playMusic $openPage=listen Okay lets play some music. Tell me which song you want to hear? 
+#-----------------------------------------Youtube----------------------------------------
+u:(~playMusic) %playMusic $openPage=listen Okay lets play some music. Tell me which song you want to hear? 
     u1:(~dontknow) I can help you find a song. Pick one from the list on my stomach.
     u1:(mirrors) Okay Im playing Mirrors with Justin on Youtube now. $ARTIST/youtube=1  
     u1:(Cant stop the feeling) Okay Im playing Cant stop the feeling with Justin on Youtube now. $opensongs/cantstopthefeeling=1 
-    u1:(["What goes around" "What goes around comes back around") Okay Im playing Cant stop the feeling with Justin on Youtube now. $opensongs/whatgoesaroundcomesaround=1 
+    u1:(["What goes around" "What goes around comes back around"]) Okay Im playing Cant stop the feeling with Justin on Youtube now. $opensongs/whatgoesaroundcomesaround=1 
     u1: (["Uptown funk" "Uptwon funk with Bruno Mars"]) Okay Im playing Uptown Funk with Bruno Mars on Youtube now. $opensongs/uptownfunk=1
-    u1: (["Lush Life" "Lush life with" "["Zara Larsson" Zara Larsson]]) 
-    u1: (["This One's For You" "This one with" "["Zara Larsson" Zara Larsson]]) $opensongs/thisoneisforyou=1 
+    u1: (["Lush Life" "Lush life with" ["Zara Larsson" Zara Larsson]])  playing Lush Life
+    u1: (["This One's For You" "This one with" ["Zara Larsson" Zara Larsson]]) $opensongs/thisoneisforyou=1 
     u1: (["It aint my fault" "Aint my fault" "Aint fault" ["Zara Larsson" Zara Larsson]]) $opensongs/itaintmyfault=1 
-    u1: (["Halo" "Halo with Beyonce"]]) $opensongs/halo=1
-    u1: (["Single Ladies" "Single Ladies with Beyonce"]]) $opensongs/singleladies=1 
-    u1: (["Elektrisk" "Du e elektrisk" "Elektrisk with Markus o Martinus"]]) $opensongs/elektrisk=1 
-    u1:(["Sorry "Sorry Justin Bieber" "Sorry with Justin Bieber"]) $opensongs/sorry=1 
+    u1: (["Halo" "Halo with Beyonce"]) $opensongs/halo=1
+    u1: (["Single Ladies" "Single Ladies with Beyonce"]) $opensongs/singleladies=1 
+    u1: (["Elektrisk" "Du e elektrisk" "Elektrisk with Markus o Martinus"]) $opensongs/elektrisk=1 
+    u1:([Sorry "Sorry Justin Bieber" "Sorry with Justin Bieber"]) $opensongs/sorry=1 
     u1:(["What do you mean" "What do you mean Justin Bieber" " What do you mean with Justin Bieber"]) $opensongs/whatdoyoumean=1 
     u1:(["Love yourself" "Love yourself with Justin Bieber"]) $opensongs/loveyourself=1 
 u:(tablet) I will show the website on my tablet. $ARTIST/youtube=1
 u:(new page) $openPage=quiz new
 u:(old page) $openPage=learn old
 
-
+#-----------------------------------------QUIZ----------------------------------------
 u:(thequiz) %theQuiz $Menu/quiz=1 Starting the quiz.  If you want to know your score, just say score at anytime during this quiz. $quizScore=0 ^goto(selectNextQ) 
-u:(selectQ) %selectNextQ [^goto(q1) ^goto(q2)]
+u:(selectQ) %selectNextQ [^goto(q1) ^goto(q2) ^goto(q3) ^goto(q4) ^goto(q5) ^goto(q6)]
 u:(moreQs) %moreQs Do you want another question?
     u1:(~yes) Ok. Here come another one. ^goto(selectNextQ) 
     u1:(~no) Okay. Well played. Just tell me if you want to do a quiz again sometime.
     u1:(score) Your score is $quizScore   ^stayInScope
-    u1:(stop) Stopping the quiz. 
+    u1:(~stop) Stopping the quiz. 
 u:(q1) %q1 How old is Justin Timberlake?
     u1:(_*) I heard you say $1 . The correct answer is that he is 36 years old. ^goto(moreQs)     
-    u1:(36) Correct! Good job! $QUIZ/addscore=1 ^goto(moreQs)
+    u1:(36) ~correct ~goodJob $QUIZ/addscore=1 ^goto(moreQs)
     u1:(~dontknow) I'll tell you then. He is 36 years old. ^goto(moreQs)
-    u1:(stop) Stopping the quiz. 
+    u1:(~stop) Stopping the quiz. 
     u1:(score) Your score is $quizScore   ^stayInScope
 u:(q2) %q2 In what city was he born?
-    u1:(memphis) Correct! Good job! $QUIZ/addscore=1 ^goto(moreQs) 
+    u1:(memphis)  ~correct ~goodJob $QUIZ/addscore=1 ^goto(moreQs) 
     u1:(~dontknow) I'll tell you then. He was born in Memphis. ^goto(moreQs) 
-    u1:(_*) I heard you say $1 . The correct answer is that he iwas born in Memphis. ^goto(moreQs)
+    u1:(_*) I heard you say $1 . The correct answer is that he was born in Memphis. ^goto(moreQs)
     u1:(score) Your score is $quizScore   ^stayInScope 
-    u1:(stop) Stopping the quiz.
+    u1:(~stop) Stopping the quiz.
+u:(q3) %q3  What was the name of his first solo album?
+    u1:(Justified)  ~correct ~goodJob ! $QUIZ/addscore=1 ^goto(moreQs) 
+    u1:(~dontknow) I'll tell you then. It was named Justified ^goto(moreQs) 
+    u1:(_*) I heard you say $1 . The correct answer is that It was named Justified. ^goto(moreQs)
+    u1:(score) Your score is $quizScore   ^stayInScope 
+    u1:(~stop) Stopping the quiz.   
+u:(q4) %q4  What is his middle name?
+    u1:(Randall )  ~correct ~goodJob ! $QUIZ/addscore=1 ^goto(moreQs) 
+    u1:(~dontknow) His middle name is Randall ^goto(moreQs) 
+    u1:(_*) I heard you say $1 . The correct answer is Randall . ^goto(moreQs)
+    u1:(score) Your score is $quizScore   ^stayInScope 
+    u1:(~stop) Stopping the quiz. 
+u:(q5) %q5  How many children does he have?
+    u1:(1)  ~correct ~goodJob He has one son ! $QUIZ/addscore=1 ^goto(moreQs) 
+    u1:(~dontknow) I'll tell you then. He has one son ^goto(moreQs) 
+    u1:(_*) I heard you say $1 . The correct answer is that he has one son . ^goto(moreQs)
+    u1:(score) Your score is $quizScore   ^stayInScope 
+    u1:(~stop) Stopping the quiz.
+u:(q6) %q6  What was the name of his latest album?
+    u1:(["the 20 20 experience " "20 20 experience " "twenty twenty experience"])  ~correct ~goodJob ! $QUIZ/addscore=1 ^goto(moreQs) 
+    u1:(~dontknow) I'll tell you then. It was named the 20 20 experience ^goto(moreQs) 
+    u1:(_*) I heard you say $1 . The correct answer is that It was named the 20 20 experience. ^goto(moreQs)
+    u1:(score) Your score is $quizScore   ^stayInScope 
+    u1:(~stop) Stopping the quiz. 
+       
 
-
-u:(twister) %twisterGame Lets play some Twister. Get your twister set up and tell me when you are ready!
-    u1:(~stop) I understood that you want to stop talking about this. ^goto(start)
-    u1:(~ready) Okay let's start. How many will be playing?
-        u2:(~stop) I understood that you want to stop talking about this. ^goto(start)
-        u2:(_~number) Starting a game for $1 players. $nmbPlayers=$1 ^first["$nmbPlayers==2 ^goto(2playergame)" "invalide number"]
-u:(2playergame) %2playergame Player1 put you ^rand[~leftRight] ^rand[~bodyPart] on ^rand[~color]  When you are done, let me know by saying ready and I will give the next player their instructions.
-    u1:(~ready) Player2 put your    ^rand[~leftRight] ^rand[~bodyPart] on ^rand[~color] . I will keep giving new instructions when you say ready until one of you wins.
-         u2:(~ready) ^goto(2playergameLoop)       
-u:(2playergameLoop) %2playergameLoop Player1 put your   ^rand[~leftRight] ^rand[~bodyPart] on ^rand[~color]  . 
-    u1:(~ready) Player2 put your   ^rand[~leftRight] ^rand[~bodyPart] on ^rand[~color] .
-        u2:(~ready) ^goto(2playergameLoop)
-        u2:(stop) Oh? Its over. My eyes dont work so good all the time. Can you tell me who won?
-            u3:(_*) Congratulations to $1 
-
+#-----------------------------------------Story mode ----------------------------------------
 u:(story) %storyMode $openPage=story Look at my stomach to see the headlines and tell me what you want to hear about?
     u1:(~stop) I understood that you want to stop talking about this. ^goto(startMenu)
     u1:(Early life) Wikipedia says Timberlake was born in Memphis Tennessee the son of Lynn Bomar Harless and Charles Randall Timberlake a Baptist church choir director Timberlake grew up in Shelby Forest a small community between Memphis and Millington  He has two half-brothers Jonathan born September 12 1993 and Stephen born August 14 1998 from Charles second marriage to Lisa Perry  Do you want to me to keep reading about this topic
