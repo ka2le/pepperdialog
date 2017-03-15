@@ -501,7 +501,7 @@ class MyClass(GeneratedClass):
                             <Timeline enable="0">
                                 <BehaviorLayer name="behavior_layer1">
                                     <BehaviorKeyframe name="keyframe1" index="1">
-                                        <Diagram scale="42.0448">
+                                        <Diagram scale="84.0896">
                                             <Box name="Open link" id="7" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="531" y="20">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
                                                 <script language="4">
