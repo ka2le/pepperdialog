@@ -10,7 +10,7 @@ u:(["~hello  ["DJ Pepper" "pepper"]" ~hello]) Hello ^first[" $userName " " human
 
 #-----------------------------------------Starting choice----------------------------------------
 
-u:(~whatcanyoudo) %mainChoice ["We can play a music quiz or listen to a song or perhaps something else?" "We can learn more about an artist in general or you can ask me specific questions or something else?" " ^goto(whoisfav)" "$artist==[~theArtists] Did you know that ^gotoRandom(trivia)" ] 
+u:(~whatcanyoudo) %mainChoice ["We can play a music quiz or listen to a song or perhaps do something else?" "We can learn more about an artist in general or you can ask me specific questions or something else?" " ^goto(whoisfav)" "$artist==[~theArtists] Did you know that ^gotoRandom(trivia)" ] 
     u1:(~startQuiz) ^goto(initQuiz)
     u1:(learn more) ["$artist==0 $openPage=learn Which artist do you want to learn more about?" "$artist==[~theArtists] $openPage=learn ^goto(storyMode) "]
         u2:(_~theArtists) Lets learn more about $1 $artist=$1 $openPage=learn ^goto(storyMode)
@@ -27,11 +27,13 @@ u:(~whatcanyoudo) %mainChoice ["We can play a music quiz or listen to a song or 
 
 
 #-----------------------------------------Changing section----------------------------------------
-u:(~startQuiz) %initQuiz ["$artist==0 Which artist do you want the music quiz to be about?" "$artist==[~theArtists] $openPage=quiz ^goto(theQuiz) "]
+u:(~startQuiz) %initQuiz ["$artist==0 Which artist do you want the music quiz to be about?"  "$artist==[~theArtists] $openPage=quiz ^goto(theQuiz) "]
     u1:(_~theArtists) $1, good choice $artist=$1 $openPage=quiz ^goto(theQuiz)
     u1:(~stop) Alright
-
-u:(I want to talk about justin) Justin is great. What do you want to talk about. $artist=justin ^goto(mainChoice)
+    u1:(Which artist do you prefere?) 
+        u2:(I prefer Justin Timerlake) 
+        
+u:(I want to talk about Justin Timberlake) Justin is great. What do you want to talk about. $artist=justin ^goto(mainChoice)
 u:(["dj pepper" pepper]) ["That is my name" "yes thats me" yes listening] 
 
 u:(learn) ^goto(learnMore)
