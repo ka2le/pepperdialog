@@ -1,6 +1,6 @@
 topic: ~general()
 language: enu
-include: ../concept.top
+include: ../common_enu.top
 
 
  #------------------------------Start Stuff-------------------------

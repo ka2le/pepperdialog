@@ -1,7 +1,7 @@
 topic: ~testing()
 language: enu
 
-include: ../concept.top
+include: ../common_enu.top
 include: ../artist/artist_enu.top
 
 concept:(justinTimberlake) [justinTimberlake JT justin timberlake "justin timberlake" "justin randall timberlake"]
