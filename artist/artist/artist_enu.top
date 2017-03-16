@@ -21,7 +21,7 @@ u:(~whatcanyoudo) %mainChoice ["We can play a music quiz or listen to a song or 
     u1:(something else) Another idea  ^goto(mainChoice)
     u1:(stop) ok
 
-
+#Kalles git-add
 #-----------------------------------------Changing section----------------------------------------
 u:(~startQuiz) %initQuiz ["$artist==0 Which artist do you want the music quiz to be about?"  "$artist==[~theArtists] $openPage=quiz ^goto(theQuiz) "]
     u1:(_~theArtists) $1, good choice $artist=$1 $openPage=quiz ^goto(theQuiz)
