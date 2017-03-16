@@ -30,11 +30,14 @@ u:(help)  here is a list of words for testing NLC local new page old page teach
 #^start(animations/Moods/Neutral/Pepper/Thinking) 
 u:(~how) ^startTag(animations/Stand/Waiting/Think_1)  I'm fine, thank you
 
+u:(update score)  $QUIZ/addscore=1 $updateTabletScore=1 updateing
+
 u:(tag1) 1 ^goto(tag2)
     u1:(bsajdsansa)  %tag2 tag 2
 u:(tag3) 3 ^goto(tag2)
 u:(tag4) %tag4 tag 4
 u:(tag5) 5 ^goto(tag4) 
+
 
 
 
@@ -52,6 +55,8 @@ u:(local) $tabletLocal=1 local
 u:(new page) $openPage=quiz new
 u:(old page) $openPage=learn old
 u:(google) $link/google=1 Opening google
+
+
 
 u:(teach safe) Teach me a question %repeatQuestionsafe
     u1:(_*)  $newQuestion=$1 So the question I am learning is $newQuestion . Is that correct?
