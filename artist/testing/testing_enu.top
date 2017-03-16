@@ -1,7 +1,7 @@
 topic: ~testing()
 language: enu
 
-include: ../common_enu.top
+include: ../concept.top
 include: ../artist/artist_enu.top
 
 concept:(justinTimberlake) [justinTimberlake JT justin timberlake "justin timberlake" "justin randall timberlake"]
@@ -29,8 +29,6 @@ u:(tag3) 3 ^goto(tag2)
 u:(tag4) %tag4 tag 4
 u:(tag5) 5 ^goto(tag4) 
 
-u:(~someArtists) i hear you
-u:(set artist _~someArtists) ok $testArtist=$1
 u:(who is) $testArtist is
 u:(if artist) ["$testArtist==[~justinTimberlake] 1 "  "$testArtist==sara 2"]
 
