@@ -30,6 +30,13 @@ u:(help)  here is a list of words for testing NLC local new page old page teach
 #^start(animations/Moods/Neutral/Pepper/Thinking) 
 u:(~how) ^startTag(animations/Stand/Waiting/Think_1)  I'm fine, thank you
 
+u:(tag1) 1 ^goto(tag2)
+    u1:(bsajdsansa)  %tag2 tag 2
+u:(tag3) 3 ^goto(tag2)
+u:(tag4) %tag4 tag 4
+u:(tag5) 5 ^goto(tag4) 
+
+
 
 u:(NLC) N L C ready
     u1:(_*) $NLC/input=$1 Analyzing $1
