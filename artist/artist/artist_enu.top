@@ -24,7 +24,7 @@ u:(~whatcanyoudo) %mainChoice ["We can play a music quiz or listen to a song or 
 #Kalles git-add
 #-----------------------------------------Changing section----------------------------------------
 u:(~startQuiz) %initQuiz ["$artist==0 Which artist do you want the music quiz to be about?"  "$artist==[~theArtists] $openPage=quiz ^goto(theQuiz) "]
-    u1:(~choiceofartist) $1, good choice $artist=$1 $openPage=quiz ^goto(theQuiz)
+    u1:(_~theArtists) $1, good choice $artist=$1 $openPage=quiz ^goto(theQuiz)
     u1:(~stop) Alright
     u1:(Which artist do you prefere?)  I prefer Justin Timerlake
         
@@ -32,12 +32,12 @@ u:(I want to talk about Justin Timberlake) Justin is great. What do you want to 
 u:(["dj pepper" pepper]) ["That is my name" "yes thats me" yes listening] 
 
 u:("learn [more "about the artist"]") %initLearnMore ["$artist==0 $openPage=learn Which artist do you want to learn more about?" "$artist==[~theArtists] $openPage=learn ^goto(storyMode) "]
-    u1:(~choiceofartist) Lets learn more about $1 $artist=$1 $openPage=learn ^goto(storyMode)
+    u1:(_~theArtists) Lets learn more about $1 $artist=$1 $openPage=learn ^goto(storyMode)
     u1:(~stop) Alright 
         
         
  u:(~askQuestion) %initAskQuestion ["$artist==0  Which artist do you want to ask questions about?" "$artist==[~theArtists] $openPage=questions ^goto(answerQ) "]
-    u1:(~choiceofartist) You are in luck, I know so much about $1 $artist=$1 $openPage=questions ^goto(answerQ)
+    u1:(_~theArtists) You are in luck, I know so much about $1 $artist=$1 $openPage=questions ^goto(answerQ)
     u1:(~stop) Alright       
         
  u1:(~playMusic) %initPlayMusic [" $openPage=listen ^goto(playMusic) "]  
@@ -141,13 +141,13 @@ u:(q4) %q4  What is his middle name?
     u1:(score) Your score is $quizScore   ^stayInScope 
     u1:(~stop) Stopping the quiz. 
 u:(q5) %q5  How many children does he have?
-    u1:(["[Justin he "Justin Timberlake"] have [one 1] {[child son kid]}"    "[one 1] {[child son kid]}" one 1])  ~correct ~goodJob He has one son ! $QUIZ/addscore=1 ^goto(moreQs) 
+    u1:(["[Justin he "Justin Timberlake"] have [one 1] [" " child son kid]"    "[one 1] [" " child son kid]" one 1])  ~correct ~goodJob He has one son ! $QUIZ/addscore=1 ^goto(moreQs) 
     u1:(~dontknow) I'll tell you then. He has one son ^goto(moreQs) 
     u1:(_*) I heard you say $1 . The correct answer is that he has one son . ^goto(moreQs)
     u1:(score) Your score is $quizScore   ^stayInScope 
     u1:(~stop) Stopping the quiz.
 u:(q6) %q6  What was the name of his latest album?
-    u1:([{[Justins his "Justin Timberlakes" "the album"]} {"is named"} ["the 20 20 experience " "20 20 experience " "twenty twenty experience"]])  ~correct ~goodJob ! $QUIZ/addscore=1 ^goto(moreQs) 
+    u1:([[Justins his "Justin Timberlakes" "the album" " "] ["is named" " "] ["the 20 20 experience " "20 20 experience " "twenty twenty experience"]])  ~correct ~goodJob ! $QUIZ/addscore=1 ^goto(moreQs) 
     u1:(~dontknow) I'll tell you then. It was named the 20 20 experience ^goto(moreQs) 
     u1:(_*) I heard you say $1 . The correct answer is that It was named the 20 20 experience. ^goto(moreQs)
     u1:(score) Your score is $quizScore   ^stayInScope 
