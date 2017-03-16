@@ -18,7 +18,7 @@ concept:(repeat) [repeat]
 concept:(thanks) ["thank you" thanks "thanks pepper" ]
 concept:(anyquestion) ["[what where when how does is] *" "when does it open"]
 # kategori: hdshadhsa
-concept:(startQuiz) [quiz "start quiz" "i want do do [a the] quiz" "quiz again" "another quiz"]
+concept:(startQuiz) [quiz "start quiz" "i want do do {a the} quiz" "quiz again" "another quiz"]
 
 concept:(goodJob) ["Well done" "good job" nice "great work"]
 concept:(correct) [correct "that is correct" "thats right"]
@@ -49,11 +49,11 @@ concept: (saraLarsson) ["sara larsson" "sara"]
 concept:(theArtists) [~justinTimberlake ~saraLarsson]
 
 concept:(goodbye) [goodbye "good bye" bye "bye bye"]
-<<<<<<< HEAD
-concept:(choiceofartist) ["I want to [learn know] {more} about ~theArtists "Can you tell me [more] about ~theArtists" "I want ["the quiz" it] to be about ~theArtists" "I want to ask questions about ~theArtists" "Lets talk about ~theArtists "] 
+
+concept:(choiceofartist) ["I want to {[learn know]} {more} about ~theArtists "Can you tell me {more} about ~theArtists" "I want {"the quiz" it} to be about ~theArtists" "I want to ask questions about ~theArtists" "Lets talk about ~theArtists "] 
 =======
 concept:(choiceofartist) ["I want to [learn know] [more " "] about _~theArtists " "Can you tell me [more] about ~theArtists" "I want ["the quiz" it] to be about _~theArtists" "I want to ask questions about _~theArtists" "Lets talk about _~theArtists " " _~theArtists "] 
->>>>>>> origin/master
+
 
  #-----------------------------Lägg till concept som roboten ska säga här---------------------------------
 
