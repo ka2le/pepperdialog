@@ -47,8 +47,8 @@ u:(~changeArtist) What artist do you want to talk about instead?
     u1:(~justin) Yeah lets talk about justin timberlake  $artist=justin
     u1:(["no one" clear forget]) nevermind then $artist=0
 
-u:(ask me about my favoutire artist )  %whoisfav Who is your favourit artist?
-    u1:(~justin) $img/justin=1 $artist=justin I like him too. ["Did you know that ^gotoRandom(trivia) " " ^goto(mainChoice)"]
+u:(["ask me about my favoutire artist" "ask me"])  %whoisfav Who is your favourit artist?
+    u1:(~justinTimberlake) $img/justin=1 $artist=justin I like him too. ["Did you know that ^gotoRandom(trivia) " " ^goto(mainChoice)"]
         
 u:(~tellTrivia) ["$artist==0 First tell me ^goto(whoisfav)" " $artist==[~theArtists] Did you know that ^gotoRandom(trivia) " ]
 
