@@ -2,20 +2,15 @@ topic: ~common()
 language: enu
 
 
-concept:(stop) [stop "no more" ]
-concept:(justin) [justin timberlake JT]
-concept:(music) [music artist]
-concept:(no) [nah no negative n]
-concept:(yes) [yea yes y yeah sure]
+concept:(stop) [stop "no more" "quit" "stop it" "dont talk anymore" "be quiet" ]
+#concept:(music) [music artist]
+concept:(no) [nah no negative "no I dont [want]" "absolutely not" "no thanks" "never"]
+concept:(yes) [yea yes y yeah sure "yes please" "sounds good" absolutely "of course" okey alright "well of course" "very well" "certainly" "indeed"] 
 concept:(dontcare) ["dont care" whatever anything]
-concept:(ready) [ready "lets go" play start go]
+concept:(ready) [ready "lets go" play start go "I'm in" "Lets do it" ]
 concept:(activitySuggestion) ["Let me see you do a somersault" "Jump as high as you can"]
 concept:(theAlbums) [Justified Lovesounds "The 20/20 experience"]
-concept:(number) [1 2 3 4 5 6 7 8 9 10]
-concept:(bodyPart) [foot hand]
-concept:(leftRight) [left right]
-concept:(color) [blue yellow red green orange]
-concept:(dontknow) ["I dont know" "no idea" "dont know" no]
+concept:(dontknow) ["I dont know" "[I have] no idea" "dont know" no "not sure" "tell me" "{No} I have no clue"]
 concept:(learnMore) ["tell me" tell "learn more" more "more info" info "what else" "what more" ]
 concept:(bye) [goodbye bye]
 concept:(how) ["how are you" howdy "what's up" "how do you feel"]
@@ -41,11 +36,17 @@ concept:(whatcanyoudo) ["what can you do" help info functions]
 concept:(tellMe) ["tell me" tell say hear "lets hear it"]
 concept:(askingWords) ["where is" how when where "is there" "are there" "when is"]
 concept:(uppsalaActivity) [Cinema Fyrishov "The Church"]
+
+#Twister 
+concept:(number) [1 2 3 4 5 6 7 8 9 10]
+concept:(bodyPart) [foot hand]
+concept:(leftRight) [left right]
+concept:(color) [blue yellow red green orange]
  #-----------------------------Lägg till nya concept här---------------------------------
 concept: (justinTimberlake) ["Justin Timberlake" "Justin"]
 concept: (saraLarsson) ["sara larsson" "sara"]
 concept:(goodbye) [goodbye "good bye" bye "bye bye"]
-concept:(choiceofartist) ["I want to [learn know] [more " "] about ~theArtists "Can you tell me [more] about ~theArtists" "I want ["the quiz" it] to be about ~theArtists" "I want to ask questions about ~theArtists" "Lets talk about ~theArtists "] 
+concept:(choiceofartist) ["I want to [learn know] {more} about ~theArtists "Can you tell me [more] about ~theArtists" "I want ["the quiz" it] to be about ~theArtists" "I want to ask questions about ~theArtists" "Lets talk about ~theArtists "] 
 
  #-----------------------------Lägg till concept som roboten ska säga här---------------------------------
 

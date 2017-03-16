@@ -44,7 +44,7 @@ u:("learn [more "about the artist"]") %initLearnMore ["$artist==0 $openPage=lear
             
 u:(what artist are we talking about) ^first["we are talking about  $artist" " no one. ^goto(whoisfav)"]
 u:(~changeArtist) What artist do you want to talk about instead?
-    u1:(~justin) Yeah lets talk about justin timberlake  $artist=justin
+    u1:(~justinTimberlake) Yeah lets talk about justin timberlake  $artist=justin
     u1:(["no one" clear forget]) nevermind then $artist=0
 
 u:(["ask me about my favoutire artist" "ask me"])  %whoisfav Who is your favourit artist?
