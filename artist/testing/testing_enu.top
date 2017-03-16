@@ -8,11 +8,12 @@ concept:(justinTimberlake) [justinTimberlake JT justin timberlake "justin timber
 concept:(zaraLarsson) ["zara larsson" zara]
 concept:(theArtists) [~justinTimberlake ~zaraLarsson]
 concept:(concept) ["concept _~theArtists"]
+concept:(speaking) ["get it ["ok" "pls"]" "get it {yes}"]
 
 u:(e:onStart) I am in test mode.
 u:(~hello) Hi $userName . I am in test mode.
 u:(help)  here is a list of words for testing NLC local new page old page teach
-
+u:(~speaking) yes i get it
 
 u:(~concept) ok $1
 #^start(animations/Moods/Neutral/Pepper/Thinking) 
