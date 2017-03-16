@@ -12,13 +12,9 @@ u:(["~hello  ["DJ Pepper" "pepper"]" ~hello]) Hello ^first[" $userName " " human
 
 u:(~whatcanyoudo) %mainChoice ["We can play a music quiz or listen to a song or perhaps do something else?" "We can learn more about an artist in general or you can ask me specific questions or something else?" " ^goto(whoisfav)" "$artist==[~theArtists] Did you know that ^gotoRandom(trivia)" ] 
     u1:(~startQuiz) ^goto(initQuiz)
-    u1:(learn more) ["$artist==0 $openPage=learn Which artist do you want to learn more about?" "$artist==[~theArtists] $openPage=learn ^goto(storyMode) "]
-        u2:(_~theArtists) Lets learn more about $1 $artist=$1 $openPage=learn ^goto(storyMode)
-        u2:(~stop) Alright
-    u1:([questions ~askQuestion]) %askQuestion ["$artist==0  Which artist do you want to ask questions about?" "$artist==[~theArtists] $openPage=questions ^goto(answerQ) "]
-        u2:(_~theArtists) You are in luck, I know so much about $1 $artist=$1 $openPage=questions ^goto(answerQ)
-        u2:(~stop) Alright 
-    u1:(~playMusic) [" $openPage=listen ^goto(playMusic) "]
+    u1:(learn more)  ^goto(initLearnMore)
+    u1:([questions ~askQuestion])  ^goto(initAskQuestion) 
+    u1:(~playMusic)  ^goto(initPlayMusic)
     u1:(~no) Okay, maybe  ^goto(mainChoice)
     u1:(~yes) please say again, what do you want to do? ^stayInScope
     u1:(e:Dialog/NotUnderstood) I am sorry, could you repeat that?
@@ -36,7 +32,17 @@ u:(~startQuiz) %initQuiz ["$artist==0 Which artist do you want the music quiz to
 u:(I want to talk about Justin Timberlake) Justin is great. What do you want to talk about. $artist=justin ^goto(mainChoice)
 u:(["dj pepper" pepper]) ["That is my name" "yes thats me" yes listening] 
 
-u:(learn) ^goto(learnMore)
+u:("learn [more "about the artist"]") %initLearnMore ["$artist==0 $openPage=learn Which artist do you want to learn more about?" "$artist==[~theArtists] $openPage=learn ^goto(storyMode) "]
+        u2:(_~theArtists) Lets learn more about $1 $artist=$1 $openPage=learn ^goto(storyMode)
+        u2:(~stop) Alright 
+        
+        
+ u:(~askQuestion) %initAskQuestion ["$artist==0  Which artist do you want to ask questions about?" "$artist==[~theArtists] $openPage=questions ^goto(answerQ) "]
+        u2:(_~theArtists) You are in luck, I know so much about $1 $artist=$1 $openPage=questions ^goto(answerQ)
+        u2:(~stop) Alright       
+        
+ u1:(~playMusic) %initPlayMusic [" $openPage=listen ^goto(playMusic) "]  
+            
 u:(what artist are we talking about) ^first["we are talking about  $artist" " no one. ^goto(whoisfav)"]
 u:(~changeArtist) What artist do you want to talk about instead?
     u1:(~justin) Yeah lets talk about justin timberlake  $artist=justin
@@ -61,8 +67,8 @@ u:(["stop talk about music" activities rules house "stop talkning" ~goodbye]) Do
 #-----------------------------------------Questions from user----------------------------------------
 
     
-u:(~askQuestion) ^goto(askQuestion)
-u:(answer question) %answerQ What is your question?
+
+u:(answerQ) %answerQ What is your question?
     u1:(~stop) Do you want me to stop talking about this?
         u2:(~yes) ^goto(startMenu)
         u2:(~no) ^goto(learnMore)    
@@ -84,7 +90,7 @@ u:(what is his [middle full] name) %trivia  %nameAnswer His full name is Justin 
 u:(["is he married" "is he single" "what is the name of his wife"]) %trivia  %marriedAnswer Justin is married to Jessica Biel 
 
 #-----------------------------------------Youtube----------------------------------------
-u:(~playMusic) %playMusic $openPage=listen Okay lets play some music. Tell me which song you want to hear? 
+u:(playMusic) %playMusic  Okay lets play some music. Tell me which song you want to hear? 
     u1:(~dontknow) I can help you find a song. Pick one from the list on my stomach.
     u1:(mirrors) Okay Im playing Mirrors with Justin on Youtube now. $ARTIST/youtube=1  
     u1:(Cant stop the feeling) Okay Im playing Cant stop the feeling with Justin on Youtube now. $opensongs/cantstopthefeeling=1 
