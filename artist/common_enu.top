@@ -42,8 +42,9 @@ concept:(tellMe) ["tell me" tell say hear "lets hear it"]
 concept:(askingWords) ["where is" how when where "is there" "are there" "when is"]
 concept:(uppsalaActivity) [Cinema Fyrishov "The Church"]
  #-----------------------------Lägg till nya concept här---------------------------------
-
+concept (justinTimberlake) ["justinTimberlake" "Justin Timberlake" "Justin"]
 concept:(goodbye) [goodbye "good bye" bye "bye bye"]
+concept:(choiceofartist) ["I want to [learn know] ["more" " "] about Justin Timberlake] 
 
  #-----------------------------Lägg till concept som roboten ska säga här---------------------------------
 
