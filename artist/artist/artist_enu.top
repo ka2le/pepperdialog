@@ -1,7 +1,7 @@
 topic: ~artist()
 language: enu
 include: ../common_enu.top
-
+#hej hej
  #-----------------------------Start ---------------------------------
 u:(e:onStart) ["You can call me DJ Pepper" "I know music and you can call me DJ Pepper"] $artist=0 ^goto(mainChoice)
 
