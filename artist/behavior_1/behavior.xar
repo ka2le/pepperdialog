@@ -2119,11 +2119,18 @@ class MyClass(GeneratedClass):
                         <Link inputowner="5" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="14" indexofinput="2" outputowner="5" indexofoutput="6" />
                         <Link inputowner="12" indexofinput="2" outputowner="19" indexofoutput="3" />
+<<<<<<< Updated upstream
+=======
+                        <Link inputowner="3" indexofinput="2" outputowner="1" indexofoutput="3" />
+>>>>>>> Stashed changes
                         <Link inputowner="4" indexofinput="2" outputowner="19" indexofoutput="3" />
                         <Link inputowner="2" indexofinput="2" outputowner="4" indexofoutput="6" />
                         <Link inputowner="8" indexofinput="2" outputowner="16" indexofoutput="6" />
                         <Link inputowner="16" indexofinput="2" outputowner="19" indexofoutput="3" />
+<<<<<<< Updated upstream
                         <Link inputowner="10" indexofinput="2" outputowner="1" indexofoutput="3" />
+=======
+>>>>>>> Stashed changes
                     </Diagram>
                 </BehaviorKeyframe>
             </BehaviorLayer>
