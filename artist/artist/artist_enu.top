@@ -33,13 +33,13 @@ u:(I want to talk about Justin Timberlake) Justin is great. What do you want to 
 u:(["dj pepper" pepper]) ["That is my name" "yes thats me" yes listening] 
 
 u:("learn [more "about the artist"]") %initLearnMore ["$artist==0 $openPage=learn Which artist do you want to learn more about?" "$artist==[~theArtists] $openPage=learn ^goto(storyMode) "]
-        u2:(_~theArtists) Lets learn more about $1 $artist=$1 $openPage=learn ^goto(storyMode)
-        u2:(~stop) Alright 
+    u1:(_~theArtists) Lets learn more about $1 $artist=$1 $openPage=learn ^goto(storyMode)
+    u1:(~stop) Alright 
         
         
  u:(~askQuestion) %initAskQuestion ["$artist==0  Which artist do you want to ask questions about?" "$artist==[~theArtists] $openPage=questions ^goto(answerQ) "]
-        u2:(_~theArtists) You are in luck, I know so much about $1 $artist=$1 $openPage=questions ^goto(answerQ)
-        u2:(~stop) Alright       
+    u1:(_~theArtists) You are in luck, I know so much about $1 $artist=$1 $openPage=questions ^goto(answerQ)
+    u1:(~stop) Alright       
         
  u1:(~playMusic) %initPlayMusic [" $openPage=listen ^goto(playMusic) "]  
             
