@@ -24,7 +24,7 @@ u:(~whatcanyoudo) %mainChoice ["We can play a music quiz or listen to a song or 
 #Kalles git-add
 #-----------------------------------------Changing section----------------------------------------
 u:(~startQuiz) %initQuiz ["$artist==0 Which artist do you want the music quiz to be about?"  "$artist==[~theArtists] $openPage=quiz ^goto(theQuiz) "]
-    u1:(_~theArtists) $1, good choice $artist=$1 $openPage=quiz ^goto(theQuiz)
+    u1:(~choiceofartist) $1, good choice $artist=$1 $openPage=quiz ^goto(theQuiz)
     u1:(~stop) Alright
     u1:(Which artist do you prefere?)  I prefer Justin Timerlake
         
@@ -32,12 +32,12 @@ u:(I want to talk about Justin Timberlake) Justin is great. What do you want to 
 u:(["dj pepper" pepper]) ["That is my name" "yes thats me" yes listening] 
 
 u:("learn [more "about the artist"]") %initLearnMore ["$artist==0 $openPage=learn Which artist do you want to learn more about?" "$artist==[~theArtists] $openPage=learn ^goto(storyMode) "]
-    u1:(_~theArtists) Lets learn more about $1 $artist=$1 $openPage=learn ^goto(storyMode)
+    u1:(~choiceofartist) Lets learn more about $1 $artist=$1 $openPage=learn ^goto(storyMode)
     u1:(~stop) Alright 
         
         
  u:(~askQuestion) %initAskQuestion ["$artist==0  Which artist do you want to ask questions about?" "$artist==[~theArtists] $openPage=questions ^goto(answerQ) "]
-    u1:(_~theArtists) You are in luck, I know so much about $1 $artist=$1 $openPage=questions ^goto(answerQ)
+    u1:(~choiceofartist) You are in luck, I know so much about $1 $artist=$1 $openPage=questions ^goto(answerQ)
     u1:(~stop) Alright       
         
  u1:(~playMusic) %initPlayMusic [" $openPage=listen ^goto(playMusic) "]  

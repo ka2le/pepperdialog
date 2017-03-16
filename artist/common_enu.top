@@ -42,11 +42,13 @@ concept:(tellMe) ["tell me" tell say hear "lets hear it"]
 concept:(askingWords) ["where is" how when where "is there" "are there" "when is"]
 concept:(uppsalaActivity) [Cinema Fyrishov "The Church"]
  #-----------------------------Lägg till nya concept här---------------------------------
- concept:(theArtists) [~justinTimberlake ~saraLarsson]
 concept: (justinTimberlake) ["Justin Timberlake" "Justin"]
 concept: (saraLarsson) ["sara larsson" "sara"]
+
+concept:(theArtists) [~justinTimberlake ~saraLarsson]
+
 concept:(goodbye) [goodbye "good bye" bye "bye bye"]
-concept:(choiceofartist) ["I want to [learn know] [more " "] about ~theArtists "Can you tell me [more] about ~theArtists" "I want ["the quiz" it] to be about ~theArtists" "I want to ask questions about ~theArtists" "Lets talk about ~theArtists "] 
+concept:(choiceofartist) ["I want to [learn know] [more " "] about _~theArtists " "Can you tell me [more] about ~theArtists" "I want ["the quiz" it] to be about _~theArtists" "I want to ask questions about _~theArtists" "Lets talk about _~theArtists "] 
 
  #-----------------------------Lägg till concept som roboten ska säga här---------------------------------
 
