@@ -4,16 +4,16 @@ language: enu
 
 concept:(stop) [stop "no more" "quit" "stop it" "dont talk anymore" "be quiet" ]
 #concept:(music) [music artist]
-concept:(no) [nah no negative "no I dont [want]" "absolutely not" "no thanks" "never"]
+concept:(no) [nah no negative "no I dont {want}" "absolutely not" "no thanks" "never"]
 concept:(yes) [yea yes y yeah sure "yes please" "sounds good" absolutely "of course" okey alright "well of course" "very well" "certainly" "indeed"] 
 concept:(dontcare) ["dont care" whatever anything]
 concept:(ready) [ready "lets go" play start go "I'm in" "Lets do it" ]
 concept:(activitySuggestion) ["Let me see you do a somersault" "Jump as high as you can"]
 concept:(theAlbums) [Justified Lovesounds "The 20/20 experience"]
-concept:(dontknow) ["I dont know" "[I have] no idea" "dont know" no "not sure" "tell me" "{No} I have no clue"]
+concept:(dontknow) ["I dont know" "{"I have"} no idea" "dont know" no "not sure" "tell me" "{No} I have no clue"]
 concept:(learnMore) ["tell me" tell "learn more" more "more info" info "what else" "what more" ]
 concept:(bye) [goodbye bye]
-concept:(how) ["how are you" howdy "what's up" "how do you feel"]
+concept:(how) ["how are you" howdy "whats up" "how do you feel"]
 concept:(repeat) [repeat]
 concept:(thanks) ["thank you" thanks "thanks pepper" ]
 concept:(anyquestion) ["[what where when how does is] *" "when does it open"]
@@ -49,11 +49,15 @@ concept: (saraLarsson) ["sara larsson" "sara"]
 concept:(theArtists) [~justinTimberlake ~saraLarsson]
 
 concept:(goodbye) [goodbye "good bye" bye "bye bye"]
+<<<<<<< HEAD
 
 concept:(choiceofartist) ["I want to {[learn know]} {more} about ~theArtists "Can you tell me {more} about ~theArtists" "I want {"the quiz" it} to be about ~theArtists" "I want to ask questions about ~theArtists" "Lets talk about ~theArtists "] 
 =======
 concept:(choiceofartist) ["I want to [learn know] [more " "] about _~theArtists " "Can you tell me [more] about ~theArtists" "I want ["the quiz" it] to be about _~theArtists" "I want to ask questions about _~theArtists" "Lets talk about _~theArtists " " _~theArtists "] 
 
+=======
+concept:(choiceofartist) ["I want to [learn know] [more " "] about _~theArtists " "Can you tell me [more] about ~theArtists" "I want ["the quiz" it] to be about _~theArtists" "I want to ask questions about _~theArtists" "Lets talk about _~theArtists " " _~theArtists "] 
+>>>>>>> origin/master
 
  #-----------------------------Lägg till concept som roboten ska säga här---------------------------------
 
