@@ -18,6 +18,8 @@ u:(~how) ^startTag(animations/Stand/Waiting/Think_1)  I'm fine, thank you
 
 u:(update score)  $QUIZ/addscore=1 $updateTabletScore=1 updateing
 
+u:(include) include: ../common2_enu.top
+
 u:(tag1) 1 ^goto(tag2)
     u1:(bsajdsansa)  %tag2 tag 2
 u:(tag3) 3 ^goto(tag2)
