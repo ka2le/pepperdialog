@@ -1,47 +1,7 @@
 topic: ~general()
 language: enu
-include: common_enu.top
+include: ../common_enu.top
 
-concept:(stop) [stop "no more" ]
-concept:(justin) [justin timberlake JT]
-concept:(music) [music artist]
-concept:(no) [nah no negative n]
-concept:(yes) [yea yes y yeah sure]
-concept:(dontcare) ["dont care" whatever anything]
-concept:(ready) [ready "lets go" play start go]
-concept:(activitySuggestion) ["Let me see you do a somersault" "Jump as high as you can"]
-concept:(theAlbums) [Justified Lovesounds "The 20/20 experience"]
-concept:(number) [1 2 3 4 5 6 7 8 9 10]
-concept:(bodyPart) [foot hand]
-concept:(leftRight) [left right]
-concept:(color) [blue yellow red green orange]
-concept:(dontknow) ["I dont know" "no idea" "dont know" no]
-concept:(learnMore) ["tell me" tell learn hear]
-concept:(bye) [goodbye bye]
-concept:(how) ["how are you" howdy "what's up" "how do you feel"]
-concept:(repeat) [repeat]
-concept:(thanks) ["thank you" thanks "thanks pepper" ]
-concept:(anyquestion) ["[what where when how does is] *" "when does it open"]
-concept:(startQuiz) [quiz "start quiz" "i want do do [a the] quiz"]
-concept:(theArtists) [justin saralarsson]
-concept:(goodJob) ["Well done" "good job" nice "great work"]
-concept:(correct) [correct "that is correct" "thats right"]
-concept:(changeArtist) ["change artist" "lets talk about another artist" "lets talk about someone else" ]
-concept:(askQuestion) ["i have a question" "can you answer a question" "ask question" "ask something" "i want to ask something"]
-concept:(tellTrivia) ["tell me something about him" trivia "tell me something"]
-concept:(playMusic) ["play music" "listen to song" "play song" "youtube" "listen to music"]
-concept:(done) [done finished "did it" next more]
-concept:(hello) [hello hi]
-concept:(names) [kalle carl isak isac gunnar]
-concept:(happy) [good fine "I am good" happy]
-concept:(sad) [sad bad "not good"]
-concept:(goodJob) ["good job" "well done" "nice" "impressive"]
-concept:(whatcanyoudo) ["what can you do" help info functions]
-concept:(tellMe) ["tell me" tell say hear "lets hear it"]
-concept:(askingWords) ["where is" how when where "is there" "are there" "when is"]
-concept:(uppsalaActivity) [Cinema Fyrishov "The Church"]
- #-----------------------------Lägg till nya concept här---------------------------------
-concept:(goodbye) [goodbye "good bye" bye "bye bye"]
 
  #------------------------------Start Stuff-------------------------
 u:(e:onStart) %start Hello. I am Pepper! ^first[" Nice to see you again $userName ^goto(helloUser) " "%askAboutName What is your name? "] 
@@ -79,27 +39,28 @@ proposal: %init Do you want suggestions for activities in Uppsala or we could ta
 proposal: You can always ask me what I can do 
     u1:(~tellMe) ^goto(whatcanyoudo) 
 
-u:(~whatcanyoudo) %whatcanyoudo ["I can do all sorts of stuff. I can talk about music, answer questions about the rules. Recommend activities. Play games and  more." "Did you know I can be the game host for Twister. I can also dance" "We could play a music quiz togheter or we could listen to your favourite song"] 
+u:(~whatcanyoudo) %whatcanyoudo ["I can do all sorts of stuff. I can talk about music, answer questions about the rules. Recommend activities. Play games and  more." "Did you know I can be the game host for Twister." "We could play a music quiz togheter or we could listen to your favourite song"]
+    u1:(~learnMore) ^goto(whatcanyoudo) 
 
 proposal: %second Do you want me to tell you about activities in Uppsala?
     u1:(~yes) ^goto(suggestion) 
     u1:(~no)  ^nextProposal
-    u1:([more "what else"])  ^nextProposal
+    u1:(~learnMore)  ^nextProposal
 
-proposal: %second I can show you a dance I've been practicing
-    u1:(~yes) Dance goes here. ha ha
-    u2:(~no)  ^nextProposal
-    u1:([more "what else"])  ^nextProposal
+#proposal: %second I can show you a dance I've been practicing
+#    u1:(~yes) Dance goes here. ha ha
+#    u2:(~no)  ^nextProposal
+#    u1:(~learnMore)  ^nextProposal
     
 proposal: %second Do you want to play twister?
     u1:(~yes) ^goto(twisterGame)
     u2:(~no)  ^nextProposal
-    u1:([more "what else"])  ^nextProposal
+    u1:(~learnMore)  ^nextProposal
     
 proposal: %second We could do a bit of exercise together.
     u1:(~yes) Oh goody. I really need to stretch my arms. ^goto(moveGame)
     u2:(~no)  ^nextProposal
-    u1:([more "what else"])  ^nextProposal   
+    u1:(~learnMore)  ^nextProposal   
     
     
 #------------------------------Move-------------------------    
@@ -112,28 +73,6 @@ u:(moveCheck) &moveCheck m
 u:(movefirst) %movefirst Can you stand on one leg? Tell me when you are done and I will give you more instructions. ^goto(moveCheck)
 u:(movesecond) %movement Touch your fingers to your toes. ^goto(moveCheck)
 
-#------------------------------General Pepper talk-------------------------    
-u:(What is your name) My name is Pepper. ^goto(askAboutName)
-u:(How are you) I am a happy robot. How are you ^first[$userName " "]?
-    u1:(_~happy) I am glad to hear that you are $1
-    u1:(_~sad) Oh I am sorry to hear that
-u:(Where do you live) I live at IBM in Kista in Sweden. Where do you live?
-    u1:(*) That sounds nice
-u:(how old are you) I am young. I am only 1 year.
-u:(pepper) [yes "I am listening" "that is my name. dont wear it out" "tell me what I can do for you"]
-u:(what is my name) ^first["Your name is $userName " "I dont know ^goto(askAboutName2) "]
-u:(ask about my name) %askAboutName2 what is your name?
-    u1:(["_~names" "_*" "my name is _*" "I am _*"]) Nice to meet you $1 $userName=$1 
-    u1:(~no) You dont want to tell me. That is okay. ^clear(userName) 
-u:(what is your favourite food) Silly ^first[$userName "human"] . I am a robot. I dont eat 
-u:(who is _[carl kalle isac]) $1 is my friend. He is doing his master thesis at IBM teaching me about music and other cool stuff   
-u:(say something) [Something "What do you want me to say?" Okay Sure]
-u:(speak louder) $speakLouder=1  I will speak louder
-u:(speak quiet)  $speakQuiet=1 I will speak quiet
-u:(game) We can play different kinds of games. Do you want to play twister, do movement exercises or we could do a music quiz?
-    u1:(["music quiz" music quiz]) $goToTopic=music $onStopped=1
-    u1:([twister "play twister"]) ^goto(twisterGame)
-    u1:([move movement exercise]) ^goto(moveGame)
 
 #------------------------------Questions-------------------------
 u:([food "food store" store]) The closest place to buy food is Ica The Corner. 
@@ -169,21 +108,6 @@ u:(activity) %suggestion I can recomend ["using Destination Uppsala $activity=De
 
 
 
-
-#------------------------------Twister-------------------------   
-u:(twister) %twisterGame Lets play some Twister. Get your twister set up and tell me when you are ready!
-    u1:(~stop) I understood that you want to stop talking about this. ^goto(start)
-    u1:(~ready) Okay let's start. How many will be playing?
-        u2:(~stop) I understood that you want to stop talking about this. ^goto(start)
-        u2:(_~number) Starting a game for $1 players. $nmbPlayers=$1 ^first["$nmbPlayers==2 ^goto(2playergame)" "invalide number"]
-u:(2playergame) %2playergame Player1 put you ^rand[~leftRight] ^rand[~bodyPart] on ^rand[~color]  When you are done, let me know by saying ready and I will give the next player their instructions.
-    u1:(~ready) Player2 put your    ^rand[~leftRight] ^rand[~bodyPart] on ^rand[~color] . I will keep giving new instructions when you say ready until one of you wins.
-         u2:(~ready) ^goto(2playergameLoop)       
-u:(2playergameLoop) %2playergameLoop Player1 put your   ^rand[~leftRight] ^rand[~bodyPart] on ^rand[~color]  . 
-    u1:(~ready) Player2 put your   ^rand[~leftRight] ^rand[~bodyPart] on ^rand[~color] .
-        u2:(~ready) ^goto(2playergameLoop)
-        u2:(stop) Oh? Its over. My eyes dont work so good all the time. Can you tell me who won?
-            u3:(_*) Congratulations to $1 
 
 u:(cleaning) %cleaning There are cleaning tools in the closet in each room. 
 

@@ -1,62 +1,18 @@
 topic: ~artist()
 language: enu
-
-
-concept:(stop) [stop "no more" ]
-concept:(justin) [justin timberlake JT]
-concept:(music) [music artist]
-concept:(no) [nah no negative n]
-concept:(yes) [yea yes y yeah sure]
-concept:(dontcare) ["dont care" whatever anything]
-concept:(ready) [ready "lets go" play start go]
-concept:(activitySuggestion) ["Let me see you do a somersault" "Jump as high as you can"]
-concept:(theAlbums) [Justified Lovesounds "The 20/20 experience"]
-concept:(number) [1 2 3 4 5 6 7 8 9 10]
-concept:(bodyPart) [foot hand]
-concept:(leftRight) [left right]
-concept:(color) [blue yellow red green orange]
-concept:(dontknow) ["I dont know" "no idea" "dont know" no]
-concept:(learnMore) ["tell me" tell learn hear]
-concept:(bye) [goodbye bye]
-concept:(how) ["how are you" howdy "what's up" "how do you feel"]
-concept:(repeat) [repeat]
-concept:(thanks) ["thank you" thanks "thanks pepper" ]
-concept:(anyquestion) ["[what where when how does is] *" "when does it open"]
-concept:(startQuiz) [quiz "start quiz" "i want do do [a the] quiz"]
-concept:(theArtists) [justin saralarsson]
-concept:(goodJob) ["Well done" "good job" nice "great work"]
-concept:(correct) [correct "that is correct" "thats right"]
-concept:(changeArtist) ["change artist" "lets talk about another artist" "lets talk about someone else" ]
-concept:(askQuestion) ["i have a question" "can you answer a question" "ask question" "ask something" "i want to ask something"]
-concept:(tellTrivia) ["tell me something about him" trivia "tell me something"]
-concept:(playMusic) ["play music" "listen to song" "play song" "youtube" "listen to music"]
-concept:(done) [done finished "did it" next more]
-concept:(hello) [hello hi]
-concept:(names) [kalle carl isak isac gunnar]
-concept:(happy) [good fine "I am good" happy]
-concept:(sad) [sad bad "not good"]
-concept:(goodJob) ["good job" "well done" "nice" "impressive"]
-concept:(whatcanyoudo) ["what can you do" help info functions]
-concept:(tellMe) ["tell me" tell say hear "lets hear it"]
-concept:(askingWords) ["where is" how when where "is there" "are there" "when is"]
-concept:(uppsalaActivity) [Cinema Fyrishov "The Church"]
- #-----------------------------Lägg till nya concept här---------------------------------
-
-concept:(goodbye) [goodbye "good bye" bye "bye bye"]
+include: ../common_enu.top
 
  #-----------------------------Start ---------------------------------
-u:(e:onStart) ["You can call me DJ Pepper" "DJ Pepper is ready" "I know music and you can call me DJ Pepper"] $artist=0
+u:(e:onStart) ["You can call me DJ Pepper" "I know music and you can call me DJ Pepper"] $artist=0 ^goto(mainChoice)
 
-u:(["hello hi ["DJ Pepper" "pepper"]" ~hello]) Hello ^first[" $userName " " human"] If you want ^goto(mainChoice)
+u:(["~hello  ["DJ Pepper" "pepper"]" ~hello]) Hello ^first[" $userName " " human"] If you want ^goto(mainChoice)
 
 
 #-----------------------------------------Starting choice----------------------------------------
 
 u:(~whatcanyoudo) %mainChoice ["We can play a music quiz or listen to a song or perhaps something else?" "We can learn more about an artist in general or you can ask me specific questions or something else?" " ^goto(whoisfav)" "$artist==[~theArtists] Did you know that ^gotoRandom(trivia)" ] 
-    u1:(~startQuiz) %initQuiz ["$artist==0 Who do you want the quiz to be about?" "$artist==[~theArtists] $openPage=quiz ^goto(theQuiz) "]
-        u2:(_~theArtists) $1, good choice $artist=$1 $openPage=quiz ^goto(theQuiz)
-        u2:(~stop) Alright
-    u1:(learn more) ["$artist==0 Who do you want to learn more about?" "$artist==[~theArtists] $openPage=learn ^goto(storyMode) "]
+    u1:(~startQuiz) ^goto(initQuiz)
+    u1:(learn more) ["$artist==0 $openPage=learn Which artist do you want to learn more about?" "$artist==[~theArtists] $openPage=learn ^goto(storyMode) "]
         u2:(_~theArtists) Lets learn more about $1 $artist=$1 $openPage=learn ^goto(storyMode)
         u2:(~stop) Alright
     u1:([questions ~askQuestion]) %askQuestion ["$artist==0  Which artist do you want to ask questions about?" "$artist==[~theArtists] $openPage=questions ^goto(answerQ) "]
@@ -71,7 +27,9 @@ u:(~whatcanyoudo) %mainChoice ["We can play a music quiz or listen to a song or 
 
 
 #-----------------------------------------Changing section----------------------------------------
-u:(~startQuiz) m ^goto(initQuiz) 
+u:(~startQuiz) %initQuiz ["$artist==0 Which artist do you want the music quiz to be about?" "$artist==[~theArtists] $openPage=quiz ^goto(theQuiz) "]
+    u1:(_~theArtists) $1, good choice $artist=$1 $openPage=quiz ^goto(theQuiz)
+    u1:(~stop) Alright
 
 u:(I want to talk about justin) Justin is great. What do you want to talk about. $artist=justin ^goto(mainChoice)
 u:(["dj pepper" pepper]) ["That is my name" "yes thats me" yes listening] 
@@ -153,36 +111,36 @@ u:(moreQs) %moreQs Do you want another question?
     u1:(~stop) Stopping the quiz. 
 u:(q1) %q1 How old is Justin Timberlake?
     u1:(_*) I heard you say $1 . The correct answer is that he is 36 years old. ^goto(moreQs)     
-    u1:(36) ~correct ~goodJob $QUIZ/addscore=1 ^goto(moreQs)
+    u1:([36 "he is 36"  "36 years old" "[justin he "justin timberlake"] is [36 "36 years old " " 36 years"]"]) ~correct ~goodJob $QUIZ/addscore=1 ^goto(moreQs)
     u1:(~dontknow) I'll tell you then. He is 36 years old. ^goto(moreQs)
     u1:(~stop) Stopping the quiz. 
     u1:(score) Your score is $quizScore   ^stayInScope
 u:(q2) %q2 In what city was he born?
-    u1:(memphis)  ~correct ~goodJob $QUIZ/addscore=1 ^goto(moreQs) 
+    u1:([Memphis  "born in Memphis" "[Justin he "Justin Timberlake"] [born "born in" "is born in"] Memphis"])  ~correct ~goodJob $QUIZ/addscore=1 ^goto(moreQs) 
     u1:(~dontknow) I'll tell you then. He was born in Memphis. ^goto(moreQs) 
     u1:(_*) I heard you say $1 . The correct answer is that he was born in Memphis. ^goto(moreQs)
     u1:(score) Your score is $quizScore   ^stayInScope 
     u1:(~stop) Stopping the quiz.
 u:(q3) %q3  What was the name of his first solo album?
-    u1:(Justified)  ~correct ~goodJob ! $QUIZ/addscore=1 ^goto(moreQs) 
+    u1:(Justified "["the ablum" "his album" "[Justin he "Justin Timberlake"] album"] "is named Justified"")  ~correct ~goodJob ! $QUIZ/addscore=1 ^goto(moreQs) 
     u1:(~dontknow) I'll tell you then. It was named Justified ^goto(moreQs) 
     u1:(_*) I heard you say $1 . The correct answer is that It was named Justified. ^goto(moreQs)
     u1:(score) Your score is $quizScore   ^stayInScope 
     u1:(~stop) Stopping the quiz.   
 u:(q4) %q4  What is his middle name?
-    u1:(Randall )  ~correct ~goodJob ! $QUIZ/addscore=1 ^goto(moreQs) 
+    u1:("[Justins his "Justin Timberlakes"] middle name is Randall" "Justin Randall Timberlake" "[it "the middle name"] is Randall" Randall )  ~correct ~goodJob ! $QUIZ/addscore=1 ^goto(moreQs) 
     u1:(~dontknow) His middle name is Randall ^goto(moreQs) 
     u1:(_*) I heard you say $1 . The correct answer is Randall . ^goto(moreQs)
     u1:(score) Your score is $quizScore   ^stayInScope 
     u1:(~stop) Stopping the quiz. 
 u:(q5) %q5  How many children does he have?
-    u1:(1)  ~correct ~goodJob He has one son ! $QUIZ/addscore=1 ^goto(moreQs) 
+    u1:(["[Justin he "Justin Timberlake"] have [one 1] [" " child son kid]"    "[one 1] [" " child son kid]" one 1])  ~correct ~goodJob He has one son ! $QUIZ/addscore=1 ^goto(moreQs) 
     u1:(~dontknow) I'll tell you then. He has one son ^goto(moreQs) 
     u1:(_*) I heard you say $1 . The correct answer is that he has one son . ^goto(moreQs)
     u1:(score) Your score is $quizScore   ^stayInScope 
     u1:(~stop) Stopping the quiz.
 u:(q6) %q6  What was the name of his latest album?
-    u1:(["the 20 20 experience " "20 20 experience " "twenty twenty experience"])  ~correct ~goodJob ! $QUIZ/addscore=1 ^goto(moreQs) 
+    u1:([[Justins his "Justin Timberlakes" "the album" " "] ["is named" " "] ["the 20 20 experience " "20 20 experience " "twenty twenty experience"]])  ~correct ~goodJob ! $QUIZ/addscore=1 ^goto(moreQs) 
     u1:(~dontknow) I'll tell you then. It was named the 20 20 experience ^goto(moreQs) 
     u1:(_*) I heard you say $1 . The correct answer is that It was named the 20 20 experience. ^goto(moreQs)
     u1:(score) Your score is $quizScore   ^stayInScope 
