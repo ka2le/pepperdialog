@@ -24,7 +24,7 @@ concept:(thanks) ["thank you" thanks "thanks pepper" ]
 concept:(anyquestion) ["[what where when how does is] *" "when does it open"]
 # kategori: hdshadhsa
 concept:(startQuiz) [quiz "start quiz" "i want do do [a the] quiz" "quiz again" "another quiz"]
-concept:(theArtists) [justin saralarsson]
+concept:(theArtists) [~justinTimberlake ~saraLarsson]
 concept:(goodJob) ["Well done" "good job" nice "great work"]
 concept:(correct) [correct "that is correct" "thats right"]
 concept:(changeArtist) ["change artist" "lets talk about another artist" "lets talk about someone else" ]
@@ -42,9 +42,10 @@ concept:(tellMe) ["tell me" tell say hear "lets hear it"]
 concept:(askingWords) ["where is" how when where "is there" "are there" "when is"]
 concept:(uppsalaActivity) [Cinema Fyrishov "The Church"]
  #-----------------------------Lägg till nya concept här---------------------------------
-concept (justinTimberlake) ["justinTimberlake" "Justin Timberlake" "Justin"]
+concept: (justinTimberlake) ["Justin Timberlake" "Justin"]
+concept: (saraLarsson) ["sara larsson" "sara"]
 concept:(goodbye) [goodbye "good bye" bye "bye bye"]
-concept:(choiceofartist) ["I want to [learn know] ["more" " "] about Justin Timberlake] 
+concept:(choiceofartist) ["I want to [learn know] [more " "] about ~theArtists "Can you tell me [more] about ~theArtists" "I want ["the quiz" it] to be about ~theArtists" "I want to ask questions about ~theArtists" "Lets talk about ~theArtists "] 
 
  #-----------------------------Lägg till concept som roboten ska säga här---------------------------------
 

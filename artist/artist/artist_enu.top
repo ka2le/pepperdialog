@@ -28,7 +28,7 @@ u:(~startQuiz) %initQuiz ["$artist==0 Which artist do you want the music quiz to
     u1:(~stop) Alright
     u1:(Which artist do you prefere?)  I prefer Justin Timerlake
         
-u:(I want to talk about Justin Timberlake) Justin is great. What do you want to talk about. $artist=justin ^goto(mainChoice)
+u:(I want to talk about Justin Timberlake) Justin is great. What do you want to talk about? $artist=justin ^goto(mainChoice)
 u:(["dj pepper" pepper]) ["That is my name" "yes thats me" yes listening] 
 
 u:("learn [more "about the artist"]") %initLearnMore ["$artist==0 $openPage=learn Which artist do you want to learn more about?" "$artist==[~theArtists] $openPage=learn ^goto(storyMode) "]
