@@ -1,5 +1,6 @@
 topic: ~general()
 language: enu
+include: common_enu.top
 
 concept:(stop) [stop "no more" ]
 concept:(justin) [justin timberlake JT]
@@ -40,7 +41,7 @@ concept:(tellMe) ["tell me" tell say hear "lets hear it"]
 concept:(askingWords) ["where is" how when where "is there" "are there" "when is"]
 concept:(uppsalaActivity) [Cinema Fyrishov "The Church"]
  #-----------------------------Lägg till nya concept här---------------------------------
-
+concept:(goodbye) [goodbye "good bye" bye "bye bye"]
 
  #------------------------------Start Stuff-------------------------
 u:(e:onStart) %start Hello. I am Pepper! ^first[" Nice to see you again $userName ^goto(helloUser) " "%askAboutName What is your name? "] 

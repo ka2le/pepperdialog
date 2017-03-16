@@ -42,7 +42,7 @@ concept:(askingWords) ["where is" how when where "is there" "are there" "when is
 concept:(uppsalaActivity) [Cinema Fyrishov "The Church"]
  #-----------------------------Lägg till nya concept här---------------------------------
 
-
+concept:(goodbye) [goodbye "good bye" bye "bye bye"]
 
  #-----------------------------Start ---------------------------------
 u:(e:onStart) ["You can call me DJ Pepper" "DJ Pepper is ready" "I know music and you can call me DJ Pepper"] $artist=0
