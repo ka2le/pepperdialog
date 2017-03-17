@@ -14,8 +14,8 @@
         <Timeline enable="0">
             <BehaviorLayer name="behavior_layer1">
                 <BehaviorKeyframe name="keyframe1" index="1">
-                    <Diagram scale="59.4604">
-                        <Box name="General Dialog" id="3" localization="8" tooltip="An example of multilanguage dialog implementation" x="464" y="145">
+                    <Diagram scale="100">
+                        <Box name="General Dialog" id="3" localization="8" tooltip="An example of multilanguage dialog implementation" x="440" y="153">
                             <dialogFile>../general/general.dlg</dialogFile>
                             <bitmap>media/images/box/box-dialog.png</bitmap>
                             <script language="4">
@@ -31,30 +31,7 @@
                             <Resource name="Speech" type="Lock" timeout="0" />
                             <Resource name="Speech recognition" type="Lock" timeout="0" />
                         </Box>
-                        <Box name="Set Speaker Vol." id="6" localization="8" tooltip="Set the sound volume between 0 (mute) and 100 (max).&#x0A;&#x0A;V1.1.0&#x0A;" x="702" y="346">
-                            <bitmap>media/images/box/interaction/processing_sound.png</bitmap>
-                            <script language="4">
-                                <content>
-                                    <![CDATA[class MyClass(GeneratedClass):
-    def __init__(self):
-        GeneratedClass.__init__(self, False)
-
-    def onInput_onSet(self):
-        try:
-            self.audiodevice = ALProxy("ALAudioDevice")
-            self.audiodevice.setOutputVolume(self.getParameter("Volume (%)"))
-        except Exception as e:
-            self.logger.error(e)
-
-        self.onReady() # activate output of the box]]>
-</content>
-                            </script>
-                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" />
-                            <Input name="onSet" type="1" type_size="1" nature="1" inner="0" tooltip="The data is set when a signal is received on this input." id="2" />
-                            <Output name="onReady" type="1" type_size="1" nature="2" inner="0" tooltip="Signal sent when the data has been set." id="3" />
-                            <Parameter name="Volume (%)" inherits_from_parent="0" content_type="1" value="44" default_value="50" min="0" max="100" tooltip="Percentage of maximum output volume." id="4" />
-                        </Box>
-                        <Box name="Set Language" id="1" localization="8" tooltip="Select the language you would like the robot to speak and understand. Any following call to&#x0A;ALSpeechRecognition (Speech Reco. box for instance) or ALTextToSpeech (Say box&#x0A;for instance) will use this language." x="148" y="136">
+                        <Box name="Set Language" id="1" localization="8" tooltip="Select the language you would like the robot to speak and understand. Any following call to&#x0A;ALSpeechRecognition (Speech Reco. box for instance) or ALTextToSpeech (Say box&#x0A;for instance) will use this language." x="88" y="88">
                             <bitmap>media/images/box/interaction/say.png</bitmap>
                             <script language="4">
                                 <content>
@@ -128,7 +105,7 @@
                             </Parameter>
                             <Resource name="Speech" type="Lock" timeout="0" />
                         </Box>
-                        <Box name="Music Dialog" id="10" localization="8" tooltip="An example of multilanguage dialog implementation" x="458" y="260">
+                        <Box name="Music Dialog" id="10" localization="8" tooltip="An example of multilanguage dialog implementation" x="434" y="268">
                             <dialogFile>../artist/artist.dlg</dialogFile>
                             <bitmap>media/images/box/box-dialog.png</bitmap>
                             <script language="4">
@@ -144,7 +121,7 @@
                             <Resource name="Speech" type="Lock" timeout="0" />
                             <Resource name="Speech recognition" type="Lock" timeout="0" />
                         </Box>
-                        <Box name="Subscribe to Event" id="11" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="132" y="248">
+                        <Box name="Subscribe to Event" id="11" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="48" y="205">
                             <bitmap>media/images/box/sensors/STM.png</bitmap>
                             <script language="4">
                                 <content>
@@ -178,7 +155,7 @@
                             <Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="" id="6" />
                             <Parameter name="key" inherits_from_parent="0" content_type="3" value="goToTopic" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                         </Box>
-                        <Box name="Switch Mode" id="13" localization="8" tooltip="Retrieves from NAOqi&apos;s shared memory the given value at the given key." x="257" y="211">
+                        <Box name="Switch Mode" id="13" localization="8" tooltip="Retrieves from NAOqi&apos;s shared memory the given value at the given key." x="161" y="191">
                             <bitmap>media/images/box/sensors/STM.png</bitmap>
                             <script language="4">
                                 <content>
@@ -221,7 +198,7 @@
                             <Output name="bye" type="1" type_size="1" nature="2" inner="0" tooltip="" id="10" />
                             <Parameter name="key" inherits_from_parent="0" content_type="3" value="" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="11" />
                         </Box>
-                        <Box name="testing" id="9" localization="8" tooltip="An example of multilanguage dialog implementation" x="461" y="372">
+                        <Box name="testing" id="9" localization="8" tooltip="An example of multilanguage dialog implementation" x="437" y="380">
                             <dialogFile>../testing/testing.dlg</dialogFile>
                             <bitmap>media/images/box/box-dialog.png</bitmap>
                             <script language="4">
@@ -237,30 +214,7 @@
                             <Resource name="Speech" type="Lock" timeout="0" />
                             <Resource name="Speech recognition" type="Lock" timeout="0" />
                         </Box>
-                        <Box name="Audio-settings" id="17" localization="8" tooltip="Set the speach speed between 0.5 (and 4&#x0A;&#x0A;" x="707" y="241">
-                            <bitmap>media/images/box/interaction/processing_sound.png</bitmap>
-                            <script language="4">
-                                <content>
-                                    <![CDATA[class MyClass(GeneratedClass):
-    def __init__(self):
-        GeneratedClass.__init__(self, False)
-
-    def onInput_onSet(self):
-        try:
-            self.audiodevice = ALProxy("ALTextToSpeech")
-            self.audiodevice.setParameter("speed",self.getParameter("speed"))
-        except Exception as e:
-            self.logger.error(e)
-
-        self.onReady() # activate output of the box]]>
-</content>
-                            </script>
-                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" />
-                            <Input name="onSet" type="1" type_size="1" nature="1" inner="0" tooltip="The data is set when a signal is received on this input." id="2" />
-                            <Output name="onReady" type="1" type_size="1" nature="2" inner="0" tooltip="Signal sent when the data has been set." id="3" />
-                            <Parameter name="speed" inherits_from_parent="0" content_type="2" value="1" default_value="1" min="0.5" max="4" tooltip="Percentage of maximum output volume." id="4" />
-                        </Box>
-                        <Box name="Text Edit" id="19" localization="8" tooltip="Send the text you entered when the input is stimulated." plugin="textedit_plugin" x="305" y="47">
+                        <Box name="Text Edit" id="19" localization="8" tooltip="Send the text you entered when the input is stimulated." plugin="textedit_plugin" x="251" y="67">
                             <bitmap>media/images/box/interaction/vocabulary.png</bitmap>
                             <script language="4">
                                 <content>
@@ -282,7 +236,7 @@ class MyClass(GeneratedClass):
                             <Input name="onStart" type="1" type_size="1" nature="1" inner="0" tooltip="To send the text on the output." id="2" />
                             <Output name="onStopped" type="3" type_size="1" nature="2" inner="0" tooltip="The text you entered." id="3" />
                         </Box>
-                        <Box name="New Question" id="20" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="164" y="378">
+                        <Box name="New Question" id="20" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="146" y="359">
                             <bitmap>media/images/box/sensors/STM.png</bitmap>
                             <script language="4">
                                 <content>
@@ -316,7 +270,7 @@ class MyClass(GeneratedClass):
                             <Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="" id="6" />
                             <Parameter name="key" inherits_from_parent="0" content_type="3" value="saveQuestion" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                         </Box>
-                        <Box name="Save Question" id="21" localization="8" tooltip="Retrieves from NAOqi&apos;s shared memory the given value at the given key." x="295" y="376">
+                        <Box name="Save Question" id="21" localization="8" tooltip="Retrieves from NAOqi&apos;s shared memory the given value at the given key." x="253" y="364">
                             <bitmap>media/images/box/sensors/STM.png</bitmap>
                             <script language="4">
                                 <content>
@@ -357,7 +311,7 @@ class MyClass(GeneratedClass):
                             <Parameter name="answer" inherits_from_parent="0" content_type="3" value="newAnswer" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="6" />
                             <Parameter name="question" inherits_from_parent="0" content_type="3" value="newQuestion" default_value="" custom_choice="0" tooltip="" id="7" />
                         </Box>
-                        <Box name="NLC" id="25" localization="8" tooltip="Enter description here" x="713" y="43">
+                        <Box name="NLC" id="25" localization="8" tooltip="Enter description here" x="702" y="109">
                             <bitmap>media/images/box/box-diagram.png</bitmap>
                             <script language="4">
                                 <content>
@@ -488,7 +442,7 @@ class MyClass(GeneratedClass):
                                 </BehaviorLayer>
                             </Timeline>
                         </Box>
-                        <Box name="Tablet" id="15" localization="8" tooltip="Enter description here" x="715" y="133">
+                        <Box name="Tablet" id="15" localization="8" tooltip="Enter description here" x="703" y="221">
                             <bitmap>media/images/box/box-diagram.png</bitmap>
                             <script language="4">
                                 <content>
@@ -1438,7 +1392,7 @@ class MyClass(GeneratedClass):
                                 </BehaviorLayer>
                             </Timeline>
                         </Box>
-                        <Box name="quiz score counter" id="7" localization="8" tooltip="Enter description here" x="56" y="381">
+                        <Box name="quiz score counter" id="7" localization="8" tooltip="Enter description here" x="46" y="358">
                             <bitmap>media/images/box/box-diagram.png</bitmap>
                             <script language="4">
                                 <content>
@@ -1556,7 +1510,7 @@ class MyClass(GeneratedClass):
                                 </BehaviorLayer>
                             </Timeline>
                         </Box>
-                        <Box name="Image" id="12" localization="8" tooltip="Enter description here" x="701" y="444">
+                        <Box name="Image" id="12" localization="8" tooltip="Enter description here" x="736" y="323">
                             <bitmap>media/images/box/box-diagram.png</bitmap>
                             <script language="4">
                                 <content>
@@ -1744,201 +1698,7 @@ class MyClass(GeneratedClass):
                                 </BehaviorLayer>
                             </Timeline>
                         </Box>
-                        <Box name="Set Speaker Vol. (1)" id="2" localization="8" tooltip="Set the sound volume between 0 (mute) and 100 (max).&#x0A;&#x0A;V1.1.0&#x0A;" x="1072" y="368">
-                            <bitmap>media/images/box/interaction/processing_sound.png</bitmap>
-                            <script language="4">
-                                <content>
-                                    <![CDATA[class MyClass(GeneratedClass):
-    def __init__(self):
-        GeneratedClass.__init__(self, False)
-
-    def onInput_onSet(self):
-        try:
-            self.audiodevice = ALProxy("ALAudioDevice")
-            self.audiodevice.setOutputVolume(self.getParameter("Volume (%)"))
-        except Exception as e:
-            self.logger.error(e)
-
-        self.onReady() # activate output of the box]]>
-</content>
-                            </script>
-                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" />
-                            <Input name="onSet" type="1" type_size="1" nature="1" inner="0" tooltip="The data is set when a signal is received on this input." id="2" />
-                            <Output name="onReady" type="1" type_size="1" nature="2" inner="0" tooltip="Signal sent when the data has been set." id="3" />
-                            <Parameter name="Volume (%)" inherits_from_parent="0" content_type="1" value="82" default_value="50" min="0" max="100" tooltip="Percentage of maximum output volume." id="4" />
-                        </Box>
-                        <Box name="Subscribe to Event (2)" id="4" localization="8" tooltip="Subscribes to a signal on a NAOqi2 service, or an event in NAOqi&apos;s shared memory&#x0A;When subscribed, the output will be triggered every time the signal is emitted or the event is raised." x="909" y="354">
-                            <bitmap>media/images/box/sensors/STM.png</bitmap>
-                            <script language="4">
-                                <content>
-                                    <![CDATA[class MyClass(GeneratedClass):
-    def __init__(self):
-        GeneratedClass.__init__(self)
-        pass
-
-    def onLoad(self):
-        import threading
-        self.lock = threading.RLock()
-        self.signal = None
-        self.linkId = -1
-
-    def onUnload(self):
-        with self.lock:
-            self.unsubscribe()
-
-    def onInput_onStart(self):
-        with self.lock:
-            self.unsubscribe()
-            event = self.getParameter("event")
-
-            if(len(event) == 0):
-                self.onError("No event or signal given.")
-                return
-
-            params = event.split(".")
-            if(len(params) == 2):
-                try:
-                    self.signal = getattr(self.session().service(params[0]), params[1])
-                except Exception as e:
-                    mem = self.session().service("ALMemory")
-                    if(event in mem.getEventList()):
-                        self.signal = mem.subscriber(event).signal
-                    else:
-                        self.onError(event + ": no such service.signal pair found, and no such event declared in ALMemory. Aborting.")
-                        return
-            else:
-                self.signal = self.session().service("ALMemory").subscriber(event).signal
-
-            self.linkId = self.signal.connect(self.reemitSignal)
-
-    def onInput_onStop(self):
-        with self.lock:
-            self.unsubscribe()
-            self.onStopped()
-
-    def unsubscribe(self):
-        if(self.signal is not None and self.linkId != -1):
-            self.signal.disconnect(self.linkId)
-
-        del self.signal
-        self.signal = None
-        self.linkId = -1
-
-    def reemitSignal(self, *args):
-        if(len(args) == 0):
-            self.onEvent()
-        elif(len(args) == 1):
-            self.onEvent(args[0])
-        else:
-            self.onEvent(args)]]>
-</content>
-                            </script>
-                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
-                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="When this input is activated, the box will try to subscribe to the signal or the event passed in the box parameter.&#x0A;&#x0A;If it is retriggered and the parameter has changed, the box will undo the previous subscription and subscribe to the new signal or the new event." id="2" />
-                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Stop the box and cancel the subscription, if any." id="3" />
-                            <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
-                            <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="This output is triggered when the box encounters an error, and contains the error message." id="5" />
-                            <Output name="onEvent" type="1" type_size="1" nature="2" inner="0" tooltip="This output is triggered each time the signal/event to which the box is connected is emitted/raised. It will carry the payload associated with the signal emission/event raise." id="6" />
-                            <Parameter name="event" inherits_from_parent="0" content_type="3" value="speakLouder" default_value="" custom_choice="0" tooltip='This parameter describes the signal to connect to, and the service advertising this signal.&#x0A;&#x0A;Use the pattern &quot;Service.Signal&quot; to connect to a signal, or the event key to connect to an event.' id="7" />
-                        </Box>
-                        <Box name="Set Speaker Vol. (2)" id="8" localization="8" tooltip="Set the sound volume between 0 (mute) and 100 (max).&#x0A;&#x0A;V1.1.0&#x0A;" x="1058" y="163">
-                            <bitmap>media/images/box/interaction/processing_sound.png</bitmap>
-                            <script language="4">
-                                <content>
-                                    <![CDATA[class MyClass(GeneratedClass):
-    def __init__(self):
-        GeneratedClass.__init__(self, False)
-
-    def onInput_onSet(self):
-        try:
-            self.audiodevice = ALProxy("ALAudioDevice")
-            self.audiodevice.setOutputVolume(self.getParameter("Volume (%)"))
-        except Exception as e:
-            self.logger.error(e)
-
-        self.onReady() # activate output of the box]]>
-</content>
-                            </script>
-                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" />
-                            <Input name="onSet" type="1" type_size="1" nature="1" inner="0" tooltip="The data is set when a signal is received on this input." id="2" />
-                            <Output name="onReady" type="1" type_size="1" nature="2" inner="0" tooltip="Signal sent when the data has been set." id="3" />
-                            <Parameter name="Volume (%)" inherits_from_parent="0" content_type="1" value="45" default_value="50" min="0" max="100" tooltip="Percentage of maximum output volume." id="4" />
-                        </Box>
-                        <Box name="Subscribe to Event (3)" id="16" localization="8" tooltip="Subscribes to a signal on a NAOqi2 service, or an event in NAOqi&apos;s shared memory&#x0A;When subscribed, the output will be triggered every time the signal is emitted or the event is raised." x="895" y="149">
-                            <bitmap>media/images/box/sensors/STM.png</bitmap>
-                            <script language="4">
-                                <content>
-                                    <![CDATA[class MyClass(GeneratedClass):
-    def __init__(self):
-        GeneratedClass.__init__(self)
-        pass
-
-    def onLoad(self):
-        import threading
-        self.lock = threading.RLock()
-        self.signal = None
-        self.linkId = -1
-
-    def onUnload(self):
-        with self.lock:
-            self.unsubscribe()
-
-    def onInput_onStart(self):
-        with self.lock:
-            self.unsubscribe()
-            event = self.getParameter("event")
-
-            if(len(event) == 0):
-                self.onError("No event or signal given.")
-                return
-
-            params = event.split(".")
-            if(len(params) == 2):
-                try:
-                    self.signal = getattr(self.session().service(params[0]), params[1])
-                except Exception as e:
-                    mem = self.session().service("ALMemory")
-                    if(event in mem.getEventList()):
-                        self.signal = mem.subscriber(event).signal
-                    else:
-                        self.onError(event + ": no such service.signal pair found, and no such event declared in ALMemory. Aborting.")
-                        return
-            else:
-                self.signal = self.session().service("ALMemory").subscriber(event).signal
-
-            self.linkId = self.signal.connect(self.reemitSignal)
-
-    def onInput_onStop(self):
-        with self.lock:
-            self.unsubscribe()
-            self.onStopped()
-
-    def unsubscribe(self):
-        if(self.signal is not None and self.linkId != -1):
-            self.signal.disconnect(self.linkId)
-
-        del self.signal
-        self.signal = None
-        self.linkId = -1
-
-    def reemitSignal(self, *args):
-        if(len(args) == 0):
-            self.onEvent()
-        elif(len(args) == 1):
-            self.onEvent(args[0])
-        else:
-            self.onEvent(args)]]>
-</content>
-                            </script>
-                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
-                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="When this input is activated, the box will try to subscribe to the signal or the event passed in the box parameter.&#x0A;&#x0A;If it is retriggered and the parameter has changed, the box will undo the previous subscription and subscribe to the new signal or the new event." id="2" />
-                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Stop the box and cancel the subscription, if any." id="3" />
-                            <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
-                            <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="This output is triggered when the box encounters an error, and contains the error message." id="5" />
-                            <Output name="onEvent" type="1" type_size="1" nature="2" inner="0" tooltip="This output is triggered each time the signal/event to which the box is connected is emitted/raised. It will carry the payload associated with the signal emission/event raise." id="6" />
-                            <Parameter name="event" inherits_from_parent="0" content_type="3" value="speakQuiet" default_value="" custom_choice="0" tooltip='This parameter describes the signal to connect to, and the service advertising this signal.&#x0A;&#x0A;Use the pattern &quot;Service.Signal&quot; to connect to a signal, or the event key to connect to an event.' id="7" />
-                        </Box>
-                        <Box name="Animations" id="23" localization="8" tooltip="Enter description here" x="851" y="13">
+                        <Box name="Animations" id="23" localization="8" tooltip="Enter description here" x="589" y="14">
                             <bitmap>media/images/box/box-diagram.png</bitmap>
                             <script language="4">
                                 <content>
@@ -7729,6 +7489,273 @@ class MyClass(GeneratedClass):
                                 </BehaviorLayer>
                             </Timeline>
                         </Box>
+                        <Box name="audio" id="5" localization="8" tooltip="Enter description here" x="642" y="321">
+                            <bitmap>media/images/box/box-diagram.png</bitmap>
+                            <script language="4">
+                                <content>
+                                    <![CDATA[]]>
+</content>
+                            </script>
+                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                            <Input name="Audio-settings_onSet" type="1" type_size="1" nature="2" inner="0" tooltip="This input has been automatically generated&#x0A;by converting several boxes into a single box." id="2" />
+                            <Input name="Set Speaker Vol._onSet" type="1" type_size="1" nature="2" inner="0" tooltip="This input has been automatically generated&#x0A;by converting several boxes into a single box." id="3" />
+                            <Input name="Subscribe to Event (2)_onStart" type="1" type_size="1" nature="2" inner="0" tooltip="This input has been automatically generated&#x0A;by converting several boxes into a single box." id="4" />
+                            <Input name="Subscribe to Event (3)_onStart" type="1" type_size="1" nature="2" inner="0" tooltip="This input has been automatically generated&#x0A;by converting several boxes into a single box." id="5" />
+                            <Timeline enable="0">
+                                <BehaviorLayer name="behavior_layer1">
+                                    <BehaviorKeyframe name="keyframe1" index="1">
+                                        <Diagram>
+                                            <Box name="Set Speaker Vol." id="6" localization="8" tooltip="Set the sound volume between 0 (mute) and 100 (max).&#x0A;&#x0A;V1.1.0&#x0A;" x="176" y="185">
+                                                <bitmap>media/images/box/interaction/processing_sound.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self, False)
+
+    def onInput_onSet(self):
+        try:
+            self.audiodevice = ALProxy("ALAudioDevice")
+            self.audiodevice.setOutputVolume(self.getParameter("Volume (%)"))
+        except Exception as e:
+            self.logger.error(e)
+
+        self.onReady() # activate output of the box]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" />
+                                                <Input name="onSet" type="1" type_size="1" nature="1" inner="0" tooltip="The data is set when a signal is received on this input." id="2" />
+                                                <Output name="onReady" type="1" type_size="1" nature="2" inner="0" tooltip="Signal sent when the data has been set." id="3" />
+                                                <Parameter name="Volume (%)" inherits_from_parent="0" content_type="1" value="44" default_value="50" min="0" max="100" tooltip="Percentage of maximum output volume." id="4" />
+                                            </Box>
+                                            <Box name="Audio-settings" id="17" localization="8" tooltip="Set the speach speed between 0.5 (and 4&#x0A;&#x0A;" x="181" y="80">
+                                                <bitmap>media/images/box/interaction/processing_sound.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self, False)
+
+    def onInput_onSet(self):
+        try:
+            self.audiodevice = ALProxy("ALTextToSpeech")
+            self.audiodevice.setParameter("speed",self.getParameter("speed"))
+        except Exception as e:
+            self.logger.error(e)
+
+        self.onReady() # activate output of the box]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" />
+                                                <Input name="onSet" type="1" type_size="1" nature="1" inner="0" tooltip="The data is set when a signal is received on this input." id="2" />
+                                                <Output name="onReady" type="1" type_size="1" nature="2" inner="0" tooltip="Signal sent when the data has been set." id="3" />
+                                                <Parameter name="speed" inherits_from_parent="0" content_type="2" value="1" default_value="1" min="0.5" max="4" tooltip="Percentage of maximum output volume." id="4" />
+                                            </Box>
+                                            <Box name="Set Speaker Vol. (1)" id="2" localization="8" tooltip="Set the sound volume between 0 (mute) and 100 (max).&#x0A;&#x0A;V1.1.0&#x0A;" x="326" y="394">
+                                                <bitmap>media/images/box/interaction/processing_sound.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self, False)
+
+    def onInput_onSet(self):
+        try:
+            self.audiodevice = ALProxy("ALAudioDevice")
+            self.audiodevice.setOutputVolume(self.getParameter("Volume (%)"))
+        except Exception as e:
+            self.logger.error(e)
+
+        self.onReady() # activate output of the box]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" />
+                                                <Input name="onSet" type="1" type_size="1" nature="1" inner="0" tooltip="The data is set when a signal is received on this input." id="2" />
+                                                <Output name="onReady" type="1" type_size="1" nature="2" inner="0" tooltip="Signal sent when the data has been set." id="3" />
+                                                <Parameter name="Volume (%)" inherits_from_parent="0" content_type="1" value="82" default_value="50" min="0" max="100" tooltip="Percentage of maximum output volume." id="4" />
+                                            </Box>
+                                            <Box name="Subscribe to Event (2)" id="4" localization="8" tooltip="Subscribes to a signal on a NAOqi2 service, or an event in NAOqi&apos;s shared memory&#x0A;When subscribed, the output will be triggered every time the signal is emitted or the event is raised." x="163" y="380">
+                                                <bitmap>media/images/box/sensors/STM.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+        pass
+
+    def onLoad(self):
+        import threading
+        self.lock = threading.RLock()
+        self.signal = None
+        self.linkId = -1
+
+    def onUnload(self):
+        with self.lock:
+            self.unsubscribe()
+
+    def onInput_onStart(self):
+        with self.lock:
+            self.unsubscribe()
+            event = self.getParameter("event")
+
+            if(len(event) == 0):
+                self.onError("No event or signal given.")
+                return
+
+            params = event.split(".")
+            if(len(params) == 2):
+                try:
+                    self.signal = getattr(self.session().service(params[0]), params[1])
+                except Exception as e:
+                    mem = self.session().service("ALMemory")
+                    if(event in mem.getEventList()):
+                        self.signal = mem.subscriber(event).signal
+                    else:
+                        self.onError(event + ": no such service.signal pair found, and no such event declared in ALMemory. Aborting.")
+                        return
+            else:
+                self.signal = self.session().service("ALMemory").subscriber(event).signal
+
+            self.linkId = self.signal.connect(self.reemitSignal)
+
+    def onInput_onStop(self):
+        with self.lock:
+            self.unsubscribe()
+            self.onStopped()
+
+    def unsubscribe(self):
+        if(self.signal is not None and self.linkId != -1):
+            self.signal.disconnect(self.linkId)
+
+        del self.signal
+        self.signal = None
+        self.linkId = -1
+
+    def reemitSignal(self, *args):
+        if(len(args) == 0):
+            self.onEvent()
+        elif(len(args) == 1):
+            self.onEvent(args[0])
+        else:
+            self.onEvent(args)]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="When this input is activated, the box will try to subscribe to the signal or the event passed in the box parameter.&#x0A;&#x0A;If it is retriggered and the parameter has changed, the box will undo the previous subscription and subscribe to the new signal or the new event." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Stop the box and cancel the subscription, if any." id="3" />
+                                                <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
+                                                <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="This output is triggered when the box encounters an error, and contains the error message." id="5" />
+                                                <Output name="onEvent" type="1" type_size="1" nature="2" inner="0" tooltip="This output is triggered each time the signal/event to which the box is connected is emitted/raised. It will carry the payload associated with the signal emission/event raise." id="6" />
+                                                <Parameter name="event" inherits_from_parent="0" content_type="3" value="speakLouder" default_value="" custom_choice="0" tooltip='This parameter describes the signal to connect to, and the service advertising this signal.&#x0A;&#x0A;Use the pattern &quot;Service.Signal&quot; to connect to a signal, or the event key to connect to an event.' id="7" />
+                                            </Box>
+                                            <Box name="Set Speaker Vol. (2)" id="8" localization="8" tooltip="Set the sound volume between 0 (mute) and 100 (max).&#x0A;&#x0A;V1.1.0&#x0A;" x="333" y="292">
+                                                <bitmap>media/images/box/interaction/processing_sound.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self, False)
+
+    def onInput_onSet(self):
+        try:
+            self.audiodevice = ALProxy("ALAudioDevice")
+            self.audiodevice.setOutputVolume(self.getParameter("Volume (%)"))
+        except Exception as e:
+            self.logger.error(e)
+
+        self.onReady() # activate output of the box]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" />
+                                                <Input name="onSet" type="1" type_size="1" nature="1" inner="0" tooltip="The data is set when a signal is received on this input." id="2" />
+                                                <Output name="onReady" type="1" type_size="1" nature="2" inner="0" tooltip="Signal sent when the data has been set." id="3" />
+                                                <Parameter name="Volume (%)" inherits_from_parent="0" content_type="1" value="45" default_value="50" min="0" max="100" tooltip="Percentage of maximum output volume." id="4" />
+                                            </Box>
+                                            <Box name="Subscribe to Event (3)" id="16" localization="8" tooltip="Subscribes to a signal on a NAOqi2 service, or an event in NAOqi&apos;s shared memory&#x0A;When subscribed, the output will be triggered every time the signal is emitted or the event is raised." x="170" y="278">
+                                                <bitmap>media/images/box/sensors/STM.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+        pass
+
+    def onLoad(self):
+        import threading
+        self.lock = threading.RLock()
+        self.signal = None
+        self.linkId = -1
+
+    def onUnload(self):
+        with self.lock:
+            self.unsubscribe()
+
+    def onInput_onStart(self):
+        with self.lock:
+            self.unsubscribe()
+            event = self.getParameter("event")
+
+            if(len(event) == 0):
+                self.onError("No event or signal given.")
+                return
+
+            params = event.split(".")
+            if(len(params) == 2):
+                try:
+                    self.signal = getattr(self.session().service(params[0]), params[1])
+                except Exception as e:
+                    mem = self.session().service("ALMemory")
+                    if(event in mem.getEventList()):
+                        self.signal = mem.subscriber(event).signal
+                    else:
+                        self.onError(event + ": no such service.signal pair found, and no such event declared in ALMemory. Aborting.")
+                        return
+            else:
+                self.signal = self.session().service("ALMemory").subscriber(event).signal
+
+            self.linkId = self.signal.connect(self.reemitSignal)
+
+    def onInput_onStop(self):
+        with self.lock:
+            self.unsubscribe()
+            self.onStopped()
+
+    def unsubscribe(self):
+        if(self.signal is not None and self.linkId != -1):
+            self.signal.disconnect(self.linkId)
+
+        del self.signal
+        self.signal = None
+        self.linkId = -1
+
+    def reemitSignal(self, *args):
+        if(len(args) == 0):
+            self.onEvent()
+        elif(len(args) == 1):
+            self.onEvent(args[0])
+        else:
+            self.onEvent(args)]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="When this input is activated, the box will try to subscribe to the signal or the event passed in the box parameter.&#x0A;&#x0A;If it is retriggered and the parameter has changed, the box will undo the previous subscription and subscribe to the new signal or the new event." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Stop the box and cancel the subscription, if any." id="3" />
+                                                <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
+                                                <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="This output is triggered when the box encounters an error, and contains the error message." id="5" />
+                                                <Output name="onEvent" type="1" type_size="1" nature="2" inner="0" tooltip="This output is triggered each time the signal/event to which the box is connected is emitted/raised. It will carry the payload associated with the signal emission/event raise." id="6" />
+                                                <Parameter name="event" inherits_from_parent="0" content_type="3" value="speakQuiet" default_value="" custom_choice="0" tooltip='This parameter describes the signal to connect to, and the service advertising this signal.&#x0A;&#x0A;Use the pattern &quot;Service.Signal&quot; to connect to a signal, or the event key to connect to an event.' id="7" />
+                                            </Box>
+                                            <Link inputowner="2" indexofinput="2" outputowner="4" indexofoutput="6" />
+                                            <Link inputowner="8" indexofinput="2" outputowner="16" indexofoutput="6" />
+                                            <Link inputowner="17" indexofinput="2" outputowner="0" indexofoutput="2" />
+                                            <Link inputowner="6" indexofinput="2" outputowner="0" indexofoutput="3" />
+                                            <Link inputowner="4" indexofinput="2" outputowner="0" indexofoutput="4" />
+                                            <Link inputowner="16" indexofinput="2" outputowner="0" indexofoutput="5" />
+                                        </Diagram>
+                                    </BehaviorKeyframe>
+                                </BehaviorLayer>
+                            </Timeline>
+                        </Box>
                         <Link inputowner="7" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="1" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="11" indexofinput="2" outputowner="0" indexofoutput="2" />
@@ -7736,18 +7763,16 @@ class MyClass(GeneratedClass):
                         <Link inputowner="10" indexofinput="2" outputowner="13" indexofoutput="7" />
                         <Link inputowner="3" indexofinput="2" outputowner="13" indexofoutput="8" />
                         <Link inputowner="9" indexofinput="2" outputowner="13" indexofoutput="9" />
-                        <Link inputowner="17" indexofinput="2" outputowner="19" indexofoutput="3" />
+                        <Link inputowner="5" indexofinput="2" outputowner="19" indexofoutput="3" />
                         <Link inputowner="25" indexofinput="2" outputowner="19" indexofoutput="3" />
                         <Link inputowner="21" indexofinput="2" outputowner="20" indexofoutput="6" />
                         <Link inputowner="20" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="15" indexofinput="2" outputowner="19" indexofoutput="3" />
                         <Link inputowner="0" indexofinput="4" outputowner="13" indexofoutput="10" />
-                        <Link inputowner="6" indexofinput="2" outputowner="19" indexofoutput="3" />
+                        <Link inputowner="5" indexofinput="3" outputowner="19" indexofoutput="3" />
                         <Link inputowner="12" indexofinput="2" outputowner="19" indexofoutput="3" />
-                        <Link inputowner="4" indexofinput="2" outputowner="19" indexofoutput="3" />
-                        <Link inputowner="2" indexofinput="2" outputowner="4" indexofoutput="6" />
-                        <Link inputowner="8" indexofinput="2" outputowner="16" indexofoutput="6" />
-                        <Link inputowner="16" indexofinput="2" outputowner="19" indexofoutput="3" />
+                        <Link inputowner="5" indexofinput="4" outputowner="19" indexofoutput="3" />
+                        <Link inputowner="5" indexofinput="5" outputowner="19" indexofoutput="3" />
                         <Link inputowner="9" indexofinput="2" outputowner="1" indexofoutput="3" />
                         <Link inputowner="23" indexofinput="2" outputowner="0" indexofoutput="2" />
                     </Diagram>
