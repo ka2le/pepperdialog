@@ -17,7 +17,7 @@ u:(~whatcanyoudo) %mainChoice ["We can play a music quiz or listen to a song or 
     u1:(~playMusic)  ^goto(initPlayMusic)
     u1:(~no) Okay, maybe  ^goto(mainChoice)
     u1:(~yes) please say again, what do you want to do? ^stayInScope
-    u1:(e:Dialog/NotUnderstood) I am sorry, could you repeat that?
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
     u1:(something else) Another idea  ^goto(mainChoice)
     u1:(stop) ok
 
@@ -27,6 +27,7 @@ u:(~startQuiz) %initQuiz ["$artist==0 Which artist do you want the music quiz to
     u1:(~choiceofartist) $1, good choice $artist=$1 $openPage=quiz ^goto(theQuiz)
     u1:(~stop) Alright
     u1:(Which artist do you prefere?)  I prefer Justin Timerlake
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
         
 u:(I want to talk about Justin Timberlake) Justin is great. What do you want to talk about? $artist=justin ^goto(mainChoice)
 u:(["dj pepper" pepper]) ["That is my name" "yes thats me" yes listening] 
@@ -34,11 +35,13 @@ u:(["dj pepper" pepper]) ["That is my name" "yes thats me" yes listening]
 u:("learn [more "about the artist"]") %initLearnMore ["$artist==0 $openPage=learn Which artist do you want to learn more about?" "$artist==[~theArtists] $openPage=learn ^goto(storyMode) "]
     u1:(~choiceofartist) Lets learn more about $1 $artist=$1 $openPage=learn ^goto(storyMode)
     u1:(~stop) Alright 
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
         
         
  u:(~askQuestion) %initAskQuestion ["$artist==0  Which artist do you want to ask questions about?" "$artist==[~theArtists] $openPage=questions ^goto(answerQ) "]
     u1:(~choiceofartist) You are in luck, I know so much about $1 $artist=$1 $openPage=questions ^goto(answerQ)
     u1:(~stop) Alright       
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
         
  u1:(~playMusic) %initPlayMusic [" $openPage=listen ^goto(playMusic) "]  
             
@@ -46,15 +49,18 @@ u:(what artist are we talking about) ^first["we are talking about  $artist" " no
 u:(~changeArtist) What artist do you want to talk about instead?
     u1:(~justinTimberlake) Yeah lets talk about justin timberlake  $artist=justin
     u1:(["no one" clear forget]) nevermind then $artist=0
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
 
 u:(["ask me about my favoutire artist" "ask me"])  %whoisfav Who is your favourit artist?
     u1:(~justinTimberlake) $img/justin=1 $artist=justin I like him too. ["Did you know that ^gotoRandom(trivia) " " ^goto(mainChoice)"]
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
         
 u:(~tellTrivia) ["$artist==0 First tell me ^goto(whoisfav)" " $artist==[~theArtists] Did you know that ^gotoRandom(trivia) " ]
 
 u:(["stop talk about music" activities rules house "stop talkning" ~goodbye]) Do you want to stop talking about music?
     u1:(~yes) $goToTopic=general $onStopped=1
     u1:(~no) My bad, I thought you did
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
 
 
 
@@ -71,11 +77,13 @@ u:(answerQ) %answerQ What is your question?
     u1:(~stop) Do you want me to stop talking about this?
         u2:(~yes) ^goto(startMenu)
         u2:(~no) ^goto(learnMore)    
-    u1:(_*) $NLC/input=$1 
+    u1:(_*) $NLC/input=$1
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
     
 u:(moreToAsk) %moreToAsk Do you want to ask more questions?                    
     u1:(~yes) ^goto(answerQ)
     u1:(~no) We can do something else. ^goto(mainChoice)
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
     
 u:(e:NLC/output) ["$NLC/output==age He is 36 years old" "$NLC/output==birthplace He born in Memphis"]
 
@@ -89,7 +97,8 @@ u:(what is his [middle full] name) %trivia  %nameAnswer His full name is Justin 
 u:(["is he married" "is he single" "what is the name of his wife"]) %trivia  %marriedAnswer Justin is married to Jessica Biel 
 
 #-----------------------------------------Youtube----------------------------------------
-u:(playMusic) %playMusic  Okay lets play some music. Tell me which song you want to hear? 
+u:(playMusic) %playMusic  Okay lets play some music. Tell me which song you want to hear?
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
     u1:(~dontknow) I can help you find a song. Pick one from the list on my stomach.
     u1:(mirrors) Okay Im playing Mirrors with Justin on Youtube now. $ARTIST/youtube=1  
     u1:(Cant stop the feeling) Okay Im playing Cant stop the feeling with Justin on Youtube now. $opensongs/cantstopthefeeling=1 
@@ -104,9 +113,6 @@ u:(playMusic) %playMusic  Okay lets play some music. Tell me which song you want
     u1:([Sorry "Sorry Justin Bieber" "Sorry with Justin Bieber"]) $opensongs/sorry=1 
     u1:(["What do you mean" "What do you mean Justin Bieber" " What do you mean with Justin Bieber"]) $opensongs/whatdoyoumean=1 
     u1:(["Love yourself" "Love yourself with Justin Bieber"]) $opensongs/loveyourself=1 
-u:(tablet) I will show the website on my tablet. $ARTIST/youtube=1
-u:(new page) $openPage=quiz new
-u:(old page) $openPage=learn old
 
 #-----------------------------------------QUIZ----------------------------------------
 u:(thequiz) %theQuiz $Menu/quiz=1 Starting the quiz.  If you want to know your score, just say score at anytime during this quiz. $quizScore=0 ^goto(selectNextQ) 
@@ -115,47 +121,56 @@ u:(moreQs) %moreQs Do you want another question?
     u1:(~yes) Ok. Here come another one. ^goto(selectNextQ) 
     u1:(~no) Okay. Well played. Just tell me if you want to do a quiz again sometime.
     u1:(score) Your score is $quizScore   ^stayInScope
-    u1:(~stop) Stopping the quiz. 
+    u1:(~stop) Stopping the quiz.
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
 u:(q1) %q1 How old is Justin Timberlake?
     u1:(_*) I heard you say $1 . The correct answer is that he is 36 years old. ^goto(moreQs)     
-    u1:([36 "he is 36"  "36 years old" "[justin he "justin timberlake"] is [36 "36 years old " " 36 years"]"]) ~correct ~goodJob $QUIZ/addscore=1 ^goto(moreQs)
+    u1:([36 "he is 36"  "36 years old" "[justin he "justin timberlake"] is [36 "36 years old " " 36 years"]"]) ~correct ~goodJob
+ $QUIZ/addscore=1 ^goto(moreQs)
     u1:(~dontknow) I'll tell you then. He is 36 years old. ^goto(moreQs)
     u1:(~stop) Stopping the quiz. 
     u1:(score) Your score is $quizScore   ^stayInScope
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
 u:(q2) %q2 In what city was he born?
     u1:([Memphis  "born in Memphis" "[Justin he "Justin Timberlake"] [born "born in" "is born in"] Memphis"])  ~correct ~goodJob $QUIZ/addscore=1 ^goto(moreQs) 
     u1:(~dontknow) I'll tell you then. He was born in Memphis. ^goto(moreQs) 
     u1:(_*) I heard you say $1 . The correct answer is that he was born in Memphis. ^goto(moreQs)
-    u1:(score) Your score is $quizScore   ^stayInScope 
+    u1:(score) Your score is $quizScore   ^stayInScope
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
     u1:(~stop) Stopping the quiz.
 u:(q3) %q3  What was the name of his first solo album?
     u1:(Justified "["the ablum" "his album" "[Justin he "Justin Timberlake"] album"] "is named Justified"")  ~correct ~goodJob ! $QUIZ/addscore=1 ^goto(moreQs) 
     u1:(~dontknow) I'll tell you then. It was named Justified ^goto(moreQs) 
     u1:(_*) I heard you say $1 . The correct answer is that It was named Justified. ^goto(moreQs)
     u1:(score) Your score is $quizScore   ^stayInScope 
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
     u1:(~stop) Stopping the quiz.   
 u:(q4) %q4  What is his middle name?
     u1:("[Justins his "Justin Timberlakes"] middle name is Randall" "Justin Randall Timberlake" "[it "the middle name"] is Randall" Randall )  ~correct ~goodJob ! $QUIZ/addscore=1 ^goto(moreQs) 
     u1:(~dontknow) His middle name is Randall ^goto(moreQs) 
     u1:(_*) I heard you say $1 . The correct answer is Randall . ^goto(moreQs)
-    u1:(score) Your score is $quizScore   ^stayInScope 
+    u1:(score) Your score is $quizScore   ^stayInScope
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
     u1:(~stop) Stopping the quiz. 
 u:(q5) %q5  How many children does he have?
     u1:(["[Justin he "Justin Timberlake"] have [one 1] {[child son kid]}"    "[one 1] {[child son kid]}" one 1])  ~correct ~goodJob He has one son ! $QUIZ/addscore=1 ^goto(moreQs) 
     u1:(~dontknow) I'll tell you then. He has one son ^goto(moreQs) 
     u1:(_*) I heard you say $1 . The correct answer is that he has one son . ^goto(moreQs)
-    u1:(score) Your score is $quizScore   ^stayInScope 
+    u1:(score) Your score is $quizScore   ^stayInScope
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
     u1:(~stop) Stopping the quiz.
 u:(q6) %q6  What was the name of his latest album?
     u1:([{[Justins his "Justin Timberlakes" "the album"]} {"is named"} ["the 20 20 experience " "20 20 experience " "twenty twenty experience"]])  ~correct ~goodJob ! $QUIZ/addscore=1 ^goto(moreQs) 
     u1:(~dontknow) I'll tell you then. It was named the 20 20 experience ^goto(moreQs) 
     u1:(_*) I heard you say $1 . The correct answer is that It was named the 20 20 experience. ^goto(moreQs)
-    u1:(score) Your score is $quizScore   ^stayInScope 
+    u1:(score) Your score is $quizScore   ^stayInScope
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
     u1:(~stop) Stopping the quiz. 
        
 
 #-----------------------------------------Story mode ----------------------------------------
 u:(story) %storyMode $openPage=story Look at my stomach to see the headlines and tell me what you want to hear about?
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
     u1:(~stop) I understood that you want to stop talking about this. ^goto(startMenu)
     u1:(Early life) Wikipedia says Timberlake was born in Memphis Tennessee the son of Lynn Bomar Harless and Charles Randall Timberlake a Baptist church choir director Timberlake grew up in Shelby Forest a small community between Memphis and Millington  He has two half-brothers Jonathan born September 12 1993 and Stephen born August 14 1998 from Charles second marriage to Lisa Perry  Do you want to me to keep reading about this topic
         u2:(~yes)  His half-sister Laura Katherine died shortly after birth on May 12 1997 and is mentioned in his acknowledgments in the album NSYNC as My Angel in Heaven  He was inspired to become a performer by Janet Jackson saying She didnt just stand there and sing her song fascinated by her energy and exuberance  At the age of 11 Timberlake appeared on the television show Star Search performing country music songs as Justin Randall  In 1993 and 1994 he was a cast member in The Mickey Mouse Club where his castmates included future girlfriend and singer Britney Spears future tourmate Christina Aguilera future bandmate JC Chasez and future movie actors Ryan Gosling and Keri Russell  Timberlake then recruited Chasez to be in an all-male singing group organized by boy band manager Lou Pearlman that eventually became NSYNC  

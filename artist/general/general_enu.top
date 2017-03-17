@@ -7,6 +7,7 @@ include: ../concept.top
 u:(e:onStart) %start Hello. I am Pepper! ^first[" Nice to see you again $userName ^goto(helloUser) " "%askAboutName What is your name? "] 
     u1:(["_~names" "my name is _~names" "I am _~names"]) Nice to meet you $1 $userName=$1 ^nextProposal
     u1:(~no) You dont want to tell me. That is okay. ^clear(userName) ^nextProposal
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
 u:(helloMe) %helloUser !
 
 u:(~hello) Hello ^first[" $userName "  "Human "] 
@@ -20,6 +21,7 @@ u:(forget me) Okay you are forgotten!  ^clear(userName)
 u:([music "lets talk about music" "talk about music"]) Do you want to talk about music?
     u1:(~yes) $goToTopic=music $onStopped=1
     u1:(~no) Then lets do something else ^gotoRandom(second)
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
 
 u:(testing) Switching. $goToTopic=testing $onStopped=1
 
@@ -35,17 +37,21 @@ proposal: %init Do you want suggestions for activities in Uppsala or we could ta
     u1:(~no) Okay. Lets do something else then. ^gotoRandom(second)
     u1:(activities) ^goto(suggestion)
     u1:([more "what else"])  ^nextProposal
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
 
 proposal: You can always ask me what I can do 
-    u1:(~tellMe) ^goto(whatcanyoudo) 
+    u1:(~tellMe) ^goto(whatcanyoudo)
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
 
 u:(~whatcanyoudo) %whatcanyoudo ["I can do all sorts of stuff. I can talk about music, answer questions about the rules. Recommend activities. Play games and  more." "Did you know I can be the game host for Twister." "We could play a music quiz togheter or we could listen to your favourite song"]
-    u1:(~learnMore) ^goto(whatcanyoudo) 
+    u1:(~learnMore) ^goto(whatcanyoudo)
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
 
 proposal: %second Do you want me to tell you about activities in Uppsala?
     u1:(~yes) ^goto(suggestion) 
     u1:(~no)  ^nextProposal
     u1:(~learnMore)  ^nextProposal
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
 
 #proposal: %second I can show you a dance I've been practicing
 #    u1:(~yes) Dance goes here. ha ha
@@ -56,12 +62,13 @@ proposal: %second Do you want to play twister?
     u1:(~yes) ^goto(twisterGame)
     u2:(~no)  ^nextProposal
     u1:(~learnMore)  ^nextProposal
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
     
 proposal: %second We could do a bit of exercise together.
     u1:(~yes) Oh goody. I really need to stretch my arms. ^goto(moveGame)
     u2:(~no)  ^nextProposal
     u1:(~learnMore)  ^nextProposal   
-    
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
     
 #------------------------------Move-------------------------    
 u:(move) %moveGame The rules are easy. Just try to follow my instructions. First up ^goto(movefirst)
