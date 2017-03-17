@@ -3,7 +3,7 @@ language: enu
 #------------------------Robot talk concepts--------------------
 concept:(theAlbums) [Justified Lovesounds "The 20/20 experience"] 
 concept:(activitySuggestion) ["Let me see you do a somersault" "Jump as high as you can"]
-concept:(notUnderstood) ["[Im "I am"]  {so} sorry could you repeat that" "I did not catch that" "could you {please} repeat that" "repeat that please"]
+concept:(notUnderstood) ["could you {please} repeat that" "I did not catch that" "[Im "I am"]  {so} sorry could you repeat that"  "repeat that please"]
 
 #------------------------Concepts-------------------------------
 concept:(stop) [stop "no more" "quit" "stop it" "dont talk anymore" "be quiet" ]
