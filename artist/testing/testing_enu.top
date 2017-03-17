@@ -2,7 +2,6 @@ topic: ~testing()
 language: enu
 
 include: ../concept.top
-include: ../artist/artist_enu.top
 
 concept:(justinTimberlake) [justinTimberlake JT justin timberlake "justin timberlake" "justin randall timberlake"]
 concept:(zaraLarsson) ["zara larsson" zara]
@@ -13,7 +12,7 @@ concept:(speaking) ["get it ["ok" "pls"]" "get it {yes}"]
 
 u:(notUnderstood) ~notUnderstood
 u:(e:onStart) I am in test mode.
-u:(~hello) Hi $userName . I am in test mode.
+u:(~hello) Hi ^first["$userName" "human "] . I am in test mode.
 u:(help)  here is a list of words for testing NLC local new page old page teach
 u:(~speaking) yes i get it
 
@@ -39,11 +38,13 @@ u:(NLC) N L C ready
     u1:(_*) $NLC/input=$1 Analyzing $1
 
 u:(e:NLC/output) NLC result says $NLC/output
-
+u:(pose) $animation/hello=1 posing
+u:(pose wipe) $animation/wipe=1 wiping
+u:(pose talk) $animation/hello okay now i will do a pose and talk
 u:(switch) Going back to the general Topic $goToTopic=general
 u:(show picture) $img/justin=1 opeing picture
 #u:(pose) See my moves ^start(animation/moods/neutral/thinking) and i can talk while i do it
-u:(pose) See my moves $pose/think=1 and i can talk while i do it
+u:(pose think) See my moves $pose/think=1 and i can talk while i do it
 
 u:(local) $tabletLocal=1 local
 u:(new page) $openPage=quiz new
