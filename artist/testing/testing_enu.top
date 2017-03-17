@@ -38,9 +38,9 @@ u:(NLC) N L C ready
     u1:(_*) $NLC/input=$1 Analyzing $1
 
 u:(e:NLC/output) NLC result says $NLC/output
-u:(pose) $animation/hello=1 posing
-u:(pose wipe) $animation/wipe=1 wiping
-u:(pose talk) $animation/hello okay now i will do a pose and talk
+u:(pose) $pose/hello=1 posing
+u:(pose wipe) $pose/wipe=1 wiping
+u:(pose talk) $pose/hello okay now i will do a pose and talk
 u:(switch) Going back to the general Topic $goToTopic=general
 u:(show picture) $img/justin=1 opeing picture
 #u:(pose) See my moves ^start(animation/moods/neutral/thinking) and i can talk while i do it
