@@ -9,6 +9,7 @@
         <Dialog name="general" src="general/general.dlg" />
         <Dialog name="testing" src="testing/testing.dlg" />
         <Dialog name="artist" src="artist/artist.dlg" />
+        <Dialog name="justintimberlake" src="justintimberlake/justintimberlake.dlg" />
     </Dialogs>
     <Resources>
         <File name="_metadata" src="_metadata" />
@@ -47,10 +48,12 @@
         <Topic name="ExampleDialog_enu" src="behavior_1/ExampleDialog/ExampleDialog_enu.top" topicName="ExampleDialog" language="en_US" />
         <Topic name="general_enu" src="general/general_enu.top" topicName="general" language="en_US" />
         <Topic name="testing_enu" src="testing/testing_enu.top" topicName="testing" language="en_US" />
-        <Topic name="common_enu" src="common_enu.top" topicName="" language="C" />
+        <Topic name="common_enu" src="common_enu.top" topicName="" language="" />
         <Topic name="artist_enu" src="artist/artist_enu.top" topicName="artist" language="en_US" />
         <Topic name="common2_enu" src="common2_enu.top" topicName="common2" language="en_US" />
         <Topic name="concept" src="concept.top" topicName="concept" language="en_US" />
+        <Topic name="justintimberlake" src="artist/justintimberlake.top" topicName="artist" language="en_US" />
+        <Topic name="justintimberlake_enu" src="justintimberlake/justintimberlake_enu.top" topicName="justintimberlake" language="en_US" />
     </Topics>
     <IgnoredPaths />
 </Package>

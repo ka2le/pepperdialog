@@ -43,7 +43,7 @@ concept:(bodyPart) [foot hand]
 concept:(leftRight) [left right]
 concept:(color) [blue yellow red green orange]
  #-----------------------------Lägg till nya concept här---------------------------------
-concept: (justinTimberlake) ["Justin Timberlake" "Justin"]
+concept: (justinTimberlake) ["Justin Timberlake" "Justin" justin "justin timberlake" JT]
 concept: (saraLarsson) ["sara larsson" "sara"]
 
 concept:(theArtists) [~justinTimberlake ~saraLarsson]
