@@ -456,41 +456,6 @@ class MyClass(GeneratedClass):
                                 <BehaviorLayer name="behavior_layer1">
                                     <BehaviorKeyframe name="keyframe1" index="1">
                                         <Diagram scale="59.4604">
-                                            <Box name="Open link" id="7" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="531" y="20">
-                                                <bitmap>media/images/box/sensors/STM.png</bitmap>
-                                                <script language="4">
-                                                    <content>
-                                                        <![CDATA[class MyClass(GeneratedClass):
-    def __init__(self):
-        GeneratedClass.__init__(self)
-        pass
-
-    def onLoad(self):
-        self.BIND_PYTHON(self.getName(), "onEventCallback")
-        self.memory = ALProxy("ALMemory")
-
-    def onUnload(self):
-        self.memory = None
-
-    def onInput_onStart(self):
-        self.memory.subscribeToEvent(self.getParameter("key"), self.getName(), "onEventCallback")
-
-    def onInput_onStop(self):
-        self.onStopped()
-
-    def onEventCallback(self, key, value, message):
-        self.onEvent(self.getParameter("url"))]]>
-</content>
-                                                </script>
-                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
-                                                <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
-                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="" id="3" />
-                                                <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished. It contains the retrieved value from ALMemory." id="4" />
-                                                <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
-                                                <Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="" id="6" />
-                                                <Parameter name="key" inherits_from_parent="0" content_type="3" value="ARTIST/youtube" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
-                                                <Parameter name="url" inherits_from_parent="0" content_type="3" value="https://www.youtube.com/watch?v=uuZE_IRwLNI" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
-                                            </Box>
                                             <Box name="Show Web View" id="8" localization="8" tooltip="Shows the webview (html content) on the tablet.&#x0A;&#x0A;V1.0.0&#x0A;" x="1186" y="300">
                                                 <bitmap>media/images/box/internet/internet.png</bitmap>
                                                 <script language="4">
@@ -817,7 +782,7 @@ class MyClass(GeneratedClass):
                                                 <Parameter name="key" inherits_from_parent="0" content_type="3" value="stopTablet" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                                                 <Parameter name="url" inherits_from_parent="0" content_type="3" value="" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
                                             </Box>
-                                            <Box name="Open link (1)" id="3" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="385" y="99">
+                                            <Box name="Open link (1)" id="3" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="386" y="37">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -851,41 +816,6 @@ class MyClass(GeneratedClass):
                                                 <Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="" id="6" />
                                                 <Parameter name="key" inherits_from_parent="0" content_type="3" value="opensongs/cantstopthefeeling" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                                                 <Parameter name="url" inherits_from_parent="0" content_type="3" value="https://www.youtube.com/watch?v=CqKD2f_uy4E" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
-                                            </Box>
-                                            <Box name="Open link (2)" id="5" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="378" y="38">
-                                                <bitmap>media/images/box/sensors/STM.png</bitmap>
-                                                <script language="4">
-                                                    <content>
-                                                        <![CDATA[class MyClass(GeneratedClass):
-    def __init__(self):
-        GeneratedClass.__init__(self)
-        pass
-
-    def onLoad(self):
-        self.BIND_PYTHON(self.getName(), "onEventCallback")
-        self.memory = ALProxy("ALMemory")
-
-    def onUnload(self):
-        self.memory = None
-
-    def onInput_onStart(self):
-        self.memory.subscribeToEvent(self.getParameter("key"), self.getName(), "onEventCallback")
-
-    def onInput_onStop(self):
-        self.onStopped()
-
-    def onEventCallback(self, key, value, message):
-        self.onEvent(self.getParameter("url"))]]>
-</content>
-                                                </script>
-                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
-                                                <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
-                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="" id="3" />
-                                                <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished. It contains the retrieved value from ALMemory." id="4" />
-                                                <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
-                                                <Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="" id="6" />
-                                                <Parameter name="key" inherits_from_parent="0" content_type="3" value="opensongs/whatgoesaroundcomesaround" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
-                                                <Parameter name="url" inherits_from_parent="0" content_type="3" value="https://www.youtube.com/watch?v=nqpyWu6M6PY" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
                                             </Box>
                                             <Box name="Open link (3)" id="6" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="397" y="437">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
@@ -992,7 +922,7 @@ class MyClass(GeneratedClass):
                                                 <Parameter name="key" inherits_from_parent="0" content_type="3" value="opensongs/lushlife" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                                                 <Parameter name="url" inherits_from_parent="0" content_type="3" value="https://www.youtube.com/watch?v=-168CMMyqIA" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
                                             </Box>
-                                            <Box name="Open link (6)" id="11" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="388" y="142">
+                                            <Box name="Open link (6)" id="11" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="386" y="117">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -1096,41 +1026,6 @@ class MyClass(GeneratedClass):
                                                 <Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="" id="6" />
                                                 <Parameter name="key" inherits_from_parent="0" content_type="3" value="opensongs/whatgoesaroundcomesaround" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                                                 <Parameter name="url" inherits_from_parent="0" content_type="3" value="https://www.youtube.com/watch?v=nqpyWu6M6PY" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
-                                            </Box>
-                                            <Box name="Open link (9)" id="16" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="548" y="447">
-                                                <bitmap>media/images/box/sensors/STM.png</bitmap>
-                                                <script language="4">
-                                                    <content>
-                                                        <![CDATA[class MyClass(GeneratedClass):
-    def __init__(self):
-        GeneratedClass.__init__(self)
-        pass
-
-    def onLoad(self):
-        self.BIND_PYTHON(self.getName(), "onEventCallback")
-        self.memory = ALProxy("ALMemory")
-
-    def onUnload(self):
-        self.memory = None
-
-    def onInput_onStart(self):
-        self.memory.subscribeToEvent(self.getParameter("key"), self.getName(), "onEventCallback")
-
-    def onInput_onStop(self):
-        self.onStopped()
-
-    def onEventCallback(self, key, value, message):
-        self.onEvent(self.getParameter("url"))]]>
-</content>
-                                                </script>
-                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
-                                                <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
-                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="" id="3" />
-                                                <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished. It contains the retrieved value from ALMemory." id="4" />
-                                                <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
-                                                <Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="" id="6" />
-                                                <Parameter name="key" inherits_from_parent="0" content_type="3" value="opensongs/elektrisk" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
-                                                <Parameter name="url" inherits_from_parent="0" content_type="3" value="https://www.youtube.com/watch?v=tZMqCFpVOLk" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
                                             </Box>
                                             <Box name="Open link (10)" id="17" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="537" y="342">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
@@ -1343,26 +1238,20 @@ class MyClass(GeneratedClass):
                                                 <Parameter name="key" inherits_from_parent="0" content_type="3" value="quizScore" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                                                 <Parameter name="url" inherits_from_parent="0" content_type="3" value="https://pepperpages.mybluemix.net/peppertablet/index.html#quiz#score=" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
                                             </Box>
-                                            <Link inputowner="8" indexofinput="2" outputowner="7" indexofoutput="6" />
                                             <Link inputowner="8" indexofinput="2" outputowner="12" indexofoutput="6" />
                                             <Link inputowner="8" indexofinput="2" outputowner="14" indexofoutput="6" />
                                             <Link inputowner="8" indexofinput="2" outputowner="22" indexofoutput="6" />
                                             <Link inputowner="8" indexofinput="2" outputowner="24" indexofoutput="6" />
-                                            <Link inputowner="12" indexofinput="2" outputowner="0" indexofoutput="2" />
-                                            <Link inputowner="7" indexofinput="2" outputowner="0" indexofoutput="2" />
                                             <Link inputowner="14" indexofinput="2" outputowner="0" indexofoutput="2" />
                                             <Link inputowner="22" indexofinput="2" outputowner="0" indexofoutput="2" />
                                             <Link inputowner="24" indexofinput="2" outputowner="0" indexofoutput="2" />
                                             <Link inputowner="23" indexofinput="2" outputowner="0" indexofoutput="2" />
                                             <Link inputowner="1" indexofinput="2" outputowner="0" indexofoutput="2" />
-                                            <Link inputowner="8" indexofinput="2" outputowner="1" indexofoutput="6" />
                                             <Link inputowner="2" indexofinput="2" outputowner="0" indexofoutput="2" />
                                             <Link inputowner="4" indexofinput="2" outputowner="2" indexofoutput="6" />
                                             <Link inputowner="8" indexofinput="2" outputowner="23" indexofoutput="6" />
                                             <Link inputowner="3" indexofinput="2" outputowner="0" indexofoutput="2" />
                                             <Link inputowner="8" indexofinput="2" outputowner="3" indexofoutput="6" />
-                                            <Link inputowner="5" indexofinput="2" outputowner="0" indexofoutput="2" />
-                                            <Link inputowner="8" indexofinput="2" outputowner="5" indexofoutput="6" />
                                             <Link inputowner="11" indexofinput="2" outputowner="0" indexofoutput="2" />
                                             <Link inputowner="8" indexofinput="2" outputowner="11" indexofoutput="6" />
                                             <Link inputowner="15" indexofinput="2" outputowner="0" indexofoutput="2" />
@@ -1377,8 +1266,6 @@ class MyClass(GeneratedClass):
                                             <Link inputowner="8" indexofinput="2" outputowner="18" indexofoutput="6" />
                                             <Link inputowner="17" indexofinput="2" outputowner="0" indexofoutput="2" />
                                             <Link inputowner="8" indexofinput="2" outputowner="17" indexofoutput="6" />
-                                            <Link inputowner="16" indexofinput="2" outputowner="0" indexofoutput="2" />
-                                            <Link inputowner="8" indexofinput="2" outputowner="16" indexofoutput="6" />
                                             <Link inputowner="21" indexofinput="2" outputowner="0" indexofoutput="2" />
                                             <Link inputowner="8" indexofinput="2" outputowner="21" indexofoutput="6" />
                                             <Link inputowner="19" indexofinput="2" outputowner="0" indexofoutput="2" />
