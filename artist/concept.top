@@ -5,10 +5,13 @@ concept:(theAlbums) [Justified Lovesounds "The 20/20 experience"]
 concept:(activitySuggestion) ["Let me see you do a somersault" "Jump as high as you can"]
 concept:(notUnderstood) ["could you {please} repeat that" "I did not catch that" "[Im "I am"]  {so} sorry could you repeat that"  "repeat that please"]
 
+concept:(goodJob) ["Well done" "good job" nice "great work"]
+concept:(correct) [correct "that is correct" "thats right"]
+
 #------------------------Concepts-------------------------------
 concept:(stop) [stop "no more" "quit" "stop it" "dont talk anymore" "be quiet" ]
 #concept:(music) [music artist]
-concept:(no) [nah no negative "no I dont {want}" "absolutely not" "no thanks" "never"]
+concept:(no) [na no negative "no I dont {want}" "absolutely not" "no thanks" "never"]
 concept:(yes) [yea yes y yeah sure "yes please" "sounds good" absolutely "of course" okey alright "well of course" "very well" "certainly" "indeed"] 
 concept:(dontcare) ["dont care" whatever anything]
 concept:(ready) [ready "lets go" play start go "I'm in" "Lets do it" ]
@@ -22,12 +25,11 @@ concept:(anyquestion) ["[what where when how does is] *" "when does it open"]
 # kategori: hdshadhsa
 concept:(startQuiz) [quiz "start quiz" "i want do do [a the] quiz" "quiz again" "another quiz"]
 
-concept:(goodJob) ["Well done" "good job" nice "great work"]
-concept:(correct) [correct "that is correct" "thats right"]
+
 concept:(changeArtist) ["change artist" "lets talk about another artist" "lets talk about someone else" ]
 concept:(askQuestion) ["i have a question" "can you answer a question" "ask question" "ask something" "i want to ask something"]
 concept:(tellTrivia) ["tell me something about him" trivia "tell me something"]
-concept:(playMusic) ["play music" "{"i want"} {to} listen to {a} [song music track youtube]" "play song" "youtube" "listen to music"]
+concept:(playMusic) ["{"can you"} play {a} [music song track]" "{"i want"} {to} listen to {a} [song music track youtube]" "play song" "youtube" "listen to music"]
 concept:(done) [done finished "did it" next more]
 concept:(hello) [hello hi]
 concept:(names) [kalle carl isak isac gunnar]

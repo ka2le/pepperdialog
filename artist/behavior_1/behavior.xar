@@ -14,7 +14,7 @@
         <Timeline enable="0">
             <BehaviorLayer name="behavior_layer1">
                 <BehaviorKeyframe name="keyframe1" index="1">
-                    <Diagram scale="100">
+                    <Diagram scale="70.7107">
                         <Box name="General Dialog" id="3" localization="8" tooltip="An example of multilanguage dialog implementation" x="440" y="153">
                             <dialogFile>../general/general.dlg</dialogFile>
                             <bitmap>media/images/box/box-dialog.png</bitmap>
@@ -532,7 +532,7 @@ class MyClass(GeneratedClass):
                                                 <Input name="onStart" type="3" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
                                                 <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="3" />
                                             </Box>
-                                            <Box name="Open#" id="12" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="204" y="22">
+                                            <Box name="Open#" id="12" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="1040" y="88">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
                                                 <script language="4">
                                                     <content>
