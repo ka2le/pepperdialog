@@ -10,7 +10,7 @@ u:(["~hello  ["DJ Pepper" "pepper"]" ~hello]) Hello ^first[" $userName " " human
 
 #-----------------------------------------Starting choice----------------------------------------
 
-u:(~whatcanyoudo) %mainChoice ["We can play a music quiz or listen to a song?" "We can learn more about an artist in general or you can ask me specific questions?" " ^goto(whoisfav)" "$artist==[~theArtists] Did you know that ^gotoRandom(trivia)" ] 
+u:(~whatcanyoudo) %mainChoice ["We can play a music quiz. Or listen to a song?" "We can learn more about an artist in general. Or you can ask me specific questions?" " ^goto(whoisfav)" "$artist==[~theArtists] Did you know that ^gotoRandom(trivia)" ] 
     u1:(~startQuiz) ^goto(initQuiz)
     u1:(learn more)  ^goto(initLearnMore)
     u1:([questions ~askQuestion])  ^goto(initAskQuestion) 
@@ -87,13 +87,14 @@ u:(moreToAsk) %moreToAsk Do you want to ask more questions?
     
 u:(e:NLC/output) ["$NLC/output==age He is 36 years old" "$NLC/output==birthplace He born in Memphis"]
 
-u:(how old is he) %trivia %ageAnswer He is 36 years old
+u:(How old is he) %trivia %ageAnswer He is 36 years old
 u:(Where was he born) %trivia  %birtplaceAnswer He was born in Memphis in the state Tennessee
-u:(what was his first song) %trivia  %firstSongAnswer His first solo album was Justified which included the single Cry Me A River
-u:(what prizes has he won)  %trivia  %prizeAnswer He has won ten Grammys, four Emmys, seven American Music Awards, three Brit Awards, seven Billboard Music Awards, and eleven MTV VMAs. How about that
-u:(what instrument does he play) %trivia %intrumentAnswer Apart from singing he also plays guitar bass keyboard and he can beatbox
-u:(how many children does he have) %trivia %childrenAnswer He has one son named Silas Randall Timberlake
-u:(what is his [middle full] name) %trivia  %nameAnswer His full name is Justin Randall Timberlake
+
+u:(What was his first song) %trivia  %firstSongAnswer His first solo album was Justified which included the single Cry Me A River
+u:(What prizes has he won)  %trivia  %prizeAnswer He has won ten Grammy Awards, four Emmy Awards, seven American Music Awards, three Brit Awards, seven Billboard Music Awards, and eleven MTV Video Music Awards. How about that
+u:(What instrument does he play) %trivia %intrumentAnswer Apart from singing he also plays guitar bass keyboard and he can beatbox
+u:(How many children does he have) %trivia %childrenAnswer He has one son named Silas Randall Timberlake
+u:(What is his [middle full] name) %trivia  %nameAnswer His full name is Justin Randall Timberlake
 u:(["is he married" "is he single" "what is the name of his wife"]) %trivia  %marriedAnswer Justin is married to Jessica Biel 
 
 #-----------------------------------------Youtube----------------------------------------
@@ -101,15 +102,14 @@ u:(playMusic) %playMusic  Okay lets play some music. Tell me which song you want
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
     u1:(~dontknow) I can help you find a song. Pick one from the list on my stomach.
     u1:(mirrors) Okay Im playing Mirrors with Justin on Youtube now. $ARTIST/youtube=1  
-    u1:(Cant stop the feeling) Okay Im playing Cant stop the feeling with Justin on Youtube now. $opensongs/cantstopthefeeling=1 
-    u1:(["What goes around" "What goes around comes back around"]) Okay Im playing Cant stop the feeling with Justin on Youtube now. $opensongs/whatgoesaroundcomesaround=1 
-    u1: (["Uptown funk" "Uptwon funk with Bruno Mars"]) Okay Im playing Uptown Funk with Bruno Mars on Youtube now. $opensongs/uptownfunk=1
-    u1: (["Lush Life" "Lush life with" ["Zara Larsson" Zara Larsson]])  playing Lush Life
-    u1: (["This Ones For You" "This one with" ["Zara Larsson" Zara Larsson]]) starting This Ones For You  $opensongs/thisoneisforyou=1 
-    u1: (["It aint my fault" "Aint my fault" "Aint fault" ["Zara Larsson" Zara Larsson]])  Okay Im playing It aint my faul $opensongs/itaintmyfault=1 
+    u1:(Cant stop the feeling) Okay Im playing Cant stop the feeling. With Justin on Youtube now. $opensongs/cantstopthefeeling=1 
+    u1:(["What goes around" "What goes around comes back around"]) Okay Im playing Cant stop the feeling. With Justin on Youtube now. $opensongs/whatgoesaroundcomesaround=1 
+    u1: (["Uptown funk" "Uptwon funk with Bruno Mars"]) Okay Im playing Uptown Funk. With Bruno Mars on Youtube now. $opensongs/uptownfunk=1
+    u1: (["Lush Life" "Lush life with" ["Sara Larsson" Sara Larsson]])  playing Lush Life
+    u1: (["This Ones For You" "This one with" ["Sara Larsson" Sara Larsson]]) starting This Ones For You  $opensongs/thisoneisforyou=1 
+    u1: (["It aint my fault" "Aint my fault" "Aint fault" ["Sara Larsson" Sara Larsson]])  Okay Im playing It aint my faul with Sara Larsson $opensongs/itaintmyfault=1 
     u1: (["Halo" "Halo with Beyonce"]) starting Halo with Beyonce $opensongs/halo=1
-    u1: (["Single Ladies" "Single Ladies with Beyonce"]) playing Single Ladies $opensongs/singleladies=1 
-    u1: (["Elektrisk" "Du e elektrisk" "Elektrisk with Markus o Martinus"]) $opensongs/elektrisk=1 
+    u1: (["Single Ladies" "Single Ladies with Beyonce"]) playing Single Ladies with Beyonce $opensongs/singleladies=1 
     u1:([Sorry "Sorry Justin Bieber" "Sorry with Justin Bieber"]) I am starting the song Sorry $opensongs/sorry=1 
     u1:(["What do you mean" "What do you mean Justin Bieber" " What do you mean with Justin Bieber"]) Playing song what do you mean $opensongs/whatdoyoumean=1 
     u1:(["Love yourself" "Love yourself with Justin Bieber"]) okay starting Love yourself $opensongs/loveyourself=1 
@@ -118,7 +118,7 @@ u:(playMusic) %playMusic  Okay lets play some music. Tell me which song you want
 u:(thequiz) %theQuiz $Menu/quiz=1 Starting the quiz. $quizScore=0 ^goto(selectNextQ) 
 u:(selectQ) %selectNextQ [^goto(q1) ^goto(q2) ^goto(q3) ^goto(q4) ^goto(q5) ^goto(q6)]
 u:(moreQs) %moreQs ["here is the next [one question]" "get ready"] ^goto(selectNextQ) 
-#u:(moreQs) %moreQs Do you want another?
+#u:(moreQs) %moreQs Do you want another question?
 #    u1:(~yes) {Ok} {["Here come another one" "here is another one" "get ready" ]} ^goto(selectNextQ) 
 #    u1:(~no) Okay. Well played. Just tell me if you want to do a quiz again sometime.
 #    u1:(score) Your score is $quizScore   ^stayInScope
