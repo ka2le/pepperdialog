@@ -13,7 +13,7 @@ u:(music)  $goToTopic=music $onStopped=1
 u:(general)  $goToTopic=general $onStopped=1
 
 u:(notUnderstood) ~notUnderstood
-u:(e:onStart) I am in test mode.
+u:(e:onStart) I am in test mode. $pauseOn=true
 u:(~hello) Hi ^first["$userName" "human "] . I am in test mode.
 u:(help)  here is a list of words for testing NLC local new page old page teach
 u:(~speaking) yes i get it
@@ -38,13 +38,15 @@ u:(if artist) ["$testArtist==[~justinTimberlake] 1 "  "$testArtist==sara 2"]
 
 u:(NLC) N L C ready
     u1:(_*) $NLC/input=$1 Analyzing $1
+u:(alphabet) a b c d e f g h i j k l m n o p q r s t u v x y z 
+u:(pause)  i will first talk.  ^first[" $pauseOn==true $pause=1  A. A. A. "  " . "]    And then after the break talk  again   
 
-u:(pause)  i will first talk. M. And then after the pause talk  again   
+u:(short pause)  i will first talk.  ^first[" $pauseOn==true $pauseShort=1  A. A. "  " . "] And then after the break talk  again  
 u:(resume) %resume and then after the pause talk  again     
-
-u:(period) this. is. how. it. sounds. with. small. letters.  And. This. Is. How. It. Sounds. With. Capital. Letters.
+u:(capital letters) this. is. how. it. sounds. with. small. letters.  And. This. Is. How. It. Sounds. With. Capital. Letters.
     
-u:(e:NLC/output) NLC result says $NLC/output
+#u:(e:NLC/output) NLC result says $NLC/output
+u:(nlc result)  NLC result says $NLC/output
 u:(pose) $pose/hello=1 posing
 u:(pose wipe) $pose/wipe=1 wiping
 u:(pose elephant) $pose/elephant=1 

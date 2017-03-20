@@ -90,7 +90,7 @@ u:(e:NLC/output) ["$NLC/output==age He is 36 years old" "$NLC/output==birthplace
 u:(how old is he) %trivia %ageAnswer He is 36 years old
 u:(Where was he born) %trivia  %birtplaceAnswer He was born in Memphis in the state Tennessee
 u:(what was his first song) %trivia  %firstSongAnswer His first solo album was Justified which included the single Cry Me A River
-u:(what prizes has he won)  %trivia  %prizeAnswer He has won ten Grammy Awards, four Emmy Awards, seven American Music Awards, three Brit Awards, seven Billboard Music Awards, and eleven MTV Video Music Awards. How about that
+u:(what prizes has he won)  %trivia  %prizeAnswer He has won ten Grammys, four Emmys, seven American Music Awards, three Brit Awards, seven Billboard Music Awards, and eleven MTV VMAs. How about that
 u:(what instrument does he play) %trivia %intrumentAnswer Apart from singing he also plays guitar bass keyboard and he can beatbox
 u:(how many children does he have) %trivia %childrenAnswer He has one son named Silas Randall Timberlake
 u:(what is his [middle full] name) %trivia  %nameAnswer His full name is Justin Randall Timberlake
@@ -174,7 +174,7 @@ u:(q6) %q6  What was the name of his latest album?
 u:(story) %storyMode $openPage=story Look at my stomach to see the headlines and tell me what you want to hear about?
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
     u1:(~stop) lets talk about something else
-    u1:(Early life) Wikipedia says Timberlake was born in Memphis Tennessee the son of Lynn Bomar Harless and Charles Randall Timberlake a Baptist church choir director Timberlake grew up in Shelby Forest a small community between Memphis and Millington  He has two half-brothers Jonathan born September 12 1993 and Stephen born August 14 1998 from Charles second marriage to Lisa Perry  Do you want to me to keep reading about this topic
+    u1:(Early life) Wikipedia says Timberlake was born In Memphis Tennessee. The son of Lynn Bomar Harless. And Charles Randall Timberlake. A Baptist church choir director.   ^first[" $pauseOn==true $pause=1  A. A. A. "  " . "]    Timberlake grew up in Shelby Forest. A small community between Memphis and Millington.  He has two half-brothers. Jonathan born September 12 1993. And Stephen. Born August 14 1998 from Charles second marriage To Lisa Perry. ^first[" $pauseOn==true $pause=1  A. A. A. "  " . "]    Do you want to hear more about this topic?
         u2:(~yes)  His half-sister Laura Katherine died shortly after birth on May 12 1997 and is mentioned in his acknowledgments in the album NSYNC as My Angel in Heaven  He was inspired to become a performer by Janet Jackson saying She didnt just stand there and sing her song fascinated by her energy and exuberance  At the age of 11 Timberlake appeared on the television show Star Search performing country music songs as Justin Randall  In 1993 and 1994 he was a cast member in The Mickey Mouse Club where his castmates included future girlfriend and singer Britney Spears future tourmate Christina Aguilera future bandmate JC Chasez and future movie actors Ryan Gosling and Keri Russell  Timberlake then recruited Chasez to be in an all-male singing group organized by boy band manager Lou Pearlman that eventually became NSYNC  
         u2:(~no) ok  ^goto(storyMode) 
         u2:(~stop) I understood that you want to stop talking about this. ^goto(startMenu)
