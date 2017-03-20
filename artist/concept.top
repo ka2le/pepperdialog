@@ -5,8 +5,8 @@ concept:(theAlbums) [Justified Lovesounds "The 20/20 experience"]
 concept:(activitySuggestion) ["Let me see you do a somersault" "Jump as high as you can"]
 concept:(notUnderstood) ["could you {please} repeat that" "I did not catch that" "[Im "I am"]  {so} sorry could you repeat that"  "repeat that please"]
 
-concept:(goodJob) ["Well done" "good job" nice "great work"]
-concept:(correct) [correct "that is correct" "thats right"]
+concept:(goodJob) ["Well done" excellent splendid "great work" impressive]
+concept:(correct) [correct "thats right" "you know your stuff"]
 
 #------------------------Concepts-------------------------------
 concept:(stop) [stop "no more" "quit" "stop it" "dont talk anymore" "be quiet" ]
@@ -35,7 +35,6 @@ concept:(hello) [hello hi]
 concept:(names) [kalle carl isak isac gunnar]
 concept:(happy) [good fine "I am good" happy]
 concept:(sad) [sad bad "not good"]
-concept:(goodJob) ["good job" "well done" "nice" "impressive"]
 concept:(whatcanyoudo) ["what can you do" help info functions]
 concept:(tellMe) ["tell me" tell say hear "lets hear it"]
 concept:(askingWords) ["where is" how when where "is there" "are there" "when is"]
@@ -59,7 +58,12 @@ concept:(choiceofartist) ["I want to [learn know] [more " "] about _~theArtists 
 
 
 #------------------------------General Pepper talk-------------------------    
-u:(What is your name) My name is Pepper. ^goto(askAboutName)
+u:(What is your name) My name is Pepper. ^first["and you are $userName ^goto(nicetomeetyou) " "What is your name?" ]
+    u1:(["_~names" "my name is _~names" "I am _~names"]) Nice to meet you $1 $userName=$1
+    u1:(~no) You dont want to tell me. That is okay. ^clear(userName) 
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
+ 
+u:(nice to meet you) %nicetomeetyou nice to meet you to
 u:(How are you) I am a happy robot. How are you ^first[$userName " "]?
     u1:(_~happy) I am glad to hear that you are $1
     u1:(_~sad) Oh I am sorry to hear that

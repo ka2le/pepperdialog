@@ -10,7 +10,7 @@ u:(["~hello  ["DJ Pepper" "pepper"]" ~hello]) Hello ^first[" $userName " " human
 
 #-----------------------------------------Starting choice----------------------------------------
 
-u:(~whatcanyoudo) %mainChoice ["We can play a music quiz or listen to a song or perhaps do something else?" "We can learn more about an artist in general or you can ask me specific questions or something else?" " ^goto(whoisfav)" "$artist==[~theArtists] Did you know that ^gotoRandom(trivia)" ] 
+u:(~whatcanyoudo) %mainChoice ["We can play a music quiz or listen to a song?" "We can learn more about an artist in general or you can ask me specific questions?" " ^goto(whoisfav)" "$artist==[~theArtists] Did you know that ^gotoRandom(trivia)" ] 
     u1:(~startQuiz) ^goto(initQuiz)
     u1:(learn more)  ^goto(initLearnMore)
     u1:([questions ~askQuestion])  ^goto(initAskQuestion) 
@@ -38,12 +38,12 @@ u:("learn [more "about the artist"]") %initLearnMore ["$artist==0 $openPage=lear
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
         
         
- u:(~askQuestion) %initAskQuestion ["$artist==0  Which artist do you want to ask questions about?" "$artist==[~theArtists] $openPage=questions ^goto(answerQ) "]
+u:(~askQuestion) %initAskQuestion ["$artist==0  Which artist do you want to ask questions about?" "$artist==[~theArtists] $openPage=questions ^goto(answerQ) "]
     u1:(_~theArtists) You are in luck, I know so much about $1 $artist=$1 $openPage=questions ^goto(answerQ)
     u1:(~stop) Alright       
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
         
- u1:(~playMusic) %initPlayMusic [" $openPage=listen ^goto(playMusic) "]  
+u:(~playMusic) %initPlayMusic  $openPage=listen ^goto(playMusic) 
             
 u:(what artist are we talking about) ^first["we are talking about  $artist" " no one. ^goto(whoisfav)"]
 u:(~changeArtist) What artist do you want to talk about instead?
@@ -58,14 +58,14 @@ u:(["ask me about my favoutire artist" "ask me"])  %whoisfav Who is your favouri
 u:(~tellTrivia) ["$artist==0 First tell me ^goto(whoisfav)" " $artist==[~theArtists] Did you know that ^gotoRandom(trivia) " ]
 
 u:(["stop talk about music" activities rules house "stop talkning" ~goodbye]) Do you want to stop talking about music?
-    u1:(~yes) $goToTopic=general $onStopped=1
+    u1:(~yes) okay bye bye $goToTopic=bye $onStopped=1
     u1:(~no) My bad, I thought you did
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
 
 
 
 #kommentera ut raden under i choregraphe    
-u:(e:Dialog/NoOneSpeak20) ^goto(mainChoice)
+#u:(e:Dialog/NoOneSpeak20) ^goto(mainChoice)
 
 
 
@@ -115,7 +115,7 @@ u:(playMusic) %playMusic  Okay lets play some music. Tell me which song you want
     u1:(["Love yourself" "Love yourself with Justin Bieber"]) okay starting Love yourself $opensongs/loveyourself=1 
 
 #-----------------------------------------QUIZ----------------------------------------
-u:(thequiz) %theQuiz $Menu/quiz=1 Starting the quiz.  If you want to know your score, just say score at anytime during this quiz. $quizScore=0 ^goto(selectNextQ) 
+u:(thequiz) %theQuiz $Menu/quiz=1 Starting the quiz. $quizScore=0 ^goto(selectNextQ) 
 u:(selectQ) %selectNextQ [^goto(q1) ^goto(q2) ^goto(q3) ^goto(q4) ^goto(q5) ^goto(q6)]
 u:(moreQs) %moreQs ["here is the next [one question]" "get ready"] ^goto(selectNextQ) 
 #u:(moreQs) %moreQs Do you want another?
@@ -124,43 +124,45 @@ u:(moreQs) %moreQs ["here is the next [one question]" "get ready"] ^goto(selectN
 #    u1:(score) Your score is $quizScore   ^stayInScope
 #    u1:(~stop) Stopping the quiz.
 #    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
+u:("tell me that you  think  that I did a good job") %quizGoodJob  ^rand[~correct] ^rand[~goodJob] $QUIZ/addscore=1 ^goto(moreQs)
+
 u:(q1) %q1 How old is Justin Timberlake?
     u1:(_*) I heard you say $1 . The correct answer is that he is 36 years old. ^goto(moreQs)     
-    u1:([36 "he is 36"  "36 years old" "[justin he "justin timberlake"] is [36 "36 years old " " 36 years"]"]) ^rand[~correct] ^rand[~goodJob] $QUIZ/addscore=1 ^goto(moreQs)
+    u1:([36 "he is 36"  "36 years old" "[justin he "justin timberlake"] is [36 "36 years old " " 36 years"]"])   ^goto(quizGoodJob)
     u1:(~dontknow) I'll tell you then. He is 36 years old. ^goto(moreQs)
     u1:(~stop) Stopping the quiz. 
     u1:(score) Your score is $quizScore   ^stayInScope
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
 u:(q2) %q2 In what city was he born?
-    u1:([Memphis  "born in Memphis" "[Justin he "Justin Timberlake"] [born "born in" "is born in"] Memphis"])  ^rand[~correct] ^rand[~goodJob]  $QUIZ/addscore=1 ^goto(moreQs) 
+    u1:([Memphis  "born in Memphis" "[Justin he "Justin Timberlake"] [born "born in" "is born in"] Memphis"])  ^goto(quizGoodJob)
     u1:(~dontknow) I'll tell you then. He was born in Memphis. ^goto(moreQs) 
     u1:(_*) I heard you say $1 . The correct answer is that he was born in Memphis. ^goto(moreQs)
     u1:(score) Your score is $quizScore   ^stayInScope
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
     u1:(~stop) Stopping the quiz.
 u:(q3) %q3  What was the name of his first solo album?
-    u1:(Justified "["the ablum" "his album" "[Justin he "Justin Timberlake"] album"] "is named Justified"")  ^rand[~correct] ^rand[~goodJob] ! $QUIZ/addscore=1 ^goto(moreQs) 
+    u1:([Justified "["the ablum" "his album" "[Justin he "Justin Timberlake"] album"] "is named Justified""])  ^goto(quizGoodJob)
     u1:(~dontknow) I'll tell you then. It was named Justified ^goto(moreQs) 
     u1:(_*) I heard you say $1 . The correct answer is that It was named Justified. ^goto(moreQs)
     u1:(score) Your score is $quizScore   ^stayInScope 
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
     u1:(~stop) Stopping the quiz.   
 u:(q4) %q4  What is his middle name?
-    u1:("[Justins his "Justin Timberlakes"] middle name is Randall" "Justin Randall Timberlake" "[it "the middle name"] is Randall" Randall )  ~correct ~goodJob ! $QUIZ/addscore=1 ^goto(moreQs) 
+    u1:(["[Justins his "Justin Timberlakes"] middle name is Randall" "Justin Randall Timberlake" "[it "the middle name"] is Randall" Randall randall])  ^goto(quizGoodJob)
     u1:(~dontknow) His middle name is Randall ^goto(moreQs) 
     u1:(_*) I heard you say $1 . The correct answer is Randall . ^goto(moreQs)
     u1:(score) Your score is $quizScore   ^stayInScope
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
     u1:(~stop) Stopping the quiz. 
 u:(q5) %q5  How many children does he have?
-    u1:(["[Justin he "Justin Timberlake"] have [one 1] {[child son kid]}"    "[one 1] {[child son kid]}" one 1])  ^rand[~correct] ^rand[~goodJob] He has one son ! $QUIZ/addscore=1 ^goto(moreQs) 
+    u1:(["[Justin he "Justin Timberlake"] have [one 1] {[child son kid]}"    "[one 1] {[child son kid]}" one 1])  ^goto(quizGoodJob)
     u1:(~dontknow) I'll tell you then. He has one son ^goto(moreQs) 
     u1:(_*) I heard you say $1 . The correct answer is that he has one son . ^goto(moreQs)
     u1:(score) Your score is $quizScore   ^stayInScope
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
     u1:(~stop) Stopping the quiz.
 u:(q6) %q6  What was the name of his latest album?
-    u1:([{[Justins his "Justin Timberlakes" "the album"]} {"is named"} ["the 20 20 experience " "20 20 experience " "twenty twenty experience"]]) ^rand[~correct] ^rand[~goodJob] ! $QUIZ/addscore=1 ^goto(moreQs) 
+    u1:([{[Justins his "Justin Timberlakes" "the album"]} {"is named"} ["the 20 20 experience " "20 20 experience " "twenty twenty experience"]]) ^goto(quizGoodJob)
     u1:(~dontknow) I'll tell you then. It was named the 20 20 experience ^goto(moreQs) 
     u1:(_*) I heard you say $1 . The correct answer is that It was named the 20 20 experience. ^goto(moreQs)
     u1:(score) Your score is $quizScore   ^stayInScope
