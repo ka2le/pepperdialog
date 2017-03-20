@@ -10,7 +10,7 @@ u:(["~hello  ["DJ Pepper" "pepper"]" ~hello]) Hello ^first[" $userName " " human
 
 #-----------------------------------------Starting choice----------------------------------------
 
-u:(~whatcanyoudo) %mainChoice ["We can play a music quiz or listen to a song?" "We can learn more about an artist in general or you can ask me specific questions?" " ^goto(whoisfav)" "$artist==[~theArtists] Did you know that ^gotoRandom(trivia)" ] 
+u:(~whatcanyoudo) %mainChoice ["We can play a music quiz. Or listen to a song?" "We can learn more about an artist in general. Or you can ask me specific questions?" " ^goto(whoisfav)" "$artist==[~theArtists] Did you know that ^gotoRandom(trivia)" ] 
     u1:(~startQuiz) ^goto(initQuiz)
     u1:(learn more)  ^goto(initLearnMore)
     u1:([questions ~askQuestion])  ^goto(initAskQuestion) 
