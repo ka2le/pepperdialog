@@ -18,7 +18,7 @@ u:(my name is _*) Nice to meet you $1 $userName=$1
 u:(forget me) Okay you are forgotten!  ^clear(userName)
 
 
-u:([music "lets talk about music" "talk about music"]) Do you want to talk about music?
+u:([music "lets talk about music" "talk about music" ~playMusic]) Do you want to talk about music?
     u1:(~yes) $goToTopic=music $onStopped=1
     u1:(~no) Then lets do something else ^gotoRandom(second)
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
@@ -33,7 +33,7 @@ u:(tablet disabled) Lets open the tablet. $goToTopic=tablet $onStopped=1
 
 
  #------------------------------Suggestions-------------------------
-proposal: %init Do you want suggestions for activities in Uppsala or we could talk about music or perhaps you want to do something else?
+proposal: %init Do you want suggestions for activities in Uppsala. or we could talk about music. or perhaps you want to do something else?
     u1:(~no) Okay. Lets do something else then. ^gotoRandom(second)
     u1:(activities) ^goto(suggestion)
     u1:([more "what else"])  ^nextProposal
@@ -43,7 +43,7 @@ proposal: You can always ask me what I can do
     u1:(~tellMe) ^goto(whatcanyoudo)
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
 
-u:(~whatcanyoudo) %whatcanyoudo ["I can do all sorts of stuff. I can talk about music, answer questions about the rules. Recommend activities. Play games and  more." "Did you know I can be the game host for Twister." "We could play a music quiz togheter or we could listen to your favourite song"]
+u:(~whatcanyoudo) %whatcanyoudo ["I can do all sorts of stuff. I can talk about music, answer questions about the rules. Recommend activities. Play games and  more. What do you want to do?" "Did you know I can be the game host for Twiste?" "We could play a music quiz togheter or we could listen to your favourite song. what do you want to do?"]
     u1:(~learnMore) ^goto(whatcanyoudo)
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
 
