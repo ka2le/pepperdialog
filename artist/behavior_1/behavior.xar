@@ -14,7 +14,7 @@
         <Timeline enable="0">
             <BehaviorLayer name="behavior_layer1">
                 <BehaviorKeyframe name="keyframe1" index="1">
-                    <Diagram scale="70.7107">
+                    <Diagram scale="50">
                         <Box name="General Dialog" id="3" localization="8" tooltip="An example of multilanguage dialog implementation" x="440" y="153">
                             <dialogFile>../general/general.dlg</dialogFile>
                             <bitmap>media/images/box/box-dialog.png</bitmap>
@@ -852,7 +852,7 @@ class MyClass(GeneratedClass):
                                                 <Parameter name="key" inherits_from_parent="0" content_type="3" value="opensongs/itaintmyfault" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                                                 <Parameter name="url" inherits_from_parent="0" content_type="3" value="https://www.youtube.com/watch?v=bqibUJ-0qBk" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
                                             </Box>
-                                            <Box name="Open link (4)" id="9" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="530" y="133">
+                                            <Box name="Open link (4)" id="9" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="283" y="203">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -1274,6 +1274,7 @@ class MyClass(GeneratedClass):
                                             <Link inputowner="8" indexofinput="2" outputowner="20" indexofoutput="6" />
                                             <Link inputowner="25" indexofinput="2" outputowner="0" indexofoutput="2" />
                                             <Link inputowner="8" indexofinput="2" outputowner="25" indexofoutput="6" />
+                                            <Link inputowner="12" indexofinput="2" outputowner="0" indexofoutput="2" />
                                         </Diagram>
                                     </BehaviorKeyframe>
                                 </BehaviorLayer>
@@ -8006,7 +8007,7 @@ class MyClass(GeneratedClass):
                         <Link inputowner="5" indexofinput="5" outputowner="19" indexofoutput="3" />
                         <Link inputowner="23" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="19" indexofinput="2" outputowner="0" indexofoutput="2" />
-                        <Link inputowner="9" indexofinput="2" outputowner="1" indexofoutput="3" />
+                        <Link inputowner="10" indexofinput="2" outputowner="1" indexofoutput="3" />
                     </Diagram>
                 </BehaviorKeyframe>
             </BehaviorLayer>

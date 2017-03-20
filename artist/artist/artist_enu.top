@@ -3,7 +3,7 @@ language: enu
 include: ../concept.top
 
  #-----------------------------Start ---------------------------------
-u:(e:onStart) ["You can call me DJ Pepper" "I know music and you can call me DJ Pepper"] $artist=0 ^goto(mainChoice)
+u:(e:onStart)  $pauseOn=true ["You can call me DJ Pepper" "I know music and you can call me DJ Pepper"] $openPage=startMenu $artist=0 ^goto(mainChoice)
 
 u:(["~hello  ["DJ Pepper" "pepper"]" ~hello]) Hello ^first[" $userName " " human"] If you want ^goto(mainChoice)
 
@@ -32,8 +32,8 @@ u:(~startQuiz) %initQuiz ["$artist==0 Which artist do you want the music quiz to
 u:(I want to talk about Justin Timberlake) Justin is great. What do you want to talk about? $artist=justin ^goto(mainChoice)
 u:(["dj pepper" pepper]) ["That is my name" "yes thats me" yes listening] 
 
-u:("learn [more "about the artist"]") %initLearnMore ["$artist==0 $openPage=learn Which artist do you want to learn more about?" "$artist==[~theArtists] $openPage=learn ^goto(storyMode) "]
-    u1:(_~theArtists) Lets learn more about $1 $artist=$1 $openPage=learn ^goto(storyMode)
+u:("learn [more "about the artist"]") %initLearnMore ["$artist==0 $openPage=learn Which artist do you want to learn more about?" "$artist==[~theArtists] $openPage=story ^goto(storyMode) "]
+    u1:(_~theArtists) Lets learn more about $1 $artist=$1 $openPage=story ^goto(storyMode)
     u1:(~stop) Alright 
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
         
@@ -65,7 +65,7 @@ u:(["stop talk about music" activities rules house "stop talkning" ~goodbye]) Do
 
 
 #kommentera ut raden under i choregraphe    
-#u:(e:Dialog/NoOneSpeak20) ^goto(mainChoice)
+u:(e:Dialog/NoOneSpeak20) ^goto(mainChoice)
 
 
 
@@ -98,7 +98,7 @@ u:(What is his [middle full] name) %trivia  %nameAnswer His full name is Justin 
 u:(["is he married" "is he single" "what is the name of his wife"]) %trivia  %marriedAnswer Justin is married to Jessica Biel 
 
 #-----------------------------------------Youtube----------------------------------------
-u:(playMusic) %playMusic  Okay lets play some music. Tell me which song you want to hear?
+u:(playMusic) %playMusic   $openPage=listen Okay lets play some music. Tell me which song you want to hear?
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
     u1:(~dontknow) I can help you find a song. Pick one from the list on my stomach.
     u1:(mirrors) Okay Im playing Mirrors with Justin on Youtube now. $ARTIST/youtube=1  
@@ -185,7 +185,7 @@ u:(story) %storyMode $openPage=story Look at my stomach to see the headlines and
         u2:(~no) ok  ^goto(storyMode) 
 
 
-    u1:(Personal life) Wikipedia says In early 1999 Timberlake began dating fellow former The New Mickey Mouse Club cast member and singer Britney Spears Their relationship ended abruptly in March 2002  In April 2003 he began dating actress Cameron Diaz soon after they met at the Nickelodeon Kids Choice Awards  Do you want to me to keep reading about this topic
+    u1:(Personal life) Wikipedia says In early 1999. Timberlake began dating fellow Former. The New Mickey Mouse Club Cast member and singer Britney Spears. Their relationship ended abruptly in. March 2002.  In April 2003 he began dating actress. Cameron Diaz soon after they met at the. Nickelodeon Kids Choice Awards    ^first[" $pauseOn==true $pause=1  A. A. A. "  " . "]  Do you want to me to keep reading about this topic
         u2:(~yes)  After much speculation of breakups throughout their relationship the couple split in December 2006 shortly after she introduced him as musical guest on Saturday Night Live In January 2007 Timberlake began dating actress Jessica Biel  They became engaged in December 2011 and married on October 19 2012 at the Borgo Egnazia resort in Fasano Italy  Timberlake and Biel have one son Silas Randall Timberlake born in April 2015 Forbes magazine began reporting on Timberlakes earnings in 2008 calculating that he earned $44 million between June 2007 and June 2008 for his music tour commercials and hospitality making him the worlds 4th best-paid music personality at the time above Madonna and Celine Dion  They placed him twelfth on the Celebrity 100 list and second on the Best-Paid Celebrities Under 30 list  According to Billboard Timberlake was the third highest-paid musician of 2013 with earnings of $31 million  He was ranked 26th with earnings of $57 million on the Celebrity 100 list for 2014 and 19th on the 2015 list with $63 million  Timberlake was listed at number three on Billboard Money-Makers List of 2014 Timberlake publicly endorsed Barack Obama in his 2008 and 2012 presidential campaigns  He and his wife Biel hosted a fundraiser for Democratic presidential candidate Hillary Clinton in Los Angeles in 2016  
         u2:(~no) ok  ^goto(storyMode) 
 
