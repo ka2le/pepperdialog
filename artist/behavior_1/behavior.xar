@@ -1238,7 +1238,7 @@ class MyClass(GeneratedClass):
                                                 <Parameter name="key" inherits_from_parent="0" content_type="3" value="quizScore" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                                                 <Parameter name="url" inherits_from_parent="0" content_type="3" value="https://pepperpages.mybluemix.net/peppertablet/index.html#quiz#score=" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
                                             </Box>
-                                            <Box name="open youtube" id="5" localization="8" tooltip="This box contains a basic python script and can be used to create any python script box you would like.&#x0A;&#x0A;To edit its script, double-click on it." x="1022" y="122">
+                                            <Box name="open youtube" id="5" localization="8" tooltip="This box contains a basic python script and can be used to create any python script box you would like.&#x0A;&#x0A;To edit its script, double-click on it." x="1427" y="234">
                                                 <bitmap>media/images/box/box-python-script.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -1285,30 +1285,32 @@ class MyClass(GeneratedClass):
                                             <Link inputowner="4" indexofinput="2" outputowner="2" indexofoutput="6" />
                                             <Link inputowner="8" indexofinput="2" outputowner="23" indexofoutput="6" />
                                             <Link inputowner="3" indexofinput="2" outputowner="0" indexofoutput="2" />
-                                            <Link inputowner="8" indexofinput="2" outputowner="3" indexofoutput="6" />
                                             <Link inputowner="11" indexofinput="2" outputowner="0" indexofoutput="2" />
-                                            <Link inputowner="8" indexofinput="2" outputowner="11" indexofoutput="6" />
                                             <Link inputowner="15" indexofinput="2" outputowner="0" indexofoutput="2" />
-                                            <Link inputowner="8" indexofinput="2" outputowner="15" indexofoutput="6" />
                                             <Link inputowner="13" indexofinput="2" outputowner="0" indexofoutput="2" />
-                                            <Link inputowner="8" indexofinput="2" outputowner="13" indexofoutput="6" />
-                                            <Link inputowner="8" indexofinput="2" outputowner="6" indexofoutput="6" />
                                             <Link inputowner="6" indexofinput="2" outputowner="0" indexofoutput="2" />
                                             <Link inputowner="9" indexofinput="2" outputowner="0" indexofoutput="3" />
-                                            <Link inputowner="8" indexofinput="2" outputowner="9" indexofoutput="6" />
                                             <Link inputowner="18" indexofinput="2" outputowner="0" indexofoutput="2" />
-                                            <Link inputowner="8" indexofinput="2" outputowner="18" indexofoutput="6" />
                                             <Link inputowner="17" indexofinput="2" outputowner="0" indexofoutput="2" />
-                                            <Link inputowner="8" indexofinput="2" outputowner="17" indexofoutput="6" />
                                             <Link inputowner="21" indexofinput="2" outputowner="0" indexofoutput="2" />
-                                            <Link inputowner="8" indexofinput="2" outputowner="21" indexofoutput="6" />
                                             <Link inputowner="19" indexofinput="2" outputowner="0" indexofoutput="2" />
-                                            <Link inputowner="8" indexofinput="2" outputowner="19" indexofoutput="6" />
                                             <Link inputowner="20" indexofinput="2" outputowner="0" indexofoutput="2" />
-                                            <Link inputowner="8" indexofinput="2" outputowner="20" indexofoutput="6" />
                                             <Link inputowner="25" indexofinput="2" outputowner="0" indexofoutput="2" />
                                             <Link inputowner="8" indexofinput="2" outputowner="25" indexofoutput="6" />
                                             <Link inputowner="12" indexofinput="2" outputowner="0" indexofoutput="2" />
+                                            <Link inputowner="8" indexofinput="2" outputowner="5" indexofoutput="5" />
+                                            <Link inputowner="5" indexofinput="2" outputowner="19" indexofoutput="6" />
+                                            <Link inputowner="5" indexofinput="2" outputowner="21" indexofoutput="6" />
+                                            <Link inputowner="5" indexofinput="2" outputowner="20" indexofoutput="6" />
+                                            <Link inputowner="5" indexofinput="2" outputowner="18" indexofoutput="6" />
+                                            <Link inputowner="5" indexofinput="2" outputowner="17" indexofoutput="6" />
+                                            <Link inputowner="5" indexofinput="2" outputowner="6" indexofoutput="6" />
+                                            <Link inputowner="5" indexofinput="2" outputowner="13" indexofoutput="6" />
+                                            <Link inputowner="5" indexofinput="2" outputowner="10" indexofoutput="6" />
+                                            <Link inputowner="5" indexofinput="2" outputowner="15" indexofoutput="6" />
+                                            <Link inputowner="5" indexofinput="2" outputowner="11" indexofoutput="6" />
+                                            <Link inputowner="5" indexofinput="2" outputowner="3" indexofoutput="6" />
+                                            <Link inputowner="5" indexofinput="2" outputowner="9" indexofoutput="6" />
                                         </Diagram>
                                     </BehaviorKeyframe>
                                 </BehaviorLayer>
@@ -8156,7 +8158,7 @@ class MyClass(GeneratedClass):
                         <Link inputowner="14" indexofinput="2" outputowner="2" indexofoutput="6" />
                         <Link inputowner="4" indexofinput="2" outputowner="14" indexofoutput="4" />
                         <Link inputowner="2" indexofinput="2" outputowner="0" indexofoutput="2" />
-                        <Link inputowner="10" indexofinput="2" outputowner="1" indexofoutput="3" />
+                        <Link inputowner="9" indexofinput="2" outputowner="1" indexofoutput="3" />
                     </Diagram>
                 </BehaviorKeyframe>
             </BehaviorLayer>

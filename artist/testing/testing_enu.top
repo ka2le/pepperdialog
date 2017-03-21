@@ -7,6 +7,7 @@ concept:(justinTimberlake) [justinTimberlake JT justin timberlake "justin timber
 concept:(zaraLarsson) ["zara larsson" zara]
 concept:(theArtists) [~justinTimberlake ~zaraLarsson]
 concept:(concept) ["concept _~theArtists"]
+concept:(concept2) ["{play} {_~theArtists}"]
 concept:(speaking) ["get it ["ok" "pls"]" "get it {yes}"]
 
 u:(music)  $goToTopic=music $onStopped=1
@@ -17,8 +18,16 @@ u:(e:onStart) I am in test mode
 u:(~hello) Hi ^first["$userName" "human "] . I am in test mode.
 u:(help)  here is a list of words for testing NLC local new page old page teach
 u:(~speaking) yes i get it
+u:(askme) what?
+    u1:(~concept2) i see $1
+#    "$3==[~theArtists] you have picked an artist but not a song" 
+#ok lets play ^first["$1 " "nothing"] ^first[" with $2 " "nothing"]     
+u:( "{["can you" "can we" "i want to"]} [play listen] {to} {[_~theSongs "{[any a]} [song track music]"]} {"{made} {[with by]} _~theArtists"}" ) ^first["$1==[~SongMirrors]  okay starting mirrors" "What song by $2 do you want listen to?"  "Not working"] S1 ^first["$1 " "NULL"] S2 ^first[" $2 " "NULL"]     
+u:(forbidden !not) forbidden
+u:(play quiz) quiz sure
 
-u:(~concept) ok $1
+u:(["var1 _[one 1] _[one 1]   " "var2 _[two 2]"]) var  ^first["$1 " "nothing"] ^first[" $2 " "nothing"]  ^first[" with $3 " "nothing"]  
+#u:(~concept) ok $1
 #^start(animations/Moods/Neutral/Pepper/Thinking) 
 u:(~how) ^startTag(animations/Stand/Waiting/Think_1)  I'm fine, thank you
 

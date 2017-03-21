@@ -45,7 +45,12 @@ concept: (justinTimberlake) ["Justin Timberlake" "Justin" justin]
 concept: (saraLarsson) ["sara larsson" "sara"]
 concept:(theArtists) [~justinTimberlake ~saraLarsson]
 
-concept:(choiceofartist) ["I want to [learn know] {more} about _~theArtists " "Can you tell me [more] about ~theArtists" "I want ["the quiz" it] to be about _~theArtists" "I want to ask questions about _~theArtists" "Lets talk about _~theArtists " " _~theArtists "] 
+concept:(SongMirrors) [mirrors mirror]
+concept:(SongCantstopthefeeling) ["Cant stop the feeling"]
+concept:(theSongs) [~SongCantstopthefeeling ~SongMirrors]
+#"{["I want to"]} [learn know] {more} about _~theArtists" "{"Can you"} tell me {more} about ~theArtists" "I want ["the quiz" it] to be about _~theArtists" "I want to ask questions about _~theArtists"  "Lets talk about _~theArtists" 
+concept:(choiceofartist) ["{["i want" lets]} {to} {[talk "[learn know] {more}" "ask questions" "do a quiz"]} {about} _~theArtists"] 
+#concept:(playMusicWith)  ["{["can you" "can we" "i want to"]} [play listen] {to} {_~song}"]
  #-----------------------------Main changing topics---------------------------------
 concept:(storyMode) ["read for me" wikipedia story "story mode" "{["i want to" "can we" "lets"]} {please} tell me more {about} {~theArtists}"]
 concept:(playMusic) ["{"can you"} play {a} [music song track]" "{"i want"} {to} listen to {a} [song music track youtube]" "play song" "youtube" "listen to music"]

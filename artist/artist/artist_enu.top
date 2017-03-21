@@ -24,7 +24,7 @@ u:(~whatcanyoudo) %mainChoice ["We can play a music quiz. Or listen to a song?" 
 #Kalles git-add
 #-----------------------------------------Changing section----------------------------------------
 u:(~startQuiz) %initQuiz ["$artist==0 Which artist do you want the music quiz to be about?"  "$artist==[~theArtists] $openPage=quiz ^goto(theQuiz) "]
-    u1:(_~theArtists) $1, good choice $artist=$1 $openPage=quiz ^goto(theQuiz)
+    u1:(~choiceofartist) $1, good choice $artist=$1 $openPage=quiz ^goto(theQuiz)
     u1:(~stop) Alright
     u1:(Which artist do you prefere?)  I prefer Justin Timerlake
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
@@ -41,7 +41,9 @@ u:(~askQuestion) %initAskQuestion ["$artist==0  Which artist do you want to ask 
     u1:(~stop) Alright       
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
         
-u:(~playMusic) %initPlayMusic  $openPage=listen ^goto(playMusic) 
+u:(~playMusic) %initPlayMusic  $openPage=listen ^goto(playMusic)
+#play specifi song from blank
+#u:( "{["can you" "can we" "i want to"]} [play listen] {to} {_~theSongs}") ok
             
 #-----------------------------------------Other stuff----------------------------------------           
             
