@@ -22,14 +22,9 @@ concept:(how) ["how are you" howdy "whats up" "how do you feel"]
 concept:(repeat) [repeat]
 concept:(thanks) ["thank you" thanks "thanks pepper" ]
 concept:(anyquestion) ["[what where when how does is] *" "when does it open"]
-# kategori: hdshadhsa
-concept:(startQuiz) [quiz "start quiz" "i want do do [a the] quiz" "quiz again" "another quiz"]
-
-
 concept:(changeArtist) ["change artist" "lets talk about another artist" "lets talk about someone else" ]
-concept:(askQuestion) ["i have a question" "can you answer a question" "ask question" "ask something" "i want to ask something"]
 concept:(tellTrivia) ["tell me something about him" trivia "tell me something"]
-concept:(playMusic) ["{"can you"} play {a} [music song track]" "{"i want"} {to} listen to {a} [song music track youtube]" "play song" "youtube" "listen to music"]
+
 concept:(done) [done finished "did it" next more]
 concept:(hello) [hello hi]
 concept:(names) [kalle carl isak isac gunnar]
@@ -39,22 +34,24 @@ concept:(whatcanyoudo) ["what can you do" help info functions]
 concept:(tellMe) ["tell me" tell say hear "lets hear it"]
 concept:(askingWords) ["where is" how when where "is there" "are there" "when is"]
 concept:(uppsalaActivity) [Cinema Fyrishov "The Church"]
-
+concept:(goodbye) [goodbye "good bye" bye "bye bye"]
 #Twister 
 concept:(number) [1 2 3 4 5 6 7 8 9 10]
 concept:(bodyPart) [foot hand]
 concept:(leftRight) [left right]
 concept:(color) [blue yellow red green orange]
- #-----------------------------Lägg till nya concept här---------------------------------
+ #-----------------------------Artister låtar osv---------------------------------
 concept: (justinTimberlake) ["Justin Timberlake" "Justin" justin]
 concept: (saraLarsson) ["sara larsson" "sara"]
-
 concept:(theArtists) [~justinTimberlake ~saraLarsson]
 
-concept:(goodbye) [goodbye "good bye" bye "bye bye"]
-concept:(choiceofartist) ["I want to [learn know] [more " "] about _~theArtists " "Can you tell me [more] about ~theArtists" "I want ["the quiz" it] to be about _~theArtists" "I want to ask questions about _~theArtists" "Lets talk about _~theArtists " " _~theArtists "] 
-
- #-----------------------------Lägg till concept som roboten ska säga här---------------------------------
+concept:(choiceofartist) ["I want to [learn know] {more} about _~theArtists " "Can you tell me [more] about ~theArtists" "I want ["the quiz" it] to be about _~theArtists" "I want to ask questions about _~theArtists" "Lets talk about _~theArtists " " _~theArtists "] 
+ #-----------------------------Main changing topics---------------------------------
+concept:(storyMode) ["read for me" wikipedia story "story mode" "{["i want to" "can we" "lets"]} {please} tell me more {about} {~theArtists}"]
+concept:(playMusic) ["{"can you"} play {a} [music song track]" "{"i want"} {to} listen to {a} [song music track youtube]" "play song" "youtube" "listen to music"]
+concept:(askQuestion) ["i have a question" "can you answer a question" "ask question" "ask something" "i want to ask something"]
+concept:(startQuiz) [quiz "start quiz" "i want do do [a the] quiz" "quiz again" "another quiz"]
+#-----------------------------Lägg till concept som roboten ska säga här---------------------------------
 
 
 #------------------------------General Pepper talk-------------------------    

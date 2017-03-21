@@ -41,8 +41,10 @@ u:(NLC) N L C ready
 u:(e:NLC/output) NLC result says $NLC/output
 u:(nlc result)  NLC result says $NLC/output
 
-u:(trigger value) triggering $someRandomThing=1
-u:(e:someRandomThing2) I was triggered
+
+u:(trigger) go
+    u1:(*) triggering $someRandomThing=1 ^stayInScope
+    u1:(e:someRandomThing2) I was triggered
 
 u:(alphabet) a b c d e f g h i j k l m n o p q r s t u v x y z 
 u:(pause)  i will first talk.  ^first[" $pauseOn==true $pause=1  A. A. A. "  " . "]    And then after the break talk  again   

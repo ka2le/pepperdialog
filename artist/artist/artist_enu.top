@@ -12,7 +12,7 @@ u:(["~hello  ["DJ Pepper" "pepper"]" ~hello]) Hello ^first[" $userName " " human
 
 u:(~whatcanyoudo) %mainChoice ["We can play a music quiz. Or listen to a song?" "We can learn more about an artist in general. Or you can ask me specific questions?" " ^goto(whoisfav)" "$artist==[~theArtists] Did you know that ^gotoRandom(trivia)" ] 
     u1:(~startQuiz) ^goto(initQuiz)
-    u1:(learn more)  ^goto(initLearnMore)
+    u1:(~storyMode)  ^goto(initLearnMore)
     u1:([questions ~askQuestion])  ^goto(initAskQuestion) 
     u1:(~playMusic)  ^goto(initPlayMusic)
     u1:(~no) Okay, maybe  ^goto(mainChoice)
@@ -29,10 +29,8 @@ u:(~startQuiz) %initQuiz ["$artist==0 Which artist do you want the music quiz to
     u1:(Which artist do you prefere?)  I prefer Justin Timerlake
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
         
-u:(I want to talk about Justin Timberlake) Justin is great. What do you want to talk about? $artist=justin ^goto(mainChoice)
-u:(["dj pepper" pepper]) ["That is my name" "yes thats me" yes listening] 
 
-u:("learn [more "about the artist"]") %initLearnMore ["$artist==0 $openPage=learn Which artist do you want to learn more about?" "$artist==[~theArtists] $openPage=story ^goto(storyMode) "]
+u:(~storyMode) %initLearnMore ["$artist==0 $openPage=learn Which artist do you want to learn more about?" "$artist==[~theArtists] $openPage=story ^goto(storyMode) "]
     u1:(_~theArtists) Lets learn more about $1 $artist=$1 $openPage=story ^goto(storyMode)
     u1:(~stop) Alright 
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
@@ -45,7 +43,11 @@ u:(~askQuestion) %initAskQuestion ["$artist==0  Which artist do you want to ask 
         
 u:(~playMusic) %initPlayMusic  $openPage=listen ^goto(playMusic) 
             
+#-----------------------------------------Other stuff----------------------------------------           
+            
+            
 u:(what artist are we talking about) ^first["we are talking about  $artist" " no one. ^goto(whoisfav)"]
+
 u:(~changeArtist) What artist do you want to talk about instead?
     u1:(~justinTimberlake) Yeah lets talk about justin timberlake  $artist=justin
     u1:(["no one" clear forget]) nevermind then $artist=0
@@ -63,11 +65,14 @@ u:(["stop talk about music" activities rules house "stop talkning" ~goodbye]) Do
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
 
 
+u:(I want to talk about Justin Timberlake) Justin is great. What do you want to talk about? $artist=justin ^goto(mainChoice)
+u:(["dj pepper" pepper]) ["That is my name" "yes thats me" yes listening] 
+
 
 #kommentera ut raden under i choregraphe    
-u:(e:Dialog/NoOneSpeak20) ^goto(mainChoice)
+#u:(e:Dialog/NoOneSpeak20) ^goto(mainChoice)
 
-
+u:(e:Dialog/NoOneSpeak60) closing tablet $stopTablet=1
 
 #-----------------------------------------Questions from user----------------------------------------
 
@@ -171,7 +176,7 @@ u:(q6) %q6  What was the name of his latest album?
        
 
 #-----------------------------------------Story mode ----------------------------------------
-u:(story) %storyMode $openPage=story Look at my stomach to see the headlines and tell me what you want to hear about?
+u:(storyMode) %storyMode $openPage=story Look at my stomach to see the headlines and tell me what you want to hear about?
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
     u1:(~stop) lets talk about something else
     u1:(Early life) Wikipedia says Timberlake was born In Memphis Tennessee. The son of Lynn Bomar Harless. And Charles Randall Timberlake. A Baptist church choir director.   ^first[" $pauseOn==true $pause=1  A. A. A. "  " . "]    Timberlake grew up in Shelby Forest. A small community between Memphis and Millington.  He has two half-brothers. Jonathan born September 12 1993. And Stephen. Born August 14 1998 from Charles second marriage To Lisa Perry. ^first[" $pauseOn==true $pause=1  A. A. A. "  " . "]    Do you want to hear more about this topic?
