@@ -22,7 +22,9 @@ u:(askme) what?
     u1:(~concept2) i see $1
 #    "$3==[~theArtists] you have picked an artist but not a song" 
 #ok lets play ^first["$1 " "nothing"] ^first[" with $2 " "nothing"]     
-u:( "{["can you" "can we" "i want to"]} [play listen] {to} {[_~theSongs "{[any a]} [song track music]"]} {"{made} {[with by]} _~theArtists"}" ) ^first["$1==[~SongMirrors]  okay starting mirrors" "What song by $2 do you want listen to?"  "Not working"] S1 ^first["$1 " "NULL"] S2 ^first[" $2 " "NULL"]     
+u:( "{["can you" "can we" "i want to"]} [play listen] {to} {[_~theSongs "{[any a]} [song track music]"]} {"{made} {[with by]} _~theArtists"}" ) ^first["$1==[~SongMirrors]  okay starting mirrors" "What song by $2 do you want listen to? ^goto(initPlayMusic)"  "Not working"] # S1 ^first["$1 " "NULL"] S2 ^first[" $2 " "NULL"]     
+
+u:(initPlayMusic) %initPlayMusic you are in testing
 u:(forbidden !not) forbidden
 u:(play quiz) quiz sure
 

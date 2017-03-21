@@ -31,19 +31,19 @@ u:(~startQuiz) %initQuiz ["$artist==0 Which artist do you want the music quiz to
         
 
 u:(~storyMode) %initLearnMore ["$artist==0 $openPage=learn Which artist do you want to learn more about?" "$artist==[~theArtists] $openPage=story ^goto(storyMode) "]
-    u1:(_~theArtists) Lets learn more about $1 $artist=$1 $openPage=story ^goto(storyMode)
+    u1:(~choiceofartist) Lets learn more about $1 $artist=$1 $openPage=story ^goto(storyMode)
     u1:(~stop) Alright 
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
         
         
 u:(~askQuestion) %initAskQuestion ["$artist==0  Which artist do you want to ask questions about?" "$artist==[~theArtists] $openPage=questions ^goto(answerQ) "]
-    u1:(_~theArtists) You are in luck, I know so much about $1 $artist=$1 $openPage=questions ^goto(answerQ)
+    u1:(~choiceofartist) You are in luck, I know so much about $1 $artist=$1 $openPage=questions ^goto(answerQ)
     u1:(~stop) Alright       
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
         
 u:(~playMusic) %initPlayMusic  $openPage=listen ^goto(playMusic)
-#play specifi song from blank
-#u:( "{["can you" "can we" "i want to"]} [play listen] {to} {_~theSongs}") ok
+
+
             
 #-----------------------------------------Other stuff----------------------------------------           
             
@@ -105,21 +105,15 @@ u:(What is his [middle full] name) %trivia  %nameAnswer His full name is Justin 
 u:(["is he married" "is he single" "what is the name of his wife"]) %trivia  %marriedAnswer Justin is married to Jessica Biel 
 
 #-----------------------------------------Youtube----------------------------------------
+#play specific song from blank
+u:( "{["can you" "can we" "i want to"]} [play listen] {to} {[_~theSongs "{[any a]} [song track music]"]} {"{made} {[with by]} _~theArtists"}" ) ^first["$1==[~SongMirrors] $opensongs/mirrors=1  Ok Im playing ~SongMirrors by ~justinTimberlake"  "$1==[~SongMirrors] $opensongs/mirrors=1  Ok Im playing ~SongMirrors by     ~justinTimberlake"             "$1==[~SongCantstop] $opensongs/cantstopthefeeling=1  Ok Im playing ~SongCantstop by ~justinTimberlake"  "$1==[~SongWhatgoes] $opensongs/whatgoesaroundcomesaround=1   Ok Im playing ~SongWhatgoes by ~justinTimberlake"       "$1==[~SongUptownfunk] $opensongs/uptownfunk=1 Ok Im playing ~SongUptownfunk by     ~brunoMars"                  "$1==[~SongLushlife] $opensongs/lushlife=1  Ok Im playing ~SongLushlife by     ~saraLarsson"                  "$1==[~SongThisone] $opensongs/thisoneisforyou=1  Ok Im playing ~SongThisone by     ~saraLarsson"                  "$1==[~SongAintmyfault] $opensongs/itaintmyfault=1   Ok Im playing ~SongAintmyfault by     ~saraLarsson"                  "$1==[~SongHalo] $opensongs/halo=1 Ok Im playing ~SongHalo by     ~beyonce"                        "$1==[~SongSingleladies] $opensongs/singleladies=1   Ok Im playing ~SongSingleladies by     ~beyonce"                  "$1==[~SongSorry] $opensongs/sorry=1  Ok Im playing ~SongSorry by     ~justinBieber"                  "$1==[~SongWhatdoyoumean] $opensongs/whatdoyoumean=1  Ok Im playing ~SongWhatdoyoumean by     ~justinBieber"                  "$1==[~SongLoveyourself] $opensongs/loveyourself=1   Ok Im playing ~SongLoveyourself by     ~justinBieber"                                          "What song by $2 do you want listen to? ^goto(initPlayMusic)"  "I did not chatch that"]  
+
+
 u:(playMusic) %playMusic   $openPage=listen Okay lets play some music. Tell me which song you want to hear?
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
+    u1:(~stop) okay lets do something else
     u1:(~dontknow) I can help you find a song. Pick one from the list on my stomach.
-    u1:(mirrors) Okay Im playing Mirrors with Justin on Youtube now. $ARTIST/youtube=1  
-    u1:(Cant stop the feeling) Okay Im playing Cant stop the feeling. With Justin on Youtube now. $opensongs/cantstopthefeeling=1 
-    u1:(["What goes around" "What goes around comes back around"]) Okay Im playing Cant stop the feeling. With Justin on Youtube now. $opensongs/whatgoesaroundcomesaround=1 
-    u1: (["Uptown funk" "Uptwon funk with Bruno Mars"]) Okay Im playing Uptown Funk. With Bruno Mars on Youtube now. $opensongs/uptownfunk=1
-    u1: (["Lush Life" "Lush life with" ["Sara Larsson" Sara Larsson]])  playing Lush Life
-    u1: (["This Ones For You" "This one with" ["Sara Larsson" Sara Larsson]]) starting This Ones For You  $opensongs/thisoneisforyou=1 
-    u1: (["It aint my fault" "Aint my fault" "Aint fault" ["Sara Larsson" Sara Larsson]])  Okay Im playing It aint my faul with Sara Larsson $opensongs/itaintmyfault=1 
-    u1: (["Halo" "Halo with Beyonce"]) starting Halo with Beyonce $opensongs/halo=1
-    u1: (["Single Ladies" "Single Ladies with Beyonce"]) playing Single Ladies with Beyonce $opensongs/singleladies=1 
-    u1:([Sorry "Sorry Justin Bieber" "Sorry with Justin Bieber"]) I am starting the song Sorry $opensongs/sorry=1 
-    u1:(["What do you mean" "What do you mean Justin Bieber" " What do you mean with Justin Bieber"]) Playing song what do you mean $opensongs/whatdoyoumean=1 
-    u1:(["Love yourself" "Love yourself with Justin Bieber"]) okay starting Love yourself $opensongs/loveyourself=1 
+    u1:( "{["can you" "can we" "i want to"]} [play listen] {to} {[_~theSongs "{[any a]} [song track music]"]} {"{made} {[with by]} _~theArtists"}" ) ^first["$1==[~SongMirrors] $opensongs/mirrors=1  Ok Im playing ~SongMirrors by ~justinTimberlake"  "$1==[~SongMirrors] $opensongs/mirrors=1  Ok Im playing ~SongMirrors by     ~justinTimberlake"             "$1==[~SongCantstop] $opensongs/cantstopthefeeling=1  Ok Im playing ~SongCantstop by ~justinTimberlake"  "$1==[~SongWhatgoes] $opensongs/whatgoesaroundcomesaround=1   Ok Im playing ~SongWhatgoes by ~justinTimberlake"       "$1==[~SongUptownfunk] $opensongs/uptownfunk=1 Ok Im playing ~SongUptownfunk by     ~brunoMars"                  "$1==[~SongLushlife] $opensongs/lushlife=1  Ok Im playing ~SongLushlife by     ~saraLarsson"                  "$1==[~SongThisone] $opensongs/thisoneisforyou=1  Ok Im playing ~SongThisone by     ~saraLarsson"                  "$1==[~SongAintmyfault] $opensongs/itaintmyfault=1   Ok Im playing ~SongAintmyfault by     ~saraLarsson"                  "$1==[~SongHalo] $opensongs/halo=1 Ok Im playing ~SongHalo by     ~beyonce"                        "$1==[~SongSingleladies] $opensongs/singleladies=1   Ok Im playing ~SongSingleladies by     ~beyonce"                  "$1==[~SongSorry] $opensongs/sorry=1  Ok Im playing ~SongSorry by     ~justinBieber"                  "$1==[~SongWhatdoyoumean] $opensongs/whatdoyoumean=1  Ok Im playing ~SongWhatdoyoumean by     ~justinBieber"                  "$1==[~SongLoveyourself] $opensongs/loveyourself=1   Ok Im playing ~SongLoveyourself by     ~justinBieber"                                          "What song by $2 do you want listen to? ^stayInScope "  "Look at my tablet to see a list of songs to pick from ^stayInScope "]  
 
 #-----------------------------------------QUIZ----------------------------------------
 u:(thequiz) %theQuiz $Menu/quiz=1 Starting the quiz. $quizScore=0 ^goto(selectNextQ) 
