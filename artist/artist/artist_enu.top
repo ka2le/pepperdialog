@@ -107,7 +107,7 @@ u:(["is he married" "is he single" "what is the name of his wife"]) %trivia  %ma
 #-----------------------------------------Youtube----------------------------------------
 #play specific song from blank
 
-u:(pepperneedsomehelp) %pepperneedsomehelp  ^first[" $pauseOn==true $pause=1  A. A. A. "  " . "] ["Would you be so kind and help me a little with starting the song. Just press play." "could you please help me by  pressing play."] on my tablet.
+u:(pepperneedsomehelp) %pepperneedsomehelp  ^first[" $pauseOn==true $pause=1  A. A. A. "  " . "] ["Would you be so kind and help me a little with starting the song. Just press play." "could you please help me by  pressing play."] on my tablet. $pose/dance2=1
 u:(playMusic) %playMusic   $openPage=listen  Tell me which song you want to listen to?
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
     u1:(~stop) okay lets do something else

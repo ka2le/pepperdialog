@@ -1676,7 +1676,7 @@ class MyClass(GeneratedClass):
                             <Timeline enable="0">
                                 <BehaviorLayer name="behavior_layer1">
                                     <BehaviorKeyframe name="keyframe1" index="1">
-                                        <Diagram scale="70.7107">
+                                        <Diagram scale="35.3553">
                                             <Box name="Subscribe to Event (4)" id="18" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="181" y="55">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
                                                 <script language="4">
@@ -3382,7 +3382,7 @@ class MyClass(GeneratedClass):
                                                 <Resource name="Standing" type="Lock" timeout="1" />
                                                 <Resource name="All motors" type="Lock" timeout="1" />
                                             </Box>
-                                            <Box name="Disco" id="9" localization="8" tooltip="ID : #04B 0002&#x0A;&#x0A;===================&#x0A;&#x0A;Tags : &#x0A;- Disco" x="559" y="285">
+                                            <Box name="Disco" id="9" localization="8" tooltip="ID : #04B 0002&#x0A;&#x0A;===================&#x0A;&#x0A;Tags : &#x0A;- Disco" x="1713" y="287">
                                                 <bitmap>media/images/box/movement/move.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -3832,7 +3832,7 @@ class MyClass(GeneratedClass):
                                                 <Resource name="Standing" type="Lock" timeout="1" />
                                                 <Resource name="All motors" type="Lock" timeout="1" />
                                             </Box>
-                                            <Box name="Headbang" id="8" localization="8" tooltip="ID : #04B 0003&#x0A;&#x0A;===================&#x0A;&#x0A;Tags :&#x0A;- Headbang" x="580" y="426">
+                                            <Box name="Headbang" id="8" localization="8" tooltip="ID : #04B 0003&#x0A;&#x0A;===================&#x0A;&#x0A;Tags :&#x0A;- Headbang" x="1704" y="528">
                                                 <bitmap>media/images/box/movement/move.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -7164,7 +7164,7 @@ class MyClass(GeneratedClass):
                                                 <Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="" id="6" />
                                                 <Parameter name="key" inherits_from_parent="0" content_type="3" value="pose/dance3" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                                             </Box>
-                                            <Box name="Subscribe to Event (9)" id="27" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="470" y="422">
+                                            <Box name="Subscribe to Event (9)" id="27" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="1389" y="512">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -7198,7 +7198,7 @@ class MyClass(GeneratedClass):
                                                 <Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="" id="6" />
                                                 <Parameter name="key" inherits_from_parent="0" content_type="3" value="pose/dance2" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                                             </Box>
-                                            <Box name="Subscribe to Event (10)" id="28" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="456" y="287">
+                                            <Box name="Subscribe to Event (10)" id="28" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="1528" y="345">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -7402,6 +7402,54 @@ class MyClass(GeneratedClass):
                                                 <Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="" id="6" />
                                                 <Parameter name="key" inherits_from_parent="0" content_type="3" value="pose/mystical" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                                             </Box>
+                                            <Box name="Delay" id="34" localization="8" tooltip="Wait a moment before triggering the output. &#x0A;Can be stopped anytime. &#x0A;Multiple inputs will trigger multiple outputs." x="1554" y="537">
+                                                <bitmap>media/images/box/wait.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self, False)
+
+    def onLoad(self):
+        self.delayed = []
+
+    def onUnload(self):
+        self.cancelDelays()
+
+    def cancelDelays(self):
+        cancel_list = list(self.delayed)
+        for d in cancel_list:
+            d.cancel()
+
+    def cleanDelay(self, fut, fut_ref):
+        self.delayed.remove(fut)
+
+    def triggerOutput(self):
+        self.timerOutput()
+
+    def onInput_onStart(self):
+        import qi
+        import functools
+        delay_future = qi.async(self.triggerOutput, delay=int(self.getParameter("Timeout (s)") * 1000 * 1000))
+        # keep the async operation in an array for cancel
+        # and remove it when it is finished in the callback
+        self.delayed.append(delay_future)
+        bound_clean = functools.partial(self.cleanDelay, delay_future)
+        delay_future.addCallback(bound_clean)
+
+    def onInput_onStop(self):
+        if self.getParameter("Trigger timerOutput if cancelled") and self.delayed:
+            self.timerOutput()
+        self.onUnload()]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Start the Delay box with the configured timeout value." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Stop the wait and stimulate the output." id="3" />
+                                                <Output name="timerOutput" type="1" type_size="1" nature="1" inner="0" tooltip="Send a bang once delay set in parameters is elapsed, or if the box is stopped and the appropriate parameter is set." id="4" />
+                                                <Parameter name="Timeout (s)" inherits_from_parent="0" content_type="2" value="8" default_value="1" min="0" max="5000" tooltip="Duration the box waits before stimulating the output." id="5" />
+                                                <Parameter name="Trigger timerOutput if cancelled" inherits_from_parent="0" content_type="0" value="0" default_value="1" tooltip="If the box is currently delaying at least one signal and cancelled, output will be stimulated." id="6" />
+                                            </Box>
                                             <Link inputowner="22" indexofinput="2" outputowner="18" indexofoutput="6" />
                                             <Link inputowner="18" indexofinput="2" outputowner="0" indexofoutput="2" />
                                             <Link inputowner="2" indexofinput="2" outputowner="0" indexofoutput="2" />
@@ -7436,7 +7484,6 @@ class MyClass(GeneratedClass):
                                             <Link inputowner="25" indexofinput="2" outputowner="0" indexofoutput="2" />
                                             <Link inputowner="13" indexofinput="2" outputowner="26" indexofoutput="6" />
                                             <Link inputowner="26" indexofinput="2" outputowner="0" indexofoutput="2" />
-                                            <Link inputowner="8" indexofinput="2" outputowner="27" indexofoutput="6" />
                                             <Link inputowner="27" indexofinput="2" outputowner="0" indexofoutput="2" />
                                             <Link inputowner="9" indexofinput="2" outputowner="28" indexofoutput="6" />
                                             <Link inputowner="28" indexofinput="2" outputowner="0" indexofoutput="2" />
@@ -7450,6 +7497,8 @@ class MyClass(GeneratedClass):
                                             <Link inputowner="32" indexofinput="2" outputowner="0" indexofoutput="2" />
                                             <Link inputowner="17" indexofinput="2" outputowner="33" indexofoutput="6" />
                                             <Link inputowner="33" indexofinput="2" outputowner="0" indexofoutput="2" />
+                                            <Link inputowner="34" indexofinput="2" outputowner="27" indexofoutput="6" />
+                                            <Link inputowner="8" indexofinput="2" outputowner="34" indexofoutput="4" />
                                         </Diagram>
                                     </BehaviorKeyframe>
                                 </BehaviorLayer>
@@ -8200,7 +8249,8 @@ class MyClass(GeneratedClass):
                         <Link inputowner="14" indexofinput="2" outputowner="2" indexofoutput="6" />
                         <Link inputowner="4" indexofinput="2" outputowner="14" indexofoutput="4" />
                         <Link inputowner="2" indexofinput="2" outputowner="0" indexofoutput="2" />
-                        <Link inputowner="9" indexofinput="2" outputowner="1" indexofoutput="3" />
+                        <Link inputowner="10" indexofinput="2" outputowner="1" indexofoutput="3" />
+                        <Link inputowner="19" indexofinput="2" outputowner="0" indexofoutput="2" />
                     </Diagram>
                 </BehaviorKeyframe>
             </BehaviorLayer>
