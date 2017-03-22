@@ -12,9 +12,6 @@
     </Dialogs>
     <Resources>
         <File name="_metadata" src="_metadata" />
-        <File name="css" src="html/css.css" />
-        <File name="functions" src="html/functions.js" />
-        <File name="index" src="html/index.html" />
         <File name="testfile" src="testfile.txt" />
         <File name="__init__" src="lib/watson_developer_cloud/__init__.py" />
         <File name="alchemy_data_news_v1" src="lib/watson_developer_cloud/alchemy_data_news_v1.py" />
@@ -47,9 +44,9 @@
         <Topic name="ExampleDialog_enu" src="behavior_1/ExampleDialog/ExampleDialog_enu.top" topicName="ExampleDialog" language="en_US" />
         <Topic name="general_enu" src="general/general_enu.top" topicName="general" language="en_US" />
         <Topic name="testing_enu" src="testing/testing_enu.top" topicName="testing" language="en_US" />
-        <Topic name="artist_enu" src="artist/artist_enu.top" topicName="" language="C" />
+        <Topic name="artist_enu" src="artist/artist_enu.top" topicName="artist" language="en_US" />
         <Topic name="common2_enu" src="common2_enu.top" topicName="common2" language="en_US" />
-        <Topic name="concept" src="concept.top" topicName="concept" language="en_US" />
+        <Topic name="concept" src="concept.top" topicName="" language="C" />
     </Topics>
     <IgnoredPaths />
 </Package>

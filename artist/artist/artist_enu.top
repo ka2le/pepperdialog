@@ -1,11 +1,11 @@
-<topic: ~artist()
+topic: ~artist()
 language: enu
 include: ../concept.top
 
  #-----------------------------Start ---------------------------------
 u:(e:onStart)  $pauseOn=true ["You can call me DJ Pepper" "I know music and you can call me DJ Pepper"] $openPage=startMenu $artist=0 ^goto(mainChoice)
 
-u:(["~hello  ["DJ Pepper" "pepper"]" ~hello]) Hello ^first[" $userName " " human"]  ^goto(mainChoice)
+u:(["~hello  ["DJ Pepper" "pepper"]" ~hello]) Hello ^first[" $userName " " human"] If you want ^goto(mainChoice)
 
 
 #-----------------------------------------Starting choice----------------------------------------
@@ -106,7 +106,6 @@ u:(["is he married" "is he single" "what is the name of his wife"]) %trivia  %ma
 
 #-----------------------------------------Youtube----------------------------------------
 #play specific song from blank
-u:( "{["can you" "can we" "i want to"]} [play listen] {to} {[_~theSongs "{[any a]} [song track music]"]} {"{made} {[with by]} _~theArtists"}" ) ^first["$1==[~SongMirrors] $opensongs/mirrors=1  Ok Im playing ~SongMirrors by ~justinTimberlake"  "$1==[~SongMirrors] $opensongs/mirrors=1  Ok Im playing ~SongMirrors by     ~justinTimberlake"             "$1==[~SongCantstop] $opensongs/cantstopthefeeling=1  Ok Im playing ~SongCantstop by ~justinTimberlake"  "$1==[~SongWhatgoes] $opensongs/whatgoesaroundcomesaround=1   Ok Im playing ~SongWhatgoes by ~justinTimberlake"       "$1==[~SongUptownfunk] $opensongs/uptownfunk=1 Ok Im playing ~SongUptownfunk by     ~brunoMars"                  "$1==[~SongLushlife] $opensongs/lushlife=1  Ok Im playing ~SongLushlife by     ~saraLarsson"                  "$1==[~SongThisone] $opensongs/thisoneisforyou=1  Ok Im playing ~SongThisone by     ~saraLarsson"                  "$1==[~SongAintmyfault] $opensongs/itaintmyfault=1   Ok Im playing ~SongAintmyfault by     ~saraLarsson"                  "$1==[~SongHalo] $opensongs/halo=1 Ok Im playing ~SongHalo by     ~beyonce"                        "$1==[~SongSingleladies] $opensongs/singleladies=1   Ok Im playing ~SongSingleladies by     ~beyonce"                  "$1==[~SongSorry] $opensongs/sorry=1  Ok Im playing ~SongSorry by     ~justinBieber"                  "$1==[~SongWhatdoyoumean] $opensongs/whatdoyoumean=1  Ok Im playing ~SongWhatdoyoumean by     ~justinBieber"                  "$1==[~SongLoveyourself] $opensongs/loveyourself=1   Ok Im playing ~SongLoveyourself by     ~justinBieber"                                          "What song by $2 do you want listen to? ^goto(initPlayMusic)"  "I did not catch that ^goto(playMusic)"]  
 
 
 u:(playMusic) %playMusic   $openPage=listen  Tell me which song you want to listen to?
@@ -118,7 +117,7 @@ u:(playMusic) %playMusic   $openPage=listen  Tell me which song you want to list
 #-----------------------------------------QUIZ----------------------------------------
 u:(thequiz) %theQuiz $Menu/quiz=1 Starting the quiz. $quizScore=0 ^goto(selectNextQ) 
 u:(selectQ) %selectNextQ [^goto(q1) ^goto(q2) ^goto(q3) ^goto(q4) ^goto(q5) ^goto(q6)]
-u:(moreQs) %moreQs ["here is the next [one question]" "get ready"] ^goto(selectNextQ) 
+u:(moreQs) %moreQs [". Here is the next [. One question]" " . Get ready"] . ^goto(selectNextQ) 
 #u:(moreQs) %moreQs Do you want another question?
 #    u1:(~yes) {Ok} {["Here come another one" "here is another one" "get ready" ]} ^goto(selectNextQ) 
 #    u1:(~no) Okay. Well played. Just tell me if you want to do a quiz again sometime.
@@ -134,7 +133,7 @@ u:(q1) %q1 How old is Justin Timberlake?
     u1:(~stop) Stopping the quiz. 
     u1:(score) Your score is $quizScore   ^stayInScope
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
-u:(q2) %q2 In what city was he born?
+u:(q2) %q2 In what city was he boorn?
     u1:([Memphis  "born in Memphis" "[Justin he "Justin Timberlake"] [born "born in" "is born in"] Memphis"])  ^goto(quizGoodJob)
     u1:(~dontknow) I'll tell you then. He was born in Memphis. ^goto(moreQs) 
     u1:(_*) I heard you say $1 . The correct answer is that he was born in Memphis. ^goto(moreQs)
@@ -163,7 +162,7 @@ u:(q5) %q5  How many children does he have?
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
     u1:(~stop) Stopping the quiz.
 u:(q6) %q6  What was the name of his latest album?
-    u1:([{[Justins his "Justin Timberlakes" "the album"]} {"is named"} ["the 20 20 experience " "20 20 experience " "twenty twenty experience"]]) ^goto(quizGoodJob)
+    u1:([{[Justins his "Justin Timberlakes" "the album"]} {"is named"} "twenty twenty experience"]) ^goto(quizGoodJob)
     u1:(~dontknow) I'll tell you then. It was named the 20 20 experience ^goto(moreQs) 
     u1:(_*) I heard you say $1 . The correct answer is that It was named the 20 20 experience. ^goto(moreQs)
     u1:(score) Your score is $quizScore   ^stayInScope
@@ -194,3 +193,5 @@ u:(storyMode) %storyMode $openPage=story Look at my stomach to see the headlines
 	u1:(Achievements) Wikipedia says All four of Timberlakes studio albums have been certified platinum or better by the RIAA and have received numerous awards Worldwide sales figures for Justified stands at 10 million copies  .    .   FutureSexLoveSounds at 10 million  .    .   and joint sales of The 2020 Experience with 2 of 2 at 6 million copies .   .   As of 2014  .   Timberlake has had six songs exceed 3 million digital copies in the United States with SexyBack 4 .   ^first[" $pauseOn==true $pause=1  A. A. A. "  " . "]  Do you want to hear more about this topic? 
 		u2:(~yes) 5  .    .   4 Minutes  .    .   Dead and Gone  .    .   Suit & Tie  .    .   Mirrors  .    .   and Holy Grail .   .  According to Billboard  .   FutureSexLoveShow was the third highest-grossing concert tour of 2007 and highest solo .   .   The 2020 Experience World Tour was an international success and became Timberlakes most successful tour to date .  The tour was the highest-grossing led by a solo artist in 2014  .   and one of the highest grossing tours of the decade .   .   For its associated album  .   The 2020 Experience  .   Timberlake was named Artist of the Year with the top-selling album by Apple Inc . s annual list of best-sellers .   .  Throughout his solo career  .   Timberlake has won ten Grammy Awards  .   four Emmy Awards  .   seven American Music Awards  .   three Brit Awards  .   seven Billboard Music Awards  .   and eleven MTV Video Music Awards .  His Grammy wins include categories on the pop  .   dance and R&B genres  .   while his Emmy wins consist of two Outstanding Original Music and Lyrics and two Outstanding Guest Actor in a Comedy Series .   .   Timberlake received the Video Vanguard Award at the 2013 MTV Video Music Awards  .    .   and the Innovator Award at the 2015 iHeartRadio Music Awards .   .   Among other awards  .   he won the MTV Video Music Award for Video of the Year for Mirrors in 2013 and the Billboard Music Awards for Top Artist with the Top Billboard 200 Album for The 2020 Experience in 2014 .  Timberlake received the inaugural Decade Award at the 2016 Teen Choice Awards for his continuous achievements since the release of FutureSexLoveSounds 2006 .   .  In the United States  .   five of Timberlakes singles have topped the Billboard Hot 100  .   his most recent being Cant Stop the Feeling! .   .   He topped nine Billboard Year-End charts for 2013  .   including Billboard 200 Artists  .   and Billboard 200 Albums .   .   For 2014  .   Timberlake was named Billboard Top Male Artist .   .   . 
 		u2:(~no) ok  ^goto(storyMode) 
+
+  

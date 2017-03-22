@@ -455,7 +455,7 @@ class MyClass(GeneratedClass):
                             <Timeline enable="0">
                                 <BehaviorLayer name="behavior_layer1">
                                     <BehaviorKeyframe name="keyframe1" index="1">
-                                        <Diagram scale="59.4604">
+                                        <Diagram scale="42.0448">
                                             <Box name="Show Web View" id="8" localization="8" tooltip="Shows the webview (html content) on the tablet.&#x0A;&#x0A;V1.0.0&#x0A;" x="1447" y="398">
                                                 <bitmap>media/images/box/internet/internet.png</bitmap>
                                                 <script language="4">
