@@ -68,7 +68,7 @@ concept:(choiceofartist) ["{["i want" lets]} {to} {[talk "[learn know] {more}" "
 concept:(storyMode) ["read for me" wikipedia story "story mode" "{["i want to" "[can could] [we you]" "lets"]} {please} ["tell me" "listen to"] [more "a story"] {about} {~theArtists}" story "what story can you tell me"]
 concept:(playMusic) ["{"can you"} play {a} [music song track]" "{"i want"} {to} listen to {a} [song music track youtube]" "play song" "youtube" "listen to music"]
 concept:(askQuestion) ["i have a question" "can you answer ["a question" questions]" "ask question" "ask something" "i want to ask [something "{a} question" questions]" "ask question" "can i ask you ["some questions" "a question"]" question questions]
-concept:(startQuiz) [quiz "{["can you" "could you"]} {please} start {[the "[the a] music"]} quiz" "{"i want to"} ["do [a the] {music} quiz" "play {a} {music} quiz"]"  "{music} quiz again" "another {music} quiz"]
+concept:(startQuiz) [quiz "{["can you" "could you"]} {please} start {[the "[the a] music"]} quiz" "{"i want to"} ["[do play] [a the] {music} quiz" "play {a} {music} quiz"  "{music} quiz again" "another {music} quiz"]
 #-----------------------------Lägg till concept som roboten ska säga här---------------------------------
 
 
