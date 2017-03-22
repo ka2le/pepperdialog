@@ -13,6 +13,8 @@ concept:(speaking) ["get it ["ok" "pls"]" "get it {yes}"]
 u:(music)  $goToTopic=music $onStopped=1
 u:(general)  $goToTopic=general $onStopped=1
 
+
+u:(lush life) ok im playing lush lfe $opensongs/lushlife=1
 u:(notUnderstood) ~notUnderstood
 u:(e:onStart) I am in test mode 
 u:(~hello) Hi ^first["$userName" "human "] . I am in test mode.
@@ -22,13 +24,13 @@ u:(askme) what?
     u1:(~concept2) i see $1
 #    "$3==[~theArtists] you have picked an artist but not a song" 
 #ok lets play ^first["$1 " "nothing"] ^first[" with $2 " "nothing"]     
-u:( "{["can you" "can we" "i want to"]} [play listen] {to} {[_~theSongs "{[any a]} [song track music]"]} {"{made} {[with by]} _~theArtists"}" ) ^first["$1==[~SongMirrors]  okay starting mirrors" "What song by $2 do you want listen to? ^goto(initPlayMusic)"  "Not working"] # S1 ^first["$1 " "NULL"] S2 ^first[" $2 " "NULL"]     
+#u:( "{["can you" "can we" "i want to"]} [play listen] {to} {[_~theSongs "{[any a]} [song track music]"]} {"{made} {[with by]} _~theArtists"}" ) ^first["$1==[~SongMirrors]  okay starting mirrors" "What song by $2 do you want listen to? ^goto(initPlayMusic)"  "Not working"] # S1 ^first["$1 " "NULL"] S2 ^first[" $2 " "NULL"]     
 
-u:(initPlayMusic) %initPlayMusic you are in testing
-u:(forbidden !not) forbidden
+#u:(initPlayMusic) %initPlayMusic you are in testing
+#u:(forbidden !not) forbidden
 u:(play quiz) quiz sure
 
-u:(["var1 _[one 1] _[one 1]   " "var2 _[two 2]"]) var  ^first["$1 " "nothing"] ^first[" $2 " "nothing"]  ^first[" with $3 " "nothing"]  
+#u:(["var1 _[one 1] _[one 1]   " "var2 _[two 2]"]) var  ^first["$1 " "nothing"] ^first[" $2 " "nothing"]  ^first[" with $3 " "nothing"]  
 #u:(~concept) ok $1
 #^start(animations/Moods/Neutral/Pepper/Thinking) 
 u:(~how) ^startTag(animations/Stand/Waiting/Think_1)  I'm fine, thank you
@@ -65,7 +67,7 @@ u:(resume) %resume and then after the pause talk  again
 u:(capital letters) this. is. how. it. sounds. with. small. letters.  And. This. Is. How. It. Sounds. With. Capital. Letters.
     
 
-u:(pose) $pose/hello=1 posing
+u:(pose hello) $pose/hello=1 posing
 u:(pose wipe) $pose/wipe=1 wiping
 u:(pose elephant) $pose/elephant=1 
 u:(pose talk) $pose/hello okay now i will do a pose and talk
@@ -73,6 +75,10 @@ u:(switch) Going back to the general Topic $goToTopic=general
 u:(show picture) $img/justin=1 opeing picture
 #u:(pose) See my moves ^start(animation/moods/neutral/thinking) and i can talk while i do it
 u:(pose think) See my moves $pose/think=1 and i can talk while i do it
+u:(dance one) $pose/dance1=1
+u:(dance two) $pose/dance2=1
+u:(dance three) $pose/dance3=1
+
 
 u:(local) $tabletLocal=1 local
 u:(new page) $openPage=quiz new
