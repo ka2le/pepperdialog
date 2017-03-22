@@ -46,7 +46,7 @@
         <Topic name="testing_enu" src="testing/testing_enu.top" topicName="testing" language="en_US" />
         <Topic name="artist_enu" src="artist/artist_enu.top" topicName="artist" language="en_US" />
         <Topic name="common2_enu" src="common2_enu.top" topicName="common2" language="en_US" />
-        <Topic name="concept" src="concept.top" topicName="" language="" />
+        <Topic name="concept" src="concept.top" topicName="concept" language="en_US" />
     </Topics>
     <IgnoredPaths />
 </Package>

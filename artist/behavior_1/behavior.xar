@@ -486,8 +486,11 @@ class MyClass(GeneratedClass):
         # problems with connections and disconnections of the tablet during the life of the application
         tabletService = self._getTabletService()
         if tabletService:
-            tabletService.showWebview()
+           # tabletService.showWebview("http://www.google.com")
+            # duplicate needed beacause of bug with opeing new page on same site.
+            tabletService.showWebview(p)
             tabletService.loadUrl(p)
+            tabletService.showWebview(p)
         else:
             self.logger.warning("ALTabletService not found.")
         self.onStopped()]]>
@@ -637,7 +640,7 @@ class MyClass(GeneratedClass):
                                                 <Parameter name="key" inherits_from_parent="0" content_type="3" value="link/biograf" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                                                 <Parameter name="url" inherits_from_parent="0" content_type="3" value="http://www.sf.se/" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
                                             </Box>
-                                            <Box name="Open Destination" id="24" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="231" y="648">
+                                            <Box name="Open Destination" id="24" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="231" y="586">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -672,7 +675,7 @@ class MyClass(GeneratedClass):
                                                 <Parameter name="key" inherits_from_parent="0" content_type="3" value="link/destination" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                                                 <Parameter name="url" inherits_from_parent="0" content_type="3" value="http://www.destinationuppsala.se/en/To-do/Activities-and-adventure/" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
                                             </Box>
-                                            <Box name="Open Google" id="1" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="89" y="752">
+                                            <Box name="Open Google" id="1" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="77" y="764">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -707,7 +710,7 @@ class MyClass(GeneratedClass):
                                                 <Parameter name="key" inherits_from_parent="0" content_type="3" value="link/google" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                                                 <Parameter name="url" inherits_from_parent="0" content_type="3" value="http://www.google.com" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
                                             </Box>
-                                            <Box name="Hide Web View" id="4" localization="8" tooltip="Hides the webview (html content) on the tablet, behind a generic cover&#x0A;&#x0A;V1.0.0&#x0A;" x="469" y="869">
+                                            <Box name="Hide Web View" id="4" localization="8" tooltip="Hides the webview (html content) on the tablet, behind a generic cover&#x0A;&#x0A;V1.0.0&#x0A;" x="538" y="878">
                                                 <bitmap>media/images/box/internet/internet.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -747,7 +750,7 @@ class MyClass(GeneratedClass):
                                                 <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
                                                 <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="3" />
                                             </Box>
-                                            <Box name="Stop tablet" id="2" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="231" y="872">
+                                            <Box name="Stop tablet" id="2" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="319" y="910">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -1349,6 +1352,7 @@ class MyClass(GeneratedClass):
                                             <Link inputowner="7" indexofinput="2" outputowner="0" indexofoutput="2" />
                                             <Link inputowner="5" indexofinput="2" outputowner="7" indexofoutput="6" />
                                             <Link inputowner="10" indexofinput="2" outputowner="0" indexofoutput="2" />
+                                            <Link inputowner="8" indexofinput="2" outputowner="1" indexofoutput="6" />
                                         </Diagram>
                                     </BehaviorKeyframe>
                                 </BehaviorLayer>
@@ -8196,7 +8200,8 @@ class MyClass(GeneratedClass):
                         <Link inputowner="14" indexofinput="2" outputowner="2" indexofoutput="6" />
                         <Link inputowner="4" indexofinput="2" outputowner="14" indexofoutput="4" />
                         <Link inputowner="2" indexofinput="2" outputowner="0" indexofoutput="2" />
-                        <Link inputowner="10" indexofinput="2" outputowner="1" indexofoutput="3" />
+                        <Link inputowner="19" indexofinput="2" outputowner="0" indexofoutput="2" />
+                        <Link inputowner="9" indexofinput="2" outputowner="1" indexofoutput="3" />
                     </Diagram>
                 </BehaviorKeyframe>
             </BehaviorLayer>

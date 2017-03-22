@@ -81,8 +81,10 @@ u:(dance three) $pose/dance3=1
 
 
 u:(local) $tabletLocal=1 local
-u:(new page) $openPage=quiz new
-u:(old page) $openPage=learn old
+u:(new page) $link/fyrishov=1 new
+u:(old page) $link/destination=learn old
+u:(tablet quiz) $openPage=quiz opeing quiz on tablet
+u:(tablet story) $openPage=story opeing story on tablet
 u:(google) $link/google=1 Opening google
 
 

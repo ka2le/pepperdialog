@@ -65,11 +65,11 @@ concept:(theSongs) [~SongCantstop ~SongMirrors ~SongWhatgoes ~SongUptownfunk ~So
 concept:(choiceofartist) ["{["i want" lets]} {to} {[talk "[learn know] {more}" "ask questions" "do a quiz"]} {about} _~theArtists"] 
 #concept:(playMusicWith)  ["{["can you" "can we" "i want to"]} [play listen] {to} {_~song}"]
  #-----------------------------Main changing topics---------------------------------
-concept:(storyMode) ["read for me" wikipedia story "story mode" "{["i want to" "[can could] [we you]" "lets"]} {please} ["tell me" "listen to"] [more "a story"] {about} {~theArtists}" story "what story can you tell me"]
+concept:(storyMode) ["read for me" wikipedia story "story mode" "{["i want to" "[can could] [we you]" "lets"]} {please} ["tell me" "learn" "listen to"] [more "a story"] {about} {~theArtists}" story "what story can you tell me"]
 concept:(playMusic) ["{"can you"} play {a} [music song track]" "{"i want"} {to} listen to {a} [song music track youtube]" "play song" "youtube" "listen to music"]
 
 concept:(askQuestion) [question "{["i have" "can you answer" "["i want to" "can i"] ask {you}"]} {[a any some]} [question questions]"]
-concept:(startQuiz) [quiz "{"can we" "i want to" lets]} {please} [do play start] {[a the "a music" the]} quiz"]
+concept:(startQuiz) [quiz "{["can we" "i want to" lets]} {please} [do play start] {[a the "a music" the]} quiz"]
 #-----------------------------Lägg till concept som roboten ska säga här---------------------------------
 
 
