@@ -9,7 +9,7 @@ concept:(theArtists) [~justinTimberlake ~zaraLarsson]
 concept:(concept) ["concept _~theArtists"]
 concept:(concept2) ["{play} {_~theArtists}"]
 concept:(speaking) ["get it ["ok" "pls"]" "get it {yes}"]
-
+u:(doIremember) %doIremember i remember ^first["$1" "nothing"]
 u:(music)  $goToTopic=music $onStopped=1
 u:(general)  $goToTopic=general $onStopped=1
 

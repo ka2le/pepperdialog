@@ -30,7 +30,7 @@ u:(~startQuiz) %initQuiz ["$artist==0 Which artist do you want the music quiz to
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
         
 
-u:(~storyMode) %initLearnMore ["$artist==0 $openPage=learn Which artist do you want to learn more about?" "$artist==[~theArtists] $openPage=story ^goto(storyMode) "]
+u:(~storyMode) %initLearnMore ["$artist==0 $openPage=story Which artist do you want to learn more about?" "$artist==[~theArtists] $openPage=story ^goto(storyMode) "]
     u1:(~choiceofartist) Lets learn more about $1 $artist=$1 $openPage=story ^goto(storyMode)
     u1:(~stop) Alright 
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
@@ -43,7 +43,7 @@ u:(~askQuestion) %initAskQuestion ["$artist==0  Which artist do you want to ask 
         
 u:(~playMusic) %initPlayMusic  $openPage=listen ^goto(playMusic)
 
-
+u:(~stop) Ok. Stopping. $openPage=startMenu  ^goto(mainChoice)
             
 #-----------------------------------------Other stuff----------------------------------------           
             
@@ -100,19 +100,19 @@ u:(Where was he born) %trivia  %birtplaceAnswer He was born in Memphis in the st
 u:(What was his first song) %trivia  %firstSongAnswer His first solo album was Justified which included the single Cry Me A River
 u:(What prizes has he won)  %trivia  %prizeAnswer He has won ten Grammy Awards, four Emmy Awards, seven American Music Awards, three Brit Awards, seven Billboard Music Awards, and eleven MTV Video Music Awards. How about that
 u:(What instrument does he play) %trivia %intrumentAnswer Apart from singing he also plays guitar bass keyboard and he can beatbox
-u:(How many children does he have) %trivia %childrenAnswer He has one son named Silas Randall Timberlake
+u:(How many [children kids] does he have) %trivia %childrenAnswer He has one son named Silas Randall Timberlake
 u:(What is his [middle full] name) %trivia  %nameAnswer His full name is Justin Randall Timberlake
 u:(["is he married" "is he single" "what is the name of his wife"]) %trivia  %marriedAnswer Justin is married to Jessica Biel 
 
 #-----------------------------------------Youtube----------------------------------------
 #play specific song from blank
 
-
+u:(pepperneedsomehelp) %pepperneedsomehelp  ^first[" $pauseOn==true $pause=1  A. A. A. "  " . "] ["Would you be so kind and help me a little with starting the song. Just press play." "could you please help me by  pressing play."] on my tablet.
 u:(playMusic) %playMusic   $openPage=listen  Tell me which song you want to listen to?
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
     u1:(~stop) okay lets do something else
     u1:(~dontknow) I can help you find a song. Pick one from the list on my stomach.
-    u1:( "{["can you" "can we" "i want to"]} [play listen] {to} {[_~theSongs "{[any a]} [song track music]"]} {"{made} {[with by]} _~theArtists"}" ) ^first["$1==[~SongMirrors] $opensongs/mirrors=1  Ok Im playing ~SongMirrors by ~justinTimberlake"  "$1==[~SongMirrors] $opensongs/mirrors=1  Ok Im playing ~SongMirrors by     ~justinTimberlake"             "$1==[~SongCantstop] $opensongs/cantstopthefeeling=1  Ok Im playing ~SongCantstop by ~justinTimberlake"  "$1==[~SongWhatgoes] $opensongs/whatgoesaroundcomesaround=1   Ok Im playing ~SongWhatgoes by ~justinTimberlake"       "$1==[~SongUptownfunk] $opensongs/uptownfunk=1 Ok Im playing ~SongUptownfunk by     ~brunoMars"                  "$1==[~SongLushlife] $opensongs/lushlife=1  Ok Im playing ~SongLushlife by     ~saraLarsson"                  "$1==[~SongThisone] $opensongs/thisoneisforyou=1  Ok Im playing ~SongThisone by     ~saraLarsson"                  "$1==[~SongAintmyfault] $opensongs/itaintmyfault=1   Ok Im playing ~SongAintmyfault by     ~saraLarsson"                  "$1==[~SongHalo] $opensongs/halo=1 Ok Im playing ~SongHalo by     ~beyonce"                        "$1==[~SongSingleladies] $opensongs/singleladies=1   Ok Im playing ~SongSingleladies by     ~beyonce"                  "$1==[~SongSorry] $opensongs/sorry=1  Ok Im playing ~SongSorry by     ~justinBieber"                  "$1==[~SongWhatdoyoumean] $opensongs/whatdoyoumean=1  Ok Im playing ~SongWhatdoyoumean by     ~justinBieber"                  "$1==[~SongLoveyourself] $opensongs/loveyourself=1   Ok Im playing ~SongLoveyourself by     ~justinBieber"                                          "What song by $2 do you want listen to? ^stayInScope "  "Look at my tablet to see a list of songs to pick from ^stayInScope "]  
+    u1:( "{["can you" "can we" "i want to"]} [play listen] {to} {[_~theSongs "{[any a]} [song track music]"]} {"{made} {[with by]} _~theArtists"}" ) ^first["$1==[~SongMirrors] $opensongs/mirrors=1  Ok Im playing ~SongMirrors by ~justinTimberlake"  "$1==[~SongMirrors] $opensongs/mirrors=1  Ok Im playing ~SongMirrors by     ~justinTimberlake  ^goto(pepperneedsomehelp)"             "$1==[~SongCantstop] $opensongs/cantstopthefeeling=1  Ok Im playing ~SongCantstop by ~justinTimberlake ^goto(pepperneedsomehelp)"  "$1==[~SongWhatgoes] $opensongs/whatgoesaroundcomesaround=1   Ok Im playing ~SongWhatgoes by ~justinTimberlake ^goto(pepperneedsomehelp)"       "$1==[~SongUptownfunk] $opensongs/uptownfunk=1 Ok Im playing ~SongUptownfunk by     ~brunoMars ^goto(pepperneedsomehelp)"                  "$1==[~SongLushlife] $opensongs/lushlife=1  Ok Im playing ~SongLushlife by     ~saraLarsson ^goto(pepperneedsomehelp)"                  "$1==[~SongThisone] $opensongs/thisoneisforyou=1  Ok Im playing ~SongThisone by     ~saraLarsson ^goto(pepperneedsomehelp)"                  "$1==[~SongAintmyfault] $opensongs/itaintmyfault=1   Ok Im playing ~SongAintmyfault by     ~saraLarsson ^goto(pepperneedsomehelp)"                  "$1==[~SongHalo] $opensongs/halo=1 Ok Im playing ~SongHalo by     ~beyonce ^goto(pepperneedsomehelp)"                        "$1==[~SongSingleladies] $opensongs/singleladies=1   Ok Im playing ~SongSingleladies by     ~beyonce ^goto(pepperneedsomehelp)"                  "$1==[~SongSorry] $opensongs/sorry=1  Ok Im playing ~SongSorry by     ~justinBieber ^goto(pepperneedsomehelp)"                  "$1==[~SongWhatdoyoumean] $opensongs/whatdoyoumean=1  Ok Im playing ~SongWhatdoyoumean by     ~justinBieber ^goto(pepperneedsomehelp)"                  "$1==[~SongLoveyourself] $opensongs/loveyourself=1   Ok Im playing ~SongLoveyourself by     ~justinBieber ^goto(pepperneedsomehelp)"                                          "What song by $2 do you want listen to? ^stayInScope "  "Look at my tablet to see a list of songs to pick from ^stayInScope "]  
 
 #-----------------------------------------QUIZ----------------------------------------
 u:(thequiz) %theQuiz $Menu/quiz=1 If you want to do something else. Just say stop, to stop the quiz. Anyway  here we go. Starting the quiz! $quizScore=0 ^goto(selectNextQ) 
@@ -135,7 +135,8 @@ u:(q2) %q2  In what city was he boorn?
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
     u1:(~stop) Stopping the quiz.
 u:(q3) %q3  What was the name of his first solo album?
-    u1:([Justified "["the ablum" "his album" "[Justin he "Justin Timberlake"] album"] "is named Justified""])  ^goto(quizGoodJob)
+    #"["the ablum" "his album" "[Justin he "Justin Timberlake"] album"] "is named Justified"" everything became correct
+    u1:(Justified)  ^goto(quizGoodJob)
     u1:(~dontknow) I'll tell you then. It was named Justified. ^goto(moreQs) 
     u1:(_*) I heard you say $1 . The correct answer is that It was named Justified. ^goto(moreQs)
     u1:(score) Your score is $quizScore   ^stayInScope 
@@ -156,7 +157,8 @@ u:(q5) %q5  How many children does he have?
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
     u1:(~stop) Stopping the quiz.
 u:(q6) %q6  What was the name of his latest album?
-    u1:([{[Justins his "Justin Timberlakes" "the album"]} {"is named"} "twenty twenty experience"]) ^goto(quizGoodJob)
+    #{[Justins his "Justin Timberlakes" "the album"]} {"is named"}  everything became correct
+    u1:(["twenty twenty experience"]) ^goto(quizGoodJob)
     u1:(~dontknow) I'll tell you then. It was named the 20 20 experience. ^goto(moreQs) 
     u1:(_*) I heard you say $1 . The correct answer is that It was named the 20 20 experience. ^goto(moreQs)
     u1:(score) Your score is $quizScore   ^stayInScope

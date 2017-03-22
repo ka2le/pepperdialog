@@ -8200,7 +8200,6 @@ class MyClass(GeneratedClass):
                         <Link inputowner="14" indexofinput="2" outputowner="2" indexofoutput="6" />
                         <Link inputowner="4" indexofinput="2" outputowner="14" indexofoutput="4" />
                         <Link inputowner="2" indexofinput="2" outputowner="0" indexofoutput="2" />
-                        <Link inputowner="19" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="9" indexofinput="2" outputowner="1" indexofoutput="3" />
                     </Diagram>
                 </BehaviorKeyframe>
