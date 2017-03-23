@@ -10,6 +10,8 @@ concept:(concept) ["concept _~theArtists"]
 concept:(concept2) ["{play} {_~theArtists}"]
 concept:(speaking) ["get it ["ok" "pls"]" "get it {yes}"]
 
+u:("start video") starting video  $openVideo/lushlife=1
+
 u:(music)  $goToTopic=music $onStopped=1
 u:(general)  $goToTopic=general $onStopped=1
 u:("remember _~theArtists") okay $1 lets see  ^goto(doIremember)
