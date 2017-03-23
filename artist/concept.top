@@ -27,7 +27,7 @@ concept:(tellTrivia) ["tell me something about him" trivia "tell me something"]
 
 concept:(done) [done finished "did it" next more]
 concept:(hello) [hello hi]
-concept:(names) [kalle carl isak isac gunnar]
+concept:(names) [kalle carl isak isac gunnar adam agnes emma jalmar markus richard lennart christina "ann sophie" sophie ann andreas lotta sanna susanna maya maja anna ]
 concept:(happy) [good fine "I am good" happy]
 concept:(sad) [sad bad "not good"]
 concept:(whatcanyoudo) ["what can you do" help info functions]
