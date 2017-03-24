@@ -1,0 +1,56 @@
+topic: ~oldConcet()
+language: enu
+
+#------------------------------General Pepper talk-------------------------    
+
+u:(What is your name) My name is Pepper. ^first["and you are $userName ^goto(nicetomeetyou) " "What is your name?" ]
+    u1:(["_~names" "my name is _~names" "I am _~names"]) Nice to meet you $1 $userName=$1
+    u1:(~no) You dont want to tell me. That is okay. ^clear(userName) 
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
+ 
+u:(nice to meet you) %nicetomeetyou nice to meet you to
+u:(How are you) I am a happy robot. How are you ^first[$userName " "]?
+    u1:(_~happy) I am glad to hear that you are $1
+    u1:(_~sad) Oh I am sorry to hear that
+u:(Where do you live) I live at IBM in Kista in Sweden. Where do you live?
+    u1:(*) That sounds nice
+u:(how old are you) I am young. I am only 1 year.
+u:(pepper) [yes "I am listening" "that is my name. dont wear it out" "tell me what I can do for you"]
+u:(what is my name) ^first["Your name is $userName " "I dont know ^goto(askAboutName2) "]
+u:(ask about my name) %askAboutName2 what is your name?
+    u1:(["_~names" "_*" "my name is _*" "I am _*"]) Nice to meet you $1 $userName=$1 
+    u1:(~no) You dont want to tell me. That is okay. ^clear(userName) 
+u:(what is your favourite food) Silly ^first[$userName "human"] . I am a robot. I dont eat 
+u:(who is _[carl kalle isac]) $1 is my friend. He is doing his master thesis at IBM teaching me about music and other cool stuff   
+u:(say something) [Something "What do you want me to say?" Okay Sure]
+u:(speak louder) $speakLouder=1  I will speak louder
+u:(speak quiet)  $speakQuiet=1 I will speak quiet
+u:(game) We can play different kinds of games. Do you want to play twister, do movement exercises or we could do a music quiz?
+    u1:(["music quiz" music quiz]) $goToTopic=music $onStopped=1
+    u1:([twister "play twister"]) ^goto(twisterGame)
+    u1:([move movement exercise]) ^goto(moveGame)
+    u1:(~no)  ^goto(whatcanyoudo)
+
+
+
+#------------------------------Twister-------------------------   
+u:(twister) %twisterGame Lets play some Twister. Get your twister set up and tell me when you are ready!
+    u1:(~stop) I understood that you want to stop talking about this. ^goto(start)
+    u1:(~ready) Okay let's start. How many will be playing?
+        u2:(~stop) I understood that you want to stop talking about this. ^goto(start)
+        u2:(_~number) Starting a game for $1 players. $nmbPlayers=$1 ^first["$nmbPlayers==2 ^goto(2playergame)" "invalide number"]
+u:(2playergame) %2playergame Player1 put you ^rand[~leftRight] ^rand[~bodyPart] on ^rand[~color]  When you are done, let me know by saying ready and I will give the next player their instructions.
+    u1:(~ready) Player2 put your    ^rand[~leftRight] ^rand[~bodyPart] on ^rand[~color] . I will keep giving new instructions when you say ready until one of you wins.
+         u2:(~ready) ^goto(2playergameLoop)       
+u:(2playergameLoop) %2playergameLoop Player1 put your   ^rand[~leftRight] ^rand[~bodyPart] on ^rand[~color]  . 
+    u1:(~ready) Player2 put your   ^rand[~leftRight] ^rand[~bodyPart] on ^rand[~color] .
+        u2:(~ready) ^goto(2playergameLoop)
+        u2:(stop) Oh? Its over. My eyes dont work so good all the time. Can you tell me who won?
+            u3:(_*) Congratulations to $1 
+    
+
+
+
+u:( "{["can you" "can we" "i want to"]} [play listen] {to} _~theSongs {"{made} {[with by]} _~theArtists"}" )^first["$1==[~SongMirrors] $opensongs/mirrors=1  Ok Im playing ~SongMirrors by ~justinTimberlake"  "$1==[~SongMirrors] $opensongs/mirrors=1  Ok Im playing ~SongMirrors by     ~justinTimberlake  ^goto(pepperneedsomehelp)"             "$1==[~SongCantstop] $opensongs/cantstopthefeeling=1  Ok Im playing ~SongCantstop by ~justinTimberlake ^goto(pepperneedsomehelp)"  "$1==[~SongWhatgoes] $opensongs/whatgoesaroundcomesaround=1   Ok Im playing ~SongWhatgoes by ~justinTimberlake ^goto(pepperneedsomehelp)"       "$1==[~SongUptownfunk] $opensongs/uptownfunk=1 Ok Im playing ~SongUptownfunk by     ~brunoMars ^goto(pepperneedsomehelp)"                  "$1==[~SongLushlife] $opensongs/lushlife=1  Ok Im playing ~SongLushlife by     ~saraLarsson ^goto(pepperneedsomehelp)"                  "$1==[~SongThisone] $opensongs/thisoneisforyou=1  Ok Im playing ~SongThisone by     ~saraLarsson ^goto(pepperneedsomehelp)"                  "$1==[~SongAintmyfault] $opensongs/itaintmyfault=1   Ok Im playing ~SongAintmyfault by     ~saraLarsson ^goto(pepperneedsomehelp)"                  "$1==[~SongHalo] $opensongs/halo=1 Ok Im playing ~SongHalo by     ~beyonce ^goto(pepperneedsomehelp)"                        "$1==[~SongSingleladies] $opensongs/singleladies=1   Ok Im playing ~SongSingleladies by     ~beyonce ^goto(pepperneedsomehelp)"                  "$1==[~SongSorry] $opensongs/sorry=1  Ok Im playing ~SongSorry by     ~justinBieber ^goto(pepperneedsomehelp)"                  "$1==[~SongWhatdoyoumean] $opensongs/whatdoyoumean=1  Ok Im playing ~SongWhatdoyoumean by     ~justinBieber ^goto(pepperneedsomehelp)"                  "$1==[~SongLoveyourself] $opensongs/loveyourself=1   Ok Im playing ~SongLoveyourself by     ~justinBieber ^goto(pepperneedsomehelp)"                                          "What song by $2 do you want listen to? ^goto(initPlayMusic) "  "I did not catch that ^goto(initPlayMusic) "]   
+ 
+ u:( "{["can you" "can we" "i want to"]} [play listen] {to} {"{[any a]} [song track music]"} {"{made} [with by]"} _~theArtists") ^first["What song by $2 do you want listen to? ^goto(initPlayMusic)"  "I did not catch that ^goto(playMusic)"]  

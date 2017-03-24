@@ -9,6 +9,8 @@
         <Dialog name="general" src="general/general.dlg" />
         <Dialog name="testing" src="testing/testing.dlg" />
         <Dialog name="artist" src="artist/artist.dlg" />
+        <Dialog name="artist2" src="artist2/artist2.dlg" />
+        <Dialog name="oldConcet" src="oldConcet/oldConcet.dlg" />
     </Dialogs>
     <Resources>
         <File name="_metadata" src="_metadata" />
@@ -47,6 +49,8 @@
         <Topic name="artist_enu" src="artist/artist_enu.top" topicName="artist" language="en_US" />
         <Topic name="common2_enu" src="common2_enu.top" topicName="common2" language="en_US" />
         <Topic name="concept" src="concept.top" topicName="concept" language="en_US" />
+        <Topic name="artist2_enu" src="artist2/artist2_enu.top" topicName="artist2" language="en_US" />
+        <Topic name="oldConcet_enu" src="oldConcet/oldConcet_enu.top" topicName="oldConcet" language="en_US" />
     </Topics>
     <IgnoredPaths />
 </Package>
