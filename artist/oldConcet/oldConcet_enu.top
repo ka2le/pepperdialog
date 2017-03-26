@@ -1,5 +1,81 @@
 topic: ~oldConcet()
 language: enu
+#------------------------------Justin Quiz-------------------------    
+u:(runthequiz) %theQuiz $Menu/quiz=1  $openPage=quiz  If you want to do something else. Just say stop, to stop the quiz. Anyway  here we go. Starting the quiz! $quizScore=0 ^goto(selectNextQ) 
+u:(selectQ) %selectNextQ [^goto(q1)  ^goto(q2)  ^goto(q3) ^goto(q4) ^goto(q5) ^goto(q6) ]
+u:(quizIsNowEnded) %quizOver Well played! That was all the questions. Your final score was $quizScore
+u:(moreQs) %moreQs ["Here is the next ["One. " "Question. "]" " Get ready. "] . ^goto(selectNextQ) 
+u:("tell me that you  think  that I did a good job") %quizGoodJob  ^rand[~correct] ^rand[~goodJob] $QUIZ/addscore=1 ^goto(moreQs)
+
+
+
+u:(q1) %q1 How old is Justin Timberlake?
+    u1:(_*) I heard you say $1 . The correct answer is that he is 36 years old. ^goto(moreQs)     
+    u1:([36 "he is 36"  "36 years old" "[justin he "justin timberlake"] is [36 "36 years old " " 36 years"]"])   ^goto(quizGoodJob)
+    u1:(~dontknow) I'll tell you then. He is 36 years old. ^goto(moreQs)
+    u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
+    u1:(score) Your score is $quizScore   ^stayInScope
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
+
+u:(q2) %q2  In what city was he boorn?
+    u1:([Memphis  "born in Memphis" "[Justin he "Justin Timberlake"] [born "born in" "is born in"] Memphis"])  ^goto(quizGoodJob)
+    u1:(~dontknow) I'll tell you then. He was born in Memphis. ^goto(moreQs) 
+    u1:(_*) I heard you say $1 . The correct answer is that he was born in Memphis. ^goto(moreQs)
+    u1:(score) Your score is $quizScore   ^stayInScope
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
+    u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
+u:(q7) %q7  What profession, except for artist is Justin famous for?
+    u1:(["actor" "movie"]) ^goto(quizGoodJob)
+    u1:(~dontknow) I'll tell you then. He is also an actor. ^goto(moreQs) 
+    u1:(_*) I heard you say $1 . The correct answer is that he w is also an actor. ^goto(moreQs)
+    u1:(score) Your score is $quizScore   ^stayInScope
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
+    u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
+u:(q8) %q8  Is it true that he is married to Jessica Biel?
+    u1:([~yes true]) ^goto(quizGoodJob)
+    u1:(~dontknow) I'll tell you then. They have been married since 2012. ^goto(moreQs) 
+    u1:(~no false) Sorry. The correct answer is that They have been married since 2012. ^goto(moreQs)
+    u1:(score) Your score is $quizScore   ^stayInScope
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
+    u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
+u:(q9) %q9 Has he won more than 5 grammy awards?
+    u1:([~yes true]) ^goto(quizGoodJob)
+    u1:(~dontknow) I'll tell you then.  He has actually won 10 grammys.  ^goto(moreQs) 
+    u1:([~no false]) Sorry. That was wrong. He has actually won 10 grammys. ^goto(moreQs)
+    u1:(score) Your score is $quizScore   ^stayInScope
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
+    u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
+                
+u:(q3) %q3  What was the name of his first solo album?
+    #"["the ablum" "his album" "[Justin he "Justin Timberlake"] album"] "is named Justified"" everything became correct
+    u1:(Justified)  ^goto(quizGoodJob)
+    u1:(~dontknow) I'll tell you then. It was named Justified. ^goto(moreQs) 
+    u1:(_*) I heard you say $1 . The correct answer is that It was named Justified. ^goto(moreQs)
+    u1:(score) Your score is $quizScore   ^stayInScope 
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
+    u1:(~stop) Stopping the quiz.    ^goto(nextProposalChanger)
+u:(q4) %q4  What is his middle name?
+    u1:(["[Justins his "Justin Timberlakes"] middle name is Randall" "Justin Randall Timberlake" "[it "the middle name"] is Randall" Randall randall])  ^goto(quizGoodJob)
+    u1:(~dontknow) His middle name is Randall. ^goto(moreQs) 
+    u1:(_*) I heard you say $1 . The correct answer is Randall . ^goto(moreQs)
+    u1:(score) Your score is $quizScore   ^stayInScope
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
+    u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
+u:(q5) %q5  How many children does he have?
+    u1:(["[Justin he "Justin Timberlake"] have [one 1] {[child son kid]}"    "[one 1] {[child son kid]}" one 1])  ~correct .  $QUIZ/addscore=1 ^goto(quizOver)
+    u1:(~dontknow) I'll tell you then. He has one son. ^goto(quizOver)
+    u1:(_*) I heard you say $1 . The correct answer is that he has one son .^goto(quizOver)
+    u1:(score) Your score is $quizScore   ^stayInScope
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
+    u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
+u:(q6) %q6  What was the name of his latest album?
+    #{[Justins his "Justin Timberlakes" "the album"]} {"is named"}  everything became correct
+    u1:(["twenty twenty experience"]) ^goto(quizGoodJob)
+    u1:(~dontknow) I'll tell you then. It was named the 20 20 experience. ^goto(moreQs) 
+    u1:(_*) I heard you say $1 . The correct answer is that It was named the 20 20 experience. ^goto(moreQs)
+    u1:(score) Your score is $quizScore   ^stayInScope
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
+    u1:(~stop) Stopping the quiz.  ^goto(nextProposalChanger)
 
 #------------------------------General Pepper talk-------------------------    
 

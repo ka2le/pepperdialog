@@ -42,6 +42,12 @@
         <File name="visual_recognition_v3" src="lib/watson_developer_cloud/visual_recognition_v3.py" />
         <File name="watson_developer_cloud_service" src="lib/watson_developer_cloud/watson_developer_cloud_service.py" />
         <File name="regular user" src="regular user" />
+        <File name="Thumbs" src="images/Thumbs.db" />
+        <File name="edsheeran" src="images/edsheeran.jpg" />
+        <File name="01 ...Baby One More Time (mp3cut.net)" src="music/01 ...Baby One More Time (mp3cut.net).mp3" />
+        <File name="lucyinsky" src="images/lucyinsky.jpg" />
+        <File name="lucyinsky" src="images/lucyinsky.png" />
+        <File name="desktop" src="music/desktop.ini" />
     </Resources>
     <Topics>
         <Topic name="ExampleDialog_enu" src="behavior_1/ExampleDialog/ExampleDialog_enu.top" topicName="ExampleDialog" language="en_US" />

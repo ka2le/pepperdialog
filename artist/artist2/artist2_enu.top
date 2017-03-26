@@ -13,7 +13,7 @@ u:(~stop) Stopping.  ^goto(nextProposalChanger)
  
 u:(nextProposalChanger) %nextProposalChanger ^first["$metBefore==true Lets do something else ^goto(mainChanger) " " ^nextProposal " ]
 
-u:(regularUserMainChanger) %mainChanger What do you want to do? #[" . " " Maybe a quiz or play a song? " " . " ]
+u:(regularUserMainChanger) %mainChanger $metBefore=true What do you want to do? #[" . " " Maybe a quiz or play a song? " " . " ]
     #u1:(_*) $NLC/input=$1 $onStopped=1  
     u1:(quiz) $NLCtestIn=1 $onStopped=1
     #u1:(quiz) Oh fun! I love the quiz. ^goto(theQuiz)
@@ -23,9 +23,9 @@ u:(regularUserMainChanger) %mainChanger What do you want to do? #[" . " " Maybe 
     u1:(dance) ~checkThis ^goto(playSax)
 
     
-proposal: Have you already seen everything I can do?
-    u1:(~yes) Great! Then just tell me. $metBefore=true ^goto(mainChanger)
-    u1:([~no ~tellMe]) Then let me introduce myself! ^goto(nextProposalChanger)
+proposal: Is this you first time meeting me. D.J. Pepper? 
+    u1:([~yes ~tellMe]) Then let me introduce myself! ^goto(nextProposalChanger)
+    u1:([~no ])  Great! Then you know what you want. Tell me. $metBefore=true ^goto(mainChanger)
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
     u1:(~repeat) I said. ^sameProposal
         
@@ -68,11 +68,12 @@ proposal: %proposalSax I dont usually brag. But I am actually pretty good at pla
     u1:(~repeat) I said. ^sameProposal
 
 proposal: %doneAll Now you have seen what we can do. Do you want to do something again?
-    u1:(~yes) That makes me so happy. What do you want to do?
-        u2:(~canWeListen ~theSongs ~madeBy) Listen to a song. What a great idea! ^goto(playMusic)
-        u2:(~startQuiz) Lets play the quiz! I believe in you! ^goto(theQuiz)
-        u2:(~storyMode) Someone is eager to learn! That is awesome! ^goto(storyMode)
-        u2:("{play} [sax saxophone]") You like my music skills. Thats geat. Let me show you! ^goto(playSax)
+    u1:(~yes) That makes me so happy. ^goto(mainChanger)
+       # this is now in mainChanger instead
+       # u2:(~canWeListen ~theSongs ~madeBy) Listen to a song. What a great idea! ^goto(playMusic)
+       # u2:(~startQuiz) Lets play the quiz! I believe in you! ^goto(theQuiz)
+       # u2:(~storyMode) Someone is eager to learn! That is awesome! ^goto(storyMode)
+       # u2:("{play} [sax saxophone]") You like my music skills. Thats geat. Let me show you! ^goto(playSax)
     u1:(~no) Thats okay! Just let me know if you change your mind. 
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
     u1:(~repeat) I said. ^sameProposal
@@ -103,78 +104,88 @@ u:(playMusic) %playMusic   $openPage=listen  Tell me which song you want to list
 
     
 #-----------------------------------------QUIZ-------------------to force-start quiz runthequiz  ---------------------    
-u:(runthequiz) %theQuiz $Menu/quiz=1  $openPage=quiz  If you want to do something else. Just say stop, to stop the quiz. Anyway  here we go. Starting the quiz! $quizScore=0 ^goto(selectNextQ) 
-u:(selectQ) %selectNextQ [^goto(q1) ^goto(q7) ^goto(q8)  ^goto(q9) ^goto(q2)  ^goto(q3) ^goto(q4) ^goto(q5) ^goto(q6) ]
+u:(runthequiz) %theQuiz $Menu/quiz=1  $openPage=quiz  Starting the quiz! $quizScore=0 ^goto(selectNextQ) 
+u:(selectQ) %selectNextQ [^goto(q1)  ^goto(q2)  ^goto(q3) ^goto(q4) ^goto(q5) ^goto(q6) ^goto(qlast) ] #
 u:(quizIsNowEnded) %quizOver Well played! That was all the questions. Your final score was $quizScore
-u:(moreQs) %moreQs ["Here is the next [One question]" " Get ready"] . ^goto(selectNextQ) 
-u:("tell me that you  think  that I did a good job") %quizGoodJob  ^rand[~correct] ^rand[~goodJob] $QUIZ/addscore=1 ^goto(moreQs)
+u:(moreQs) %moreQs ["Here is the next ["One. " "Question. "]" " Get ready. "] . ^goto(selectNextQ) 
+u:(quizGoodJob) %quizGoodJob  ^rand[~correct] ^rand[~goodJob] $QUIZ/addscore=1 ^goto(moreQs)
+u:(somequizinfo) %quizinfo ["Just so you know. If you want to do something else. Just say stop, to stop the quiz.  " "If you dont know the answer and cant come up with a guess. Just say that you dont know and I will tell you the answer. " ] Anyway. ^goto(moreQs)
 
-u:(q1) %q1 How old is Justin Timberlake?
-    u1:(_*) I heard you say $1 . The correct answer is that he is 36 years old. ^goto(moreQs)     
-    u1:([36 "he is 36"  "36 years old" "[justin he "justin timberlake"] is [36 "36 years old " " 36 years"]"])   ^goto(quizGoodJob)
-    u1:(~dontknow) I'll tell you then. He is 36 years old. ^goto(moreQs)
+
+u:(q1) %q1 Robin Bengtsson won the swedish part of the eurovision song contest this year. But what was the name of the song?
+    u1:("{["[its "{it} [is was]"] called" "{it} [is was] named"]} {I} cant go on") That is correct! Impressive. $QUIZ/addscore=1   ^goto(quizinfo)
+    u1:(_*) I heard you say $1 . The correct answer is that it is called I Cant go on. ^goto(quizinfo)    
+    u1:(~dontknow) I'll tell you then. It is called I Cant go on. ^goto(quizinfo)
     u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
-    u1:(score) Your score is $quizScore   ^stayInScope
-    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
-u:(q2) %q2  In what city was he boorn?
-    u1:([Memphis  "born in Memphis" "[Justin he "Justin Timberlake"] [born "born in" "is born in"] Memphis"])  ^goto(quizGoodJob)
-    u1:(~dontknow) I'll tell you then. He was born in Memphis. ^goto(moreQs) 
-    u1:(_*) I heard you say $1 . The correct answer is that he was born in Memphis. ^goto(moreQs)
-    u1:(score) Your score is $quizScore   ^stayInScope
-    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
+    u1:(score) Your score is. $quizScore   ^stayInScope
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood . ^stayInScope
+    u1:(~repeat) I will read the question again. ^goto(q1)
+
+    
+u:(q2) %q2 In 1971 David Bowie released a song that became a classic. The titel includes a planet. Life on. Blank. What was the planet? 
+    u1:("{["it [is was] called" "the titel is" "the planet {[is was]}"]} {"Life on"} Mars") Thats right. You know your stuff.   $QUIZ/addscore=1   ^goto(quizinfo)
+    u1:(_*) I am sorry but $1 is not correct. It was called. Life on Mars.    ^goto(quizinfo)
+    u1:(~dontknow) Then I will tell you. It was called. Life on Mars.   ^goto(quizinfo)
     u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
-u:(q7) %q7  What profession, except for artist is Justin famous for?
-    u1:(["actor" "movie"]) ^goto(quizGoodJob)
-    u1:(~dontknow) I'll tell you then. He is also an actor. ^goto(moreQs) 
-    u1:(_*) I heard you say $1 . The correct answer is that he w is also an actor. ^goto(moreQs)
-    u1:(score) Your score is $quizScore   ^stayInScope
-    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
+    u1:(score) Your score is. $quizScore   ^stayInScope
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood . ^stayInScope
+    u1:(~repeat) I will read the question again. ^goto(q2)
+
+u:(q3) %q3 $img/edsheeran=1 Look at my tablet and you will se a picture of a singer who most people have listened to in recent years. Maybe without knowing it. Do you know his name?
+    u1:(["{["his name is" "[he it] is {[called named]}"]}  {Ed} Sheeran" "{["his name is" "[he it] is {[called named]}"]}  Ed {Sheeran}"])   ^goto(quizGoodJob)
+    u1:(_*) I heard you say $1 . His name is Ed Sheeran. ^goto(moreQs)     
+    u1:(~dontknow) I'll tell you then. His name is Ed Sheeran. ^goto(moreQs)
     u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
-u:(q8) %q8  Is it true that he is married to Jessica Biel?
-    u1:([~yes true]) ^goto(quizGoodJob)
-    u1:(~dontknow) I'll tell you then. They have been married since 2012. ^goto(moreQs) 
-    u1:(~no false) Sorry. The correct answer is that They have been married since 2012. ^goto(moreQs)
-    u1:(score) Your score is $quizScore   ^stayInScope
-    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
+    u1:(score) Your score is. $quizScore   ^stayInScope
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood . ^stayInScope
+    u1:(~repeat) I will read the question again.  ^goto(q3)
+  
+u:(q4) %q4 This swedish band became world famous in 1974 with the song Waterloo. The name of the band is based on the four group members first names. What was the name of the band?
+    u1:("{"[they "the [group band]"] [were was is] [called named]" } Abba")   ^goto(quizGoodJob)
+    u1:(_*) I heard you say $1 . The correct answer is that they were called Abba. ^goto(moreQs)     
+    u1:(~dontknow) I'll tell you then. They were called Abba. ^goto(moreQs)
     u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
-u:(q9) %q9 Has he won more than 5 grammy awards?
-    u1:([~yes true]) ^goto(quizGoodJob)
-    u1:(~dontknow) I'll tell you then.  He has actually won 10 grammys.  ^goto(moreQs) 
-    u1:([~no false]) Sorry. That was wrong. He has actually won 10 grammys. ^goto(moreQs)
-    u1:(score) Your score is $quizScore   ^stayInScope
-    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
+    u1:(score) Your score is. $quizScore   ^stayInScope
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood . ^stayInScope
+    u1:(~repeat) I will read the question again. ^goto(q4)
+
+    
+u:(q5) %q5 I will play a few seconds from a song. And i want you to tell me the singers name. Listen.  $quizSong/babyone=1
+    u1:(["{["her name is" "she is called" "its"]} {britney} spears" "{["her name is" "she is called" "its"]} britney {spears}"])   ^goto(quizGoodJob)
+    u1:(_*) I heard you say $1 . This was britney spears. The song was called. Baby One more time. ^goto(moreQs)     
+    u1:(~dontknow) I'll tell you then.  This was britney spears. The song was called. Baby One more time. ^goto(moreQs)
     u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
-                
-u:(q3) %q3  What was the name of his first solo album?
-    #"["the ablum" "his album" "[Justin he "Justin Timberlake"] album"] "is named Justified"" everything became correct
-    u1:(Justified)  ^goto(quizGoodJob)
-    u1:(~dontknow) I'll tell you then. It was named Justified. ^goto(moreQs) 
-    u1:(_*) I heard you say $1 . The correct answer is that It was named Justified. ^goto(moreQs)
-    u1:(score) Your score is $quizScore   ^stayInScope 
-    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
-    u1:(~stop) Stopping the quiz.    ^goto(nextProposalChanger)
-u:(q4) %q4  What is his middle name?
-    u1:(["[Justins his "Justin Timberlakes"] middle name is Randall" "Justin Randall Timberlake" "[it "the middle name"] is Randall" Randall randall])  ^goto(quizGoodJob)
-    u1:(~dontknow) His middle name is Randall. ^goto(moreQs) 
-    u1:(_*) I heard you say $1 . The correct answer is Randall . ^goto(moreQs)
-    u1:(score) Your score is $quizScore   ^stayInScope
-    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
+    u1:(score) Your score is. $quizScore   ^stayInScope
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood . ^stayInScope
+    u1:([~repeat "play {["the song" it]} again"]) I will play it again. Listen carefully. ^goto(q5)
+
+    
+u:(q6) %q6 Is it true that Beyonce was part of the group Spice Girls before starting her solo career?
+    u1:(~no) Thats right. Good job. As you might know. She was part of the group Destinys Child. $QUIZ/addscore=1 ^goto(moreQs)
+    u1:(~yes) Sorry. This was a tricky one. Her group was called Destinys Child.  ^goto(moreQs)     
+    u1:( ["I dont know" "{"I have"} no idea" "dont know" "not sure" "tell me" " I have no clue"]) ["Come on. I beleive in you. Take a Guess. ^stayInScope " " Okay that is alright. The answer was no. Her group was called Destinys Child.  ^goto(moreQs)"]
     u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
-u:(q5) %q5  How many children does he have?
-    u1:(["[Justin he "Justin Timberlake"] have [one 1] {[child son kid]}"    "[one 1] {[child son kid]}" one 1])  ~correct .  $QUIZ/addscore=1 ^goto(quizOver)
-    u1:(~dontknow) I'll tell you then. He has one son. ^goto(quizOver)
-    u1:(_*) I heard you say $1 . The correct answer is that he has one son .^goto(quizOver)
-    u1:(score) Your score is $quizScore   ^stayInScope
-    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
+    u1:(score) Your score is. $quizScore   ^stayInScope
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood . ^stayInScope
+    u1:(~repeat) I will read the question again. ^goto(q6)
+
+u:(q7) %q7 $img/lucyinsky=1 What song title are these images refering to?
+    u1:("{["[it "the song"] [is was] [called named]" "the titel is"]} Lucy in the Sky with Diamonds {"[by with] the beatles"}")   ^goto(quizGoodJob)
+    u1:(_*) I heard you say $1 . The correct answer is  Lucy in the Sky with Diamonds. A famous song by the Beatles. ^goto(moreQs)     
+    u1:(~dontknow) I'll tell you then. It is Lucy in the Sky with Diamonds. A famous song by the Beatles. ^goto(moreQs)
     u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
-u:(q6) %q6  What was the name of his latest album?
-    #{[Justins his "Justin Timberlakes" "the album"]} {"is named"}  everything became correct
-    u1:(["twenty twenty experience"]) ^goto(quizGoodJob)
-    u1:(~dontknow) I'll tell you then. It was named the 20 20 experience. ^goto(moreQs) 
-    u1:(_*) I heard you say $1 . The correct answer is that It was named the 20 20 experience. ^goto(moreQs)
-    u1:(score) Your score is $quizScore   ^stayInScope
-    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
-    u1:(~stop) Stopping the quiz.  ^goto(nextProposalChanger)
+    u1:(score) Your score is. $quizScore   ^stayInScope
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood . ^stayInScope
+    u1:(~repeat) I will read the question again. ^goto(q7)
+  
+u:(qlast) %qlast Which of these two songs. Uptown funk by Bruno Mars and. Sorry by Justin Beiber has most streams on Spotify?
+    u1:("{[its "{it} is"]} Sorry {[by with]} {Justin} {Bieber}") Correct. Nice job. Uptown funk has almost 700 million streams but Sorry has over 880 million.  $QUIZ/addscore=1 ^goto(quizOver)
+    u1:("{[its "{it} is"]} Uptown funk {[by with]} {Bruno} {Mars}") Sorry that was wrong. Uptown funk has almost 700 million streams but Sorry has over 880 million. ^goto(quizOver)   
+    u1:(~dontknow) Here is the situation. Uptown funk has almost 700 million streams but Sorry has over 880 million. ^goto(quizOver)
+    u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
+    u1:(score) Your score is. $quizScore   ^stayInScope
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood . ^stayInScope
+    u1:(~repeat) I will read the question again.  ^goto(qlast) 
      
 
 #-----------------------------------------Story mode ----------------------------------------
