@@ -3,49 +3,67 @@ language: enu
 
 include: ../concept.top
 
-u:(e:onStart) Im ready  $openPage=startMenu   $pauseOn=true $artist=0
-    u1:(~hello)  Hello Human. My name is D.J. Pepper. What is your name? ^clear(userName)
-        u2:([" {["my name is" "i am" "Im"]} _[~names]"] ) $userName=$1 Nice to meet you $userName . ^nextProposal
-    u1:(~no) I heard you say no, we can skip names ^nextProposal
+u:(e:onStart) ^first["$NLCtestOut==quiz Oh quiz. Fun!  $NLCtestOut=0 ^goto(theQuiz) " "$NLCtestOut==music I love listening to music.  $NLCtestOut=0 ^goto(playMusic) "  "$NLCtestOut==story Let me tell you about Justin.  $NLCtestOut=0 ^goto(storyMode) " "Im ready  $openPage=startMenu   $pauseOn=true $artist=0 $metBefore=false ^goto(nextProposalChanger)"]
+    u1:(["~hello {Pepper}" start])  Hello Human. My name is D.J. Pepper. What is your name? ^clear(userName)
+        u2:([" {["my name is" "i am" "Im"]} _[~names]"] ) $userName=$1 ^first[" $userName==carl Hi Carl! you know what to do!  $metBefore=true ^goto(mainChanger)  "  " Nice to meet you $userName . ^goto(nextProposalChanger) "]
+    u1:(~no) ^goto(nextProposalChanger)
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
 
-u:(~stop) Stopping. ^nextProposal        
+u:(~stop) Stopping.  ^goto(nextProposalChanger)    
+ 
+u:(nextProposalChanger) %nextProposalChanger ^first["$metBefore==true Lets do something else ^goto(mainChanger) " " ^nextProposal " ]
+
+u:(regularUserMainChanger) %mainChanger What do you want to do? #[" . " " Maybe a quiz or play a song? " " . " ]
+    #u1:(_*) $NLC/input=$1 $onStopped=1  
+    u1:(quiz) $NLCtestIn=1 $onStopped=1
+    #u1:(quiz) Oh fun! I love the quiz. ^goto(theQuiz)
+    u1:(music) Lets listen to music! ^goto(playMusic)
+    u1:(story)  Let me tell you a story about Justin Timberlake. ^goto(storyMode)
+    u1:(sax) ~checkThis ^goto(playSax)
+    u1:(dance) ~checkThis ^goto(playSax)
+
+    
+proposal: Have you already seen everything I can do?
+    u1:(~yes) Great! Then just tell me. $metBefore=true ^goto(mainChanger)
+    u1:([~no ~tellMe]) Then let me introduce myself! ^goto(nextProposalChanger)
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
+    u1:(~repeat) I said. ^sameProposal
         
 proposal: %introduction I really like music. We can do a lot of different musical things. Do you want me to tell you more about this?
-    u1:([~yes ~tellMe]) We can play a music quiz. We can also listen to songs togheter. I could also read you a story about my favourite artist. ^first[" $pauseOn==true $pause=1  A. A. A. "  " . "] ^nextProposal
-    u1:(~no) Okay. Lets get right to it then. ^nextProposal
+    u1:([~yes ~tellMe]) We can play a music quiz. We can also listen to songs togheter. I could also read you a story about my favourite artist. ^first[" $pauseOn==true $pause=1  A. A. A. "  " . "] ^goto(nextProposalChanger)
+    u1:(~no) Okay. Lets get right to it then. ^goto(nextProposalChanger)
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
     u1:(~repeat) I said. ^sameProposal
 
 proposal: %propsalQuiz Do you want to play a musical quiz?
     u1:(~yes) Great. I love this quiz. ^goto(theQuiz)
-    u1:(~no) Lets do something else then. ^nextProposal
-    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
+    u1:(~no) Lets do something else then. ^goto(nextProposalChanger)
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^goto(nextProposalChanger)
     u1:(~repeat) I said. ^sameProposal
 
 proposal: %propsalListen Do you want to listen to some music?
     u1:(~yes) Awesome. I am called D.J Pepper after all. Lets listen to music! ^goto(playMusic)
-    u1:(~no) Lets do something else then. ^nextProposal
+    u1:(~no) Lets do something else then. ^goto(nextProposalChanger)
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
     u1:(~repeat) I said. ^sameProposal
 
 proposal: %propsalGuess ^first["$artist==0 I got to tell you a secret about who my favourite artist is. $laughter=1 But first do you want to guess who it is? " " ^goto(propsalStory) "]
     u1:(~yes) Go ahead. Take a guess. ^stayInScope
-    u1:(~no ~dontknow) It's actually Justin Timberlake.  But dont ask me why.  ^nextProposal
-    u1:("{~myGuess} ~justinTimberlake") Wow! you guessed it! Good job! You did not cheat I hope. ^nextProposal
-    u1:("{~myGuess} _*") You guessed $1 .  The answer is actually Justin Timberlake. But dont ask me why.  ^nextProposal
+    u1:(~no ~dontknow) It's actually Justin Timberlake.  But dont ask me why. ^goto(nextProposalChanger)
+    u1:("{~myGuess} ~justinTimberlake") Wow! you guessed it! Good job! You did not cheat I hope. ^goto(nextProposalChanger)
+    u1:("{~myGuess} _*") You guessed $1 .  The answer is actually Justin Timberlake. But dont ask me why.  ^goto(nextProposalChanger)
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
     u1:(~repeat) I said. ^sameProposal
 
 proposal: %propsalStory Do you want me to tell you a story about Justin Timberlake?
     u1:(~yes) Great. Lets do it. ^goto(storyMode)
-    u1:(~no) I get it. Im not even sad. Like not sad at all. So.  ^nextProposal
+    u1:(~no) I get it. Im not even sad. Like not sad at all. So.  ^goto(nextProposalChanger)
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
     u1:(~repeat) I said. ^sameProposal
     
-proposal: %proposalSax I don usually brag. But I am actually pretty good at playing saxophone. Do you want to see? 
+proposal: %proposalSax I dont usually brag. But I am actually pretty good at playing saxophone. Do you want to see? 
     u1:(~yes) Awesome! Check this out! 
-    u1:(~no) Okay. Fine. We can do something else ^nextProposal
+    u1:(~no) Okay. Fine. We can do something else ^goto(nextProposalChanger)
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
     u1:(~repeat) I said. ^sameProposal
 
@@ -60,12 +78,15 @@ proposal: %doneAll Now you have seen what we can do. Do you want to do something
     u1:(~repeat) I said. ^sameProposal
 
 
-u:(e:Dialog/NoOneSpeak20) ^first["$playingSong==true ." "[^goto(propsalQuiz)  ^goto(propsalListen)  ^goto(propsalStory)  ^nextProposal ] "]
+#u:(e:Dialog/NoOneSpeak20) ^first["$playingSong==true ." "[^goto(propsalQuiz)  ^goto(propsalListen)  ^goto(propsalStory)  ^goto(nextProposalChanger) ] "]
 
-#-----------------------------------------Saxophone----------------------------------------
+#-----------------------------------------Saxophone and  dance----------------------------------------
 
 u:(playthesaxophone) %playSax  $pose/sax=1 #   ^nextProposal lägg in delay här innan nästa proposal. 
-    u1:(next) ^nextProposal #temporär lösning
+    u1:(next) ^goto(nextProposalChanger) #temporär lösning
+    
+u:(doadance) %doDance  $pose/dance1=1 #   ^nextProposal lägg in delay här innan nästa proposal. 
+    u1:(next)  ^goto(nextProposalChanger) #temporär lösning
  
 #-----------------------------------------Youtube----------------------------------------
 #play specific song from blank
@@ -78,11 +99,11 @@ u:(playMusic) %playMusic   $openPage=listen  Tell me which song you want to list
     u1:("~canWeListen ~SongMirrors ~madeBy") $opensongs/mirrors=1  Ok Im playing ~SongMirrors by ~justinTimberlake ^goto(pepperneedsomehelp)
     u1:("~canWeListen ~SongUptownfunk ~madeBy") $opensongs/uptownfunk=1 Ok Im playing ~SongUptownfunk by ~brunoMars ^goto(pepperneedsomehelp)
     u1:("~canWeListen ~SongLushlife ~madeBy")  $opensongs/lushlife=1  Ok Im playing ~SongLushlife by ~saraLarsson ^goto(pepperneedsomehelp)
-    u1:(~stop) okay lets do something else ^nextProposal
+    u1:(~stop) okay lets do something else ^goto(nextProposalChanger)
 
     
 #-----------------------------------------QUIZ-------------------to force-start quiz runthequiz  ---------------------    
-u:(runthequiz) %theQuiz $Menu/quiz=1 If you want to do something else. Just say stop, to stop the quiz. Anyway  here we go. Starting the quiz! $quizScore=0 ^goto(selectNextQ) 
+u:(runthequiz) %theQuiz $Menu/quiz=1  $openPage=quiz  If you want to do something else. Just say stop, to stop the quiz. Anyway  here we go. Starting the quiz! $quizScore=0 ^goto(selectNextQ) 
 u:(selectQ) %selectNextQ [^goto(q1) ^goto(q7) ^goto(q8)  ^goto(q9) ^goto(q2)  ^goto(q3) ^goto(q4) ^goto(q5) ^goto(q6) ]
 u:(quizIsNowEnded) %quizOver Well played! That was all the questions. Your final score was $quizScore
 u:(moreQs) %moreQs ["Here is the next [One question]" " Get ready"] . ^goto(selectNextQ) 
@@ -92,7 +113,7 @@ u:(q1) %q1 How old is Justin Timberlake?
     u1:(_*) I heard you say $1 . The correct answer is that he is 36 years old. ^goto(moreQs)     
     u1:([36 "he is 36"  "36 years old" "[justin he "justin timberlake"] is [36 "36 years old " " 36 years"]"])   ^goto(quizGoodJob)
     u1:(~dontknow) I'll tell you then. He is 36 years old. ^goto(moreQs)
-    u1:(~stop) Stopping the quiz. ^nextProposal
+    u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
     u1:(score) Your score is $quizScore   ^stayInScope
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
 u:(q2) %q2  In what city was he boorn?
@@ -101,28 +122,28 @@ u:(q2) %q2  In what city was he boorn?
     u1:(_*) I heard you say $1 . The correct answer is that he was born in Memphis. ^goto(moreQs)
     u1:(score) Your score is $quizScore   ^stayInScope
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
-    u1:(~stop) Stopping the quiz. ^nextProposal
+    u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
 u:(q7) %q7  What profession, except for artist is Justin famous for?
     u1:(["actor" "movie"]) ^goto(quizGoodJob)
     u1:(~dontknow) I'll tell you then. He is also an actor. ^goto(moreQs) 
     u1:(_*) I heard you say $1 . The correct answer is that he w is also an actor. ^goto(moreQs)
     u1:(score) Your score is $quizScore   ^stayInScope
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
-    u1:(~stop) Stopping the quiz. ^nextProposal
+    u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
 u:(q8) %q8  Is it true that he is married to Jessica Biel?
     u1:([~yes true]) ^goto(quizGoodJob)
     u1:(~dontknow) I'll tell you then. They have been married since 2012. ^goto(moreQs) 
     u1:(~no false) Sorry. The correct answer is that They have been married since 2012. ^goto(moreQs)
     u1:(score) Your score is $quizScore   ^stayInScope
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
-    u1:(~stop) Stopping the quiz. ^nextProposal
+    u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
 u:(q9) %q9 Has he won more than 5 grammy awards?
     u1:([~yes true]) ^goto(quizGoodJob)
     u1:(~dontknow) I'll tell you then.  He has actually won 10 grammys.  ^goto(moreQs) 
     u1:([~no false]) Sorry. That was wrong. He has actually won 10 grammys. ^goto(moreQs)
     u1:(score) Your score is $quizScore   ^stayInScope
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
-    u1:(~stop) Stopping the quiz. ^nextProposal
+    u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
                 
 u:(q3) %q3  What was the name of his first solo album?
     #"["the ablum" "his album" "[Justin he "Justin Timberlake"] album"] "is named Justified"" everything became correct
@@ -131,21 +152,21 @@ u:(q3) %q3  What was the name of his first solo album?
     u1:(_*) I heard you say $1 . The correct answer is that It was named Justified. ^goto(moreQs)
     u1:(score) Your score is $quizScore   ^stayInScope 
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
-    u1:(~stop) Stopping the quiz.    ^nextProposal
+    u1:(~stop) Stopping the quiz.    ^goto(nextProposalChanger)
 u:(q4) %q4  What is his middle name?
     u1:(["[Justins his "Justin Timberlakes"] middle name is Randall" "Justin Randall Timberlake" "[it "the middle name"] is Randall" Randall randall])  ^goto(quizGoodJob)
     u1:(~dontknow) His middle name is Randall. ^goto(moreQs) 
     u1:(_*) I heard you say $1 . The correct answer is Randall . ^goto(moreQs)
     u1:(score) Your score is $quizScore   ^stayInScope
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
-    u1:(~stop) Stopping the quiz.  ^nextProposal
+    u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
 u:(q5) %q5  How many children does he have?
     u1:(["[Justin he "Justin Timberlake"] have [one 1] {[child son kid]}"    "[one 1] {[child son kid]}" one 1])  ~correct .  $QUIZ/addscore=1 ^goto(quizOver)
     u1:(~dontknow) I'll tell you then. He has one son. ^goto(quizOver)
     u1:(_*) I heard you say $1 . The correct answer is that he has one son .^goto(quizOver)
     u1:(score) Your score is $quizScore   ^stayInScope
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
-    u1:(~stop) Stopping the quiz. ^nextProposal
+    u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
 u:(q6) %q6  What was the name of his latest album?
     #{[Justins his "Justin Timberlakes" "the album"]} {"is named"}  everything became correct
     u1:(["twenty twenty experience"]) ^goto(quizGoodJob)
@@ -153,36 +174,36 @@ u:(q6) %q6  What was the name of his latest album?
     u1:(_*) I heard you say $1 . The correct answer is that It was named the 20 20 experience. ^goto(moreQs)
     u1:(score) Your score is $quizScore   ^stayInScope
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
-    u1:(~stop) Stopping the quiz.  ^nextProposal
+    u1:(~stop) Stopping the quiz.  ^goto(nextProposalChanger)
      
 
 #-----------------------------------------Story mode ----------------------------------------
   
 u:(storyMode) %storyMode $openPage=story ["Look at my stomach to see the headlines and tell me what you want to hear about" "What do you want to hear about" ]
-    u1:([~stop nothing]) Ok. Lets do something else. ^nextProposal
+    u1:([~stop nothing]) Ok. Lets do something else. ^goto(nextProposalChanger)
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
     u1:(Early life) Wikipedia says Timberlake was born in Memphis  .   Tennessee  .    .   the son of Lynn Bomar Harless and Charles Randall Timberlake  .   a Baptist church choir director  .    .    .   Timberlake grew up in Shelby Forest  .   a small community between Memphis and Millington .   .   He has two half-brothers  .   Jonathan born September 12  .   1993 and Stephen born August 14  .   1998  .   from Charles second marriage to Lisa Perry .   ^first[" $pauseOn==true $pause=1  A. A. A. "  " . "]  Do you want to hear more about this topic? 
         u2:(~yes)  His half-sister Laura Katherine died shortly after birth on May 12  .   1997  .   and is mentioned in his acknowledgments in the album  N sync  as My Angel in Heaven .   .   He was inspired to become a performer by Janet Jackson  .   saying She didnt just stand there and sing her song  .   fascinated by her energy and exuberance .   .   At the age of 11  .   Timberlake appeared on the television show Star Search  .   performing country music songs as Justin Randall .   .   In 1993 and 1994  .   he was a cast member in The Mickey Mouse Club  .   where his castmates included future girlfriend and singer Britney Spears  .   future tourmate Christina Aguilera  .   future bandmate JC Chasez  .   and future movie actors Ryan Gosling and Keri Russell .   .   Timberlake then recruited Chasez to be in an all-male singing group  .   organized by boy band manager Lou Pearlman  .   that eventually became  N sync  .   .   . 
         u2:(~no) ok  ^goto(storyMode) 
-        u2:(~stop) Ok. Lets do something else. ^nextProposal
+        u2:(~stop) Ok. Lets do something else. ^goto(nextProposalChanger)
 
     u1:(Career) Wikipedia says The boy band  N sync  formed in 1995  .   and began their career in 1996 in Europe. Timberlake and Chasez served as its two lead singers  .   In 1998  .   the group rose to prominence in the United States with the release of their self-titled debut studio album  .   which sold 11 million copies and included the hit single Tearin Up My Heart .  Their second album No Strings Attached 2000 sold 2 million copies in the first week  .    .   and included a number 1 single  .   Its Gonna Be Me .  .   ^first[" $pauseOn==true $pause=1  A. A. A. "  " . "]  Do you want to hear more about this topic? 
         u2:(~yes)   N sync s third album Celebrity 2001 was also financially successful .  Upon the completion of the Celebrity Tour  .   the group went into hiatus in 2002 .  In its lifetime  .    N sync  was internationally famous and performed at the Academy Awards  .    .   the Olympics  .    .   and the Super Bowl  .    .   as well as selling more than 50 million copies worldwide  .   becoming the third-best selling boy band in history .   .  In late 1999  .   Timberlake appeared in the Disney Channel movie Model Behavior .  He played Jason Sharpe  .   a model who falls in love with a waitress after mistaking her for another model .  It was released on March 12  .   2000 .   .   The rise of his own stardom and the general decline in the popularity of boy bands led to the dissolution of  N sync  .  Band member Lance Bass was openly critical of Timberlakes actions in his memoir Out of Sync .   .  Timberlake in London on his Justified World Tour  .   December 2003In August 2002  .   Timberlake performed at the 2002 MTV Video Music Awards  .   where he premiered his debut solo single Like I Love You  .   it peaked at number 11 on the Billboard Hot 100  .   and number two on the UK Singles Chart .   .   His debut solo studio album Justified was released in November  .   and debuted at number two on the Billboard 200 with first-week sales of 439  .  000 copies  .   fewer than previous N Sync releases .  It went on to sell over three million copies in the U . S .  and more than seven million copies worldwide .   .   Its R&B influence  .   provided by hip-hop producers The Neptunes and Timbaland  .    .   was complimented by music critics .  About the musical direction of the record  .   he commented  .   I just want to do R&B .  Its what I grew up listening to .   .   The album spawned the top-five singles Cry Me a River and Rock Your Body .   .   In summer 2003  .   Timberlake and Christina Aguilera headlined the JustifiedStripped Tour .   .   Later that year he recorded a song Im Lovin It  .   used by McDonalds as the theme to its Im Lovin It campaign .  The deal with McDonalds earned Timberlake an estimated $6 million .  A tour titled Justified and Lovin It Live was included with the deal  .   following his initial Justified World Tour .   .   Timberlake was featured on Nellys song  .   Work It  .   which was remixed and included on Nellys 2003 remix album .   .  Near the end of 2002  .   Timberlake was the first celebrity to appear on Punkd  .   a candid camera type show created by Ashton Kutcher to trick celebrities .   .   Timberlake  .   who cried during the episode  .   later admitted to being under the influence of cannabis when he was pranked .  Three episodes later  .   he set up Kelly Osbourne to be punkd  .   thus making him the first celebrity to appear on the show more than once .   .   Timberlake later spoofed Ashton Kutcher and Punkd in a 2003 episode of NBCs Saturday Night Live .   .   Timberlake co-starred in skit titled The Barry Gibb Talk Show alongside comedian Jimmy Fallon  .   where the duo portrayed Bee Gees brothers Barry and Robin Gibb .  It marked the beginning of a long-running friendship and collaboration with Fallon .   .  In February 2004  .   during the halftime show of the Super Bowl XXXVIII broadcast on the CBS television network from Houston  .   Timberlake performed with Janet Jackson before a television audience of more than 140 million viewers .  At the end of the performance  .   as the song drew to a close  .   Timberlake tore off a part of Jacksons black leather costume in a costume reveal meant to accompany a portion of the song lyrics .  Jacksons representative explained Timberlake intended to pull away the rubber bustier to reveal a red lace bra .  The garment collapsed and her breast was accidentally revealed .   .   Part of the costume detached  .   and Jacksons breast was briefly exposed .   .   Timberlake apologized for the incident  .   stating he was sorry that anyone was offended by the wardrobe malfunction during the halftime performance of the Super Bowl .  .  .   .   The phrase wardrobe malfunction has since been used by the media to refer to the incident and has entered pop culture .   .   Timberlake and Jackson were threatened with exclusion from the 2004 Grammy Awards unless they agreed to apologize on screen at the event .  Timberlake attended and issued a scripted apology when accepting the first of two Grammy Awards he received that night Best Pop Vocal Album for Justified and Best Male Pop Vocal Performance for Cry Me a River .   .   He had also been nominated for Album of the Year for Justified  .   and Record of the Year along with Best RapSung Collaboration for Where Is the Love? with The Black Eyed Peas .   .   . 
         u2:(~no) ok  ^goto(storyMode) 
-        u2:(~stop) Ok. Lets do something else. ^nextProposal
+        u2:(~stop) Ok. Lets do something else. ^goto(nextProposalChanger)
 
 
     u1:(Personal life) Wikipedia says In early 1999  .   Timberlake began dating fellow cast member and singer Britney Spears. Their relationship ended abruptly in March 2002 .   .   In April 2003  .   he began dating actress Cameron Diaz soon after they met at the Nickelodeon Kids Choice Awards .   ^first[" $pauseOn==true $pause=1  A. A. A. "  " . "]  Do you want to hear more about this topic? 
         u2:(~yes)  After much speculation of breakups throughout their relationship  .    .   the couple split in December 2006 shortly after she introduced him as musical guest on Saturday Night Live .   .  In January 2007  .   Timberlake began dating actress Jessica Biel .   .   They became engaged in December 2011  .   and married on October 19  .   2012 at the Borgo Egnazia resort in Fasano  .   Italy .   .   Timberlake and Biel have one son  .   Silas Randall Timberlake  .   born in April 2015 .   .  Forbes magazine began reporting on Timberlakes earnings in 2008  .   calculating that he earned 44 million between June 2007 and June 2008 for his music  .   tour  .   commercials and hospitality  .   making him the worlds 4th best-paid music personality at the time  .   above Madonna and Celine Dion .   .   They placed him twelfth on the Celebrity 100 list  .   and second on the Best-Paid Celebrities Under 30 list .   .   According to Billboard  .   Timberlake was the third highest-paid musician of 2013  .   with earnings of 31 million .   .   He was ranked 26th with earnings of 57 million on the Celebrity 100 list for 2014  .    .   and 19th on the 2015 list with 63 million .   .   Timberlake was listed at number three on Billboard Money-Makers List of 2014 .   .  Timberlake publicly endorsed Barack Obama in his 2008  .   and 2012  .   presidential campaigns .  He and his wife Biel hosted a fundraiser for Democratic presidential candidate Hillary Clinton in Los Angeles in 2016 .   .   . 
         u2:(~no) ok  ^goto(storyMode) 
-        u2:(~stop) Ok. Lets do something else. ^nextProposal
+        u2:(~stop) Ok. Lets do something else. ^goto(nextProposalChanger)
 
     u1:(Artistry) Wikipedia says SexyBack excerptA 23-second sample of Justin Timberlakes SexyBack The electro R&B song  .   is built around a pounding bass beat  .   electronic chords  .   and beat box sounds . Mirrors excerptA 29-second sample of Mirrors  .   a progressive pop and R&B song .   ^first[" $pauseOn==true $pause=1  A. A. A. "  " . "]  Do you want to hear more about this topic? 
         u2:(~yes)  It features orchestral flares  .   electro blips  .   chipmunk synth chirps accompanied with vocoder-squawk backing vocals .   .  Problems playing these files? See media help . Timberlake has a lyric tenor vocal range .   .   Primarily an R&B album  .   his debut Justified also contains influences of dance-pop  .   funk and soul music .   .   During the production of FutureSexLoveSounds  .   Timberlake was interested in rock music .   .   This inspiration was used in his approach in recording the songs  .   rather than in composing them .  Timberlake reveals  .   I wanted to sing the song like a rock and roll singer  .   not an R&B singer .   .   On the influences he drew from  .   he said that if Justified was characterized by Michael Jackson and Stevie Wonder  .   FutureSexLoveSounds is more like David Bowie and Prince .   .   Other influences include late INXS-frontman Michael Hutchence  .    .   Arcade Fire  .   David Byrne  .   The Killers  .   The Strokes  .   and Radiohead .   .   He began including beatboxing in his records near the end of his boyband era and into his emergence as a solo act  .    .   this includes songs from Justified  .   and FutureSexLoveSounds .   .  Unlike his previous record primarily focused on R&B and pop genres  .    .   FutureSexLoveSounds is less concentrated on one particular sound  .   thus representing a wider range .  Timberlake explains  .   Its more broad as far as the styles I wanted to mix in to my own type of thing .   .   A musically complex album  .   FutureSexLoveSounds is a fusion of rap  .   rock  .   funk  .   soul  .   gospel  .   new wave  .   opera  .   and world music  .    .   characterized by preludes and interludes interspersed on the albums tracks .   .   Entertainment Weekly noted that the albums sound is a sonic departure from both  N sync  and Justified .   .   Although What Goes Around sounds similar to Justified  .   Timberlake admitted that it is the only song in the new album to have such similarity .   .   The 2020 Experience is a neo soul album partly inspired by the expansive song structures of 1960s and 1970s rock .   .   Mikael Wood of the Los Angeles Times found its elaborate structures ambitious in the vein of Stevie Wonder  .   Prince  .   and Michael Jackson .   .  Timberlake performing on his 2020 Experience Tour in Charlotte  .   North CarolinaLongtime critic Robert Hilburn for the Los Angeles Times praised Timberlakes act after attending the Justified and Stripped Tour in 2003  .   considering him born for the stage with the savvy instincts to put together a show that works .  Rather than make himself the constant center of attention  .   he was comfortable enough at times simply to be part of a talented ensemble .   .   In 2013  .   Timberlake introduced his big-band orchestra called the Tennessee Kids for Legends of the Summer and The 2020 Experience World Tour which includes guitarists  .   dancers  .   background singers  .   drummers  .   bassists  .   keyboardists  .   trumpeters  .   a music coordinator  .   a percussionist  .   a saxophonist  .   among others musicians .   .    .   The 2020 Experience allowed Timberlake to throw back to the big-band era  .    .   its stage production embraced a vintage sheen and everyone in classic suits .  For the tour  .   Timberlake had a horn section onstage with him called The Regiment Horns .   .   The Hollywood Reporters Emily Zemler described him as a performer who is genuinely having fun  .    .   whereas Jon Pareles of The New York Times commented that the singer reveals something darker  .   more fiery and intense while performing post-breakup revenge songs  .   such as Cry Me a River” and “What Goes Around .  .  .  Comes Around” .   .   Billboard editor Phil Gallo praised Timberlakes medley performance at the 2013 MTV Video Music Awards  .   saying he gave the show its heart and center  .   also mentioning his place as a modern recording artist and a solid link in the lineage of the most acclaimed performers in the shows history .   .   The New York Times editor Katie Rogers highlighted Timberlakes crossover appeal after his performance with Chris Stapleton at the 2015 Country Music Association Awards .   .   Described by critics as a consummate showman  .    .    .   Timberlake usually plays guitar  .   piano and keyboard in his shows .   .   . 
         u2:(~no) ok  ^goto(storyMode)
-        u2:(~stop) Ok. Lets do something else. ^nextProposal 
+        u2:(~stop) Ok. Lets do something else. ^goto(nextProposalChanger)
 
     u1:(Achievements) Wikipedia says All four of Timberlakes studio albums have been certified platinum or better by the RIAA and have received numerous awards Worldwide sales figures for Justified stands at 10 million copies  .    .   FutureSexLoveSounds at 10 million  .    .   and joint sales of The 2020 Experience with 2 of 2 at 6 million copies .   .   As of 2014  .   Timberlake has had six songs exceed 3 million digital copies in the United States with SexyBack 4 .   ^first[" $pauseOn==true $pause=1  A. A. A. "  " . "]  Do you want to hear more about this topic? 
         u2:(~yes) 5  .    .   4 Minutes  .    .   Dead and Gone  .    .   Suit & Tie  .    .   Mirrors  .    .   and Holy Grail .   .  According to Billboard  .   FutureSexLoveShow was the third highest-grossing concert tour of 2007 and highest solo .   .   The 2020 Experience World Tour was an international success and became Timberlakes most successful tour to date .  The tour was the highest-grossing led by a solo artist in 2014  .   and one of the highest grossing tours of the decade .   .   For its associated album  .   The 2020 Experience  .   Timberlake was named Artist of the Year with the top-selling album by Apple Inc . s annual list of best-sellers .   .  Throughout his solo career  .   Timberlake has won ten Grammy Awards  .   four Emmy Awards  .   seven American Music Awards  .   three Brit Awards  .   seven Billboard Music Awards  .   and eleven MTV Video Music Awards .  His Grammy wins include categories on the pop  .   dance and R&B genres  .   while his Emmy wins consist of two Outstanding Original Music and Lyrics and two Outstanding Guest Actor in a Comedy Series .   .   Timberlake received the Video Vanguard Award at the 2013 MTV Video Music Awards  .    .   and the Innovator Award at the 2015 iHeartRadio Music Awards .   .   Among other awards  .   he won the MTV Video Music Award for Video of the Year for Mirrors in 2013 and the Billboard Music Awards for Top Artist with the Top Billboard 200 Album for The 2020 Experience in 2014 .  Timberlake received the inaugural Decade Award at the 2016 Teen Choice Awards for his continuous achievements since the release of FutureSexLoveSounds 2006 .   .  In the United States  .   five of Timberlakes singles have topped the Billboard Hot 100  .   his most recent being Cant Stop the Feeling! .   .   He topped nine Billboard Year-End charts for 2013  .   including Billboard 200 Artists  .   and Billboard 200 Albums .   .   For 2014  .   Timberlake was named Billboard Top Male Artist .   .   . 
         u2:(~no) ok  ^goto(storyMode) 
-        u2:(~stop) Ok. Lets do something else. ^nextProposal
+        u2:(~stop) Ok. Lets do something else. ^goto(nextProposalChanger)
