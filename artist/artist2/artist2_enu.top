@@ -9,7 +9,7 @@ u:(e:onStart) $playingSong=false $quizMode=false ^first["$NLC/output==notUnderst
     u1:(~no) ^goto(nextProposalChanger)
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
 
-u:(~stop) Stopping. $playingSong=false $quizMode=false ^goto(nextProposalChanger)    
+u:(~stop) Stopping. ^first["$playingSong==true $pose/stop=1 "] $playingSong=false $quizMode=false ^goto(nextProposalChanger)    
 
 u:(nextProposalChanger) %nextProposalChanger $openPage=startMenu  $quizMode=false $playingSong=false ^first["$metBefore==true Lets do something else ^goto(mainChanger) " " ^nextProposal " ]
 
@@ -20,13 +20,13 @@ u:(initSongFromNLC) %initSongFromNLC $NLC/output=done ^first["$requestedSong==lu
 u:(regularUserMainChanger) %mainChanger $openPage=startMenu  $metBefore=true What do you want to do? #[" . " " Maybe a quiz or play a song? " " . " ]
     u1:(_*) $NLC/input=$1 $onStopped=1  
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
-    u1:(~stop)  $metBefore=false ^goto(nextProposalChanger)
+    #u1:(~stop)  $metBefore=false ^goto(nextProposalChanger)
     
 #--------------------------------------------Handle quiet ------------------------------------------
 u:(~whatcanyoudo) ^goto(newSuggestions)
 u:(restartEverything) $playingSong=false $quizMode=false ^clear(userName) $goToTopic=music $onStopped=1
-u:("e:Dialog/NoOneSpeak10  $playingSong==true ")  [" da " " da " " $pose/dance1=1 " " $pose/wipe=1 " " $pose/elephant=1  "]
-u:("dance  $playingSong==true") [" $pose/dance1=1 " " $pose/wipe=1 " " $pose/elephant=1  "]
+u:("e:Dialog/NoOneSpeak10  $playingSong==true ") %doTheDance  [" Lets get this party started "  " $pose/dance1=1 " " $pose/wipe=1 " " $pose/elephant=1  "   " $pose/dance1=1 " " $pose/wipe=1 " " $pose/elephant=1  "]
+u:("dance  $playingSong==true") ^goto(doTheDance)
 u:("e:Dialog/NoOneSpeak20  $playingSong==false $quizMode==false") %newSuggestions ^first[ "$quizMode==true   " "[^goto(propsalQuiz)  ^goto(propsalListen)  ^goto(propsalStory)  ^goto(nextProposalChanger) ] "]
     
 
@@ -103,7 +103,7 @@ u:(pepperneedsomehelp) %pepperneedsomehelp $playingSong=true  ^first[" $pauseOn=
 u:(playMusic) %playMusic   $openPage=listen  Tell me which song you want to listen to?
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
     u1:(~dontknow) I can help you find a song. Pick one from the list on my stomach.
-    u1:("~canWeListen ~SongMirrors ~madeBy") $opensongs/mirrors=1  Ok Im playing ~SongMirrors by ~justinTimberlake ^goto(pepperneedsomehelp)
+   # u1:("~canWeListen ~SongMirrors ~madeBy") $opensongs/mirrors=1  Ok Im playing ~SongMirrors by ~justinTimberlake ^goto(pepperneedsomehelp)
     u1:("~canWeListen ~SongUptownfunk ~madeBy") $opensongs/uptownfunk=1 Ok Im playing ~SongUptownfunk by ~brunoMars ^goto(pepperneedsomehelp)
     u1:("~canWeListen ~SongLushlife ~madeBy")  $opensongs/lushlife=1  Ok Im playing ~SongLushlife by ~saraLarsson ^goto(pepperneedsomehelp)
     u1:(~stop)  ^goto(nextProposalChanger)

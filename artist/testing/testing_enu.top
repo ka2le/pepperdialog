@@ -98,7 +98,7 @@ u:(pose think) See my moves $pose/think=1 and i can talk while i do it
 u:(dance one) $pose/dance1=1
 u:(dance two) $pose/dance2=1
 u:(dance three) $pose/dance3=1
-u:(pose sax) $pose/sax=1
+u:(pose sax) ok $pose/sax=1
 
 
 u:(local) $tabletLocal=1 local
