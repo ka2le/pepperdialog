@@ -107,6 +107,7 @@ u:(playMusic) %playMusic   $openPage=listen  Tell me which song you want to list
     u1:("~canWeListen ~SongUptownfunk ~madeBy") $opensongs/uptownfunk=1 Ok Im playing ~SongUptownfunk by ~brunoMars ^goto(pepperneedsomehelp)
     u1:("~canWeListen ~SongLushlife ~madeBy")  $opensongs/lushlife=1  Ok Im playing ~SongLushlife by ~saraLarsson ^goto(pepperneedsomehelp)
     u1:(~stop)  ^goto(nextProposalChanger)
+    u1:("~canWeListen ~SongNomoney ~madeBy")  $opensongs/nomoney=1  Ok Im playing ~SongLushlife by ~galantis ^goto(pepperneedsomehelp)
 
     
 #-----------------------------------------QUIZ-------------------to force-start quiz runthequiz  ---------------------    
