@@ -3,34 +3,47 @@ language: enu
 
 include: ../concept.top
 
-u:(e:onStart) ^first["$NLCtestOut==quiz Oh quiz. Fun!  $NLCtestOut=0 ^goto(theQuiz) " "$NLCtestOut==music I love listening to music.  $NLCtestOut=0 ^goto(playMusic) "  "$NLCtestOut==story Let me tell you about Justin.  $NLCtestOut=0 ^goto(storyMode) " "Im ready  $openPage=startMenu   $pauseOn=true $artist=0 $metBefore=false ^goto(nextProposalChanger)"]
+u:(e:onStart) $playingSong=false $quizMode=false ^first["$NLC/output==song NLC said song ^goto(initSongFromNLC) " "$NLC/output==quiz NLC said quiz $NLC/output=done ^goto(theQuiz) "  "$NLC/output==story NLC said story $NLC/output=done ^goto(storyMode) " "$metBefore==true  ^goto(mainChanger)" "Im ready  $openPage=startMenu   $pauseOn=true $artist=0 $metBefore=false ^goto(nextProposalChanger)"]
     u1:(["~hello {Pepper}" start])  Hello Human. My name is D.J. Pepper. What is your name? ^clear(userName)
         u2:([" {["my name is" "i am" "Im"]} _[~names]"] ) $userName=$1 ^first[" $userName==carl Hi Carl! you know what to do!  $metBefore=true ^goto(mainChanger)  "  " Nice to meet you $userName . ^goto(nextProposalChanger) "]
     u1:(~no) ^goto(nextProposalChanger)
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
 
-u:(~stop) Stopping.  ^goto(nextProposalChanger)    
- 
-u:(nextProposalChanger) %nextProposalChanger ^first["$metBefore==true Lets do something else ^goto(mainChanger) " " ^nextProposal " ]
+u:(~stop) Stopping. $playingSong=false $quizMode=false ^goto(nextProposalChanger)    
 
-u:(regularUserMainChanger) %mainChanger $metBefore=true What do you want to do? #[" . " " Maybe a quiz or play a song? " " . " ]
-    #u1:(_*) $NLC/input=$1 $onStopped=1  
-    u1:(quiz) $NLCtestIn=1 $onStopped=1
+u:(nextProposalChanger) %nextProposalChanger $openPage=startMenu  $quizMode=false ^first["$metBefore==true Lets do something else ^goto(mainChanger) " " ^nextProposal " ]
+
+
+#--------------------------------------For regular users, menu and nlc redirects
+u:(initSongFromNLC) %initSongFromNLC $NLC/output=done ^first["$requestedSong==lushlife $opensongs/lushlife=1  Ok Im playing ~SongLushlife by ~saraLarsson ^goto(pepperneedsomehelp)" " ^goto(playMusic) "]
+
+u:(regularUserMainChanger) %mainChanger $openPage=startMenu  $metBefore=true What do you want to do? #[" . " " Maybe a quiz or play a song? " " . " ]
+    u1:(_*) $NLC/input=$1 $onStopped=1  
+    #u1:(quiz) $NLCtestIn=1 $onStopped=1
     #u1:(quiz) Oh fun! I love the quiz. ^goto(theQuiz)
-    u1:(music) Lets listen to music! ^goto(playMusic)
-    u1:(story)  Let me tell you a story about Justin Timberlake. ^goto(storyMode)
-    u1:(sax) ~checkThis ^goto(playSax)
-    u1:(dance) ~checkThis ^goto(playSax)
-
+    #u1:(music) Lets listen to music! ^goto(playMusic)
+    #u1:(story)  Let me tell you a story about Justin Timberlake. ^goto(storyMode)
+    #u1:(sax) ~checkThis ^goto(playSax)
+    #u1:(dance) ~checkThis ^goto(playSax)
     
-proposal: Is this you first time meeting me. D.J. Pepper? 
-    u1:([~yes ~tellMe]) Then let me introduce myself! ^goto(nextProposalChanger)
+#--------------------------------------------Handle quiet ------------------------------------------
+u:(~whatcanyoudo) ^goto(newSuggestions)
+u:(restartEverything) $playingSong=false $quizMode=false ^clear($userName) $goToTopic=music $onStopped=1
+u:("e:Dialog/NoOneSpeak10  $playingSong==true ")  [" da " " da " " $pose/dance1=1 " " $pose/wipe=1 " " $pose/elephant=1  "]
+u:("dance  $playingSong==true") [" $pose/dance1=1 " " $pose/wipe=1 " " $pose/elephant=1  "]
+u:("e:Dialog/NoOneSpeak20  $playingSong==false $quizMode==false") %newSuggestions ^first[ "$quizMode==true   " "[^goto(propsalQuiz)  ^goto(propsalListen)  ^goto(propsalStory)  ^goto(nextProposalChanger) ] "]
+    
+
+#--------------------------------------all proposals-----------------------------------------------------------
+    
+proposal: Is this your first time meeting me? D.J. Pepper? 
+    u1:([~yes]) Then let me introduce myself! ^goto(nextProposalChanger)
     u1:([~no ])  Great! Then you know what you want. Tell me. $metBefore=true ^goto(mainChanger)
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
     u1:(~repeat) I said. ^sameProposal
         
 proposal: %introduction I really like music. We can do a lot of different musical things. Do you want me to tell you more about this?
-    u1:([~yes ~tellMe]) We can play a music quiz. We can also listen to songs togheter. I could also read you a story about my favourite artist. ^first[" $pauseOn==true $pause=1  A. A. A. "  " . "] ^goto(nextProposalChanger)
+    u1:([~yes ~tellMe]) We can play a music quiz. We can also listen to songs together. I could also read you a story about my favourite artist. ^first[" $pauseOn==true $pause=1  A. A. A. "  " . "] ^goto(nextProposalChanger)
     u1:(~no) Okay. Lets get right to it then. ^goto(nextProposalChanger)
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
     u1:(~repeat) I said. ^sameProposal
@@ -62,7 +75,7 @@ proposal: %propsalStory Do you want me to tell you a story about Justin Timberla
     u1:(~repeat) I said. ^sameProposal
     
 proposal: %proposalSax I dont usually brag. But I am actually pretty good at playing saxophone. Do you want to see? 
-    u1:(~yes) Awesome! Check this out! 
+    u1:(~yes) Awesome! Check this out! ^goto(playSax)
     u1:(~no) Okay. Fine. We can do something else ^goto(nextProposalChanger)
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
     u1:(~repeat) I said. ^sameProposal
@@ -77,9 +90,6 @@ proposal: %doneAll Now you have seen what we can do. Do you want to do something
     u1:(~no) Thats okay! Just let me know if you change your mind. 
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
     u1:(~repeat) I said. ^sameProposal
-
-
-#u:(e:Dialog/NoOneSpeak20) ^first["$playingSong==true ." "[^goto(propsalQuiz)  ^goto(propsalListen)  ^goto(propsalStory)  ^goto(nextProposalChanger) ] "]
 
 #-----------------------------------------Saxophone and  dance----------------------------------------
 
@@ -104,10 +114,10 @@ u:(playMusic) %playMusic   $openPage=listen  Tell me which song you want to list
 
     
 #-----------------------------------------QUIZ-------------------to force-start quiz runthequiz  ---------------------    
-u:(runthequiz) %theQuiz $Menu/quiz=1  $openPage=quiz  Starting the quiz! $quizScore=0 ^goto(selectNextQ) 
+u:(runthequiz) %theQuiz $Menu/quiz=1 $quizMode=true $openPage=quiz  Starting the quiz! $quizScore=0 ^goto(selectNextQ) 
 u:(selectQ) %selectNextQ [^goto(q1)  ^goto(q2)  ^goto(q3) ^goto(q4) ^goto(q5) ^goto(q6) ^goto(qlast) ] #
-u:(quizIsNowEnded) %quizOver Well played! That was all the questions. Your final score was $quizScore
-u:(moreQs) %moreQs ["Here is the next ["One. " "Question. "]" " Get ready. "] . ^goto(selectNextQ) 
+u:(quizIsNowEnded) %quizOver  $quizMode=false Well played! That was all the questions. Your final score was $quizScore
+u:(moreQs) %moreQs  $openPage=quiz  ["Here is the next ["One. " "Question. "]" " Get ready. "] .  ^goto(selectNextQ) 
 u:(quizGoodJob) %quizGoodJob  ^rand[~correct] ^rand[~goodJob] $QUIZ/addscore=1 ^goto(moreQs)
 u:(somequizinfo) %quizinfo ["Just so you know. If you want to do something else. Just say stop, to stop the quiz.  " "If you dont know the answer and cant come up with a guess. Just say that you dont know and I will tell you the answer. " ] Anyway. ^goto(moreQs)
 
@@ -122,7 +132,7 @@ u:(q1) %q1 Robin Bengtsson won the swedish part of the eurovision song contest t
     u1:(~repeat) I will read the question again. ^goto(q1)
 
     
-u:(q2) %q2 In 1971 David Bowie released a song that became a classic. The titel includes a planet. Life on. Blank. What was the planet? 
+u:(q2) %q2 In 1971 David Bowie released a song that became a classic. The title includes a planet. Life on. Blank. What was the planet? 
     u1:("{["it [is was] called" "the titel is" "the planet {[is was]}"]} {"Life on"} Mars") Thats right. You know your stuff.   $QUIZ/addscore=1   ^goto(quizinfo)
     u1:(_*) I am sorry but $1 is not correct. It was called. Life on Mars.    ^goto(quizinfo)
     u1:(~dontknow) Then I will tell you. It was called. Life on Mars.   ^goto(quizinfo)
@@ -131,7 +141,7 @@ u:(q2) %q2 In 1971 David Bowie released a song that became a classic. The titel 
     u1:(e:Dialog/NotUnderstood) ~notUnderstood . ^stayInScope
     u1:(~repeat) I will read the question again. ^goto(q2)
 
-u:(q3) %q3 $img/edsheeran=1 Look at my tablet and you will se a picture of a singer who most people have listened to in recent years. Maybe without knowing it. Do you know his name?
+u:(q3) %q3 $img/edsheeran=1 Look at my tablet and you will see a picture of a singer who most people have listened to in recent years. Maybe without knowing it. Do you know his name?
     u1:(["{["his name is" "[he it] is {[called named]}"]}  {Ed} Sheeran" "{["his name is" "[he it] is {[called named]}"]}  Ed {Sheeran}"])   ^goto(quizGoodJob)
     u1:(_*) I heard you say $1 . His name is Ed Sheeran. ^goto(moreQs)     
     u1:(~dontknow) I'll tell you then. His name is Ed Sheeran. ^goto(moreQs)

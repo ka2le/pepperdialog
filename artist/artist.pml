@@ -44,10 +44,10 @@
         <File name="regular user" src="regular user" />
         <File name="Thumbs" src="images/Thumbs.db" />
         <File name="edsheeran" src="images/edsheeran.jpg" />
-        <File name="01 ...Baby One More Time (mp3cut.net)" src="music/01 ...Baby One More Time (mp3cut.net).mp3" />
         <File name="lucyinsky" src="images/lucyinsky.jpg" />
         <File name="lucyinsky" src="images/lucyinsky.png" />
         <File name="desktop" src="music/desktop.ini" />
+        <File name="babyone" src="music/babyone.mp3" />
     </Resources>
     <Topics>
         <Topic name="ExampleDialog_enu" src="behavior_1/ExampleDialog/ExampleDialog_enu.top" topicName="ExampleDialog" language="en_US" />
@@ -56,7 +56,7 @@
         <Topic name="artist_enu" src="artist/artist_enu.top" topicName="artist" language="en_US" />
         <Topic name="common2_enu" src="common2_enu.top" topicName="common2" language="en_US" />
         <Topic name="concept" src="concept.top" topicName="concept" language="en_US" />
-        <Topic name="artist2_enu" src="artist2/artist2_enu.top" topicName="artist2" language="en_US" />
+        <Topic name="artist2_enu" src="artist2/artist2_enu.top" topicName="" language="" />
         <Topic name="oldConcet_enu" src="oldConcet/oldConcet_enu.top" topicName="oldConcet" language="en_US" />
     </Topics>
     <IgnoredPaths />

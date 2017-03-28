@@ -10,16 +10,30 @@ concept:(concept) ["concept _~theArtists"]
 concept:(concept2) ["{play} {_~theArtists}"]
 concept:(speaking) ["get it ["ok" "pls"]" "get it {yes}"]
 
+u:(save green) saving green $recallV=green
+u:("save blue $recallV==green ") you saved green first.
+u:([" _["this is getting "] {"_[advanced cool]"} " "_["this is getting "]"]) you said ^first["$1 " " . " ] ^first[" $2 "  " . "] and the key word is ^first[" $2 " " . "]  ^first[" from second input we got $3 " " . " ]
+
+u:(almost real nlc) go for it
+    u1:(["_* _[~theSongs]" "_*"]) ^first["sending $1 $2 to nlc " " sending second $3" ] 
+
+u:(add more text _[please now] ) $text=["$text added words $1 "] $text 
 u:("start video") starting video  $openVideo/lushlife=1
 
+u:(listen to this text) what text?
+    u1:(_*) got it $stringIn=$1
+u:(tell me about the text) the song contained $requestedSong
+u:(string out) is $stringOut
+
+u:(britney) playing song $quizSong/babyone=1
 u:(music)  $goToTopic=music $onStopped=1
 u:(general)  $goToTopic=general $onStopped=1
 u:("remember _~theArtists") okay $1 lets see  ^goto(doIremember)
 u:(doIremember) %doIremember i remember ^first["$1" "nothing"]
 
-u:(lush life) ok im playing lush lfe $opensongs/lushlife=1
+u:(lush life) ok im playing lush life $opensongs/lushlife=1
 u:(notUnderstood) ~notUnderstood
-u:(e:onStart) I am in test mode 
+u:(e:onStart) I am in test mode $text=hello $requestedSong=false ^first["NLC said $NLC/output" " ok"]
 u:(~hello) Hi ^first["$userName" "human "] . I am in test mode.
 u:(help)  here is a list of words for testing NLC local new page old page teach
 u:(~speaking) yes i get it
@@ -55,6 +69,7 @@ u:(if artist) ["$testArtist==[~justinTimberlake] 1 "  "$testArtist==sara 2"]
 u:(NLC) N L C ready
     u1:(_*) $NLC/input=$1 hmm
 u:(e:NLC/output) NLC result says $NLC/output
+u:(confidence test) $testNLCOUT
 u:(nlc result)  NLC result says $NLC/output
 
 

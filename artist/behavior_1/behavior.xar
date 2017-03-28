@@ -201,7 +201,7 @@
                             <Output name="bye" type="1" type_size="1" nature="2" inner="0" tooltip="" id="10" />
                             <Parameter name="key" inherits_from_parent="0" content_type="3" value="" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="11" />
                         </Box>
-                        <Box name="testing" id="9" localization="8" tooltip="An example of multilanguage dialog implementation" x="733" y="242">
+                        <Box name="testing" id="9" localization="8" tooltip="An example of multilanguage dialog implementation" x="697" y="271">
                             <dialogFile>../testing/testing.dlg</dialogFile>
                             <bitmap>media/images/box/box-dialog.png</bitmap>
                             <script language="4">
@@ -217,7 +217,7 @@
                             <Resource name="Speech" type="Lock" timeout="0" />
                             <Resource name="Speech recognition" type="Lock" timeout="0" />
                         </Box>
-                        <Box name="Text Edit" id="19" localization="8" tooltip="Send the text you entered when the input is stimulated." plugin="textedit_plugin" x="238" y="4">
+                        <Box name="Text Edit" id="19" localization="8" tooltip="Send the text you entered when the input is stimulated." plugin="textedit_plugin" x="274" y="15">
                             <bitmap>media/images/box/interaction/vocabulary.png</bitmap>
                             <script language="4">
                                 <content>
@@ -314,7 +314,7 @@ class MyClass(GeneratedClass):
                             <Parameter name="answer" inherits_from_parent="0" content_type="3" value="newAnswer" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="6" />
                             <Parameter name="question" inherits_from_parent="0" content_type="3" value="newQuestion" default_value="" custom_choice="0" tooltip="" id="7" />
                         </Box>
-                        <Box name="NLC" id="25" localization="8" tooltip="Enter description here" x="514" y="64">
+                        <Box name="NLC" id="25" localization="8" tooltip="Enter description here" x="536" y="76">
                             <bitmap>media/images/box/box-diagram.png</bitmap>
                             <script language="4">
                                 <content>
@@ -328,8 +328,8 @@ class MyClass(GeneratedClass):
                             <Timeline enable="0">
                                 <BehaviorLayer name="behavior_layer1">
                                     <BehaviorKeyframe name="keyframe1" index="1">
-                                        <Diagram scale="70.7107">
-                                            <Box name="NLC" id="15" localization="8" tooltip="This box contains a basic python script and can be used to create any python script box you would like.&#x0A;&#x0A;To edit its script, double-click on it." x="310" y="46">
+                                        <Diagram scale="84.0896">
+                                            <Box name="NLC" id="15" localization="8" tooltip="This box contains a basic python script and can be used to create any python script box you would like.&#x0A;&#x0A;To edit its script, double-click on it." x="309" y="26">
                                                 <bitmap>media/images/box/box-python-script.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -356,7 +356,23 @@ class MyClass(GeneratedClass):
         #from watson_developer_cloud.natural_language_classifier_v1 import NaturalLanguageClassifierV1
         nlc = NaturalLanguageClassifierV1(self.getParameter("url"),username=self.getParameter("username"), password=self.getParameter("password"))
         intent=nlc.classify(self.getParameter("id"),p)
+
+        userInput = p
+        lushlife =  ["lushlife","lush life"]
+        mirrors = ["mirrors","mirror"]
+        uptownfunk = ["uptown", "funk"]
+        allSongs = [lushlife, mirrors, uptownfunk]
+        playsong = "nothing"
+        for song in allSongs:
+            for words in song:
+                if  (userInput.find(words)>-1):
+                    playsong=str(song[0])
+        self.song(str(playsong))
+
         self.logger.info("Classified %s to intent %s" % (p,str(intent)))
+        theTopClass = intent[u'top_class'].encode('utf-8')
+        #intent[theTopClass].encode
+        self.testNLCOUT(theTopClass)
         self.onStopped(intent[u'top_class'].encode('utf-8'))
         pass
 
@@ -369,10 +385,12 @@ class MyClass(GeneratedClass):
                                                 <Input name="onStart" type="3" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
                                                 <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
                                                 <Output name="onStopped" type="3" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
-                                                <Parameter name="id" inherits_from_parent="0" content_type="3" value="f5bbbbx174-nlc-6806" default_value="" custom_choice="0" tooltip="" id="5" />
-                                                <Parameter name="url" inherits_from_parent="0" content_type="3" value="https://gateway.watsonplatform.net/natural-language-classifier/api" default_value="" custom_choice="0" tooltip="" id="6" />
-                                                <Parameter name="password" inherits_from_parent="0" content_type="3" value="S62fcYfezQ0A" default_value="" custom_choice="0" tooltip="" id="7" />
-                                                <Parameter name="username" inherits_from_parent="0" content_type="3" value="6fe4ce47-7104-48e7-9711-9f7a0fdf3a12" default_value="" custom_choice="0" tooltip="" id="8" />
+                                                <Output name="song" type="3" type_size="1" nature="2" inner="0" tooltip="" id="5" />
+                                                <Output name="testNLCOUT" type="3" type_size="1" nature="2" inner="0" tooltip="" id="6" />
+                                                <Parameter name="id" inherits_from_parent="0" content_type="3" value="90e7acx197-nlc-5132" default_value="" custom_choice="0" tooltip="" id="7" />
+                                                <Parameter name="url" inherits_from_parent="0" content_type="3" value="https://gateway.watsonplatform.net/natural-language-classifier/api" default_value="" custom_choice="0" tooltip="" id="8" />
+                                                <Parameter name="password" inherits_from_parent="0" content_type="3" value="S62fcYfezQ0A" default_value="" custom_choice="0" tooltip="" id="9" />
+                                                <Parameter name="username" inherits_from_parent="0" content_type="3" value="6fe4ce47-7104-48e7-9711-9f7a0fdf3a12" default_value="" custom_choice="0" tooltip="" id="10" />
                                             </Box>
                                             <Box name="Subscribe to Event (2)" id="16" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="144" y="33">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
@@ -408,7 +426,7 @@ class MyClass(GeneratedClass):
                                                 <Output name="onEvent" type="3" type_size="1" nature="2" inner="0" tooltip="" id="6" />
                                                 <Parameter name="key" inherits_from_parent="0" content_type="3" value="NLC/input" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                                             </Box>
-                                            <Box name="Insert Data (1)" id="18" localization="8" tooltip="Stores in NAOqi&apos;s shared memory the given value at the given key." x="466" y="31">
+                                            <Box name="Insert Data (1)" id="18" localization="8" tooltip="Stores in NAOqi&apos;s shared memory the given value at the given key." x="510" y="18">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -439,7 +457,7 @@ class MyClass(GeneratedClass):
                                                 <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
                                                 <Parameter name="key" inherits_from_parent="0" content_type="3" value="NLC/output" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="6" />
                                             </Box>
-                                            <Box name="Subscribe to Event" id="2" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="184" y="232">
+                                            <Box name="Subscribe to Event" id="2" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="181" y="378">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -473,7 +491,7 @@ class MyClass(GeneratedClass):
                                                 <Output name="onEvent" type="3" type_size="1" nature="2" inner="0" tooltip="" id="6" />
                                                 <Parameter name="key" inherits_from_parent="0" content_type="3" value="NLCtestIn" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                                             </Box>
-                                            <Box name="Insert Data" id="4" localization="8" tooltip="Stores in NAOqi&apos;s shared memory the given value at the given key." x="411" y="232">
+                                            <Box name="Insert Data" id="4" localization="8" tooltip="Stores in NAOqi&apos;s shared memory the given value at the given key." x="408" y="378">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -504,7 +522,7 @@ class MyClass(GeneratedClass):
                                                 <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
                                                 <Parameter name="key" inherits_from_parent="0" content_type="3" value="NLCtestOut" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="6" />
                                             </Box>
-                                            <Box name="NLC Temp" id="14" localization="8" tooltip="Wait a moment before triggering the output. &#x0A;Can be stopped anytime. &#x0A;Multiple inputs will trigger multiple outputs." x="307" y="226">
+                                            <Box name="NLC Temp" id="14" localization="8" tooltip="Wait a moment before triggering the output. &#x0A;Can be stopped anytime. &#x0A;Multiple inputs will trigger multiple outputs." x="304" y="372">
                                                 <bitmap>media/images/box/wait.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -552,6 +570,185 @@ class MyClass(GeneratedClass):
                                                 <Parameter name="Timeout (s)" inherits_from_parent="0" content_type="2" value="1" default_value="1" min="0" max="5000" tooltip="Duration the box waits before stimulating the output." id="5" />
                                                 <Parameter name="Trigger timerOutput if cancelled" inherits_from_parent="0" content_type="0" value="0" default_value="1" tooltip="If the box is currently delaying at least one signal and cancelled, output will be stimulated." id="6" />
                                             </Box>
+                                            <Box name="String" id="1" localization="8" tooltip="This box contains a basic python script and can be used to create any python script box you would like.&#x0A;&#x0A;To edit its script, double-click on it." x="316" y="170">
+                                                <bitmap>media/images/box/box-python-script.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+
+    def onLoad(self):
+        #put initialization code here
+        try:
+            import watson_developer_cloud
+        except:
+            bPath=os.path.abspath(ALFrameManager.getBehaviorPath(self.behaviorId))
+            sys.path.append(os.path.join(os.path.dirname(bPath),'lib'))
+        pass
+
+    def onUnload(self):
+        #put clean-up code here
+        pass
+
+    def onInput_onStart(self, p):
+        #self.onStopped() #activate the output of the box
+        userInput = p
+        lushlife =  ["lushlife","lush life"]
+        mirrors = ["mirrors","mirror"]
+        uptownfunk = ["uptown", "funk"]
+        allSongs = [lushlife, mirrors, uptownfunk]
+        playsong = "nothing"
+        for song in allSongs:
+            for words in song:
+                if  (userInput.find(words)>-1):
+                    playsong=str(song[0])
+        self.song(str(playsong))
+        self.onStopped("hej")
+        pass
+
+    def onInput_onStop(self):
+        self.onUnload() #it is recommended to reuse the clean-up as the box is stopped
+        self.onStopped() #activate the output of the box]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="3" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                                                <Output name="onStopped" type="3" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
+                                                <Output name="song" type="3" type_size="1" nature="2" inner="0" tooltip="" id="5" />
+                                                <Parameter name="id" inherits_from_parent="0" content_type="3" value="f5bbbbx174-nlc-6806" default_value="" custom_choice="0" tooltip="" id="6" />
+                                                <Parameter name="url" inherits_from_parent="0" content_type="3" value="https://gateway.watsonplatform.net/natural-language-classifier/api" default_value="" custom_choice="0" tooltip="" id="7" />
+                                                <Parameter name="password" inherits_from_parent="0" content_type="3" value="S62fcYfezQ0A" default_value="" custom_choice="0" tooltip="" id="8" />
+                                                <Parameter name="username" inherits_from_parent="0" content_type="3" value="6fe4ce47-7104-48e7-9711-9f7a0fdf3a12" default_value="" custom_choice="0" tooltip="" id="9" />
+                                            </Box>
+                                            <Box name="Subscribe to Event (1)" id="3" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="150" y="157">
+                                                <bitmap>media/images/box/sensors/STM.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+        pass
+
+    def onLoad(self):
+        self.BIND_PYTHON(self.getName(), "onEventCallback")
+        self.memory = ALProxy("ALMemory")
+
+    def onUnload(self):
+        self.memory = None
+
+    def onInput_onStart(self):
+        self.memory.subscribeToEvent(self.getParameter("key"), self.getName(), "onEventCallback")
+
+    def onInput_onStop(self):
+        self.onStopped()
+
+    def onEventCallback(self, key, value, message):
+        self.onEvent(value)]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="" id="3" />
+                                                <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished. It contains the retrieved value from ALMemory." id="4" />
+                                                <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
+                                                <Output name="onEvent" type="3" type_size="1" nature="2" inner="0" tooltip="" id="6" />
+                                                <Parameter name="key" inherits_from_parent="0" content_type="3" value="stringIn" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
+                                            </Box>
+                                            <Box name="Insert Data (2)" id="5" localization="8" tooltip="Stores in NAOqi&apos;s shared memory the given value at the given key." x="504" y="127">
+                                                <bitmap>media/images/box/sensors/STM.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+        pass
+
+    def onLoad(self):
+        self.memory = ALProxy("ALMemory")
+
+    def onUnload(self):
+        self.memory = None
+
+    def onInput_onStart(self, p):
+        self.memory.insertData(self.getParameter("key"), p)
+        self.onStopped(p)
+
+    def onInput_onStop(self):
+        self.onUnload() #~ it is recommended to call onUnload of this box in a onStop method, as the code written in onUnload is used to stop the box as well
+        pass]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="3" type_size="1" nature="2" inner="0" tooltip="Receives the value to be inserted in ALMemory." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                                                <Output name="onStopped" type="0" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished. It contains the inserted value in ALMemory." id="4" />
+                                                <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
+                                                <Parameter name="key" inherits_from_parent="0" content_type="3" value="stringOut" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="6" />
+                                            </Box>
+                                            <Box name="Insert Data (3)" id="6" localization="8" tooltip="Stores in NAOqi&apos;s shared memory the given value at the given key." x="495" y="233">
+                                                <bitmap>media/images/box/sensors/STM.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+        pass
+
+    def onLoad(self):
+        self.memory = ALProxy("ALMemory")
+
+    def onUnload(self):
+        self.memory = None
+
+    def onInput_onStart(self, p):
+        self.memory.insertData(self.getParameter("key"), p)
+        self.onStopped(p)
+
+    def onInput_onStop(self):
+        self.onUnload() #~ it is recommended to call onUnload of this box in a onStop method, as the code written in onUnload is used to stop the box as well
+        pass]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="3" type_size="1" nature="2" inner="0" tooltip="Receives the value to be inserted in ALMemory." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                                                <Output name="onStopped" type="0" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished. It contains the inserted value in ALMemory." id="4" />
+                                                <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
+                                                <Parameter name="key" inherits_from_parent="0" content_type="3" value="requestedSong" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="6" />
+                                            </Box>
+                                            <Box name="Insert Data (4)" id="7" localization="8" tooltip="Stores in NAOqi&apos;s shared memory the given value at the given key." x="625" y="201">
+                                                <bitmap>media/images/box/sensors/STM.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+        pass
+
+    def onLoad(self):
+        self.memory = ALProxy("ALMemory")
+
+    def onUnload(self):
+        self.memory = None
+
+    def onInput_onStart(self, p):
+        self.memory.insertData(self.getParameter("key"), p)
+        self.onStopped(p)
+
+    def onInput_onStop(self):
+        self.onUnload() #~ it is recommended to call onUnload of this box in a onStop method, as the code written in onUnload is used to stop the box as well
+        pass]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="3" type_size="1" nature="2" inner="0" tooltip="Receives the value to be inserted in ALMemory." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                                                <Output name="onStopped" type="0" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished. It contains the inserted value in ALMemory." id="4" />
+                                                <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
+                                                <Parameter name="key" inherits_from_parent="0" content_type="3" value="testNLCOUT" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="6" />
+                                            </Box>
                                             <Link inputowner="15" indexofinput="2" outputowner="16" indexofoutput="6" />
                                             <Link inputowner="18" indexofinput="2" outputowner="15" indexofoutput="4" />
                                             <Link inputowner="16" indexofinput="2" outputowner="0" indexofoutput="2" />
@@ -560,6 +757,13 @@ class MyClass(GeneratedClass):
                                             <Link inputowner="4" indexofinput="2" outputowner="14" indexofoutput="4" />
                                             <Link inputowner="0" indexofinput="4" outputowner="4" indexofoutput="4" />
                                             <Link inputowner="2" indexofinput="2" outputowner="0" indexofoutput="3" />
+                                            <Link inputowner="1" indexofinput="2" outputowner="3" indexofoutput="6" />
+                                            <Link inputowner="5" indexofinput="2" outputowner="1" indexofoutput="4" />
+                                            <Link inputowner="0" indexofinput="4" outputowner="5" indexofoutput="4" />
+                                            <Link inputowner="6" indexofinput="2" outputowner="1" indexofoutput="5" />
+                                            <Link inputowner="3" indexofinput="2" outputowner="0" indexofoutput="3" />
+                                            <Link inputowner="6" indexofinput="2" outputowner="15" indexofoutput="5" />
+                                            <Link inputowner="7" indexofinput="2" outputowner="15" indexofoutput="6" />
                                         </Diagram>
                                     </BehaviorKeyframe>
                                 </BehaviorLayer>
@@ -1768,7 +1972,7 @@ class MyClass(GeneratedClass):
                                 </BehaviorLayer>
                             </Timeline>
                         </Box>
-                        <Box name="Image" id="12" localization="8" tooltip="Enter description here" x="1189" y="116">
+                        <Box name="Image" id="12" localization="8" tooltip="Enter description here" x="828" y="0">
                             <bitmap>media/images/box/box-diagram.png</bitmap>
                             <script language="4">
                                 <content>
@@ -1776,7 +1980,7 @@ class MyClass(GeneratedClass):
 </content>
                             </script>
                             <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
-                            <Input name="input" type="1" type_size="1" nature="1" inner="0" tooltip="" id="2" />
+                            <Input name="input" type="1" type_size="1" nature="2" inner="0" tooltip="" id="2" />
                             <Timeline enable="0">
                                 <BehaviorLayer name="behavior_layer1">
                                     <BehaviorKeyframe name="keyframe1" index="1">
@@ -1980,7 +2184,7 @@ class MyClass(GeneratedClass):
                                                 <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
                                                 <Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="" id="6" />
                                                 <Parameter name="key" inherits_from_parent="0" content_type="3" value="img/edsheeran" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
-                                                <Parameter name="url" inherits_from_parent="0" content_type="3" value="images/edsheeran.jpg" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
+                                                <Parameter name="url" inherits_from_parent="0" content_type="3" value="http://www.pardonmyblog.co.uk/home/wp-content/uploads/2014/05/ED.jpg" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
                                             </Box>
                                             <Box name="Open IMG (3)" id="3" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="176" y="420">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
@@ -7821,7 +8025,7 @@ class MyClass(GeneratedClass):
                                 </BehaviorLayer>
                             </Timeline>
                         </Box>
-                        <Box name="audio" id="5" localization="8" tooltip="Enter description here" x="1095" y="114">
+                        <Box name="audio" id="5" localization="8" tooltip="Enter description here" x="1076" y="172">
                             <bitmap>media/images/box/box-diagram.png</bitmap>
                             <script language="4">
                                 <content>
@@ -8432,7 +8636,7 @@ class MyClass(GeneratedClass):
                                 </BehaviorLayer>
                             </Timeline>
                         </Box>
-                        <Box name="songs" id="16" localization="8" tooltip="Enter description here" x="726" y="0">
+                        <Box name="songs" id="16" localization="8" tooltip="Enter description here" x="876" y="99">
                             <bitmap>media/images/box/box-diagram.png</bitmap>
                             <script language="4">
                                 <content>
@@ -8440,7 +8644,7 @@ class MyClass(GeneratedClass):
 </content>
                             </script>
                             <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
-                            <Input name="input" type="1" type_size="1" nature="1" inner="0" tooltip="" id="2" />
+                            <Input name="input" type="1" type_size="1" nature="2" inner="0" tooltip="" id="2" />
                             <Timeline enable="0">
                                 <BehaviorLayer name="behavior_layer1">
                                     <BehaviorKeyframe name="keyframe1" index="1">
@@ -8665,10 +8869,11 @@ class MyClass(GeneratedClass):
                         <Link inputowner="5" indexofinput="4" outputowner="19" indexofoutput="3" />
                         <Link inputowner="5" indexofinput="5" outputowner="19" indexofoutput="3" />
                         <Link inputowner="23" indexofinput="2" outputowner="0" indexofoutput="2" />
-                        <Link inputowner="10" indexofinput="2" outputowner="1" indexofoutput="3" />
-                        <Link inputowner="10" indexofinput="2" outputowner="25" indexofoutput="4" />
                         <Link inputowner="16" indexofinput="2" outputowner="19" indexofoutput="3" />
                         <Link inputowner="25" indexofinput="3" outputowner="0" indexofoutput="2" />
+                        <Link inputowner="19" indexofinput="2" outputowner="0" indexofoutput="2" />
+                        <Link inputowner="9" indexofinput="2" outputowner="1" indexofoutput="3" />
+                        <Link inputowner="9" indexofinput="2" outputowner="25" indexofoutput="4" />
                     </Diagram>
                 </BehaviorKeyframe>
             </BehaviorLayer>
