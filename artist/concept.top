@@ -9,7 +9,7 @@ concept:(goodJob) ["Well done" excellent splendid "great work" impressive]
 concept:(correct) [correct "thats right" "you know your stuff"]
 
 #------------------------Concepts-------------------------------
-concept:(stop) [stop "no more" "quit" "stop it" "dont talk anymore" "be quiet" ]
+concept:(stop) [stop "no more" "stop it" "dont talk anymore" "be quiet" ]
 #concept:(music) [music artist]
 concept:(no) [no negative "no I dont {want}" "absolutely not" "no thanks" ]
 concept:(yes) [yea yes y yeah sure "yes please" "sounds good" absolutely "of course"  alright "well of course" "very well" "certainly" "indeed"] 

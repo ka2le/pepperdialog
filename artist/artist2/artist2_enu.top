@@ -19,12 +19,18 @@ u:(initSongFromNLC) %initSongFromNLC $NLC/output=done ^first["$requestedSong==lu
 
 u:(regularUserMainChanger) %mainChanger $openPage=startMenu  $metBefore=true What do you want to do? #[" . " " Maybe a quiz or play a song? " " . " ]
     u1:(_*) $NLC/input=$1 $onStopped=1  
+    #u1:(quiz) ^goto(theQuiz)
+    #q8u1:(saxophone) $pose/sax=1
+   # u1:(goodbye) Are you leaving?
+   #     u1:(~yes) okay goodbye ^goto(forgetMe)
+   #     u1:(~no) Okay sorry, I thought you said goodbye ^goto(mainChanger)
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
     #u1:(~stop)  $metBefore=false ^goto(nextProposalChanger)
     
 #--------------------------------------------Handle quiet ------------------------------------------
 u:(~whatcanyoudo) ^goto(newSuggestions)
-u:(restartEverything) $playingSong=false $quizMode=false ^clear(userName) $goToTopic=music $onStopped=1
+
+u:(restartEverything) %forgetMe $playingSong=false $quizMode=false ^clear(userName) $goToTopic=music $onStopped=1
 u:("e:Dialog/NoOneSpeak10  $playingSong==true ") %doTheDance  [" Lets get this party started "  " $pose/dance1=1 " " $pose/wipe=1 " " $pose/elephant=1  "   " $pose/dance1=1 " " $pose/wipe=1 " " $pose/elephant=1  "]
 u:("dance  $playingSong==true") ^goto(doTheDance)
 u:("e:Dialog/NoOneSpeak20  $playingSong==false $quizMode==false") %newSuggestions ^first[ "$quizMode==true   " "[^goto(propsalQuiz)  ^goto(propsalListen)  ^goto(propsalStory)  ^goto(nextProposalChanger) ] "]
@@ -112,7 +118,7 @@ u:(playMusic) %playMusic   $openPage=listen  Tell me which song you want to list
     
 #-----------------------------------------QUIZ-------------------to force-start quiz runthequiz  ---------------------    
 u:(runthequiz) %theQuiz $Menu/quiz=1 $quizMode=true $openPage=quiz  Starting the quiz! $quizScore=0 ^goto(selectNextQ) 
-u:(selectQ) %selectNextQ [^goto(q1)  ^goto(q2)  ^goto(q3) ^goto(q4) ^goto(q5) ^goto(q6) ^goto(qlast) ] #
+u:(selectQ) %selectNextQ [^goto(q1)  ^goto(q2)  ^goto(q3) ^goto(q4) ^goto(q5) ^goto(q9) ^goto(q6) ^goto(q8)  ^goto(qlast) ] #
 u:(quizIsNowEnded) %quizOver  $quizMode=false Well played! That was all the questions. Your final score was $quizScore
 u:(moreQs) %moreQs  $openPage=quiz  ["Here is the next ["One. " "Question. "]" " Get ready. "] .  ^goto(selectNextQ) 
 u:(quizGoodJob) %quizGoodJob  ^rand[~correct] ^rand[~goodJob] $QUIZ/addscore=1 ^goto(moreQs)
@@ -156,6 +162,7 @@ u:(q4) %q4 This swedish band became world famous in 1974 with the song Waterloo.
     u1:(e:Dialog/NotUnderstood) ~notUnderstood . ^stayInScope
     u1:(~repeat) I will read the question again. ^goto(q4)
 
+
     
 u:(q5) %q5 I will play a few seconds from a song. And i want you to tell me the singers name. Listen.  $quizSong/babyone=1  $pose/dance1=1
     u1:(["{["her name is" "she is called" "its"]} {britney} spears" "{["her name is" "she is called" "its"]} britney {spears}"])   ^goto(quizGoodJob)
@@ -166,7 +173,15 @@ u:(q5) %q5 I will play a few seconds from a song. And i want you to tell me the 
     u1:(e:Dialog/NotUnderstood) ~notUnderstood . ^stayInScope
     u1:([~repeat "play {["the song" it]} again"]) I will play it again. Listen carefully. ^goto(q5)
 
-    
+u:(q9) %q9 Is it true that Justin Timberlake has won more than 5 grammy awards?
+    u1:([~yes true]) ^goto(quizGoodJob)
+    u1:(~dontknow) I'll tell you then.  He has actually won 10 grammys.  ^goto(moreQs) 
+    u1:([~no false]) Sorry. That was wrong. He has actually won 10 grammys. ^goto(moreQs)
+    u1:(score) Your score is $quizScore   ^stayInScope
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
+    u1:(~stop) Stopping the quiz.  ^goto(nextProposalChanger)
+    u1:(~repeat) I will read the question again. ^goto(q9)
+
 u:(q6) %q6 Is it true that Beyonce was part of the group Spice Girls before starting her solo career?
     u1:(~no) Thats right. Good job. As you might know. She was part of the group Destinys Child. $QUIZ/addscore=1 ^goto(moreQs)
     u1:(~yes) Sorry. This was a tricky one. Her group was called Destinys Child.  ^goto(moreQs)     
@@ -175,6 +190,15 @@ u:(q6) %q6 Is it true that Beyonce was part of the group Spice Girls before star
     u1:(score) Your score is. $quizScore   ^stayInScope
     u1:(e:Dialog/NotUnderstood) ~notUnderstood . ^stayInScope
     u1:(~repeat) I will read the question again. ^goto(q6)
+    
+u:(q8) %q8  Is it true that Justin Timberlake is married to Jessica Biel?
+    u1:([~yes true]) ^goto(quizGoodJob)
+    u1:(~dontknow) I'll tell you then. They have been married since 2012. ^goto(moreQs) 
+    u1:(~no false) Sorry. The correct answer is that They have been married since 2012. ^goto(moreQs)
+    u1:(score) Your score is $quizScore   ^stayInScope
+    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
+    u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
+    u1:(~repeat) I will read the question again. ^goto(q8)
 
 u:(q7) %q7 $img/lucyinsky=1 What song title are these images refering to?
     u1:("{["[it "the song"] [is was] [called named]" "the titel is"]} Lucy in the Sky with Diamonds {"[by with] the beatles"}")   ^goto(quizGoodJob)
@@ -186,8 +210,8 @@ u:(q7) %q7 $img/lucyinsky=1 What song title are these images refering to?
     u1:(~repeat) I will read the question again. ^goto(q7)
   
 u:(qlast) %qlast Which of these two songs. Uptown funk by Bruno Mars. And Sorry by Justin Beiber has most streams on Spotify?
-    u1:("{[its "{it} is"]} Sorry {[by with]} {Justin} {Bieber}") Correct. Nice job. Uptown funk has almost 700 million streams. But Sorry has over 880 million.  $QUIZ/addscore=1 ^goto(quizOver)
-    u1:("{[its "{it} is"]} Uptown funk {[by with]} {Bruno} {Mars}") Sorry that was wrong. Uptown funk has almost 700 million streams. But Sorry has over 880 million. ^goto(quizOver)   
+    u1:("{[its "{it} is"]} Sorry {[by with]} {Justin} {Bieber}" "Justin Bieber") Correct. Nice job. Uptown funk has almost 700 million streams. But Sorry has over 880 million.  $QUIZ/addscore=1 ^goto(quizOver)
+    u1:("{[its "{it} is"]} Uptown funk {[by with]} {Bruno} {Mars}" "Bruno Mars") Sorry that was wrong. Uptown funk has almost 700 million streams. But Sorry has over 880 million. ^goto(quizOver)   
     u1:(~dontknow) Here is the situation. Uptown funk has almost 700 million streams but Sorry has over 880 million. ^goto(quizOver)
     u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
     u1:(score) Your score is. $quizScore   ^stayInScope
