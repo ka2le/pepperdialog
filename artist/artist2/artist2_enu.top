@@ -15,7 +15,7 @@ u:(nextProposalChanger) %nextProposalChanger $openPage=startMenu  $quizMode=fals
 
 
 #--------------------------------------For regular users, menu and nlc redirects
-u:(initSongFromNLC) %initSongFromNLC $NLC/output=done ^first["$requestedSong==lushlife $opensongs/lushlife=1  Ok Im playing ~SongLushlife by ~saraLarsson ^goto(pepperneedsomehelp)" " ^goto(playMusic) "]
+u:(initSongFromNLC) %initSongFromNLC $NLC/output=done ^first["$requestedSong==lushlife $opensongs/lushlife=1  Ok Im playing ~SongLushlife by ~saraLarsson ^goto(pepperneedsomehelp)" "$requestedSong==nomoney $opensongs/nomoney=1  Ok Im playing ~SongNomoney by ~galantis ^goto(pepperneedsomehelp)" " ^goto(playMusic) "]
 
 u:(regularUserMainChanger) %mainChanger $openPage=startMenu  $metBefore=true What do you want to do? #[" . " " Maybe a quiz or play a song? " " . " ]
     u1:(_*) $NLC/input=$1 $onStopped=1  
@@ -107,7 +107,7 @@ u:(playMusic) %playMusic   $openPage=listen  Tell me which song you want to list
     u1:("~canWeListen ~SongUptownfunk ~madeBy") $opensongs/uptownfunk=1 Ok Im playing ~SongUptownfunk by ~brunoMars ^goto(pepperneedsomehelp)
     u1:("~canWeListen ~SongLushlife ~madeBy")  $opensongs/lushlife=1  Ok Im playing ~SongLushlife by ~saraLarsson ^goto(pepperneedsomehelp)
     u1:(~stop)  ^goto(nextProposalChanger)
-    u1:("~canWeListen ~SongNomoney ~madeBy")  $opensongs/nomoney=1  Ok Im playing ~SongLushlife by ~galantis ^goto(pepperneedsomehelp)
+    u1:("~canWeListen ~SongNomoney ~madeBy")  $opensongs/nomoney=1  Ok Im playing ~SongNomoney by ~galantis ^goto(pepperneedsomehelp)
 
     
 #-----------------------------------------QUIZ-------------------to force-start quiz runthequiz  ---------------------    
@@ -116,7 +116,7 @@ u:(selectQ) %selectNextQ [^goto(q1)  ^goto(q2)  ^goto(q3) ^goto(q4) ^goto(q5) ^g
 u:(quizIsNowEnded) %quizOver  $quizMode=false Well played! That was all the questions. Your final score was $quizScore
 u:(moreQs) %moreQs  $openPage=quiz  ["Here is the next ["One. " "Question. "]" " Get ready. "] .  ^goto(selectNextQ) 
 u:(quizGoodJob) %quizGoodJob  ^rand[~correct] ^rand[~goodJob] $QUIZ/addscore=1 ^goto(moreQs)
-u:(somequizinfo) %quizinfo ["Just so you know. If you want to do something else. Just say stop, to stop the quiz.  " "If you dont know the answer and cant come up with a guess. Just say that you dont know and I will tell you the answer. " ] Anyway. ^goto(moreQs)
+u:(somequizinfo) %quizinfo ["Just so you know. If you want to do something else. Just say stop to stop the quiz.  " "If you dont know the answer and cant come up with a guess. Just say that you dont know and I will tell you the answer. " ] Anyway. ^goto(moreQs)
 
 
 u:(q1) %q1 Robin Bengtsson won the swedish part of the eurovision song contest this year. But what was the name of the song?
@@ -157,7 +157,7 @@ u:(q4) %q4 This swedish band became world famous in 1974 with the song Waterloo.
     u1:(~repeat) I will read the question again. ^goto(q4)
 
     
-u:(q5) %q5 I will play a few seconds from a song. And i want you to tell me the singers name. Listen.  $quizSong/babyone=1
+u:(q5) %q5 I will play a few seconds from a song. And i want you to tell me the singers name. Listen.  $quizSong/babyone=1  $pose/dance1=1
     u1:(["{["her name is" "she is called" "its"]} {britney} spears" "{["her name is" "she is called" "its"]} britney {spears}"])   ^goto(quizGoodJob)
     u1:(_*) I heard you say $1 . This was britney spears. The song was called. Baby One more time. ^goto(moreQs)     
     u1:(~dontknow) I'll tell you then.  This was britney spears. The song was called. Baby One more time. ^goto(moreQs)
@@ -185,9 +185,9 @@ u:(q7) %q7 $img/lucyinsky=1 What song title are these images refering to?
     u1:(e:Dialog/NotUnderstood) ~notUnderstood . ^stayInScope
     u1:(~repeat) I will read the question again. ^goto(q7)
   
-u:(qlast) %qlast Which of these two songs. Uptown funk by Bruno Mars and. Sorry by Justin Beiber has most streams on Spotify?
-    u1:("{[its "{it} is"]} Sorry {[by with]} {Justin} {Bieber}") Correct. Nice job. Uptown funk has almost 700 million streams but Sorry has over 880 million.  $QUIZ/addscore=1 ^goto(quizOver)
-    u1:("{[its "{it} is"]} Uptown funk {[by with]} {Bruno} {Mars}") Sorry that was wrong. Uptown funk has almost 700 million streams but Sorry has over 880 million. ^goto(quizOver)   
+u:(qlast) %qlast Which of these two songs. Uptown funk by Bruno Mars. And Sorry by Justin Beiber has most streams on Spotify?
+    u1:("{[its "{it} is"]} Sorry {[by with]} {Justin} {Bieber}") Correct. Nice job. Uptown funk has almost 700 million streams. But Sorry has over 880 million.  $QUIZ/addscore=1 ^goto(quizOver)
+    u1:("{[its "{it} is"]} Uptown funk {[by with]} {Bruno} {Mars}") Sorry that was wrong. Uptown funk has almost 700 million streams. But Sorry has over 880 million. ^goto(quizOver)   
     u1:(~dontknow) Here is the situation. Uptown funk has almost 700 million streams but Sorry has over 880 million. ^goto(quizOver)
     u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
     u1:(score) Your score is. $quizScore   ^stayInScope

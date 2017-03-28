@@ -359,7 +359,7 @@ class MyClass(GeneratedClass):
 
         userInput = p
         lushlife =  ["lushlife","lush life"]
-        mirrors = ["mirrors","mirror"]
+        nomoney = ["nomoney", "money"]
         uptownfunk = ["uptown", "funk"]
         allSongs = [lushlife, mirrors, uptownfunk]
         playsong = "nothing"
@@ -373,8 +373,8 @@ class MyClass(GeneratedClass):
         theClasses = intent["classes"]
         confidence = 0
         for aClass in theClasses:
-        	if(theTopClass==aClass["class_name"]):
-        		confidence = float(aClass[ "confidence"])
+            if(theTopClass==aClass["class_name"]):
+                confidence = float(aClass[ "confidence"])
 
         if(confidence >= 0.6):
              self.onStopped(intent[u'top_class'].encode('utf-8'))
@@ -8883,9 +8883,9 @@ class MyClass(GeneratedClass):
                         <Link inputowner="23" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="16" indexofinput="2" outputowner="19" indexofoutput="3" />
                         <Link inputowner="25" indexofinput="3" outputowner="0" indexofoutput="2" />
-                        <Link inputowner="10" indexofinput="2" outputowner="1" indexofoutput="3" />
-                        <Link inputowner="19" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="10" indexofinput="2" outputowner="25" indexofoutput="4" />
+                        <Link inputowner="19" indexofinput="2" outputowner="0" indexofoutput="2" />
+                        <Link inputowner="9" indexofinput="2" outputowner="1" indexofoutput="3" />
                     </Diagram>
                 </BehaviorKeyframe>
             </BehaviorLayer>

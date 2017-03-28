@@ -61,7 +61,7 @@ concept:(SongSorry) ["Sorry"]
 concept:(SongWhatdoyoumean) ["What do you mean"]
 concept:(SongLoveyourself) ["Love yourself"]
 concept:(SongNomoney) ["No money" "money"]
-concept:(theSongs) [~SongCantstop ~SongMirrors ~SongWhatgoes ~SongUptownfunk  ~SongLushlife ~SongThisone ~SongAintmyfault ~SongHalo ~SongSingleladies ~SongSorry ~SongWhatdoyoumean ~SongLoveyourself ~SongNomoney]
+concept:(theSongs) [~SongCantstop ~SongMirrors ~SongWhatgoes ~SongUptownfunk  ~SongLushlife ~SongThisone ~SongAintmyfault  ~SongSingleladies ~SongSorry ~SongWhatdoyoumean ~SongLoveyourself ~SongNomoney]
 #"{["I want to"]} [learn know] {more} about _~theArtists" "{"Can you"} tell me {more} about ~theArtists" "I want ["the quiz" it] to be about _~theArtists" "I want to ask questions about _~theArtists"  "Lets talk about _~theArtists" 
 concept:(choiceofartist) ["{["i want" lets]} {to} {[talk "[learn know] {more}" "ask questions" "do a quiz"]} {about} _~theArtists"] 
 #concept:(playMusicWith)  ["{["can you" "can we" "i want to"]} [play listen] {to} {_~song}"]
