@@ -33,7 +33,7 @@ u:(doIremember) %doIremember i remember ^first["$1" "nothing"]
 
 u:(lush life) ok im playing lush life $opensongs/lushlife=1
 u:(notUnderstood) ~notUnderstood
-u:(e:onStart) I am in test mode $text=hello $requestedSong=false ^first["NLC said $NLC/output" " ok"]
+u:(e:onStart) I am in test mode $text=hello $requestedSong=false #^first["NLC said $NLC/output" " ok"]
 u:(~hello) Hi ^first["$userName" "human "] . I am in test mode.
 u:(help)  here is a list of words for testing NLC local new page old page teach
 u:(~speaking) yes i get it
