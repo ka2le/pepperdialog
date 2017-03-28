@@ -3,7 +3,7 @@ language: enu
 
 include: ../concept.top
 
-u:(e:onStart) $playingSong=false $quizMode=false ^first["$NLC/output==song NLC said song ^goto(initSongFromNLC) " "$NLC/output==quiz NLC said quiz $NLC/output=done ^goto(theQuiz) "  "$NLC/output==story NLC said story $NLC/output=done ^goto(storyMode) " "$metBefore==true  ^goto(mainChanger)" "Im ready  $openPage=startMenu   $pauseOn=true $artist=0 $metBefore=false ^goto(nextProposalChanger)"]
+u:(e:onStart) $playingSong=false $quizMode=false ^first["$NLC/output==notUnderstood NLC said not Understood ^goto(mainChanger)  " "$NLC/output==song NLC said song ^goto(initSongFromNLC) " "$NLC/output==quiz NLC said quiz $NLC/output=done ^goto(theQuiz) "  "$NLC/output==story NLC said story $NLC/output=done ^goto(storyMode) " "$metBefore==true  ^goto(mainChanger)" "Im ready  $openPage=startMenu   $pauseOn=true $artist=0 $metBefore=false ^goto(nextProposalChanger)"]
     u1:(["~hello {Pepper}" start])  Hello Human. My name is D.J. Pepper. What is your name? ^clear(userName)
         u2:([" {["my name is" "i am" "Im"]} _[~names]"] ) $userName=$1 ^first[" $userName==carl Hi Carl! you know what to do!  $metBefore=true ^goto(mainChanger)  "  " Nice to meet you $userName . ^goto(nextProposalChanger) "]
     u1:(~no) ^goto(nextProposalChanger)

@@ -369,11 +369,23 @@ class MyClass(GeneratedClass):
                     playsong=str(song[0])
         self.song(str(playsong))
 
+        theTopClass = intent[u'top_class'].encode('utf-8')
+        theClasses = intent["classes"]
+        confidence = 0
+        for aClass in theClasses:
+        	if(theTopClass==aClass["class_name"]):
+        		confidence = float(aClass[ "confidence"])
+
+        if(confidence >= 0.6):
+             self.onStopped(intent[u'top_class'].encode('utf-8'))
+        if(confidence <0.6):
+             self.onStopped("notUnderstood")
+
         self.logger.info("Classified %s to intent %s" % (p,str(intent)))
         theTopClass = intent[u'top_class'].encode('utf-8')
         #intent[theTopClass].encode
         self.testNLCOUT(theTopClass)
-        self.onStopped(intent[u'top_class'].encode('utf-8'))
+        #self.onStopped(intent[u'top_class'].encode('utf-8'))
         pass
 
     def onInput_onStop(self):
@@ -387,7 +399,7 @@ class MyClass(GeneratedClass):
                                                 <Output name="onStopped" type="3" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
                                                 <Output name="song" type="3" type_size="1" nature="2" inner="0" tooltip="" id="5" />
                                                 <Output name="testNLCOUT" type="3" type_size="1" nature="2" inner="0" tooltip="" id="6" />
-                                                <Parameter name="id" inherits_from_parent="0" content_type="3" value="90e7acx197-nlc-5132" default_value="" custom_choice="0" tooltip="" id="7" />
+                                                <Parameter name="id" inherits_from_parent="0" content_type="3" value="90e7acx197-nlc-5133" default_value="" custom_choice="0" tooltip="" id="7" />
                                                 <Parameter name="url" inherits_from_parent="0" content_type="3" value="https://gateway.watsonplatform.net/natural-language-classifier/api" default_value="" custom_choice="0" tooltip="" id="8" />
                                                 <Parameter name="password" inherits_from_parent="0" content_type="3" value="S62fcYfezQ0A" default_value="" custom_choice="0" tooltip="" id="9" />
                                                 <Parameter name="username" inherits_from_parent="0" content_type="3" value="6fe4ce47-7104-48e7-9711-9f7a0fdf3a12" default_value="" custom_choice="0" tooltip="" id="10" />
