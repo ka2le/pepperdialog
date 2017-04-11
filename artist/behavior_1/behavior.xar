@@ -217,7 +217,7 @@
                             <Resource name="Speech" type="Lock" timeout="0" />
                             <Resource name="Speech recognition" type="Lock" timeout="0" />
                         </Box>
-                        <Box name="Text Edit" id="19" localization="8" tooltip="Send the text you entered when the input is stimulated." plugin="textedit_plugin" x="274" y="15">
+                        <Box name="Text Edit" id="19" localization="8" tooltip="Send the text you entered when the input is stimulated." plugin="textedit_plugin" x="262" y="32">
                             <bitmap>media/images/box/interaction/vocabulary.png</bitmap>
                             <script language="4">
                                 <content>
@@ -328,7 +328,7 @@ class MyClass(GeneratedClass):
                             <Timeline enable="0">
                                 <BehaviorLayer name="behavior_layer1">
                                     <BehaviorKeyframe name="keyframe1" index="1">
-                                        <Diagram scale="84.0896">
+                                        <Diagram scale="59.4604">
                                             <Box name="NLC" id="15" localization="8" tooltip="This box contains a basic python script and can be used to create any python script box you would like.&#x0A;&#x0A;To edit its script, double-click on it." x="309" y="26">
                                                 <bitmap>media/images/box/box-python-script.png</bitmap>
                                                 <script language="4">
@@ -368,7 +368,10 @@ class MyClass(GeneratedClass):
                 if  (userInput.find(words)>-1):
                     playsong=str(song[0])
         self.song(str(playsong))
-
+        restartEverything = "false"
+        if(userInput.find("restartEverything")>-1):
+            restartEverything = "true"
+        self.restartEverything(str(restartEverything))
         theTopClass = intent[u'top_class'].encode('utf-8')
         theClasses = intent["classes"]
         confidence = 0
@@ -399,10 +402,11 @@ class MyClass(GeneratedClass):
                                                 <Output name="onStopped" type="3" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
                                                 <Output name="song" type="3" type_size="1" nature="2" inner="0" tooltip="" id="5" />
                                                 <Output name="testNLCOUT" type="3" type_size="1" nature="2" inner="0" tooltip="" id="6" />
-                                                <Parameter name="id" inherits_from_parent="0" content_type="3" value="90e7acx197-nlc-5133" default_value="" custom_choice="0" tooltip="" id="7" />
-                                                <Parameter name="url" inherits_from_parent="0" content_type="3" value="https://gateway.watsonplatform.net/natural-language-classifier/api" default_value="" custom_choice="0" tooltip="" id="8" />
-                                                <Parameter name="password" inherits_from_parent="0" content_type="3" value="S62fcYfezQ0A" default_value="" custom_choice="0" tooltip="" id="9" />
-                                                <Parameter name="username" inherits_from_parent="0" content_type="3" value="6fe4ce47-7104-48e7-9711-9f7a0fdf3a12" default_value="" custom_choice="0" tooltip="" id="10" />
+                                                <Output name="restartEverything" type="3" type_size="1" nature="2" inner="0" tooltip="" id="7" />
+                                                <Parameter name="id" inherits_from_parent="0" content_type="3" value="90e7acx197-nlc-5133" default_value="" custom_choice="0" tooltip="" id="8" />
+                                                <Parameter name="url" inherits_from_parent="0" content_type="3" value="https://gateway.watsonplatform.net/natural-language-classifier/api" default_value="" custom_choice="0" tooltip="" id="9" />
+                                                <Parameter name="password" inherits_from_parent="0" content_type="3" value="S62fcYfezQ0A" default_value="" custom_choice="0" tooltip="" id="10" />
+                                                <Parameter name="username" inherits_from_parent="0" content_type="3" value="6fe4ce47-7104-48e7-9711-9f7a0fdf3a12" default_value="" custom_choice="0" tooltip="" id="11" />
                                             </Box>
                                             <Box name="Subscribe to Event (2)" id="16" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="144" y="33">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
@@ -761,6 +765,37 @@ class MyClass(GeneratedClass):
                                                 <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
                                                 <Parameter name="key" inherits_from_parent="0" content_type="3" value="testNLCOUT" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="6" />
                                             </Box>
+                                            <Box name="Insert Data (5)" id="8" localization="8" tooltip="Stores in NAOqi&apos;s shared memory the given value at the given key." x="540" y="322">
+                                                <bitmap>media/images/box/sensors/STM.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+        pass
+
+    def onLoad(self):
+        self.memory = ALProxy("ALMemory")
+
+    def onUnload(self):
+        self.memory = None
+
+    def onInput_onStart(self, p):
+        self.memory.insertData(self.getParameter("key"), p)
+        self.onStopped(p)
+
+    def onInput_onStop(self):
+        self.onUnload() #~ it is recommended to call onUnload of this box in a onStop method, as the code written in onUnload is used to stop the box as well
+        pass]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="3" type_size="1" nature="2" inner="0" tooltip="Receives the value to be inserted in ALMemory." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                                                <Output name="onStopped" type="0" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished. It contains the inserted value in ALMemory." id="4" />
+                                                <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
+                                                <Parameter name="key" inherits_from_parent="0" content_type="3" value="restartAll" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="6" />
+                                            </Box>
                                             <Link inputowner="15" indexofinput="2" outputowner="16" indexofoutput="6" />
                                             <Link inputowner="18" indexofinput="2" outputowner="15" indexofoutput="4" />
                                             <Link inputowner="16" indexofinput="2" outputowner="0" indexofoutput="2" />
@@ -776,6 +811,7 @@ class MyClass(GeneratedClass):
                                             <Link inputowner="3" indexofinput="2" outputowner="0" indexofoutput="3" />
                                             <Link inputowner="6" indexofinput="2" outputowner="15" indexofoutput="5" />
                                             <Link inputowner="7" indexofinput="2" outputowner="15" indexofoutput="6" />
+                                            <Link inputowner="8" indexofinput="2" outputowner="15" indexofoutput="7" />
                                         </Diagram>
                                     </BehaviorKeyframe>
                                 </BehaviorLayer>
@@ -10322,10 +10358,9 @@ class MyClass(GeneratedClass):
                         <Link inputowner="5" indexofinput="5" outputowner="19" indexofoutput="3" />
                         <Link inputowner="23" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="16" indexofinput="2" outputowner="19" indexofoutput="3" />
-                        <Link inputowner="25" indexofinput="3" outputowner="0" indexofoutput="2" />
                         <Link inputowner="10" indexofinput="2" outputowner="25" indexofoutput="4" />
                         <Link inputowner="19" indexofinput="2" outputowner="0" indexofoutput="2" />
-                        <Link inputowner="2" indexofinput="2" outputowner="1" indexofoutput="3" />
+                        <Link inputowner="10" indexofinput="2" outputowner="1" indexofoutput="3" />
                     </Diagram>
                 </BehaviorKeyframe>
             </BehaviorLayer>

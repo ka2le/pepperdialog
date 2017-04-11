@@ -10,6 +10,7 @@ include: ../concept.top
 #         regularUserMainChanger
 #    nextProposalChanger
 #         firstDance
+#        restartEverything
     
 u:(e:onStart) $playingSong=false $quizMode=false ^first["$restartAll==true $restartAll=false Im ready  $openPage=startMenu   $pauseOn=true $artist=0 $metBefore=false ^goto(nextProposalChanger) " "$NLC/output==notUnderstood I am sorry. I did not understand that. ^goto(mainChanger)  " "$NLC/output==song ^goto(initSongFromNLC) " "$NLC/output==quiz $NLC/output=done ^goto(theQuiz) "  "$NLC/output==story $NLC/output=done ^goto(storyMode) " "$metBefore==true  ^goto(mainChanger)" "Im ready  $openPage=startMenu   $pauseOn=true $artist=0 $metBefore=false ^goto(nextProposalChanger)"]
 
