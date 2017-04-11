@@ -11,6 +11,7 @@
         <Dialog name="artist" src="artist/artist.dlg" />
         <Dialog name="artist2" src="artist2/artist2.dlg" />
         <Dialog name="oldConcet" src="oldConcet/oldConcet.dlg" />
+        <Dialog name="resetting" src="resetting/resetting.dlg" />
     </Dialogs>
     <Resources>
         <File name="_metadata" src="_metadata" />
@@ -48,6 +49,7 @@
         <File name="lucyinsky" src="images/lucyinsky.png" />
         <File name="desktop" src="music/desktop.ini" />
         <File name="babyone" src="music/babyone.mp3" />
+        <File name="reset" src="reset" />
     </Resources>
     <Topics>
         <Topic name="ExampleDialog_enu" src="behavior_1/ExampleDialog/ExampleDialog_enu.top" topicName="ExampleDialog" language="en_US" />
@@ -58,6 +60,7 @@
         <Topic name="concept" src="concept.top" topicName="concept" language="en_US" />
         <Topic name="artist2_enu" src="artist2/artist2_enu.top" topicName="artist2" language="en_US" />
         <Topic name="oldConcet_enu" src="oldConcet/oldConcet_enu.top" topicName="oldConcet" language="en_US" />
+        <Topic name="resetting_enu" src="resetting/resetting_enu.top" topicName="resetting" language="en_US" />
     </Topics>
     <IgnoredPaths />
 </Package>

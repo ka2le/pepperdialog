@@ -3,6 +3,14 @@ language: enu
 
 include: ../concept.top
 
+#       playMusic
+#       dance
+#        storyMode
+#         runthequiz
+#         regularUserMainChanger
+#    nextProposalChanger
+#         firstDance
+    
 u:(e:onStart) $playingSong=false $quizMode=false ^first["$NLC/output==notUnderstood I am sorry. I did not understand that. ^goto(mainChanger)  " "$NLC/output==song ^goto(initSongFromNLC) " "$NLC/output==quiz $NLC/output=done ^goto(theQuiz) "  "$NLC/output==story $NLC/output=done ^goto(storyMode) " "$metBefore==true  ^goto(mainChanger)" "Im ready  $openPage=startMenu   $pauseOn=true $artist=0 $metBefore=false ^goto(nextProposalChanger)"]
     u1:(["~hello {Pepper}" start])  Hello Human. My name is D.J. Pepper. What is your name? ^clear(userName)
         u2:([" {["my name is" "i am" "Im"]} _[~names]"] ) $userName=$1 ^first[" $userName==carl Hi Carl! you know what to do!  $metBefore=true ^goto(mainChanger)  "  " Nice to meet you $userName . ^goto(nextProposalChanger) "]
@@ -12,7 +20,7 @@ u:(e:onStart) $playingSong=false $quizMode=false ^first["$NLC/output==notUnderst
 u:(~stop) Stopping. ^first["$playingSong==true $pose/stop=1 "] $playingSong=false $quizMode=false ^goto(nextProposalChanger)    
 
 u:(nextProposalChanger) %nextProposalChanger $openPage=startMenu  $quizMode=false $playingSong=false ^first["$metBefore==true Lets do something else ^goto(mainChanger) " " ^nextProposal " ]
-
+u:(firstDance) $firstDance=1
 
 #--------------------------------------For regular users, menu and nlc redirects
 u:(initSongFromNLC) %initSongFromNLC $NLC/output=done ^first["$requestedSong==lushlife $opensongs/lushlife=1  Ok Im playing ~SongLushlife by ~saraLarsson ^goto(pepperneedsomehelp)" "$requestedSong==nomoney $opensongs/nomoney=1  Ok Im playing ~SongNomoney by ~galantis ^goto(pepperneedsomehelp)" " ^goto(playMusic) "]
@@ -76,11 +84,11 @@ proposal: %propsalStory Do you want me to tell you a story about Justin Timberla
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
     u1:(~repeat) I said. ^sameProposal
     
-proposal: %proposalSax I dont usually brag. But I am actually pretty good at playing saxophone. Do you want to see? 
-    u1:(~yes) Awesome! Check this out! ^goto(playSax)
-    u1:(~no) Okay. Fine. We can do something else ^goto(nextProposalChanger)
-    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
-    u1:(~repeat) I said. ^sameProposal
+#proposal: %proposalSax I dont usually brag. But I am actually pretty good at playing saxophone. Do you want to see? 
+#    u1:(~yes) Awesome! Check this out! ^goto(playSax)
+#    u1:(~no) Okay. Fine. We can do something else ^goto(nextProposalChanger)
+#    u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
+#    u1:(~repeat) I said. ^sameProposal
 
 proposal: %doneAll Now you have seen what we can do. Do you want to do something again?
     u1:(~yes) That makes me so happy. ^goto(mainChanger)
@@ -119,7 +127,7 @@ u:(playMusic) %playMusic   $openPage=listen  Tell me which song you want to list
 #-----------------------------------------QUIZ-------------------to force-start quiz runthequiz  ---------------------    
 u:(runthequiz) %theQuiz $Menu/quiz=1 $quizMode=true $openPage=quiz  Starting the quiz! $quizScore=0 ^goto(selectNextQ) 
 u:(selectQ) %selectNextQ [^goto(q1)  ^goto(q2)  ^goto(q3) ^goto(q4) ^goto(q5) ^goto(q9) ^goto(q6) ^goto(q8)  ^goto(qlast) ] #
-u:(quizIsNowEnded) %quizOver  $quizMode=false Well played! That was all the questions. Your final score was $quizScore
+u:(quizIsNowEnded) %quizOver  $quizMode=false Well played! That was all the questions. Your final score was $quizScore  ^goto(nextProposalChanger) 
 u:(moreQs) %moreQs  $openPage=quiz  ["Here is the next ["One. " "Question. "]" " Get ready. "] .  ^goto(selectNextQ) 
 u:(quizGoodJob) %quizGoodJob  ^rand[~correct] ^rand[~goodJob] $QUIZ/addscore=1 ^goto(moreQs)
 u:(somequizinfo) %quizinfo ["Just so you know. If you want to do something else. Just say stop to stop the quiz.  " "If you dont know the answer and cant come up with a guess. Just say that you dont know and I will tell you the answer. " ] Anyway. ^goto(moreQs)
@@ -222,7 +230,7 @@ u:(qlast) %qlast Which of these two songs. Uptown funk by Bruno Mars. And Sorry 
 #-----------------------------------------Story mode ----------------------------------------
   
 u:(storyMode) %storyMode $openPage=story ["Look at my stomach to see the headlines and tell me what you want to hear about" "What do you want to hear about" ]
-    u1:([~stop nothing]) Ok. Lets do something else. ^goto(nextProposalChanger)
+    u1:([~stop nothing]) Ok. ^goto(nextProposalChanger)
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
     u1:(Early life) Wikipedia says Timberlake was born in Memphis  .   Tennessee  .    .   the son of Lynn Bomar Harless and Charles Randall Timberlake  .   a Baptist church choir director  .    .    .   Timberlake grew up in Shelby Forest  .   a small community between Memphis and Millington .   .   He has two half-brothers  .   Jonathan born September 12  .   1993 and Stephen born August 14  .   1998  .   from Charles second marriage to Lisa Perry .   ^first[" $pauseOn==true $pause=1  A. A. A. "  " . "]  Do you want to hear more about this topic? 
         u2:(~yes)  His half-sister Laura Katherine died shortly after birth on May 12  .   1997  .   and is mentioned in his acknowledgments in the album  N sync  as My Angel in Heaven .   .   He was inspired to become a performer by Janet Jackson  .   saying She didnt just stand there and sing her song  .   fascinated by her energy and exuberance .   .   At the age of 11  .   Timberlake appeared on the television show Star Search  .   performing country music songs as Justin Randall .   .   In 1993 and 1994  .   he was a cast member in The Mickey Mouse Club  .   where his castmates included future girlfriend and singer Britney Spears  .   future tourmate Christina Aguilera  .   future bandmate JC Chasez  .   and future movie actors Ryan Gosling and Keri Russell .   .   Timberlake then recruited Chasez to be in an all-male singing group  .   organized by boy band manager Lou Pearlman  .   that eventually became  N sync  .   .   . 

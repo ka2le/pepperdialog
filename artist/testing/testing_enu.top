@@ -9,7 +9,7 @@ concept:(theArtists) [~justinTimberlake ~zaraLarsson]
 concept:(concept) ["concept _~theArtists"]
 concept:(concept2) ["{play} {_~theArtists}"]
 concept:(speaking) ["get it ["ok" "pls"]" "get it {yes}"]
-u:(e:onStart) I am in test mode $text=hello $requestedSong=false #^first["NLC said $NLC/output" " ok"]
+u:(e:onStart) Reset $text=hello $requestedSong=false $NLC/output=0 $metBefore=false #^first["NLC said $NLC/output" " ok"]
 
 
 u:(save green) saving green $recallV=green
@@ -70,7 +70,7 @@ u:(if artist) ["$testArtist==[~justinTimberlake] 1 "  "$testArtist==sara 2"]
 
 u:(NLC) N L C ready
     u1:(_*) $NLC/input=$1 hmm
-u:(e:NLC/output) NLC result says $NLC/output
+#u:(e:NLC/output) NLC result says $NLC/output
 u:(confidence test) $testNLCOUT
 u:(nlc result)  NLC result says $NLC/output
 
