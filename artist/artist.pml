@@ -45,7 +45,6 @@
         <File name="Thumbs" src="images/Thumbs.db" />
         <File name="edsheeran" src="images/edsheeran.jpg" />
         <File name="lucyinsky" src="images/lucyinsky.jpg" />
-        <File name="lucyinsky" src="images/lucyinsky.png" />
         <File name="desktop" src="music/desktop.ini" />
         <File name="babyone" src="music/babyone.mp3" />
     </Resources>
