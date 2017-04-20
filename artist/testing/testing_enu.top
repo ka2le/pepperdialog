@@ -21,7 +21,7 @@ u:(almost real nlc) go for it
 
 u:(add more text _[please now] ) $text=["$text added words $1 "] $text 
 u:("start video") starting video  $openVideo/lushlife=1
-
+u:(test names) Here are how i pronounce names. djalmar . and.  Marcus. and.  Alice. and.  Sophie. and.  Richard. and.   Adam. and.  Agnes.and.  Lennart. and.  Magnus
 u:(listen to this text) what text?
     u1:(_*) got it $stringIn=$1
 u:(tell me about the text) the song contained $requestedSong

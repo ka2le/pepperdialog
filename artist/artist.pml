@@ -61,5 +61,9 @@
         <Topic name="oldConcet_enu" src="oldConcet/oldConcet_enu.top" topicName="oldConcet" language="en_US" />
         <Topic name="resetting_enu" src="resetting/resetting_enu.top" topicName="resetting" language="en_US" />
     </Topics>
-    <IgnoredPaths />
+    <IgnoredPaths>
+        <Path src="sounds" />
+        <Path src="html" />
+        <Path src="html/video" />
+    </IgnoredPaths>
 </Package>

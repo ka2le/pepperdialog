@@ -12,10 +12,10 @@ include: ../concept.top
 #         firstDance
 #        restartEverything
     
-u:(e:onStart) $playingSong=false $quizMode=false ^first["$restartAll==true $restartAll=false Im ready  $openPage=startMenu   $pauseOn=true $artist=0 $metBefore=false ^goto(nextProposalChanger) " "$NLC/output==notUnderstood I am sorry. I did not understand that. ^goto(mainChanger)  " "$NLC/output==song ^goto(initSongFromNLC) " "$NLC/output==quiz $NLC/output=done ^goto(theQuiz) "  "$NLC/output==story $NLC/output=done ^goto(storyMode) " "$metBefore==true  ^goto(mainChanger)" "Im ready  $openPage=startMenu   $pauseOn=true $artist=0 $metBefore=false ^goto(nextProposalChanger)"]
-
-    u1:(["~hello {Pepper}" start])  Hello Human. My name is D.J. Pepper. What is your name? ^clear(userName)
-        u2:([" {["my name is" "i am" "Im"]} _[~names]"] ) $userName=$1 ^first[" $userName==carl Hi Carl! you know what to do!  $metBefore=true ^goto(mainChanger)  "  " Nice to meet you $userName . ^goto(nextProposalChanger) "]
+u:(e:onStart) $userName=isac $playingSong=false $quizMode=false ^first["$restartAll==true $restartAll=false Im ready  $openPage=startMenu   $pauseOn=true $artist=0 $metBefore=false ^goto(nextProposalChanger) " "$NLC/output==notUnderstood I am sorry. I did not understand that. ^goto(mainChanger)  " "$NLC/output==song ^goto(initSongFromNLC) " "$NLC/output==quiz $NLC/output=done ^goto(theQuiz) "  "$NLC/output==story $NLC/output=done ^goto(storyMode) " "$metBefore==true  ^goto(mainChanger)" "Im ready  $openPage=startMenu   $pauseOn=true $artist=0 $metBefore=false "]
+#^goto(nextProposalChanger)
+    u1:(["~hello {Pepper}" start])  Hello Human. My name is D.J. Pepper. What is your name? 
+        u2:([" {["my name is" "i am" "Im"]} *"] ) ^first[" $userName==carl Hi Carl! I have missed you!  $metBefore=true ^goto(mainChanger)  "  " Nice to meet you $userName . ^goto(nextProposalChanger) "]
     u1:(~no) ^goto(nextProposalChanger)
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
 
@@ -60,13 +60,13 @@ proposal: %introduction I really like music. We can do a lot of different musica
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
     u1:(~repeat) I said. ^sameProposal
 
-proposal: %propsalQuiz Do you want to play a musical quiz?
+proposal: %propsalQuiz So  $userName . Do you want to play a musical quiz?
     u1:(~yes) Great. I love this quiz. ^goto(theQuiz)
     u1:(~no) Okay. ^goto(nextProposalChanger)
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^goto(nextProposalChanger)
     u1:(~repeat) I said. ^sameProposal
 
-proposal: %propsalListen Do you want to listen to some music?
+proposal: %propsalListen Do you want to listen to some music $userName ?
     u1:(~yes) Awesome. I am called D.J Pepper after all. Lets listen to music! ^goto(playMusic)
     u1:(~no) Okay. ^goto(nextProposalChanger)
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
@@ -74,8 +74,8 @@ proposal: %propsalListen Do you want to listen to some music?
 
 proposal: %propsalGuess ^first["$artist==0 I got to tell you a secret about who my favourite artist is. $laughter=1 But first do you want to guess who it is? " " ^goto(propsalStory) "]
     u1:(~yes) Go ahead. Take a guess. ^stayInScope
-    u1:(~no ~dontknow) It's actually Justin Timberlake.  But dont ask me why. ^goto(nextProposalChanger)
-    u1:("{~myGuess} ~justinTimberlake") Wow! you guessed it! Good job! You did not cheat I hope. ^goto(nextProposalChanger)
+    u1:(~no ~dontknow) It's actually Justin Timberlake.  But  $userName . please dont ask me why. ^goto(nextProposalChanger)
+    u1:("{~myGuess} ~justinTimberlake") Wow! you guessed it! Good job  $userName ! You did not cheat I hope. ^goto(nextProposalChanger)
     u1:("{~myGuess} _*") You guessed $1 .  The answer is actually Justin Timberlake. But dont ask me why.  ^goto(nextProposalChanger)
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
     u1:(~repeat) I said. ^sameProposal
@@ -114,9 +114,9 @@ u:(doadance) %doDance  $pose/dance1=1 #   ^nextProposal lägg in delay här inna
 #-----------------------------------------Youtube----------------------------------------
 #play specific song from blank
 
-u:(pepperneedsomehelp) %pepperneedsomehelp $playingSong=true  ^first[" $pauseOn==true $pause=1  A. A. A. "  " . "] ["Would you be so kind and help me a little with starting the song. Just press play." "could you please help me by  pressing play."] on my tablet. By the way. Just say Stop anytime if you want me to stop playing music. #$pose/dance1=1
+u:(pepperneedsomehelp) %pepperneedsomehelp $playingSong=true  ^first[" $pauseOn==true $pause=1  A. A. A. "  " . "] ["Would you be so kind  $userName and help me a little with starting the song. Just press play." "could you please help me by  pressing play."] on my tablet. By the way. Just say Stop anytime if you want me to stop playing music. #$pose/dance1=1
 
-u:(playMusic) %playMusic   $openPage=listen  Tell me which song you want to listen to?
+u:(playMusic) %playMusic   $openPage=listen  Tell ["me $userName " " me " " me " ] which song you want to listen to?
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
     u1:(~dontknow) I can help you find a song. Pick one from the list on my stomach.
    # u1:("~canWeListen ~SongMirrors ~madeBy") $opensongs/mirrors=1  Ok Im playing ~SongMirrors by ~justinTimberlake ^goto(pepperneedsomehelp)
@@ -129,16 +129,16 @@ u:(playMusic) %playMusic   $openPage=listen  Tell me which song you want to list
 #-----------------------------------------QUIZ-------------------to force-start quiz runthequiz  ---------------------    
 u:(runthequiz) %theQuiz $Menu/quiz=1 $quizMode=true $openPage=quiz  Starting the quiz! $quizScore=0 ^goto(selectNextQ) 
 u:(selectQ) %selectNextQ [^goto(q1)  ^goto(q2)  ^goto(q3) ^goto(q4) ^goto(q5) ^goto(q9) ^goto(q6) ^goto(q8)  ^goto(qlast) ] #
-u:(quizIsNowEnded) %quizOver  $quizMode=false Well played! That was all the questions. Your final score was $quizScore  ^goto(nextProposalChanger) 
+u:(quizIsNowEnded) %quizOver  $quizMode=false Well played  $userName ! That was all the questions. Your final score was $quizScore . ["$quizScore<4 The questions are really hard. I bet you will get much better score next time." "That is impressive! The questions are really hard but you know your stuff. "] ^goto(nextProposalChanger) 
 u:(moreQs) %moreQs  $openPage=quiz  ["Here is the next ["One. " "Question. "]" " Get ready. "] .  ^goto(selectNextQ) 
 u:(quizGoodJob) %quizGoodJob  ^rand[~correct] ^rand[~goodJob] $QUIZ/addscore=1 ^goto(moreQs)
 u:(somequizinfo) %quizinfo ["Just so you know. If you want to do something else. Just say stop to stop the quiz.  " "If you dont know the answer and cant come up with a guess. Just say that you dont know and I will tell you the answer. " ] Anyway. ^goto(moreQs)
 
 
 u:(q1) %q1 Robin Bengtsson won the swedish part of the eurovision song contest this year. But what was the name of the song?
-    u1:("{["[its "{it} [is was]"] called" "{it} [is was] named"]} {I} cant go on") That is correct! Impressive. $QUIZ/addscore=1   ^goto(quizinfo)
+    u1:("{["[its "{it} [is was]"] called" "{it} [is was] named"]} {I} cant go on") $pose/nod=1 That is correct! Impressive. $QUIZ/addscore=1   ^goto(quizinfo)
     u1:(_*) I heard you say $1 . The correct answer is that it is called I Cant go on. ^goto(quizinfo)    
-    u1:(~dontknow) I'll tell you then. It is called I Cant go on. ^goto(quizinfo)
+    u1:(~dontknow) Dont worry. I'll tell you then. It is called I Cant go on. ^goto(quizinfo)
     u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
     u1:(score) Your score is. $quizScore   ^stayInScope
     u1:(e:Dialog/NotUnderstood) ~notUnderstood . ^stayInScope
@@ -147,8 +147,8 @@ u:(q1) %q1 Robin Bengtsson won the swedish part of the eurovision song contest t
     
 u:(q2) %q2 In 1971 David Bowie released a song that became a classic. The title includes a planet. Life on. Blank. What was the planet? 
     u1:("{["it [is was] called" "the titel is" "the planet {[is was]}"]} {"Life on"} Mars") Thats right. You know your stuff.   $QUIZ/addscore=1   ^goto(quizinfo)
-    u1:(_*) I am sorry but $1 is not correct. It was called. Life on Mars.    ^goto(quizinfo)
-    u1:(~dontknow) Then I will tell you. It was called. Life on Mars.   ^goto(quizinfo)
+    u1:(_*) I am sorry but $1 is not correct. But dont worry, this question is hard. It was called. Life on Mars.    ^goto(quizinfo)
+    u1:(~dontknow) Dont worry, this question is hard. I will tell you the answer. It was called. Life on Mars.   ^goto(quizinfo)
     u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
     u1:(score) Your score is. $quizScore   ^stayInScope
     u1:(e:Dialog/NotUnderstood) ~notUnderstood . ^stayInScope
@@ -156,8 +156,8 @@ u:(q2) %q2 In 1971 David Bowie released a song that became a classic. The title 
 
 u:(q3) %q3 $img/edsheeran=1 Look at my tablet and you will see a picture of a singer who most people have listened to in recent years. Maybe without knowing it. Do you know his name?
     u1:(["{["his name is" "[he it] is {[called named]}"]}  {Ed} Sheeran" "{["his name is" "[he it] is {[called named]}"]}  Ed {Sheeran}"])   ^goto(quizGoodJob)
-    u1:(_*) I heard you say $1 . His name is Ed Sheeran. ^goto(moreQs)     
-    u1:(~dontknow) I'll tell you then. His name is Ed Sheeran. ^goto(moreQs)
+    u1:(_*) I heard you say $1 . His name is Ed Sheeran. Better luck next time! ^goto(moreQs)     
+    u1:(~dontknow) Dont worry. I'll tell you then. His name is Ed Sheeran. ^goto(moreQs)
     u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
     u1:(score) Your score is. $quizScore   ^stayInScope
     u1:(e:Dialog/NotUnderstood) ~notUnderstood . ^stayInScope
@@ -165,19 +165,17 @@ u:(q3) %q3 $img/edsheeran=1 Look at my tablet and you will see a picture of a si
   
 u:(q4) %q4 This swedish band became world famous in 1974 with the song Waterloo. The name of the band is based on the four group members first names. What was the name of the band?
     u1:("{"[they "the [group band]"] [were was is] [called named]" } Abba")   ^goto(quizGoodJob)
-    u1:(_*) I heard you say $1 . The correct answer is that they were called Abba. ^goto(moreQs)     
-    u1:(~dontknow) I'll tell you then. They were called Abba. ^goto(moreQs)
+    u1:(_*) I heard you say $1 . The correct answer is that they were called Abba. Better luck next time!  ^goto(moreQs)     
+    u1:(~dontknow) Dont worry. I'll tell you then  $userName . They were called Abba. ^goto(moreQs)
     u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
     u1:(score) Your score is. $quizScore   ^stayInScope
     u1:(e:Dialog/NotUnderstood) ~notUnderstood . ^stayInScope
     u1:(~repeat) I will read the question again. ^goto(q4)
-
-
     
 u:(q5) %q5 I will play a few seconds from a song. And i want you to tell me the singers name. Listen.  $quizSong/babyone=1  $pose/dance1=1
     u1:(["{["her name is" "she is called" "its"]} {britney} spears" "{["her name is" "she is called" "its"]} britney {spears}"])   ^goto(quizGoodJob)
-    u1:(_*) I heard you say $1 . This was britney spears. The song was called. Baby One more time. ^goto(moreQs)     
-    u1:(~dontknow) I'll tell you then.  This was britney spears. The song was called. Baby One more time. ^goto(moreQs)
+    u1:(_*) I heard you say $1 . This was britney spears. The song was called. Baby One more time. I am sure you will do better on the next question. ^goto(moreQs)     
+    u1:(~dontknow) Dont worry. I'll tell you then.  This was britney spears. The song was called. Baby One more time. ^goto(moreQs)
     u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
     u1:(score) Your score is. $quizScore   ^stayInScope
     u1:(e:Dialog/NotUnderstood) ~notUnderstood . ^stayInScope
@@ -185,7 +183,7 @@ u:(q5) %q5 I will play a few seconds from a song. And i want you to tell me the 
 
 u:(q9) %q9 Is it true that Justin Timberlake has won more than 5 grammy awards?
     u1:([~yes true]) ^goto(quizGoodJob)
-    u1:(~dontknow) I'll tell you then.  He has actually won 10 grammys.  ^goto(moreQs) 
+    u1:(~dontknow) Dont worry. I'll tell you then  $userName .  He has actually won 10 grammys.  ^goto(moreQs) 
     u1:([~no false]) Sorry. That was wrong. He has actually won 10 grammys. ^goto(moreQs)
     u1:(score) Your score is $quizScore   ^stayInScope
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
@@ -220,9 +218,9 @@ u:(q7) %q7 $img/lucyinsky=1 What song title are these images refering to?
     u1:(~repeat) I will read the question again. ^goto(q7)
   
 u:(qlast) %qlast Which of these two songs. Uptown funk by Bruno Mars. And Sorry by Justin Beiber has most streams on Spotify?
-    u1:("{[its "{it} is"]} Sorry {[by with]} {Justin} {Bieber}" "Justin Bieber") Correct. Nice job. Uptown funk has almost 700 million streams. But Sorry has over 880 million.  $QUIZ/addscore=1 ^goto(quizOver)
-    u1:("{[its "{it} is"]} Uptown funk {[by with]} {Bruno} {Mars}" "Bruno Mars") Sorry that was wrong. Uptown funk has almost 700 million streams. But Sorry has over 880 million. ^goto(quizOver)   
-    u1:(~dontknow) Here is the situation. Uptown funk has almost 700 million streams but Sorry has over 880 million. ^goto(quizOver)
+    u1:("{[its "{it} is"]} Sorry {[by with]} {Justin} {Bieber}" "Justin Bieber") Correct. Nice job. Uptown funk has almost 700 million streams. But Sorry has over 880 million.   $QUIZ/addscore=1 ^goto(quizOver)
+    u1:("{[its "{it} is"]} Uptown funk {[by with]} {Bruno} {Mars}" "Bruno Mars") Sorry that was wrong. Uptown funk has almost 700 million streams. But Sorry has over 880 million. Not easy when its this close. ^goto(quizOver)   
+    u1:(~dontknow) Here is the situation. Uptown funk has almost 700 million streams but Sorry has over 880 million. Not easy when its this close. ^goto(quizOver)
     u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
     u1:(score) Your score is. $quizScore   ^stayInScope
     u1:(e:Dialog/NotUnderstood) ~notUnderstood . ^stayInScope

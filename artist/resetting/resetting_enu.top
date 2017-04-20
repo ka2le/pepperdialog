@@ -2,7 +2,7 @@ topic: ~resetting()
 language: enu
 
 
-u:(e:onStart) Reset $text=hello $requestedSong=false $NLC/output=0 $metBefore=false   $goToTopic=music $onStopped=1
+u:(e:onStart) ok $text=hello $requestedSong=false $NLC/output=0 $metBefore=false   $goToTopic=music $onStopped=1
 # Defining extra concepts out of words or group of words
 #concept:(hello) [hello hi hey "good morning" greetings]
 
