@@ -57,7 +57,11 @@
         <Topic name="artist_enu" src="artist/artist_enu.top" topicName="artist" language="en_US" />
         <Topic name="common2_enu" src="common2_enu.top" topicName="common2" language="en_US" />
         <Topic name="concept" src="concept.top" topicName="concept" language="en_US" />
+<<<<<<< Updated upstream
         <Topic name="artist2_enu" src="artist2/artist2_enu.top" topicName="artist2" language="en_US" />
+=======
+        <Topic name="artist2_enu" src="artist2/artist2_enu.top" topicName="" language="" />
+>>>>>>> Stashed changes
         <Topic name="oldConcet_enu" src="oldConcet/oldConcet_enu.top" topicName="oldConcet" language="en_US" />
         <Topic name="resetting_enu" src="resetting/resetting_enu.top" topicName="resetting" language="en_US" />
     </Topics>
