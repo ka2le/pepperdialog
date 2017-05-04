@@ -11,7 +11,6 @@ concept:(concept2) ["{play} {_~theArtists}"]
 concept:(speaking) ["get it ["ok" "pls"]" "get it {yes}"]
 u:(e:onStart) Reset $text=hello $requestedSong=false $NLC/output=0 $metBefore=false #^first["NLC said $NLC/output" " ok"]
 
-
 u:(save green) saving green $recallV=green
 u:("save blue $recallV==green ") you saved green first.
 u:([" _["this is getting "] {"_[advanced cool]"} " "_["this is getting "]"]) you said ^first["$1 " " . " ] ^first[" $2 "  " . "] and the key word is ^first[" $2 " " . "]  ^first[" from second input we got $3 " " . " ]
@@ -21,6 +20,7 @@ u:(almost real nlc) go for it
 
 u:(add more text _[please now] ) $text=["$text added words $1 "] $text 
 u:("start video") starting video  $openVideo/lushlife=1
+u:("start video2") starting video  $openVideo/nomoney=1
 u:(test names) Here are how i pronounce names. djalmar . and.  Marcus. and.  Alice. and.  Sophie. and.  Richard. and.   Adam. and.  Agnes.and.  Lennart. and.  Magnus
 u:(listen to this text) what text?
     u1:(_*) got it $stringIn=$1
@@ -106,7 +106,7 @@ u:(new page) $link/fyrishov=1 new
 u:(old page) $link/destination=learn old
 u:(tablet quiz) $openPage=quiz opeing quiz on tablet
 u:(tablet story) $openPage=story opeing story on tablet
-u:(google) $link/google=1 Opening google
+u:(google) $limk/google=1 Opening google
 
 
 

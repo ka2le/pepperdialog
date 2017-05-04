@@ -1717,7 +1717,7 @@ class MyClass(GeneratedClass):
                                                 <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished. It contains the retrieved value from ALMemory." id="4" />
                                                 <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
                                                 <Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="" id="6" />
-                                                <Parameter name="key" inherits_from_parent="0" content_type="3" value="openVideo/lushlife" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
+                                                <Parameter name="key" inherits_from_parent="0" content_type="3" value="openVideo/nomoney" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                                                 <Parameter name="url" inherits_from_parent="0" content_type="3" value="" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
                                             </Box>
                                             <Box name="Play Video" id="26" localization="8" tooltip="Plays the video; returns when it&apos;s done.&#x0A;&#x0A;You can also interrupt, pause or resume the video.&#x0A;&#x0A;You can get events when the video starts or finishes.&#x0A;&#x0A;V1.0.0&#x0A;" x="1209" y="584">
@@ -1850,7 +1850,473 @@ class MyClass(GeneratedClass):
                                                 <Input name="onResumeVideo" type="1" type_size="1" nature="1" inner="0" tooltip="Resume the video when a signal is received on this input." id="5" />
                                                 <Output name="onStarted" type="1" type_size="1" nature="2" inner="0" tooltip="Triggered when the video started" id="6" />
                                                 <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="7" />
-                                                <Parameter name="VideoPath" inherits_from_parent="0" content_type="3" value="video/lushlife.mp4" default_value="" custom_choice="0" tooltip='path of the video inside the &quot;html&quot; folder (e.g. &quot;/video/myvideo.mp4&quot;' id="8" />
+                                                <Parameter name="VideoPath" inherits_from_parent="0" content_type="3" value="video/no.mp4" default_value="" custom_choice="0" tooltip='path of the video inside the &quot;html&quot; folder (e.g. &quot;/video/myvideo.mp4&quot;' id="8" />
+                                            </Box>
+                                            <Box name="Open link (9)" id="27" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="989" y="683">
+                                                <bitmap>media/images/box/sensors/STM.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+        pass
+
+    def onLoad(self):
+        self.BIND_PYTHON(self.getName(), "onEventCallback")
+        self.memory = ALProxy("ALMemory")
+
+    def onUnload(self):
+        self.memory = None
+
+    def onInput_onStart(self):
+        self.memory.subscribeToEvent(self.getParameter("key"), self.getName(), "onEventCallback")
+
+    def onInput_onStop(self):
+        self.onStopped()
+
+    def onEventCallback(self, key, value, message):
+        self.onEvent(self.getParameter("url"))]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="" id="3" />
+                                                <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished. It contains the retrieved value from ALMemory." id="4" />
+                                                <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
+                                                <Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="" id="6" />
+                                                <Parameter name="key" inherits_from_parent="0" content_type="3" value="openVideo/lushlife" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
+                                                <Parameter name="url" inherits_from_parent="0" content_type="3" value="" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
+                                            </Box>
+                                            <Box name="Play Video (1)" id="28" localization="8" tooltip="Plays the video; returns when it&apos;s done.&#x0A;&#x0A;You can also interrupt, pause or resume the video.&#x0A;&#x0A;You can get events when the video starts or finishes.&#x0A;&#x0A;V1.0.0&#x0A;" x="1246" y="773">
+                                                <bitmap>media/images/box/interaction/rec_movie.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[
+
+class MyClass(GeneratedClass):
+
+    def onLoad(self):
+        self.isRunning = False
+        self.startConnectId = None
+        self.finishConnectId = None
+        self.tabletService = None
+        self.frameManager = None
+        try:
+            self.frameManager = ALProxy("ALFrameManager")
+        except Exception as e:
+            self.logger.error(e)
+
+    def onUnload(self):
+        if self.tabletService:
+            try:
+                self.tabletService.stopVideo()
+            except Exception as e:
+                self.logger.error(e)
+            finally:
+                self.disconnectStartedListener()
+                self.disconnectFinishedListener()
+                self.isRunning = False
+
+    def disconnectFinishedListener(self):
+        if self.finishConnectId and self.tabletService:
+            try:
+                self.tabletService.videoFinished.disconnect(self.finishConnectId)
+                self.finishConnectId = None
+            except Exception as e:
+                self.logger.error(e)
+
+    def disconnectStartedListener(self):
+        if self.startConnectId and self.tabletService:
+            try:
+                self.tabletService.videoStarted.disconnect(self.startConnectId)
+                self.startConnectId = None
+            except Exception as e:
+                self.logger.error(e)
+
+    def _getTabletService(self):
+        tabletService = None
+        try:
+            tabletService = self.session().service("ALTabletService")
+        except Exception as e:
+            self.logger.error(e)
+        return tabletService
+
+    def _getAbsoluteUrl(self, partialUrl):
+        import os
+        subpath = os.path.join(self.packageUid(), os.path.normpath(partialUrl).lstrip("\\/"))
+        if self.tabletService:
+            return "http://%s/apps/%s" % (self.tabletService.robotIp(), subpath.replace(os.path.sep, "/"))
+        else:
+            self.logger.warning("No ALTabletService, can't get robot Ip.")
+            return None
+
+    def connectStartCallback(self):
+        try:
+            self.startConnectId = self.tabletService.videoStarted.connect(self.onVideoStarted)
+        except Exception as err:
+            self.logger.warning("Failed to subscribe to started callback: %s " % err)
+
+    def connectStopCallback(self):
+        try:
+            self.finishConnectId = self.tabletService.videoFinished.connect(self.onVideoFinished)
+        except Exception as err:
+            self.logger.warning("Failed to subscribe to stopped callback: %s " % err)
+
+    def onInput_onStart(self):
+        if self.isRunning:
+            return # already running, nothing to do
+        self.isRunning = True
+        # We create TabletService here in order to avoid
+        # problems with connections and disconnections of the tablet during the life of the application
+        self.tabletService = self._getTabletService()
+        if self.tabletService:
+            try:
+                url = self.getParameter("VideoPath")
+                if url == '':
+                    self.logger.error("URL of the video is empty")
+                if not url.startswith('http'):
+                    url = self._getAbsoluteUrl(url)
+                self.connectStartCallback()
+                self.connectStopCallback()
+                self.tabletService.playVideo(url)
+            except Exception as err:
+                self.logger.warning("Error during playVideo or subscribe: %s " % err)
+                self.onStopped()
+                self.isRunning = False
+        else:
+            self.logger.warning("No ALTabletService, can't play video.")
+            self.onStopped()
+            self.isRunning = False
+
+    def onInput_onStop(self):
+        self.onUnload()
+        self.onStopped()
+
+    def onInput_onPauseVideo(self):
+        if self.tabletService:
+            self.tabletService.pauseVideo()
+
+    def onInput_onResumeVideo(self):
+        if self.tabletService:
+            self.tabletService.resumeVideo()
+
+    def onVideoStarted(self):
+        self.disconnectStartedListener()
+        self.onStarted()
+
+    def onVideoFinished(self):
+        self.disconnectFinishedListener()
+        self.onStopped()
+        self.isRunning = False]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                                                <Input name="onPauseVideo" type="1" type_size="1" nature="1" inner="0" tooltip="Pause the video when a signal is received on this input." id="4" />
+                                                <Input name="onResumeVideo" type="1" type_size="1" nature="1" inner="0" tooltip="Resume the video when a signal is received on this input." id="5" />
+                                                <Output name="onStarted" type="1" type_size="1" nature="2" inner="0" tooltip="Triggered when the video started" id="6" />
+                                                <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="7" />
+                                                <Parameter name="VideoPath" inherits_from_parent="0" content_type="3" value="life.mp4" default_value="" custom_choice="0" tooltip='path of the video inside the &quot;html&quot; folder (e.g. &quot;/video/myvideo.mp4&quot;' id="8" />
+                                            </Box>
+                                            <Box name="Open link (15)" id="29" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="1018" y="810">
+                                                <bitmap>media/images/box/sensors/STM.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+        pass
+
+    def onLoad(self):
+        self.BIND_PYTHON(self.getName(), "onEventCallback")
+        self.memory = ALProxy("ALMemory")
+
+    def onUnload(self):
+        self.memory = None
+
+    def onInput_onStart(self):
+        self.memory.subscribeToEvent(self.getParameter("key"), self.getName(), "onEventCallback")
+
+    def onInput_onStop(self):
+        self.onStopped()
+
+    def onEventCallback(self, key, value, message):
+        self.onEvent(self.getParameter("url"))]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="" id="3" />
+                                                <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished. It contains the retrieved value from ALMemory." id="4" />
+                                                <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
+                                                <Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="" id="6" />
+                                                <Parameter name="key" inherits_from_parent="0" content_type="3" value="openVideo/uptownfunk" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
+                                                <Parameter name="url" inherits_from_parent="0" content_type="3" value="" default_value="https://www.youtube.com/watch?v=uuZE_IRwLNI" custom_choice="0" tooltip="" id="8" />
+                                            </Box>
+                                            <Box name="Play Video (2)" id="30" localization="8" tooltip="Plays the video; returns when it&apos;s done.&#x0A;&#x0A;You can also interrupt, pause or resume the video.&#x0A;&#x0A;You can get events when the video starts or finishes.&#x0A;&#x0A;V1.0.0&#x0A;" x="1383" y="754">
+                                                <bitmap>media/images/box/interaction/rec_movie.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[
+
+class MyClass(GeneratedClass):
+
+    def onLoad(self):
+        self.isRunning = False
+        self.startConnectId = None
+        self.finishConnectId = None
+        self.tabletService = None
+        self.frameManager = None
+        try:
+            self.frameManager = ALProxy("ALFrameManager")
+        except Exception as e:
+            self.logger.error(e)
+
+    def onUnload(self):
+        if self.tabletService:
+            try:
+                self.tabletService.stopVideo()
+            except Exception as e:
+                self.logger.error(e)
+            finally:
+                self.disconnectStartedListener()
+                self.disconnectFinishedListener()
+                self.isRunning = False
+
+    def disconnectFinishedListener(self):
+        if self.finishConnectId and self.tabletService:
+            try:
+                self.tabletService.videoFinished.disconnect(self.finishConnectId)
+                self.finishConnectId = None
+            except Exception as e:
+                self.logger.error(e)
+
+    def disconnectStartedListener(self):
+        if self.startConnectId and self.tabletService:
+            try:
+                self.tabletService.videoStarted.disconnect(self.startConnectId)
+                self.startConnectId = None
+            except Exception as e:
+                self.logger.error(e)
+
+    def _getTabletService(self):
+        tabletService = None
+        try:
+            tabletService = self.session().service("ALTabletService")
+        except Exception as e:
+            self.logger.error(e)
+        return tabletService
+
+    def _getAbsoluteUrl(self, partialUrl):
+        import os
+        subpath = os.path.join(self.packageUid(), os.path.normpath(partialUrl).lstrip("\\/"))
+        if self.tabletService:
+            return "http://%s/apps/%s" % (self.tabletService.robotIp(), subpath.replace(os.path.sep, "/"))
+        else:
+            self.logger.warning("No ALTabletService, can't get robot Ip.")
+            return None
+
+    def connectStartCallback(self):
+        try:
+            self.startConnectId = self.tabletService.videoStarted.connect(self.onVideoStarted)
+        except Exception as err:
+            self.logger.warning("Failed to subscribe to started callback: %s " % err)
+
+    def connectStopCallback(self):
+        try:
+            self.finishConnectId = self.tabletService.videoFinished.connect(self.onVideoFinished)
+        except Exception as err:
+            self.logger.warning("Failed to subscribe to stopped callback: %s " % err)
+
+    def onInput_onStart(self):
+        if self.isRunning:
+            return # already running, nothing to do
+        self.isRunning = True
+        # We create TabletService here in order to avoid
+        # problems with connections and disconnections of the tablet during the life of the application
+        self.tabletService = self._getTabletService()
+        if self.tabletService:
+            try:
+                url = self.getParameter("VideoPath")
+                if url == '':
+                    self.logger.error("URL of the video is empty")
+                if not url.startswith('http'):
+                    url = self._getAbsoluteUrl(url)
+                self.connectStartCallback()
+                self.connectStopCallback()
+                self.tabletService.playVideo(url)
+            except Exception as err:
+                self.logger.warning("Error during playVideo or subscribe: %s " % err)
+                self.onStopped()
+                self.isRunning = False
+        else:
+            self.logger.warning("No ALTabletService, can't play video.")
+            self.onStopped()
+            self.isRunning = False
+
+    def onInput_onStop(self):
+        self.onUnload()
+        self.onStopped()
+
+    def onInput_onPauseVideo(self):
+        if self.tabletService:
+            self.tabletService.pauseVideo()
+
+    def onInput_onResumeVideo(self):
+        if self.tabletService:
+            self.tabletService.resumeVideo()
+
+    def onVideoStarted(self):
+        self.disconnectStartedListener()
+        self.onStarted()
+
+    def onVideoFinished(self):
+        self.disconnectFinishedListener()
+        self.onStopped()
+        self.isRunning = False]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                                                <Input name="onPauseVideo" type="1" type_size="1" nature="1" inner="0" tooltip="Pause the video when a signal is received on this input." id="4" />
+                                                <Input name="onResumeVideo" type="1" type_size="1" nature="1" inner="0" tooltip="Resume the video when a signal is received on this input." id="5" />
+                                                <Output name="onStarted" type="1" type_size="1" nature="2" inner="0" tooltip="Triggered when the video started" id="6" />
+                                                <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="7" />
+                                                <Parameter name="VideoPath" inherits_from_parent="0" content_type="3" value="video/funk.mp4" default_value="" custom_choice="0" tooltip='path of the video inside the &quot;html&quot; folder (e.g. &quot;/video/myvideo.mp4&quot;' id="8" />
+                                            </Box>
+                                            <Box name="Play Video (3)" id="31" localization="8" tooltip="Plays the video; returns when it&apos;s done.&#x0A;&#x0A;You can also interrupt, pause or resume the video.&#x0A;&#x0A;You can get events when the video starts or finishes.&#x0A;&#x0A;V1.0.0&#x0A;" x="1525" y="627">
+                                                <bitmap>media/images/box/interaction/rec_movie.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[
+
+class MyClass(GeneratedClass):
+
+    def onLoad(self):
+        self.isRunning = False
+        self.startConnectId = None
+        self.finishConnectId = None
+        self.tabletService = None
+        self.frameManager = None
+        try:
+            self.frameManager = ALProxy("ALFrameManager")
+        except Exception as e:
+            self.logger.error(e)
+
+    def onUnload(self):
+        if self.tabletService:
+            try:
+                self.tabletService.stopVideo()
+            except Exception as e:
+                self.logger.error(e)
+            finally:
+                self.disconnectStartedListener()
+                self.disconnectFinishedListener()
+                self.isRunning = False
+
+    def disconnectFinishedListener(self):
+        if self.finishConnectId and self.tabletService:
+            try:
+                self.tabletService.videoFinished.disconnect(self.finishConnectId)
+                self.finishConnectId = None
+            except Exception as e:
+                self.logger.error(e)
+
+    def disconnectStartedListener(self):
+        if self.startConnectId and self.tabletService:
+            try:
+                self.tabletService.videoStarted.disconnect(self.startConnectId)
+                self.startConnectId = None
+            except Exception as e:
+                self.logger.error(e)
+
+    def _getTabletService(self):
+        tabletService = None
+        try:
+            tabletService = self.session().service("ALTabletService")
+        except Exception as e:
+            self.logger.error(e)
+        return tabletService
+
+    def _getAbsoluteUrl(self, partialUrl):
+        import os
+        subpath = os.path.join(self.packageUid(), os.path.normpath(partialUrl).lstrip("\\/"))
+        if self.tabletService:
+            return "http://%s/apps/%s" % (self.tabletService.robotIp(), subpath.replace(os.path.sep, "/"))
+        else:
+            self.logger.warning("No ALTabletService, can't get robot Ip.")
+            return None
+
+    def connectStartCallback(self):
+        try:
+            self.startConnectId = self.tabletService.videoStarted.connect(self.onVideoStarted)
+        except Exception as err:
+            self.logger.warning("Failed to subscribe to started callback: %s " % err)
+
+    def connectStopCallback(self):
+        try:
+            self.finishConnectId = self.tabletService.videoFinished.connect(self.onVideoFinished)
+        except Exception as err:
+            self.logger.warning("Failed to subscribe to stopped callback: %s " % err)
+
+    def onInput_onStart(self):
+        if self.isRunning:
+            return # already running, nothing to do
+        self.isRunning = True
+        # We create TabletService here in order to avoid
+        # problems with connections and disconnections of the tablet during the life of the application
+        self.tabletService = self._getTabletService()
+        if self.tabletService:
+            try:
+                url = self.getParameter("VideoPath")
+                if url == '':
+                    self.logger.error("URL of the video is empty")
+                if not url.startswith('http'):
+                    url = self._getAbsoluteUrl(url)
+                self.connectStartCallback()
+                self.connectStopCallback()
+                self.tabletService.playVideo(url)
+            except Exception as err:
+                self.logger.warning("Error during playVideo or subscribe: %s " % err)
+                self.onStopped()
+                self.isRunning = False
+        else:
+            self.logger.warning("No ALTabletService, can't play video.")
+            self.onStopped()
+            self.isRunning = False
+
+    def onInput_onStop(self):
+        self.onUnload()
+        self.onStopped()
+
+    def onInput_onPauseVideo(self):
+        if self.tabletService:
+            self.tabletService.pauseVideo()
+
+    def onInput_onResumeVideo(self):
+        if self.tabletService:
+            self.tabletService.resumeVideo()
+
+    def onVideoStarted(self):
+        self.disconnectStartedListener()
+        self.onStarted()
+
+    def onVideoFinished(self):
+        self.disconnectFinishedListener()
+        self.onStopped()
+        self.isRunning = False]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
+                                                <Input name="onPauseVideo" type="1" type_size="1" nature="1" inner="0" tooltip="Pause the video when a signal is received on this input." id="4" />
+                                                <Input name="onResumeVideo" type="1" type_size="1" nature="1" inner="0" tooltip="Resume the video when a signal is received on this input." id="5" />
+                                                <Output name="onStarted" type="1" type_size="1" nature="2" inner="0" tooltip="Triggered when the video started" id="6" />
+                                                <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="7" />
+                                                <Parameter name="VideoPath" inherits_from_parent="0" content_type="3" value="video/life.mp4" default_value="" custom_choice="0" tooltip='path of the video inside the &quot;html&quot; folder (e.g. &quot;/video/myvideo.mp4&quot;' id="8" />
                                             </Box>
                                             <Link inputowner="8" indexofinput="2" outputowner="12" indexofoutput="6" />
                                             <Link inputowner="8" indexofinput="2" outputowner="14" indexofoutput="6" />
@@ -1897,6 +2363,11 @@ class MyClass(GeneratedClass):
                                             <Link inputowner="8" indexofinput="2" outputowner="1" indexofoutput="6" />
                                             <Link inputowner="16" indexofinput="2" outputowner="0" indexofoutput="2" />
                                             <Link inputowner="26" indexofinput="2" outputowner="16" indexofoutput="6" />
+                                            <Link inputowner="28" indexofinput="2" outputowner="27" indexofoutput="6" />
+                                            <Link inputowner="27" indexofinput="2" outputowner="0" indexofoutput="2" />
+                                            <Link inputowner="30" indexofinput="2" outputowner="29" indexofoutput="6" />
+                                            <Link inputowner="29" indexofinput="2" outputowner="0" indexofoutput="2" />
+                                            <Link inputowner="31" indexofinput="2" outputowner="27" indexofoutput="6" />
                                         </Diagram>
                                     </BehaviorKeyframe>
                                 </BehaviorLayer>
@@ -9710,7 +10181,7 @@ class MyClass(GeneratedClass):
                                 <BehaviorLayer name="behavior_layer1">
                                     <BehaviorKeyframe name="keyframe1" index="1">
                                         <Diagram scale="70.7107">
-                                            <Box name="Set Speaker Vol." id="6" localization="8" tooltip="Set the sound volume between 0 (mute) and 100 (max).&#x0A;&#x0A;V1.1.0&#x0A;" x="176" y="185">
+                                            <Box name="Set Speaker Vol." id="6" localization="8" tooltip="Set the sound volume between 0 (mute) and 100 (max).&#x0A;&#x0A;V1.1.0&#x0A;" x="1202" y="292">
                                                 <bitmap>media/images/box/interaction/processing_sound.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -9731,7 +10202,7 @@ class MyClass(GeneratedClass):
                                                 <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" />
                                                 <Input name="onSet" type="1" type_size="1" nature="1" inner="0" tooltip="The data is set when a signal is received on this input." id="2" />
                                                 <Output name="onReady" type="1" type_size="1" nature="2" inner="0" tooltip="Signal sent when the data has been set." id="3" />
-                                                <Parameter name="Volume (%)" inherits_from_parent="0" content_type="1" value="44" default_value="50" min="0" max="100" tooltip="Percentage of maximum output volume." id="4" />
+                                                <Parameter name="Volume (%)" inherits_from_parent="0" content_type="1" value="58" default_value="50" min="0" max="100" tooltip="Percentage of maximum output volume." id="4" />
                                             </Box>
                                             <Box name="Audio-settings" id="17" localization="8" tooltip="Set the speach speed between 0.5 (and 4&#x0A;&#x0A;" x="181" y="80">
                                                 <bitmap>media/images/box/interaction/processing_sound.png</bitmap>
@@ -10095,29 +10566,6 @@ class MyClass(GeneratedClass):
                                                 <Parameter name="Timeout (s)" inherits_from_parent="0" content_type="2" value="0.7" default_value="1" min="0" max="5000" tooltip="Duration the box waits before stimulating the output." id="5" />
                                                 <Parameter name="Trigger timerOutput if cancelled" inherits_from_parent="0" content_type="0" value="0" default_value="1" tooltip="If the box is currently delaying at least one signal and cancelled, output will be stimulated." id="6" />
                                             </Box>
-                                            <Box name="Set Speaker Vol. (4)" id="5" localization="8" tooltip="Set the sound volume between 0 (mute) and 100 (max).&#x0A;&#x0A;V1.1.0&#x0A;" x="530" y="525">
-                                                <bitmap>media/images/box/interaction/processing_sound.png</bitmap>
-                                                <script language="4">
-                                                    <content>
-                                                        <![CDATA[class MyClass(GeneratedClass):
-    def __init__(self):
-        GeneratedClass.__init__(self, False)
-
-    def onInput_onSet(self):
-        try:
-            self.audiodevice = ALProxy("ALAudioDevice")
-            self.audiodevice.setOutputVolume(self.getParameter("Volume (%)"))
-        except Exception as e:
-            self.logger.error(e)
-
-        self.onReady() # activate output of the box]]>
-</content>
-                                                </script>
-                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" />
-                                                <Input name="onSet" type="1" type_size="1" nature="1" inner="0" tooltip="The data is set when a signal is received on this input." id="2" />
-                                                <Output name="onReady" type="1" type_size="1" nature="2" inner="0" tooltip="Signal sent when the data has been set." id="3" />
-                                                <Parameter name="Volume (%)" inherits_from_parent="0" content_type="1" value="45" default_value="50" min="0" max="100" tooltip="Percentage of maximum output volume." id="4" />
-                                            </Box>
                                             <Box name="Set Speaker Vol. (5)" id="7" localization="8" tooltip="Set the sound volume between 0 (mute) and 100 (max).&#x0A;&#x0A;V1.1.0&#x0A;" x="812" y="382">
                                                 <bitmap>media/images/box/interaction/processing_sound.png</bitmap>
                                                 <script language="4">
@@ -10263,7 +10711,7 @@ class MyClass(GeneratedClass):
                                                 <Parameter name="Timeout (s)" inherits_from_parent="0" content_type="2" value="0.4" default_value="1" min="0" max="5000" tooltip="Duration the box waits before stimulating the output." id="5" />
                                                 <Parameter name="Trigger timerOutput if cancelled" inherits_from_parent="0" content_type="0" value="0" default_value="1" tooltip="If the box is currently delaying at least one signal and cancelled, output will be stimulated." id="6" />
                                             </Box>
-                                            <Box name="Set Speaker Vol. (6)" id="11" localization="8" tooltip="Set the sound volume between 0 (mute) and 100 (max).&#x0A;&#x0A;V1.1.0&#x0A;" x="1058" y="372">
+                                            <Box name="Set Speaker Vol. (7)" id="12" localization="8" tooltip="Set the sound volume between 0 (mute) and 100 (max).&#x0A;&#x0A;V1.1.0&#x0A;" x="286" y="639">
                                                 <bitmap>media/images/box/interaction/processing_sound.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -10284,7 +10732,129 @@ class MyClass(GeneratedClass):
                                                 <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" />
                                                 <Input name="onSet" type="1" type_size="1" nature="1" inner="0" tooltip="The data is set when a signal is received on this input." id="2" />
                                                 <Output name="onReady" type="1" type_size="1" nature="2" inner="0" tooltip="Signal sent when the data has been set." id="3" />
-                                                <Parameter name="Volume (%)" inherits_from_parent="0" content_type="1" value="45" default_value="50" min="0" max="100" tooltip="Percentage of maximum output volume." id="4" />
+                                                <Parameter name="Volume (%)" inherits_from_parent="0" content_type="1" value="0" default_value="50" min="0" max="100" tooltip="Percentage of maximum output volume." id="4" />
+                                            </Box>
+                                            <Box name="Subscribe to Event (4)" id="13" localization="8" tooltip="Subscribes to a signal on a NAOqi2 service, or an event in NAOqi&apos;s shared memory&#x0A;When subscribed, the output will be triggered every time the signal is emitted or the event is raised." x="154" y="621">
+                                                <bitmap>media/images/box/sensors/STM.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+        pass
+
+    def onLoad(self):
+        import threading
+        self.lock = threading.RLock()
+        self.signal = None
+        self.linkId = -1
+
+    def onUnload(self):
+        with self.lock:
+            self.unsubscribe()
+
+    def onInput_onStart(self):
+        with self.lock:
+            self.unsubscribe()
+            event = self.getParameter("event")
+
+            if(len(event) == 0):
+                self.onError("No event or signal given.")
+                return
+
+            params = event.split(".")
+            if(len(params) == 2):
+                try:
+                    self.signal = getattr(self.session().service(params[0]), params[1])
+                except Exception as e:
+                    mem = self.session().service("ALMemory")
+                    if(event in mem.getEventList()):
+                        self.signal = mem.subscriber(event).signal
+                    else:
+                        self.onError(event + ": no such service.signal pair found, and no such event declared in ALMemory. Aborting.")
+                        return
+            else:
+                self.signal = self.session().service("ALMemory").subscriber(event).signal
+
+            self.linkId = self.signal.connect(self.reemitSignal)
+
+    def onInput_onStop(self):
+        with self.lock:
+            self.unsubscribe()
+            self.onStopped()
+
+    def unsubscribe(self):
+        if(self.signal is not None and self.linkId != -1):
+            self.signal.disconnect(self.linkId)
+
+        del self.signal
+        self.signal = None
+        self.linkId = -1
+
+    def reemitSignal(self, *args):
+        if(len(args) == 0):
+            self.onEvent()
+        elif(len(args) == 1):
+            self.onEvent(args[0])
+        else:
+            self.onEvent(args)]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="When this input is activated, the box will try to subscribe to the signal or the event passed in the box parameter.&#x0A;&#x0A;If it is retriggered and the parameter has changed, the box will undo the previous subscription and subscribe to the new signal or the new event." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Stop the box and cancel the subscription, if any." id="3" />
+                                                <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
+                                                <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="This output is triggered when the box encounters an error, and contains the error message." id="5" />
+                                                <Output name="onEvent" type="1" type_size="1" nature="2" inner="0" tooltip="This output is triggered each time the signal/event to which the box is connected is emitted/raised. It will carry the payload associated with the signal emission/event raise." id="6" />
+                                                <Parameter name="event" inherits_from_parent="0" content_type="3" value="pauseBritney" default_value="" custom_choice="0" tooltip='This parameter describes the signal to connect to, and the service advertising this signal.&#x0A;&#x0A;Use the pattern &quot;Service.Signal&quot; to connect to a signal, or the event key to connect to an event.' id="7" />
+                                            </Box>
+                                            <Box name="Delay (2)" id="15" localization="8" tooltip="Wait a moment before triggering the output. &#x0A;Can be stopped anytime. &#x0A;Multiple inputs will trigger multiple outputs." x="411" y="642">
+                                                <bitmap>media/images/box/wait.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self, False)
+
+    def onLoad(self):
+        self.delayed = []
+
+    def onUnload(self):
+        self.cancelDelays()
+
+    def cancelDelays(self):
+        cancel_list = list(self.delayed)
+        for d in cancel_list:
+            d.cancel()
+
+    def cleanDelay(self, fut, fut_ref):
+        self.delayed.remove(fut)
+
+    def triggerOutput(self):
+        self.timerOutput()
+
+    def onInput_onStart(self):
+        import qi
+        import functools
+        delay_future = qi.async(self.triggerOutput, delay=int(self.getParameter("Timeout (s)") * 1000 * 1000))
+        # keep the async operation in an array for cancel
+        # and remove it when it is finished in the callback
+        self.delayed.append(delay_future)
+        bound_clean = functools.partial(self.cleanDelay, delay_future)
+        delay_future.addCallback(bound_clean)
+
+    def onInput_onStop(self):
+        if self.getParameter("Trigger timerOutput if cancelled") and self.delayed:
+            self.timerOutput()
+        self.onUnload()]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Start the Delay box with the configured timeout value." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Stop the wait and stimulate the output." id="3" />
+                                                <Output name="timerOutput" type="1" type_size="1" nature="1" inner="0" tooltip="Send a bang once delay set in parameters is elapsed, or if the box is stopped and the appropriate parameter is set." id="4" />
+                                                <Parameter name="Timeout (s)" inherits_from_parent="0" content_type="2" value="9" default_value="1" min="0" max="5000" tooltip="Duration the box waits before stimulating the output." id="5" />
+                                                <Parameter name="Trigger timerOutput if cancelled" inherits_from_parent="0" content_type="0" value="0" default_value="1" tooltip="If the box is currently delaying at least one signal and cancelled, output will be stimulated." id="6" />
                                             </Box>
                                             <Link inputowner="2" indexofinput="2" outputowner="4" indexofoutput="6" />
                                             <Link inputowner="8" indexofinput="2" outputowner="16" indexofoutput="6" />
@@ -10295,11 +10865,15 @@ class MyClass(GeneratedClass):
                                             <Link inputowner="1" indexofinput="2" outputowner="3" indexofoutput="6" />
                                             <Link inputowner="3" indexofinput="2" outputowner="0" indexofoutput="5" />
                                             <Link inputowner="14" indexofinput="2" outputowner="1" indexofoutput="3" />
-                                            <Link inputowner="5" indexofinput="2" outputowner="14" indexofoutput="4" />
                                             <Link inputowner="7" indexofinput="2" outputowner="9" indexofoutput="6" />
                                             <Link inputowner="10" indexofinput="2" outputowner="7" indexofoutput="3" />
-                                            <Link inputowner="11" indexofinput="2" outputowner="10" indexofoutput="4" />
                                             <Link inputowner="9" indexofinput="2" outputowner="0" indexofoutput="5" />
+                                            <Link inputowner="12" indexofinput="2" outputowner="13" indexofoutput="6" />
+                                            <Link inputowner="15" indexofinput="2" outputowner="12" indexofoutput="3" />
+                                            <Link inputowner="13" indexofinput="2" outputowner="0" indexofoutput="5" />
+                                            <Link inputowner="6" indexofinput="2" outputowner="14" indexofoutput="4" />
+                                            <Link inputowner="6" indexofinput="2" outputowner="15" indexofoutput="4" />
+                                            <Link inputowner="6" indexofinput="2" outputowner="10" indexofoutput="4" />
                                         </Diagram>
                                     </BehaviorKeyframe>
                                 </BehaviorLayer>
@@ -10557,7 +11131,7 @@ class MyClass(GeneratedClass):
                         <Link inputowner="10" indexofinput="2" outputowner="25" indexofoutput="4" />
                         <Link inputowner="10" indexofinput="2" outputowner="13" indexofoutput="7" />
                         <Link inputowner="19" indexofinput="2" outputowner="0" indexofoutput="2" />
-                        <Link inputowner="2" indexofinput="2" outputowner="1" indexofoutput="3" />
+                        <Link inputowner="9" indexofinput="2" outputowner="1" indexofoutput="3" />
                     </Diagram>
                 </BehaviorKeyframe>
             </BehaviorLayer>

@@ -49,6 +49,9 @@
         <File name="desktop" src="music/desktop.ini" />
         <File name="babyone" src="music/babyone.mp3" />
         <File name="reset" src="reset" />
+        <File name="funk" src="html/video/funk.mp4" />
+        <File name="no" src="html/video/no.mp4" />
+        <File name="life" src="html/video/life.mp4" />
     </Resources>
     <Topics>
         <Topic name="ExampleDialog_enu" src="behavior_1/ExampleDialog/ExampleDialog_enu.top" topicName="ExampleDialog" language="en_US" />
@@ -63,7 +66,5 @@
     </Topics>
     <IgnoredPaths>
         <Path src="sounds" />
-        <Path src="html" />
-        <Path src="html/video" />
     </IgnoredPaths>
 </Package>
