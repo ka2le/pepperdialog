@@ -19,13 +19,13 @@ u:(e:onStart) $userName=isac $playingSong=false $quizMode=false ^first["$restart
     u1:(~no) ^goto(nextProposalChanger)
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope
 
-u:(~stop) Stopping. ^first["$playingSong==true $pose/stop=1 "] $playingSong=false $quizMode=false ^goto(nextProposalChanger)    
+u:(~stop) Stopping. ^first["$playingSong==true $pose/stop=1 "] $playingSong=false $quizMode=false ^first[" $pauseOn==true $pause=1  A. A. A. "  " . "]  ^goto(nextProposalChanger)    
 
 u:(nextProposalChanger) %nextProposalChanger $openPage=startMenu  $quizMode=false $playingSong=false ^first["$metBefore==true Lets do something else ^goto(mainChanger) " " ^nextProposal " ]
 u:(firstDance) $firstDance=1
 
 #--------------------------------------For regular users, menu and nlc redirects
-u:(initSongFromNLC) %initSongFromNLC $NLC/output=done ^first["$requestedSong==lushlife $opensongs/lushlife=1  Ok Im playing ~SongLushlife by ~saraLarsson ^goto(pepperneedsomehelp)" "$requestedSong==nomoney $opensongs/nomoney=1  Ok Im playing ~SongNomoney by ~galantis ^goto(pepperneedsomehelp)" " ^goto(playMusic) "]
+u:(initSongFromNLC) %initSongFromNLC $NLC/output=done ^first["$requestedSong==lushlife $openVideo/lushlife=1  Ok Im playing ~SongLushlife by ~saraLarsson ^goto(pepperneedsomehelp)" "$requestedSong==nomoney $openVideo/nomoney=1  Ok Im playing ~SongNomoney by ~galantis ^goto(pepperneedsomehelp)"  "$requestedSong==uptown $openVideo/uptownfunk=1 Ok Im playing ~SongUptownfunk by ~brunoMars ^goto(pepperneedsomehelp)" " ^goto(playMusic) "]
 
 u:(regularUserMainChanger) %mainChanger $openPage=startMenu  $metBefore=true What do you want to do? #[" . " " Maybe a quiz or play a song? " " . " ]
     u1:(_*) $NLC/input=$1 $onStopped=1  
@@ -114,7 +114,7 @@ u:(doadance) %doDance  $pose/dance1=1 #   ^nextProposal lägg in delay här inna
 #-----------------------------------------Youtube----------------------------------------
 #play specific song from blank
 
-u:(pepperneedsomehelp) %pepperneedsomehelp $playingSong=true  ^first[" $pauseOn==true $pause=1  A. A. A. "  " . "] ["Would you be so kind  $userName and help me a little with starting the song. Just press play." "could you please help me by  pressing play."] on my tablet. By the way. Just say Stop anytime if you want me to stop playing music. #$pose/dance1=1
+u:(pepperneedsomehelp) %pepperneedsomehelp $playingSong=true # ^first[" $pauseOn==true $pause=1  A. A. A. "  " . "] ["Would you be so kind  $userName and help me a little with starting the song. Just press play." "could you please help me by  pressing play."] on my tablet. By the way. Just say Stop anytime if you want me to stop playing music. #$pose/dance1=1
 
 u:(playMusic) %playMusic   $openPage=listen  Tell ["me $userName " " me " " me " ] which song you want to listen to?
     u1:(e:Dialog/NotUnderstood) ~notUnderstood ^stayInScope 
@@ -129,7 +129,7 @@ u:(playMusic) %playMusic   $openPage=listen  Tell ["me $userName " " me " " me "
 #-----------------------------------------QUIZ-------------------to force-start quiz runthequiz  ---------------------    
 u:(runthequiz) %theQuiz $Menu/quiz=1 $quizMode=true $openPage=quiz  Starting the quiz! $quizScore=0 ^goto(selectNextQ) 
 u:(selectQ) %selectNextQ [^goto(q1)  ^goto(q2)  ^goto(q3) ^goto(q4) ^goto(q5) ^goto(q9) ^goto(q6) ^goto(q8)  ^goto(qlast) ] #
-u:(quizIsNowEnded) %quizOver  $quizMode=false Well played  $userName ! That was all the questions. Your final score was $quizScore . ["$quizScore<4 The questions are really hard. I bet you will get much better score next time." "That is impressive! The questions are really hard but you know your stuff. "] ^goto(nextProposalChanger) 
+u:(quizIsNowEnded) %quizOver  $quizMode=false Well played  $userName ! That was all the questions. Your final score was $quizScore . ["$quizScore<4 The questions are really hard. I bet you will get much better score next time." "That is impressive! The questions are really hard but you know your stuff. "]  ^first[" $pauseOn==true $pause=1  A. A. A. "  " . "]  ^first[" $pauseOn==true $pause=1  A. A. A. "  " . "]  ^goto(nextProposalChanger) 
 u:(moreQs) %moreQs  $openPage=quiz  ["Here is the next ["One. " "Question. "]" " Get ready. "] .  ^goto(selectNextQ) 
 u:(quizGoodJob) %quizGoodJob  ^rand[~correct] ^rand[~goodJob] $QUIZ/addscore=1 ^goto(moreQs)
 u:(somequizinfo) %quizinfo ["Just so you know. If you want to do something else. Just say stop to stop the quiz.  " "If you dont know the answer and cant come up with a guess. Just say that you dont know and I will tell you the answer. " ] Anyway. ^goto(moreQs)
@@ -172,8 +172,7 @@ u:(q4) %q4 This swedish band became world famous in 1974 with the song Waterloo.
     u1:(e:Dialog/NotUnderstood) ~notUnderstood . ^stayInScope
     u1:(~repeat) I will read the question again. ^goto(q4)
     
-u:(q5) %q5 I will play a few seconds from a song. And i want you to tell me the singers name. Listen.  $quizSong/babyone=1  $pose/dance1=1   $pauseBritney=1 So. What is her name?
-    u1:(["{["her name is" "she is called" "its"]} {britney} spears" "{["her name is" "she is called" "its"]} britney {spears}"])   ^goto(quizGoodJob)
+u:(q5) %q5 I will play a few seconds from a song. And i want you to listen carefully. When the song stops I want you to tell me the singers name. Listen.  $quizSong/babyone=1  $pose/dance1=1       u1:(["{["her name is" "she is called" "its"]} {britney} spears" "{["her name is" "she is called" "its"]} britney {spears}"])   ^goto(quizGoodJob)
     u1:(_*) I heard you say $1 . This was britney spears. The song was called. Baby One more time. I am sure you will do better on the next question. ^goto(moreQs)     
     u1:(~dontknow) Dont worry. I'll tell you then.  This was britney spears. The song was called. Baby One more time. ^goto(moreQs)
     u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
@@ -219,7 +218,7 @@ u:(q7) %q7 $img/lucyinsky=1 What song title are these images refering to?
   
 u:(qlast) %qlast Which of these two songs. Uptown funk by Bruno Mars. And Sorry by Justin Beiber has most streams on Spotify?
     u1:([" "{[its "{it} is"]} Sorry {[by with]} {Justin} {Bieber}" "Justin Bieber" " justin bieber "justin bieber"  ]) Correct. Nice job. Uptown funk has almost 700 million streams. But Sorry has over 880 million.   $QUIZ/addscore=1 ^goto(quizOver)
-    u1:([" "{[its "{it} is"]} Uptown funk {[by with]} {Bruno} {Mars}" "Bruno Mars"  "  Bruno Mars "Bruno Mars"]) Sorry that was wrong. Uptown funk has almost 700 million streams. But Sorry has over 880 million. Not easy when its this close. ^goto(quizOver)   
+    u1:([" "{[its "{it} is"]} Uptown funk {[by with]} {Bruno} {Mars}" "Bruno Mars"  "  Bruno Mars "Bruno Mars"]) That was wrong. Uptown funk has almost 700 million streams. But Sorry has over 880 million. Not easy when its this close. ^goto(quizOver)   
     u1:(~dontknow) Here is the situation. Uptown funk has almost 700 million streams but Sorry has over 880 million. Not easy when its this close. ^goto(quizOver)
     u1:(~stop) Stopping the quiz. ^goto(nextProposalChanger)
     u1:(score) Your score is. $quizScore   ^stayInScope

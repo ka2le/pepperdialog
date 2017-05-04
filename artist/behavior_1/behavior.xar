@@ -765,7 +765,7 @@ class MyClass(GeneratedClass):
                                                 <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
                                                 <Parameter name="key" inherits_from_parent="0" content_type="3" value="testNLCOUT" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="6" />
                                             </Box>
-                                            <Box name="Insert Data (5)" id="8" localization="8" tooltip="Stores in NAOqi&apos;s shared memory the given value at the given key." x="540" y="322">
+                                            <Box name="Insert Data (5)" id="8" localization="8" tooltip="Stores in NAOqi&apos;s shared memory the given value at the given key." x="504" y="339">
                                                 <bitmap>media/images/box/sensors/STM.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -11131,7 +11131,7 @@ class MyClass(GeneratedClass):
                         <Link inputowner="10" indexofinput="2" outputowner="25" indexofoutput="4" />
                         <Link inputowner="10" indexofinput="2" outputowner="13" indexofoutput="7" />
                         <Link inputowner="19" indexofinput="2" outputowner="0" indexofoutput="2" />
-                        <Link inputowner="9" indexofinput="2" outputowner="1" indexofoutput="3" />
+                        <Link inputowner="2" indexofinput="2" outputowner="1" indexofoutput="3" />
                     </Diagram>
                 </BehaviorKeyframe>
             </BehaviorLayer>
