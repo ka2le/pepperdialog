@@ -10095,7 +10095,7 @@ class MyClass(GeneratedClass):
                                                 <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" />
                                                 <Input name="onSet" type="1" type_size="1" nature="1" inner="0" tooltip="The data is set when a signal is received on this input." id="2" />
                                                 <Output name="onReady" type="1" type_size="1" nature="2" inner="0" tooltip="Signal sent when the data has been set." id="3" />
-                                                <Parameter name="Volume (%)" inherits_from_parent="0" content_type="1" value="77" default_value="50" min="0" max="100" tooltip="Percentage of maximum output volume." id="4" />
+                                                <Parameter name="Volume (%)" inherits_from_parent="0" content_type="1" value="60" default_value="50" min="0" max="100" tooltip="Percentage of maximum output volume." id="4" />
                                             </Box>
                                             <Box name="Audio-settings" id="17" localization="8" tooltip="Set the speach speed between 0.5 (and 4&#x0A;&#x0A;" x="181" y="80">
                                                 <bitmap>media/images/box/interaction/processing_sound.png</bitmap>
@@ -11020,6 +11020,7 @@ class MyClass(GeneratedClass):
                         <Link inputowner="10" indexofinput="2" outputowner="25" indexofoutput="4" />
                         <Link inputowner="10" indexofinput="2" outputowner="13" indexofoutput="7" />
                         <Link inputowner="2" indexofinput="2" outputowner="1" indexofoutput="3" />
+                        <Link inputowner="19" indexofinput="2" outputowner="0" indexofoutput="2" />
                     </Diagram>
                 </BehaviorKeyframe>
             </BehaviorLayer>

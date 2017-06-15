@@ -12,7 +12,7 @@ include: ../concept.top
 #         firstDance
 #        restartEverything
     
-u:(e:onStart) $userName=human $playingSong=false $quizMode=false ^first["$restartAll==true $restartAll=false Im ready  $openPage=startMenu   $pauseOn=true $artist=0 $metBefore=false ^goto(nextProposalChanger) " "$NLC/output==notUnderstood I am sorry. I did not understand that. ^goto(mainChanger)  " "$NLC/output==song ^goto(initSongFromNLC) " "$NLC/output==quiz $NLC/output=done ^goto(theQuiz) "  "$NLC/output==story $NLC/output=done ^goto(storyMode) " "$metBefore==true  ^goto(mainChanger)" "Im ready  $openPage=startMenu   $pauseOn=true $artist=0 $metBefore=false "]  ^goto(nextProposalChanger)
+u:(e:onStart) $userName=human $playingSong=false $quizMode=false ^first["$restartAll==true $restartAll=false Im ready  $openPage=startMenu   $pauseOn=true $artist=0 $metBefore=false ^goto(nextProposalChanger) " "$NLC/output==notUnderstood I am sorry. I did not understand that. ^goto(mainChanger)  " "$NLC/output==song ^goto(initSongFromNLC) " "$NLC/output==quiz $NLC/output=done ^goto(theQuiz) "  "$NLC/output==story $NLC/output=done ^goto(storyMode) " "$metBefore==true  ^goto(mainChanger)" "Im ready  $openPage=startMenu   $pauseOn=true $artist=0 $metBefore=false "] Hello Human. ^goto(nextProposalChanger)
 #^goto(nextProposalChanger)
     u1:(["~hello {Pepper}" start])  Hello Human. My name is D.J. Pepper. What is your name? 
         u2:([" {["my name is" "i am" "Im"]} *"] ) ^first[" $userName==carl Hi Carl! I have missed you!  $metBefore=true ^goto(mainChanger)  "  " Nice to meet you $userName . ^goto(nextProposalChanger) "]
