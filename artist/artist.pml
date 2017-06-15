@@ -7,15 +7,11 @@
     <Dialogs>
         <Dialog name="ExampleDialog" src="behavior_1/ExampleDialog/ExampleDialog.dlg" />
         <Dialog name="general" src="general/general.dlg" />
-        <Dialog name="testing" src="testing/testing.dlg" />
-        <Dialog name="artist" src="artist/artist.dlg" />
         <Dialog name="artist2" src="artist2/artist2.dlg" />
-        <Dialog name="oldConcet" src="oldConcet/oldConcet.dlg" />
         <Dialog name="resetting" src="resetting/resetting.dlg" />
     </Dialogs>
     <Resources>
         <File name="_metadata" src="_metadata" />
-        <File name="testfile" src="testfile.txt" />
         <File name="__init__" src="lib/watson_developer_cloud/__init__.py" />
         <File name="alchemy_data_news_v1" src="lib/watson_developer_cloud/alchemy_data_news_v1.py" />
         <File name="alchemy_language_v1" src="lib/watson_developer_cloud/alchemy_language_v1.py" />
@@ -42,26 +38,17 @@
         <File name="version" src="lib/watson_developer_cloud/version.py" />
         <File name="visual_recognition_v3" src="lib/watson_developer_cloud/visual_recognition_v3.py" />
         <File name="watson_developer_cloud_service" src="lib/watson_developer_cloud/watson_developer_cloud_service.py" />
-        <File name="regular user" src="regular user" />
         <File name="Thumbs" src="images/Thumbs.db" />
         <File name="edsheeran" src="images/edsheeran.jpg" />
         <File name="lucyinsky" src="images/lucyinsky.jpg" />
         <File name="desktop" src="music/desktop.ini" />
         <File name="babyone" src="music/babyone.mp3" />
-        <File name="reset" src="reset" />
-        <File name="funk" src="html/video/funk.mp4" />
-        <File name="no" src="html/video/no.mp4" />
-        <File name="life" src="html/video/life.mp4" />
     </Resources>
     <Topics>
         <Topic name="ExampleDialog_enu" src="behavior_1/ExampleDialog/ExampleDialog_enu.top" topicName="ExampleDialog" language="en_US" />
         <Topic name="general_enu" src="general/general_enu.top" topicName="general" language="en_US" />
-        <Topic name="testing_enu" src="testing/testing_enu.top" topicName="testing" language="en_US" />
-        <Topic name="artist_enu" src="artist/artist_enu.top" topicName="artist" language="en_US" />
-        <Topic name="common2_enu" src="common2_enu.top" topicName="common2" language="en_US" />
         <Topic name="concept" src="concept.top" topicName="concept" language="en_US" />
         <Topic name="artist2_enu" src="artist2/artist2_enu.top" topicName="artist2" language="en_US" />
-        <Topic name="oldConcet_enu" src="oldConcet/oldConcet_enu.top" topicName="oldConcet" language="en_US" />
         <Topic name="resetting_enu" src="resetting/resetting_enu.top" topicName="resetting" language="en_US" />
     </Topics>
     <IgnoredPaths>

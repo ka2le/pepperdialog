@@ -15,23 +15,7 @@
             <BehaviorLayer name="behavior_layer1">
                 <BehaviorKeyframe name="keyframe1" index="1">
                     <Diagram scale="70.7107">
-                        <Box name="General Dialog" id="3" localization="8" tooltip="An example of multilanguage dialog implementation" x="427" y="349">
-                            <dialogFile>../general/general.dlg</dialogFile>
-                            <bitmap>media/images/box/box-dialog.png</bitmap>
-                            <script language="4">
-                                <content>
-                                    <![CDATA[]]>
-</content>
-                            </script>
-                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
-                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
-                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
-                            <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
-                            <Output name="playAGame" type="1" type_size="1" nature="2" inner="0" tooltip="stimulated using $playAGame=1 in qiChat script when User wants to play a game&#x0A;" id="5" />
-                            <Resource name="Speech" type="Lock" timeout="0" />
-                            <Resource name="Speech recognition" type="Lock" timeout="0" />
-                        </Box>
-                        <Box name="Set Language" id="1" localization="8" tooltip="Select the language you would like the robot to speak and understand. Any following call to&#x0A;ALSpeechRecognition (Speech Reco. box for instance) or ALTextToSpeech (Say box&#x0A;for instance) will use this language." x="135" y="91">
+                        <Box name="Set Language" id="1" localization="8" tooltip="Select the language you would like the robot to speak and understand. Any following call to&#x0A;ALSpeechRecognition (Speech Reco. box for instance) or ALTextToSpeech (Say box&#x0A;for instance) will use this language." x="85" y="99">
                             <bitmap>media/images/box/interaction/say.png</bitmap>
                             <script language="4">
                                 <content>
@@ -105,7 +89,7 @@
                             </Parameter>
                             <Resource name="Speech" type="Lock" timeout="0" />
                         </Box>
-                        <Box name="Music Dialog" id="10" localization="8" tooltip="An example of multilanguage dialog implementation" x="684" y="166">
+                        <Box name="Music Dialog" id="10" localization="8" tooltip="An example of multilanguage dialog implementation" x="837" y="381">
                             <dialogFile>../artist2/artist2.dlg</dialogFile>
                             <bitmap>media/images/box/box-dialog.png</bitmap>
                             <script language="4">
@@ -122,7 +106,7 @@
                             <Resource name="Speech" type="Lock" timeout="0" />
                             <Resource name="Speech recognition" type="Lock" timeout="0" />
                         </Box>
-                        <Box name="Subscribe to Event" id="11" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="48" y="200">
+                        <Box name="Subscribe to Event" id="11" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="55" y="329">
                             <bitmap>media/images/box/sensors/STM.png</bitmap>
                             <script language="4">
                                 <content>
@@ -156,7 +140,7 @@
                             <Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="" id="6" />
                             <Parameter name="key" inherits_from_parent="0" content_type="3" value="goToTopic" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
                         </Box>
-                        <Box name="Switch Mode" id="13" localization="8" tooltip="Retrieves from NAOqi&apos;s shared memory the given value at the given key." x="161" y="191">
+                        <Box name="Switch Mode" id="13" localization="8" tooltip="Retrieves from NAOqi&apos;s shared memory the given value at the given key." x="176" y="330">
                             <bitmap>media/images/box/sensors/STM.png</bitmap>
                             <script language="4">
                                 <content>
@@ -201,23 +185,7 @@
                             <Output name="bye" type="1" type_size="1" nature="2" inner="0" tooltip="" id="10" />
                             <Parameter name="key" inherits_from_parent="0" content_type="3" value="" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="11" />
                         </Box>
-                        <Box name="testing" id="9" localization="8" tooltip="An example of multilanguage dialog implementation" x="697" y="271">
-                            <dialogFile>../testing/testing.dlg</dialogFile>
-                            <bitmap>media/images/box/box-dialog.png</bitmap>
-                            <script language="4">
-                                <content>
-                                    <![CDATA[]]>
-</content>
-                            </script>
-                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
-                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
-                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
-                            <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
-                            <Output name="playAGame" type="1" type_size="1" nature="2" inner="0" tooltip="stimulated using $playAGame=1 in qiChat script when User wants to play a game&#x0A;" id="5" />
-                            <Resource name="Speech" type="Lock" timeout="0" />
-                            <Resource name="Speech recognition" type="Lock" timeout="0" />
-                        </Box>
-                        <Box name="Text Edit" id="19" localization="8" tooltip="Send the text you entered when the input is stimulated." plugin="textedit_plugin" x="262" y="32">
+                        <Box name="Text Edit" id="19" localization="8" tooltip="Send the text you entered when the input is stimulated." plugin="textedit_plugin" x="358" y="25">
                             <bitmap>media/images/box/interaction/vocabulary.png</bitmap>
                             <script language="4">
                                 <content>
@@ -239,82 +207,7 @@ class MyClass(GeneratedClass):
                             <Input name="onStart" type="1" type_size="1" nature="1" inner="0" tooltip="To send the text on the output." id="2" />
                             <Output name="onStopped" type="3" type_size="1" nature="2" inner="0" tooltip="The text you entered." id="3" />
                         </Box>
-                        <Box name="New Question" id="20" localization="8" tooltip="Subscribes to an event in NAOqi&apos;s shared memory.&#x0A;When subscribed, the output will be triggered every time the event is raised." x="173" y="363">
-                            <bitmap>media/images/box/sensors/STM.png</bitmap>
-                            <script language="4">
-                                <content>
-                                    <![CDATA[class MyClass(GeneratedClass):
-    def __init__(self):
-        GeneratedClass.__init__(self)
-        pass
-
-    def onLoad(self):
-        self.BIND_PYTHON(self.getName(), "onEventCallback")
-        self.memory = ALProxy("ALMemory")
-
-    def onUnload(self):
-        self.memory = None
-
-    def onInput_onStart(self):
-        self.memory.subscribeToEvent(self.getParameter("key"), self.getName(), "onEventCallback")
-
-    def onInput_onStop(self):
-        self.onStopped()
-
-    def onEventCallback(self, key, value, message):
-        self.onEvent(value)]]>
-</content>
-                            </script>
-                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
-                            <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
-                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="" id="3" />
-                            <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished. It contains the retrieved value from ALMemory." id="4" />
-                            <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
-                            <Output name="onEvent" type="0" type_size="1" nature="2" inner="0" tooltip="" id="6" />
-                            <Parameter name="key" inherits_from_parent="0" content_type="3" value="saveQuestion" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="7" />
-                        </Box>
-                        <Box name="Save Question" id="21" localization="8" tooltip="Retrieves from NAOqi&apos;s shared memory the given value at the given key." x="297" y="354">
-                            <bitmap>media/images/box/sensors/STM.png</bitmap>
-                            <script language="4">
-                                <content>
-                                    <![CDATA[class MyClass(GeneratedClass):
-    def __init__(self):
-        GeneratedClass.__init__(self)
-        pass
-
-    def onLoad(self):
-        self.memory = ALProxy("ALMemory")
-
-    def onUnload(self):
-        self.memory = None
-
-    def onInput_onStart(self):
-        #import os
-        #dir_path = os.getcwd()
-        question = str(self.memory.getData(self.getParameter("question")))
-        answer = str(self.memory.getData(self.getParameter("answer")))
-        file = open("C:/Users/IBM_ADMIN/Documents/pepperdialog/artist/testing/testing_enu.top", "a")
-        #text = file.read()
-        newText = str("\n u:("+question+") "+answer+" ")
-        file.write(newText)
-        #text = str(text+"\n u:("+question+") "+answer+" ")
-        file.close()
-        self.onStopped()
-
-    def onInput_onStop(self):
-        self.onUnload() #~ it is recommended to call onUnload of this box in a onStop method, as the code written in onUnload is used to stop the box as well
-        pass]]>
-</content>
-                            </script>
-                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
-                            <Input name="onStart" type="3" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
-                            <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
-                            <Output name="onStopped" type="0" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished. It contains the retrieved value from ALMemory." id="4" />
-                            <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
-                            <Parameter name="answer" inherits_from_parent="0" content_type="3" value="newAnswer" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="6" />
-                            <Parameter name="question" inherits_from_parent="0" content_type="3" value="newQuestion" default_value="" custom_choice="0" tooltip="" id="7" />
-                        </Box>
-                        <Box name="NLC" id="25" localization="8" tooltip="Enter description here" x="536" y="76">
+                        <Box name="NLC" id="25" localization="8" tooltip="Enter description here" x="628" y="176">
                             <bitmap>media/images/box/box-diagram.png</bitmap>
                             <script language="4">
                                 <content>
@@ -817,7 +710,7 @@ class MyClass(GeneratedClass):
                                 </BehaviorLayer>
                             </Timeline>
                         </Box>
-                        <Box name="Tablet" id="15" localization="8" tooltip="Enter description here" x="1173" y="6">
+                        <Box name="Tablet" id="15" localization="8" tooltip="Enter description here" x="1019" y="3">
                             <bitmap>media/images/box/box-diagram.png</bitmap>
                             <script language="4">
                                 <content>
@@ -2373,7 +2266,7 @@ class MyClass(GeneratedClass):
                                 </BehaviorLayer>
                             </Timeline>
                         </Box>
-                        <Box name="quiz score counter" id="7" localization="8" tooltip="Enter description here" x="46" y="358">
+                        <Box name="quiz score counter" id="7" localization="8" tooltip="Enter description here" x="1118" y="5">
                             <bitmap>media/images/box/box-diagram.png</bitmap>
                             <script language="4">
                                 <content>
@@ -2491,7 +2384,7 @@ class MyClass(GeneratedClass):
                                 </BehaviorLayer>
                             </Timeline>
                         </Box>
-                        <Box name="Image" id="12" localization="8" tooltip="Enter description here" x="828" y="0">
+                        <Box name="Image" id="12" localization="8" tooltip="Enter description here" x="725" y="2">
                             <bitmap>media/images/box/box-diagram.png</bitmap>
                             <script language="4">
                                 <content>
@@ -10165,7 +10058,7 @@ class MyClass(GeneratedClass):
                                 </BehaviorLayer>
                             </Timeline>
                         </Box>
-                        <Box name="audio" id="5" localization="8" tooltip="Enter description here" x="1076" y="172">
+                        <Box name="audio" id="5" localization="8" tooltip="Enter description here" x="929" y="2">
                             <bitmap>media/images/box/box-diagram.png</bitmap>
                             <script language="4">
                                 <content>
@@ -10202,7 +10095,7 @@ class MyClass(GeneratedClass):
                                                 <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" />
                                                 <Input name="onSet" type="1" type_size="1" nature="1" inner="0" tooltip="The data is set when a signal is received on this input." id="2" />
                                                 <Output name="onReady" type="1" type_size="1" nature="2" inner="0" tooltip="Signal sent when the data has been set." id="3" />
-                                                <Parameter name="Volume (%)" inherits_from_parent="0" content_type="1" value="58" default_value="50" min="0" max="100" tooltip="Percentage of maximum output volume." id="4" />
+                                                <Parameter name="Volume (%)" inherits_from_parent="0" content_type="1" value="77" default_value="50" min="0" max="100" tooltip="Percentage of maximum output volume." id="4" />
                                             </Box>
                                             <Box name="Audio-settings" id="17" localization="8" tooltip="Set the speach speed between 0.5 (and 4&#x0A;&#x0A;" x="181" y="80">
                                                 <bitmap>media/images/box/interaction/processing_sound.png</bitmap>
@@ -10879,7 +10772,7 @@ class MyClass(GeneratedClass):
                                 </BehaviorLayer>
                             </Timeline>
                         </Box>
-                        <Box name="songs" id="16" localization="8" tooltip="Enter description here" x="876" y="99">
+                        <Box name="songs" id="16" localization="8" tooltip="Enter description here" x="825" y="0">
                             <bitmap>media/images/box/box-diagram.png</bitmap>
                             <script language="4">
                                 <content>
@@ -11094,7 +10987,7 @@ class MyClass(GeneratedClass):
                                 </BehaviorLayer>
                             </Timeline>
                         </Box>
-                        <Box name="Reset" id="2" localization="8" tooltip="An example of multilanguage dialog implementation" x="563" y="319">
+                        <Box name="Reset" id="2" localization="8" tooltip="An example of multilanguage dialog implementation" x="193" y="98">
                             <dialogFile>../resetting/resetting.dlg</dialogFile>
                             <bitmap>media/images/box/box-dialog.png</bitmap>
                             <script language="4">
@@ -11114,12 +11007,8 @@ class MyClass(GeneratedClass):
                         <Link inputowner="1" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="11" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="13" indexofinput="2" outputowner="11" indexofoutput="6" />
-                        <Link inputowner="3" indexofinput="2" outputowner="13" indexofoutput="8" />
-                        <Link inputowner="9" indexofinput="2" outputowner="13" indexofoutput="9" />
                         <Link inputowner="5" indexofinput="2" outputowner="19" indexofoutput="3" />
                         <Link inputowner="25" indexofinput="2" outputowner="19" indexofoutput="3" />
-                        <Link inputowner="21" indexofinput="2" outputowner="20" indexofoutput="6" />
-                        <Link inputowner="20" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="15" indexofinput="2" outputowner="19" indexofoutput="3" />
                         <Link inputowner="0" indexofinput="4" outputowner="13" indexofoutput="10" />
                         <Link inputowner="5" indexofinput="3" outputowner="19" indexofoutput="3" />
@@ -11130,7 +11019,6 @@ class MyClass(GeneratedClass):
                         <Link inputowner="16" indexofinput="2" outputowner="19" indexofoutput="3" />
                         <Link inputowner="10" indexofinput="2" outputowner="25" indexofoutput="4" />
                         <Link inputowner="10" indexofinput="2" outputowner="13" indexofoutput="7" />
-                        <Link inputowner="19" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="2" indexofinput="2" outputowner="1" indexofoutput="3" />
                     </Diagram>
                 </BehaviorKeyframe>
